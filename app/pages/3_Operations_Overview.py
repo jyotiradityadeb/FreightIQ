@@ -56,6 +56,7 @@ render_top_shell(active_page_name="Operations Overview")
 # 4. Page Title Header
 st.markdown("### Operations Overview")
 st.caption("Freight market outlook and current charter recommendation")
+st.caption("Source: synthetic demo history — not real Baltic Exchange, AIS, or port data")
 
 # 5. Load Data & Engine Outputs
 try:

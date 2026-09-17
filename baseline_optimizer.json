@@ -1,0 +1,49 @@
+{
+  "recommendation": {
+    "recommended_charter_date": "2026-09-30",
+    "recommended_vessel": "Panamax",
+    "route": "Australia -> Paradip",
+    "origin": "Australia",
+    "destination": "Paradip",
+    "cargo_type": "Coking Coal",
+    "quantity_tonnes": 75000.0,
+    "expected_unit_freight_usd": 29.5,
+    "expected_freight_cost_usd": 2212500.0,
+    "expected_demurrage_cost_usd": 8100.0,
+    "expected_congestion_cost_usd": 16875.0,
+    "expected_route_risk_penalty_usd": 7200.0,
+    "expected_total_logistics_cost_usd": 2244675.0,
+    "effective_cost_per_tonne": 29.93,
+    "freight_trend": "Downward trend expected (softening rates)",
+    "decision": "Charter immediately on earliest window date",
+    "why": [
+      "freight rates are expected to soften towards the end of window.",
+      "selected Panamax vessel provides the best-fit capacity for 75,000.0 tonnes of Coking Coal.",
+      "port congestion and demurrage exposure at Paradip are minimized on 2026-09-30.",
+      "total estimated logistics cost ($2,244,675.00) is lower than alternative charter dates."
+    ],
+    "disclaimer": "Prototype decision-support estimate \u2014 not a commercial charter commitment."
+  },
+  "best_option": {
+    "feasible": true,
+    "infeasibility_reason": null,
+    "charter_date": "2026-09-30",
+    "vessel_class": "Panamax",
+    "route": "Australia -> Paradip",
+    "origin": "Australia",
+    "destination": "Paradip",
+    "cargo_type": "Coking Coal",
+    "quantity_tonnes": 75000.0,
+    "unit_freight_usd_per_tonne": 29.5,
+    "freight_cost_usd": 2212500.0,
+    "demurrage_cost_usd": 8100.0,
+    "congestion_cost_usd": 16875.0,
+    "route_risk_penalty_usd": 7200.0,
+    "total_logistics_cost_usd": 2244675.0,
+    "effective_cost_per_tonne": 29.93,
+    "forecast_freight_base": 25.0,
+    "congestion_score": 45.0,
+    "waiting_hours": 24.0,
+    "vessel_avail_count": 25
+  }
+}

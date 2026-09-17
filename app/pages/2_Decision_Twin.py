@@ -57,6 +57,7 @@ shipment_ctx = get_active_shipment_context()
 # Header
 st.markdown("<h1 style='margin-bottom: 2px;'>Decision Twin</h1>", unsafe_allow_html=True)
 st.markdown("<p style='color: #6B7280; font-size: 0.95rem; margin-bottom: 20px;'>Stress-test charter recommendations across simulated market conditions.</p>", unsafe_allow_html=True)
+st.caption("Source: simulated futures on synthetic demo state — not real-market scenario data")
 
 # Sidebar Controls
 cargo_type = st.sidebar.selectbox("Cargo Type", ["Coking Coal", "Thermal Coal", "Iron Ore", "Custom Bulk Cargo"], index=0)
