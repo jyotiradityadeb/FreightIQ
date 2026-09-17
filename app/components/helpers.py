@@ -208,38 +208,42 @@ def inject_custom_css():
             text-transform: uppercase !important;
         }}
 
-        /* Navigation Top Bar */
-        .fiq-nav-bar {{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 16px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            margin-bottom: 24px;
+        /* Top Navigation Bar Styling */
+        div[data-testid="stHorizontalBlock"]:has(button[key*="topnav_"]) {{
+            align-items: center !important;
+            gap: 6px !important;
+            flex-wrap: nowrap !important;
+            overflow-x: auto !important;
         }}
-        .fiq-brand {{
-            display: flex;
-            align-items: center;
-            gap: 10px;
+
+        button[key*="topnav_"] {{
+            white-space: nowrap !important;
+            word-break: keep-all !important;
+            overflow-wrap: normal !important;
+            height: 42px !important;
+            min-height: 42px !important;
+            max-height: 42px !important;
+            padding: 0px 16px !important;
+            font-size: 14px !important;
+            font-weight: 500 !important;
+            border-radius: 8px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 100% !important;
         }}
-        .fiq-nav-links {{
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            font-size: 0.875rem;
-            font-weight: 500;
-        }}
-        .fiq-nav-item {{
-            color: var(--text-secondary);
-            text-decoration: none;
-            padding: 4px 0;
-        }}
-        .fiq-nav-item.active {{
-            color: var(--primary);
-            font-weight: 600;
-            border-bottom: 2px solid var(--primary);
+
+        button[key*="topnav_"] p,
+        button[key*="topnav_"] span,
+        button[key*="topnav_"] div,
+        button[key*="topnav_"] [data-testid="stMarkdownContainer"] p {{
+            white-space: nowrap !important;
+            word-break: keep-all !important;
+            overflow-wrap: normal !important;
+            font-size: 14px !important;
+            font-weight: 500 !important;
+            line-height: 1 !important;
+            margin: 0 !important;
         }}
 
         /* Footer */
@@ -254,6 +258,7 @@ def inject_custom_css():
         }}
         </style>
     """).strip()
+
     st.markdown(css, unsafe_allow_html=True)
 
 
@@ -301,17 +306,45 @@ def render_top_shell(active_page_name: str = "Overview"):
         ("Explorer", DATA_EXPLORER_PAGE),
     ]
 
+    col_widths = [1.8, 1.05, 1.25, 1.15, 1.0, 1.1, 1.2, 1.1, 1.25, 0.9, 1.0]
+
+    def _is_active(lbl: str, p: str) -> bool:
+        lbl_l = lbl.lower()
+        p_l = p.lower()
+        if lbl_l == p_l:
+            return True
+        if lbl_l == "overview" and p_l in ("overview", "control tower", "home"):
+            return True
+        if lbl_l == "decision twin" and "decision twin" in p_l:
+            return True
+        if lbl_l == "operations" and "operations" in p_l:
+            return True
+        if lbl_l == "markets" and "market" in p_l:
+            return True
+        if lbl_l == "forecasts" and "forecast" in p_l:
+            return True
+        if lbl_l == "chartering" and ("charter" in p_l or "optimizer" in p_l):
+            return True
+        if lbl_l == "scenarios" and ("scenario" in p_l or "lab" in p_l):
+            return True
+        if lbl_l == "backtesting" and ("backtest" in p_l or "simulation" in p_l or "validation" in p_l):
+            return True
+        if lbl_l == "data" and ("data integration" in p_l or p_l == "data"):
+            return True
+        if lbl_l == "explorer" and ("data explorer" in p_l or p_l == "explorer"):
+            return True
+        return False
+
     with st.container():
-        cols = st.columns([2.2] + [1.0] * len(nav_items))
+        cols = st.columns(col_widths)
         with cols[0]:
-            st.markdown(get_freightiq_logo_svg(135, 28), unsafe_allow_html=True)
+            st.markdown(get_freightiq_logo_svg(175, 36), unsafe_allow_html=True)
 
         for idx, (label, target_page) in enumerate(nav_items, start=1):
             with cols[idx]:
-                is_active = (active_page_name.lower() in label.lower() or label.lower() in active_page_name.lower())
+                is_active = _is_active(label, active_page_name)
                 btn_kind = "primary" if is_active else "secondary"
-                if st.button(label, key=f"topnav_{label}_{active_page_name}", type=btn_kind, use_container_width=True):
-
+                if st.button(label, key=f"topnav_{label}", type=btn_kind, use_container_width=True):
                     if target_page == "Home.py":
                         try:
                             st.switch_page("Home.py")
@@ -321,6 +354,7 @@ def render_top_shell(active_page_name: str = "Overview"):
                         navigate_to(target_page)
 
     st.markdown("<div style='height: 12px;'></div>", unsafe_allow_html=True)
+
 
 
 def render_sidebar_status():
