@@ -13,6 +13,8 @@ from typing import Dict, Any, Optional
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 from reportlab.lib import colors
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (
     SimpleDocTemplate,
     Paragraph,
@@ -57,6 +59,17 @@ def format_pdf_inr_val(val_inr: Optional[float], mode: str = "auto") -> str:
         return f"{sign}INR {abs_val:,.0f}"
 
 
+def _register_vera_font():
+    """Registers Bitstream Vera Sans (bundled with ReportLab) for Unicode header/footer text."""
+    import reportlab as _rl
+    vera_path = os.path.join(os.path.dirname(_rl.__file__), "fonts", "Vera.ttf")
+    if "VeraSans" not in pdfmetrics.getRegisteredFontNames():
+        pdfmetrics.registerFont(TTFont("VeraSans", vera_path))
+
+
+_register_vera_font()
+
+
 class NumberedCanvas(canvas.Canvas):
     """Two-pass canvas to dynamically add header & footer page numbers."""
     def __init__(self, *args, **kwargs):
@@ -77,9 +90,9 @@ class NumberedCanvas(canvas.Canvas):
 
     def draw_page_decorations(self, page_count):
         self.saveState()
-        self.setFont("Helvetica", 8)
+        self.setFont("VeraSans", 8)
         self.setFillColor(colors.HexColor("#64748B"))
-        
+
         # Header
         self.drawString(54, 800, "FreightIQ — Executive Maritime Decision Note")
         self.setStrokeColor(colors.HexColor("#CBD5E1"))
