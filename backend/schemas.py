@@ -2,7 +2,7 @@
 FreightIQ FastAPI Pydantic Schemas
 """
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from typing import List, Dict, Any, Optional
 
 
@@ -30,6 +30,8 @@ class MarketLatestResponse(BaseModel):
 
 
 class ForecastRequest(BaseModel):
+    model_config = ConfigDict(protected_namespaces=())
+
     horizon: int = Field(default=14, ge=1, le=60, description="Forecast horizon in days")
     model_name: str = Field(default="Auto", description="Auto, SARIMA, Naive Baseline, or Prophet")
 
