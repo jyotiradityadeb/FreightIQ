@@ -75,13 +75,17 @@ def test_generate_freight_forecast_auto_full_data(feature_df):
 # ---------------------------------------------------------------------------
 
 def test_auto_selection_stable_on_full_data(feature_df):
-    """Auto-selection on 974-row demo data must still pick Naive Baseline (MAE=0.326)."""
+    """Auto-selection on 974-row demo data must pick Naive Baseline with a valid OK metric.
+
+    Batch E note: latent-factor generator produces MAE≈0.63 (was 0.326 on v1 data).
+    The specific value shifts with data changes; the range [0.1, 1.0] captures both.
+    """
     res = generate_freight_forecast(feature_df, horizon=14, selected_model="Auto")
     assert res["selected_model"] == "Naive Baseline", (
         f"Auto-selection changed: expected 'Naive Baseline', got '{res['selected_model']}'"
     )
     assert res["metrics"]["status"] == "OK"
-    # MAE should remain near the baseline value (allow ±20% tolerance for SARIMA re-fit variance)
+    # MAE range covers both v1 (0.326) and v2 (0.634) data generations
     assert 0.1 <= res["metrics"]["MAE"] <= 1.0
 
 
