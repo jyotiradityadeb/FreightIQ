@@ -13,7 +13,7 @@ if ROOT_DIR not in sys.path:
 import streamlit as st
 import pandas as pd
 
-st.set_page_config(page_title="Market Intelligence — FreightIQ", page_icon=None, layout="wide")
+st.set_page_config(page_title="FreightIQ — Market Intelligence", page_icon=None, layout="wide")
 
 from app.components.helpers import (
     inject_custom_css,
@@ -25,7 +25,6 @@ from app.components.helpers import (
     usd_to_inr,
     format_hours
 )
-from app.components.cards import render_compact_kpi_card
 from app.components.charts import (
     plot_freight_trend,
     plot_commodity_signals,
@@ -38,7 +37,7 @@ render_top_shell(active_page_name="Market Intelligence")
 
 df = get_cached_processed_data()
 
-# Date Window Filter
+# Date Window Filter in Sidebar
 st.sidebar.header("Filter Date Range")
 min_d = df["date"].min().to_pydatetime()
 max_d = df["date"].max().to_pydatetime()
@@ -59,76 +58,82 @@ else:
 latest = filtered_df.iloc[-1]
 
 # Header
-st.markdown("### Market Intelligence")
-st.caption("Dry-bulk freight, commodity and East Coast port indicators [D] Demo Data")
+st.markdown("<h1 style='margin-bottom: 2px;'>Market Intelligence</h1>", unsafe_allow_html=True)
+st.markdown("<p style='color: #6B7280; font-size: 0.95rem; margin-bottom: 20px;'>Financial market indicators, commodity price signals, and port congestion metrics.</p>", unsafe_allow_html=True)
 
-# TOP SUMMARY STRIP
-st.markdown("""
-    <div style="background-color: #151E28; border: 1px solid #293541; border-radius: 6px; padding: 12px 18px; margin-bottom: 20px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; font-size: 0.82rem;">
-        <div>
-            <span style="color: #71808F;">Market Regime:</span> <strong style="color: #2E8B68; margin-left: 4px;">Moderately Bullish</strong>
-        </div>
-        <div>
-            <span style="color: #71808F;">Freight Momentum:</span> <strong style="color: #C98226; margin-left: 4px;">Softening</strong>
-        </div>
-        <div>
-            <span style="color: #71808F;">Port Risk:</span> <strong style="color: #C98226; margin-left: 4px;">Elevated</strong>
-        </div>
-        <div>
-            <span style="color: #71808F;">Vessel Supply:</span> <strong style="color: #E9EEF4; margin-left: 4px;">Stable</strong>
-        </div>
-    </div>
-""", unsafe_allow_html=True)
+# SMALL SUMMARY STRIP (Clean SaaS Bordered Container)
+ore_inr = usd_to_inr(latest['iron_ore_price'])
+coal_inr = usd_to_inr(latest['coking_coal_price'])
 
-# KPI STRIP (5 Cards)
-c1, c2, c3, c4, c5 = st.columns(5)
-with c1:
-    render_compact_kpi_card("BALTIC DRY INDEX", f"{latest['bdi']:,.0f}", "BDI Benchmark")
-with c2:
-    render_compact_kpi_card("CAPESIZE INDEX", f"{latest['capesize_index']:,.0f}", "Capesize 180k Index")
-with c3:
-    render_compact_kpi_card("PANAMAX INDEX", f"{latest['panamax_index']:,.0f}", "Panamax 75k Index")
-with c4:
-    ore_inr = usd_to_inr(latest['iron_ore_price'])
-    render_compact_kpi_card("IRON ORE", f"{format_inr(ore_inr)} / t", "Demo converted to INR")
-with c5:
-    coal_inr = usd_to_inr(latest['coking_coal_price'])
-    render_compact_kpi_card("COKING COAL", f"{format_inr(coal_inr)} / t", "Demo converted to INR")
+with st.container(border=True):
+    s1, s2, s3, s4, s5 = st.columns(5)
+    with s1:
+        st.caption("BDI / FREIGHT")
+        st.markdown(f"**{latest['bdi']:,.0f} BDI**")
+        st.caption(f"{format_inr(usd_to_inr(latest['freight_rate']))}/t")
+    with s2:
+        st.caption("COKING COAL")
+        st.markdown(f"**{format_inr(coal_inr)} / t**")
+        st.caption("Premium Hard Coking")
+    with s3:
+        st.caption("IRON ORE")
+        st.markdown(f"**{format_inr(ore_inr)} / t**")
+        st.caption("62% Fe CFR China")
+    with s4:
+        st.caption("PARADIP CONGESTION")
+        st.markdown(f"**{latest['port_congestion_score']:.0f} / 100**")
+        st.caption(f"{latest['avg_waiting_hours']:.0f}h avg wait")
+    with s5:
+        st.caption("AVAILABLE VESSELS")
+        st.markdown(f"**{latest['vessel_availability_count']} Vessels**")
+        st.caption("Open East Coast AU")
 
-st.markdown("<br>", unsafe_allow_html=True)
+st.markdown("<div style='height: 16px;'></div>", unsafe_allow_html=True)
 
-# CHARTS ROW 1: Freight & BDI, Commodity Price Signals
-col_left, col_right = st.columns(2)
-
-with col_left:
-    st.markdown("### Freight Rate & Baltic Dry Index")
-    fig_f = plot_freight_trend(filtered_df, title="Freight Rate (₹ / tonne)")
+# MAIN MARKET CHART
+with st.container(border=True):
+    st.markdown("### Freight Market Benchmark & Commodity Signals")
+    fig_f = plot_freight_trend(filtered_df, title="")
     st.plotly_chart(fig_f, use_container_width=True)
 
-with col_right:
-    st.markdown("### Commodity Price Signals")
-    fig_comm = plot_commodity_signals(filtered_df)
-    st.plotly_chart(fig_comm, use_container_width=True)
+st.markdown("<div style='height: 16px;'></div>", unsafe_allow_html=True)
 
-st.markdown("---")
+# TWO-COLUMN LAYOUT: SIGNALS vs MARKET EVENTS
+c_signals, c_events = st.columns([1, 1])
 
-# CHART / TABLE ROW 2: Port Congestion Comparison & Regional Vessel Supply
-p_left, p_right = st.columns(2)
+with c_signals:
+    with st.container(border=True):
+        st.markdown("### Market Signals")
+        st.caption("Key driver metrics and status indicators")
+        
+        signals_data = [
+            {"Signal": "Baltic Panamax Index", "Current Value": f"{latest['panamax_index']:,.0f}", "7D Trend": "Softening (-1.2%)", "Status": "Normal"},
+            {"Signal": "Capesize Index", "Current Value": f"{latest['capesize_index']:,.0f}", "7D Trend": "Rising (+3.4%)", "Status": "Watch"},
+            {"Signal": "Coking Coal CFR India", "Current Value": format_inr(coal_inr), "7D Trend": "Flat (0.0%)", "Status": "Stable"},
+            {"Signal": "Iron Ore Fines 62%", "Current Value": format_inr(ore_inr), "7D Trend": "Softening (-0.8%)", "Status": "Stable"},
+            {"Signal": "Bunker VLSFO Singapore", "Current Value": "₹54,200 / t", "7D Trend": "Softening (-0.5%)", "Status": "Favorable"}
+        ]
+        st.dataframe(pd.DataFrame(signals_data), use_container_width=True, hide_index=True)
 
-with p_left:
-    st.markdown("### Port Congestion Comparison")
-    
-    port_table_data = [
-        {"Port": "Paradip", "Congestion": "64 / 100", "Waiting Time": "39 h", "Trend": "Improving", "Risk": "Moderate"},
-        {"Port": "Visakhapatnam", "Congestion": "48 / 100", "Waiting Time": "26 h", "Trend": "Stable", "Risk": "Low"},
-        {"Port": "Haldia", "Congestion": "71 / 100", "Waiting Time": "44 h", "Trend": "Worsening", "Risk": "High"}
-    ]
-    
-    st.dataframe(port_table_data, use_container_width=True)
+with c_events:
+    with st.container(border=True):
+        st.markdown("### Market Events & Operational News")
+        st.caption("Recent market developments impacting East Coast freight")
 
-with p_right:
-    st.markdown("### Regional Vessel Availability")
-    fig_vessel = plot_congestion_and_vessels(filtered_df)
-    st.plotly_chart(fig_vessel, use_container_width=True)
+        events = [
+            {"Date": "17 Sep 2026", "Event": "Paradip Coal Berth maintenance scheduled for 22-24 Sep; queue expected to rise to 48h."},
+            {"Date": "15 Sep 2026", "Event": "Queensland rail haulage bottlenecks resolved; vessel loading rates back to 4,200 t/h."},
+            {"Date": "12 Sep 2026", "Event": "Singapore VLSFO bunker prices drop ₹450/t following lower crude oil futures."},
+            {"Date": "08 Sep 2026", "Event": "Visakhapatnam inner harbor dredging complete; draft constraint relaxed to 16.5m."}
+        ]
+        
+        for ev in events:
+            st.markdown(f"""
+                <div style="border-bottom: 1px solid #F1F5F9; padding-bottom: 8px; margin-bottom: 8px;">
+                    <div style="font-size: 0.75rem; color: #6B7280; font-weight: 600;">{ev['Date']}</div>
+                    <div style="font-size: 0.875rem; color: #111827;">{ev['Event']}</div>
+                </div>
+            """, unsafe_allow_html=True)
 
 render_disclaimer()
+

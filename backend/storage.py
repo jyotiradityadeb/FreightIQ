@@ -74,8 +74,30 @@ def init_db(db_path: str = DB_PATH):
         )
     """)
 
+    expected_audit_cols = {
+        "timestamp": "TEXT",
+        "shipment_id": "TEXT",
+        "event_type": "TEXT",
+        "action": "TEXT",
+        "old_value": "TEXT",
+        "new_value": "TEXT",
+        "source_mode": "TEXT",
+        "reason": "TEXT",
+        "details": "TEXT",
+        "decision_version": "TEXT",
+        "snapshot_json": "TEXT"
+    }
+    cursor.execute("PRAGMA table_info(audit_logs)")
+    existing_cols = [col[1] for col in cursor.fetchall()]
+    if existing_cols:
+        for col_name, col_type in expected_audit_cols.items():
+            if col_name not in existing_cols:
+                cursor.execute(f"ALTER TABLE audit_logs ADD COLUMN {col_name} {col_type}")
+
     conn.commit()
     conn.close()
+
+
 
 
 def initialize_storage(db_path: str = DB_PATH):
@@ -464,3 +486,9 @@ def get_decision_versions(shipment_id: str, db_path: str = DB_PATH) -> List[Dict
 def get_decision_history(shipment_id: str, db_path: str = DB_PATH) -> List[Dict[str, Any]]:
     """Alias for get_decision_versions."""
     return get_decision_versions(shipment_id, db_path=db_path)
+
+
+def log_decision_version(shipment_id: str, recommendation: Union[Dict[str, Any], int], version_number: Optional[int] = None, reason: str = "Baseline Optimization", db_path: str = DB_PATH) -> str:
+    """Alias for save_decision_version."""
+    return save_decision_version(shipment_id, recommendation, version_number=version_number, reason=reason, db_path=db_path)
+

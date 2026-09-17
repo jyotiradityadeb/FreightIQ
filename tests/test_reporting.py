@@ -73,3 +73,22 @@ def test_pdf_fallback_handling():
     pdf_bytes = generate_charter_decision_pdf(sparse_rec, data_mode="DEMO")
     assert isinstance(pdf_bytes, bytes)
     assert pdf_bytes.startswith(b"%PDF")
+
+
+def test_log_decision_version_api_contract():
+    """Verifies backend.storage exposes log_decision_version alias."""
+    import backend.storage as storage
+    assert hasattr(storage, "log_decision_version")
+    assert callable(storage.log_decision_version)
+
+
+def test_theme_helper_functions():
+    """Verifies get_active_theme and toggle_theme helper functions."""
+    from app.components.helpers import get_active_theme, toggle_theme
+    theme = get_active_theme()
+    assert theme in ["light", "dark"]
+    toggle_theme()
+    new_theme = get_active_theme()
+    assert new_theme != theme
+    toggle_theme()
+

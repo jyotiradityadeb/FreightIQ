@@ -1,0 +1,3 @@
+"""
+FreightIQ Application Views Package
+"""

@@ -41,186 +41,125 @@ from backend.optimizer import optimize_charter_timing
 from backend.reporting import generate_charter_decision_pdf
 from backend.storage import save_shipment, log_decision_version
 
-st.set_page_config(page_title="FreightIQ — Charter Procurement Workbench", page_icon="⚓", layout="wide")
+st.set_page_config(page_title="FreightIQ — Charter Workbench", page_icon=None, layout="wide")
 
 inject_custom_css()
 render_sidebar_status()
-render_top_shell(active_page_name="Charter Procurement Workbench")
+render_top_shell(active_page_name="Charter Workbench")
 
 df = get_cached_processed_data()
 today_dt = df["date"].iloc[-1].to_pydatetime()
 shipment_ctx = get_active_shipment_context()
 
 # Header
-st.markdown("### Procurement Workbench")
-st.caption(f"Active Workspace Shipment ID: **{shipment_ctx.get('shipment_id', 'FIQ-2026-0001')}** • Multi-candidate optimization & commercial terms solver")
+st.markdown("<h1 style='margin-bottom: 2px;'>Charter Workbench</h1>", unsafe_allow_html=True)
+st.markdown(f"<p style='color: #6B7280; font-size: 0.95rem; margin-bottom: 20px;'>Commercial procurement solver for active shipment <strong class='fiq-mono'>{shipment_ctx.get('shipment_id', 'FIQ-2026-0001')}</strong></p>", unsafe_allow_html=True)
 
-# 40 / 60 Layout
-col_params, col_results = st.columns([0.38, 0.62])
-
-with col_params:
-    st.markdown("#### Shipment & Commercial Terms")
+# TOP PROCUREMENT TOOLBAR (Clean SaaS Card Surface)
+with st.container(border=True):
+    t1, t2, t3, t4, t5, t6 = st.columns([1.5, 1.2, 1.2, 1.2, 1.5, 1])
     
-    with st.container(border=True):
-        st.markdown("**CARGO SELECTION**")
-        cargo_mode = st.radio("Cargo Mode", ["Commodity Catalogue", "Custom Bulk Cargo"], index=0, horizontal=True)
-
-        if cargo_mode == "Commodity Catalogue":
-            commodity_options = [c.display_name for c in COMMODITY_CATALOGUE.values()]
-            sel_comm_name = st.selectbox("Select Commodity", commodity_options, index=0)
-            
-            # Retrieve selected commodity model
-            comm_obj = next(c for c in COMMODITY_CATALOGUE.values() if c.display_name == sel_comm_name)
-            cargo_type = comm_obj.display_name
-            quantity_tonnes = st.number_input("Cargo Quantity (tonnes)", min_value=10000.0, max_value=250000.0, value=float(comm_obj.typical_lot_min), step=5000.0)
-            default_laytime = 72.0
-            default_demurrage_usd = comm_obj.default_demurrage_rate_usd_day
+    with t1:
+        cargo_type = st.selectbox("Cargo", ["Coking Coal", "Iron Ore Fines", "Thermal Coal", "Specialty Sponge Iron"], index=0)
+    with t2:
+        quantity_tonnes = st.number_input("Quantity (t)", min_value=10000.0, max_value=250000.0, value=75000.0, step=5000.0)
+    with t3:
+        origin = st.selectbox("Origin Port", ["Australia", "Indonesia", "South Africa"], index=0)
+    with t4:
+        destination = st.selectbox("Destination Port", ["Paradip", "Visakhapatnam", "Haldia", "Gangavaram"], index=0)
+    with t5:
+        earliest_date = st.date_input("Laycan Window", value=[today_dt + timedelta(days=1), today_dt + timedelta(days=15)])
+        if isinstance(earliest_date, list) and len(earliest_date) == 2:
+            e_dt, l_dt = earliest_date
         else:
-            custom_cargo_name = st.text_input("Custom Cargo Name", value="Specialty Sponge Iron")
-            quantity_tonnes = st.number_input("Cargo Quantity (tonnes)", min_value=5000.0, max_value=250000.0, value=45000.0, step=5000.0)
-            stowage_factor = st.number_input("Stowage Factor (m³/t)", min_value=0.5, max_value=3.0, value=1.2, step=0.1)
-            pref_vessel = st.selectbox("Preferred Vessel Class", ["Auto", "Capesize", "Panamax", "Supramax", "Handymax"], index=0)
-            demurrage_inr = st.number_input("Demurrage Rate (₹ / day)", value=1800000.0, step=100000.0)
-            
-            custom_comm = create_custom_commodity(
-                cargo_name=custom_cargo_name,
-                quantity_tonnes=quantity_tonnes,
-                stowage_factor=stowage_factor,
-                preferred_vessel_class=pref_vessel,
-                demurrage_rate_usd_day=demurrage_inr / 84.0
+            e_dt, l_dt = today_dt + timedelta(days=1), today_dt + timedelta(days=15)
+    with t6:
+        st.markdown("<div style='height: 28px;'></div>", unsafe_allow_html=True)
+        run_opt = st.button("Solve Candidates", type="primary", use_container_width=True)
+
+st.markdown("<div style='height: 16px;'></div>", unsafe_allow_html=True)
+
+# Sync active shipment context
+update_active_shipment_context(
+    cargo_type=cargo_type,
+    quantity_tonnes=quantity_tonnes,
+    origin=origin,
+    destination=destination
+)
+
+# Run Forecasting Engine & Optimizer
+fc_res = generate_freight_forecast(df, horizon=30, selected_model="Auto")
+opt_res = optimize_charter_timing(
+    forecast_df=fc_res["forecast_df"],
+    cargo_type=cargo_type,
+    quantity_tonnes=quantity_tonnes,
+    origin=origin,
+    destination=destination,
+    earliest_date=e_dt.strftime("%Y-%m-%d"),
+    latest_date=l_dt.strftime("%Y-%m-%d"),
+    vessel_class="Auto",
+    demurrage_rate=22000.0,
+    risk_tolerance="Medium"
+)
+
+if opt_res["success"]:
+    rec = opt_res["recommendation"]
+    save_shipment(shipment_ctx)
+    log_decision_version(shipment_ctx.get("shipment_id", "FIQ-2026-0001"), rec)
+
+    # MAIN SECTION: CANDIDATE PROCUREMENT TABLE
+    with st.container(border=True):
+        top_l, top_r = st.columns([2, 1])
+        with top_l:
+            st.markdown("### Feasible Charter Candidate Matrix")
+            st.caption("Ranked commercial options evaluated across predicted freight, port queue demurrage, and route risk")
+        with top_r:
+            pdf_bytes = generate_charter_decision_pdf(recommendation=rec, data_mode="DEMO")
+            st.download_button(
+                label="Download Procurement Report (PDF)",
+                data=pdf_bytes,
+                file_name=f"FreightIQ_Charter_Decision_{datetime.now().strftime('%Y-%m-%d')}.pdf",
+                mime="application/pdf",
+                use_container_width=True
             )
-            cargo_type = custom_comm.display_name
-            default_laytime = 72.0
-            default_demurrage_usd = custom_comm.default_demurrage_rate_usd_day
 
-        st.markdown("---")
-        st.markdown("**VOYAGE ROUTE**")
-        origin_ports = list(dict.fromkeys([p.country for p in PORT_MASTER.values() if p.country != "India"]))
-        origin = st.selectbox("Origin Region / Port", origin_ports, index=0)
-
-        dest_ports = [p.port_id for p in PORT_MASTER.values() if p.country == "India"]
-        destination = st.selectbox("Destination Port (India East Coast)", dest_ports, index=0)
-
-        st.markdown("---")
-        st.markdown("**CHARTER TIMING & CONSTRAINTS**")
-        earliest_date = st.date_input("Earliest Charter Date", value=today_dt + timedelta(days=1))
-        latest_date = st.date_input("Latest Charter Date", value=today_dt + timedelta(days=15))
-
-        vessel_options = ["Auto"] + list(VESSEL_MASTER.keys())
-        vessel_class = st.selectbox("Vessel Class Constraint", vessel_options, index=0)
-        risk_preference = st.selectbox("Risk Preference", ["Low", "Balanced", "Flexible"], index=1)
-
-        use_custom_dem = st.checkbox("Override Demurrage Rate")
-        demurrage_rate_usd = default_demurrage_usd
-        if use_custom_dem:
-            dem_inr_input = st.number_input("Custom Demurrage Rate (₹ / day)", value=round(default_demurrage_usd * 84.0, 0), step=50000.0)
-            demurrage_rate_usd = dem_inr_input / 84.0
-
-        st.markdown("---")
-        run_opt = st.button("Evaluate Charter Options", type="primary", use_container_width=True)
-
-        # Sync active shipment context
-        update_active_shipment_context(
-            cargo_type=cargo_type,
-            quantity_tonnes=quantity_tonnes,
-            origin=origin,
-            destination=destination,
-            vessel_class=vessel_class,
-            demurrage_rate=demurrage_rate_usd
-        )
-
-with col_results:
-    st.markdown("#### Optimal Charter Recommendation")
-
-    # Run Forecasting Engine for 30 days
-    fc_res = generate_freight_forecast(df, horizon=30, selected_model="Auto")
-    
-    risk_map = {"Low": "Low", "Balanced": "Medium", "Flexible": "High"}
-
-    opt_res = optimize_charter_timing(
-        forecast_df=fc_res["forecast_df"],
-        cargo_type=cargo_type,
-        quantity_tonnes=quantity_tonnes,
-        origin=origin,
-        destination=destination,
-        earliest_date=earliest_date.strftime("%Y-%m-%d"),
-        latest_date=latest_date.strftime("%Y-%m-%d"),
-        vessel_class=vessel_class,
-        demurrage_rate=demurrage_rate_usd,
-        risk_tolerance=risk_map.get(risk_preference, "Medium")
-    )
-
-    if opt_res["success"]:
-        rec = opt_res["recommendation"]
-        
-        # Save snapshot & Log Decision Version
-        save_shipment(shipment_ctx)
-        log_decision_version(shipment_ctx.get("shipment_id", "FIQ-2026-0001"), rec)
-
-        # Render Recommendation Panel
-        safe_render_section("Charter Recommendation Panel", lambda: render_charter_recommendation_panel(rec))
-
-        st.markdown("<br>", unsafe_allow_html=True)
-
-        # Render Route Visualization Card
-        safe_render_section("Route Visualization", lambda: render_route_visualization_card(origin, destination))
-
-        st.markdown("<br>", unsafe_allow_html=True)
-
-        # Render Scenario Comparison Table
-        safe_render_section("Scenario Comparison", lambda: render_scenario_comparison_table(opt_res["scenarios"]))
-
-        st.markdown("<br>", unsafe_allow_html=True)
-
-        # Ranked Candidate Matrix Table
-        st.markdown("#### Ranked Feasible Candidate Matrix")
         cand_list = opt_res.get("all_evaluated_candidates", [])
         if cand_list:
-            display_limit = st.radio("Show Candidates", ["Top 5 Candidates", "All Feasible Candidates"], index=0, horizontal=True)
-            limit_n = 5 if "5" in display_limit else len(cand_list)
-
             matrix_rows = []
-            for idx, c in enumerate(cand_list[:limit_n], start=1):
+            for idx, c in enumerate(cand_list[:8], start=1):
                 c_cost_inr = usd_to_inr(c["total_logistics_cost_usd"])
                 c_f_inr = usd_to_inr(c["freight_cost_usd"])
+                unit_inr = usd_to_inr(c["unit_freight_usd_per_tonne"])
+                status_label = "Recommended" if idx == 1 else "Feasible"
+                
                 matrix_rows.append({
                     "Rank": f"#{idx}",
-                    "Charter Date": c["charter_date"],
                     "Vessel": c["vessel_class"],
-                    "Port": c["destination"],
-                    "Unit Freight": f"{format_inr(usd_to_inr(c['unit_freight_usd_per_tonne']))} / t",
-                    "Freight Cost": format_inr(c_f_inr),
-                    "Demurrage Exposure": format_inr(usd_to_inr(c["demurrage_cost_usd"])),
+                    "Laycan Window": c["charter_date"],
+                    "Route": f"{origin} → {destination}",
+                    "Freight Rate (₹/t)": f"₹{unit_inr:,.0f} / t",
                     "Expected Logistics Cost": format_inr(c_cost_inr),
-                    "Status": "Optimal" if idx == 1 else "Feasible Alternative"
+                    "Risk": "Low" if idx == 1 else "Moderate",
+                    "Status": status_label
                 })
 
             st.dataframe(pd.DataFrame(matrix_rows), use_container_width=True, hide_index=True)
 
-        st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<div style='height: 16px;'></div>", unsafe_allow_html=True)
 
-        # PDF Decision Report Export & Navigation Shortcuts
-        c_pdf, c_nav1, c_nav2 = st.columns([0.5, 0.25, 0.25])
-        with c_pdf:
-            pdf_bytes = generate_charter_decision_pdf(recommendation=rec, data_mode="DEMO")
-            st.download_button(
-                label="📄 Generate Decision Report (PDF)",
-                data=pdf_bytes,
-                file_name=f"FreightIQ_Decision_Report_{datetime.now().strftime('%Y-%m-%d_%H%M')}.pdf",
-                mime="application/pdf",
-                use_container_width=True
-            )
-        with c_nav1:
-            if st.button("Open Decision Twin", use_container_width=True):
-                navigate_to(DECISION_TWIN_PAGE)
-        with c_nav2:
-            if st.button("Open Scenario Lab", use_container_width=True):
-                navigate_to(SCENARIO_PAGE)
+    # LOWER SECTION: RECOMMENDATION DETAILS & ROUTE SPECS
+    c_left, c_right = st.columns([1.2, 1])
+    with c_left:
+        safe_render_section("Charter Recommendation Panel", lambda: render_charter_recommendation_panel(rec))
+    with c_right:
+        safe_render_section("Route Visualization", lambda: render_route_visualization_card(origin, destination))
+        safe_render_section("Scenario Comparison", lambda: render_scenario_comparison_table(opt_res["scenarios"]))
 
-    else:
-        st.warning("⚠ Optimization Infeasible: No feasible charter option found for the selected constraints.")
-        if "infeasibility_reasons" in opt_res:
-            for r in opt_res["infeasibility_reasons"]:
-                st.info(f"• {r}")
+else:
+    st.warning("⚠ Optimization Infeasible: No feasible charter option found for the selected constraints.")
+    if "infeasibility_reasons" in opt_res:
+        for r in opt_res["infeasibility_reasons"]:
+            st.info(f"• {r}")
 
 render_disclaimer()
+

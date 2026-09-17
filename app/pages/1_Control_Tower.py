@@ -1,6 +1,5 @@
 """
 FreightIQ Streamlit Page 1 — Control Tower
-Real-Time-Style Disruption Intelligence & Charter Decision Monitoring
 """
 
 import os
@@ -11,5 +10,15 @@ ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 if ROOT_DIR not in sys.path:
     sys.path.insert(0, ROOT_DIR)
 
-# Delegate rendering to app/Home.py
-from app.Home import *
+import streamlit as st
+
+st.set_page_config(
+    page_title="FreightIQ — Control Tower",
+    page_icon=None,
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+from app.views.control_tower_view import render_control_tower_page
+
+render_control_tower_page(active_page_name="Control Tower")

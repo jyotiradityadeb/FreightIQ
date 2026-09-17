@@ -16,19 +16,19 @@ def render_compact_kpi_card(
     label: str,
     value_str: str,
     subtext_str: str,
-    subtext_color: str = "#A2ADBA"
+    subtext_color: str = "#6B7280"
 ):
-    """Renders a compact industrial KPI card using native Streamlit container."""
+    """Renders a clean SaaS metric card using native Streamlit container."""
     with st.container(border=True):
-        st.caption(label)
-        st.markdown(f"**{value_str}**")
+        st.caption(label.upper())
+        st.markdown(f"### {value_str}")
         st.caption(subtext_str)
 
 
 def render_charter_recommendation_panel(rec: Dict[str, Any]):
     """
     Renders the Charter Recommendation panel using 100% native Streamlit components.
-    Guarantees ZERO raw HTML leakage!
+    Clean light SaaS layout with zero raw HTML leakage.
     """
     # Convert USD costs to INR for presentation
     freight_inr = usd_to_inr(rec.get("expected_freight_cost_usd", 0.0))
@@ -42,13 +42,13 @@ def render_charter_recommendation_panel(rec: Dict[str, Any]):
         top_left, top_right = st.columns([2, 1])
 
         with top_left:
-            st.caption("STATUS")
-            st.markdown("**RECOMMENDED**")
-            st.markdown(f"### {rec.get('decision', 'Charter within selected window')}")
+            st.caption("DECISION STATUS")
+            st.markdown("**:green[✓ RECOMMENDED CHARTER ACTION]**")
+            st.markdown(f"## {rec.get('decision', 'Charter within selected window')}")
 
         with top_right:
-            st.caption("EXPECTED TOTAL COST")
-            st.markdown(f"### {format_inr(total_inr)}")
+            st.caption("EXPECTED LOGISTICS COST")
+            st.markdown(f"# {format_inr(total_inr)}")
             st.caption(f"{format_inr(per_tonne_inr, is_per_tonne=True)}")
 
         st.divider()
@@ -57,19 +57,19 @@ def render_charter_recommendation_panel(rec: Dict[str, Any]):
 
         with c1:
             st.caption("RECOMMENDED WINDOW")
-            st.write(rec.get('recommended_charter_date', 'N/A'))
+            st.markdown(f"**{rec.get('recommended_charter_date', 'N/A')}**")
 
         with c2:
             st.caption("VESSEL CLASS")
-            st.write(rec.get('recommended_vessel', 'N/A'))
+            st.markdown(f"**{rec.get('recommended_vessel', 'N/A')}**")
 
         with c3:
             st.caption("CARGO")
-            st.write(f"{format_tonnes(rec.get('quantity_tonnes', 0))} {rec.get('cargo_type', '')}")
+            st.markdown(f"**{format_tonnes(rec.get('quantity_tonnes', 0))} {rec.get('cargo_type', '')}**")
 
         with c4:
             st.caption("ROUTE")
-            st.write(f"{rec.get('origin', '')} → {rec.get('destination', '')}")
+            st.markdown(f"**{rec.get('origin', '')} → {rec.get('destination', '')}**")
 
         st.divider()
 
@@ -93,11 +93,9 @@ def render_charter_recommendation_panel(rec: Dict[str, Any]):
 
         st.divider()
 
-        st.caption("Decision Drivers")
+        st.caption("KEY DECISION DRIVERS")
         for driver in rec.get("why", []):
             st.write(f"• {driver}")
-
-        st.caption("Prototype decision-support estimate based on demo inputs.")
 
 
 def render_scenario_comparison_table(scenarios: Dict[str, Any]):
@@ -158,11 +156,12 @@ def render_route_visualization_card(origin: str, destination: str):
             st.markdown(f"**{destination}**")
             st.caption("DESTINATION PORT")
 
-        st.caption(f"Port Draft Check: **{meta['draft']}** • Prototype route assumption")
+        st.caption(f"Port Draft Check: **{meta['draft']}**")
 
 
 def render_forecast_interpretation_box(title: str, text: str):
     """Renders a forecast interpretation text box using native Streamlit container."""
     with st.container(border=True):
-        st.caption(title)
+        st.caption(title.upper())
         st.write(text)
+

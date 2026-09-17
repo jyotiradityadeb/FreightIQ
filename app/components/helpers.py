@@ -69,89 +69,241 @@ def format_hours(hours: float) -> str:
     return f"{hours:.0f} h"
 
 
+def get_active_theme() -> str:
+    """Returns current active theme ('light' or 'dark')."""
+    if "fiq_theme" not in st.session_state:
+        st.session_state["fiq_theme"] = "light"
+    return st.session_state["fiq_theme"]
+
+
+def toggle_theme():
+    """Toggles theme state between light and dark."""
+    curr = get_active_theme()
+    st.session_state["fiq_theme"] = "dark" if curr == "light" else "light"
+
+
 def inject_custom_css():
-    """Injects industrial maritime enterprise CSS design system."""
-    css = textwrap.dedent("""
+    """Injects modern SaaS design system with light/dark theme CSS variables."""
+    theme = get_active_theme()
+    is_dark = (theme == "dark")
+
+    bg = "#0E1117" if is_dark else "#F6F8FB"
+    surface = "#151A22" if is_dark else "#FFFFFF"
+    surface_sec = "#1B212B" if is_dark else "#F8FAFC"
+    text = "#F5F7FA" if is_dark else "#101828"
+    text_sec = "#98A2B3" if is_dark else "#667085"
+    border = "#2A3240" if is_dark else "#E4E7EC"
+    primary = "#4D8DFF" if is_dark else "#1667D9"
+    primary_hover = "#6BA1FF" if is_dark else "#1256B8"
+
+    css = textwrap.dedent(f"""
         <style>
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
-        html, body, [class*="css"] {
-            font-family: 'IBM Plex Sans', -apple-system, sans-serif;
-            color: #E9EEF4;
-        }
+        :root {{
+            --bg: {bg};
+            --surface: {surface};
+            --surface-secondary: {surface_sec};
+            --text: {text};
+            --text-secondary: {text_sec};
+            --border: {border};
+            --primary: {primary};
+            --primary-hover: {primary_hover};
+        }}
 
-        .stApp {
-            background-color: #0B1118;
-        }
+        html, body, [class*="css"] {{
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+            color: var(--text) !important;
+            -webkit-font-smoothing: antialiased;
+        }}
 
-        /* Hide default Streamlit header and footer */
-        #MainMenu {visibility: hidden;}
-        footer {visibility: hidden;}
-        header[data-testid="stHeader"] {background: transparent;}
+        .stApp {{
+            background-color: var(--bg) !important;
+        }}
+
+        #MainMenu {{visibility: hidden;}}
+        footer {{visibility: hidden;}}
+        header[data-testid="stHeader"] {{
+            background-color: transparent !important;
+            height: 0px !important;
+            min-height: 0px !important;
+        }}
+        div[data-testid="stHeader"] {{
+            display: none !important;
+        }}
 
         /* Sidebar Styling */
-        section[data-testid="stSidebar"] {
-            background-color: #101720 !important;
-            border-right: 1px solid #293541 !important;
-        }
+        section[data-testid="stSidebar"] {{
+            background-color: var(--surface) !important;
+            border-right: 1px solid var(--border) !important;
+        }}
+        section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p {{
+            color: var(--text-secondary) !important;
+            font-size: 0.875rem !important;
+        }}
 
-        /* Inputs & Selectboxes */
-        div[data-baseweb="select"] > div, div[data-baseweb="input"] > div {
-            background-color: #1A2531 !important;
-            border: 1px solid #293541 !important;
-            color: #E9EEF4 !important;
-            border-radius: 5px !important;
-        }
+        /* Native Containers & Card Styling */
+        div[data-testid="stVerticalBlock"] > div[data-testid="stNativeContainer"],
+        div[data-testid="stVerticalBlockBorderWrapper"],
+        div[data-testid="stBorderWrapper"] {{
+            border: 1px solid var(--border) !important;
+            background-color: var(--surface) !important;
+            border-radius: 8px !important;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+        }}
 
-        /* Status Badges */
-        .badge-demo {
-            background-color: rgba(201, 130, 38, 0.15);
-            color: #D9822B;
-            border: 1px solid rgba(201, 130, 38, 0.3);
-            font-size: 0.72rem;
+        /* Inputs, Selectboxes & Control Elements */
+        div[data-baseweb="select"] > div, 
+        div[data-baseweb="input"] > div,
+        div[data-baseweb="base-input"] > div {{
+            background-color: var(--surface-secondary) !important;
+            border: 1px solid var(--border) !important;
+            color: var(--text) !important;
+            border-radius: 6px !important;
+            font-size: 0.875rem !important;
+        }}
+
+        /* Typography Hierarchy Overrides */
+        h1, h2, h3, h4, h5, h6 {{
+            color: var(--text) !important;
+            font-weight: 600 !important;
+            letter-spacing: -0.02em !important;
+        }}
+        p, span, label, div {{
+            color: var(--text);
+        }}
+        h1 {{ font-size: 1.75rem !important; margin-bottom: 0.5rem !important; }}
+        h2 {{ font-size: 1.25rem !important; margin-top: 1rem !important; margin-bottom: 0.5rem !important; }}
+        h3 {{ font-size: 1.05rem !important; margin-top: 0.75rem !important; margin-bottom: 0.25rem !important; }}
+
+        /* Buttons */
+        div.stButton > button {{
+            border-radius: 6px !important;
+            font-weight: 500 !important;
+            font-size: 0.875rem !important;
+            padding: 0.45rem 1rem !important;
+            transition: all 0.15s ease-in-out !important;
+        }}
+        div.stButton > button[kind="primary"] {{
+            background-color: var(--primary) !important;
+            color: #FFFFFF !important;
+            border: 1px solid var(--primary) !important;
+        }}
+        div.stButton > button[kind="secondary"] {{
+            background-color: var(--surface) !important;
+            color: var(--text) !important;
+            border: 1px solid var(--border) !important;
+        }}
+
+        /* Metric & Badges */
+        div[data-testid="stMetricValue"] {{
+            font-size: 1.625rem !important;
+            font-weight: 600 !important;
+            color: var(--text) !important;
+        }}
+        div[data-testid="stMetricLabel"] {{
+            font-size: 0.8125rem !important;
+            font-weight: 500 !important;
+            color: var(--text-secondary) !important;
+            text-transform: uppercase !important;
+        }}
+
+        /* Navigation Top Bar */
+        .fiq-nav-bar {{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }}
+        .fiq-brand {{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }}
+        .fiq-nav-links {{
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }}
+        .fiq-nav-item {{
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 4px 0;
+        }}
+        .fiq-nav-item.active {{
+            color: var(--primary);
             font-weight: 600;
-            padding: 2px 8px;
-            border-radius: 4px;
-            display: inline-block;
-        }
+            border-bottom: 2px solid var(--primary);
+        }}
 
-        .badge-online {
-            background-color: rgba(46, 139, 104, 0.15);
-            color: #2E8B68;
-            border: 1px solid rgba(46, 139, 104, 0.3);
-            font-size: 0.72rem;
-            font-weight: 600;
-            padding: 2px 8px;
-            border-radius: 4px;
-            display: inline-block;
-        }
-
-        /* Disclaimer Footer Bar */
-        .disclaimer-footer {
-            background-color: #151E28;
-            border: 1px solid #293541;
-            border-radius: 5px;
+        /* Footer */
+        .disclaimer-footer {{
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
             padding: 10px 14px;
-            color: #71808F;
+            color: var(--text-secondary);
             font-size: 0.75rem;
-            margin-top: 28px;
-        }
+            margin-top: 32px;
+        }}
         </style>
     """).strip()
     st.markdown(css, unsafe_allow_html=True)
 
 
+def get_freightiq_logo_svg(width: int = 140, height: int = 32) -> str:
+    """Returns SVG markup for the FreightIQ geometric vessel/route logo & wordmark."""
+    theme = get_active_theme()
+    text_col = "#F5F7FA" if theme == "dark" else "#111827"
+    return textwrap.dedent(f"""
+        <svg width="{width}" height="{height}" viewBox="0 0 175 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Geometric Icon: Keel + Vector Arrow + Letter F -->
+            <rect x="2" y="6" width="28" height="28" rx="6" fill="#1667D9"/>
+            <path d="M10 13H22M10 20H19M10 13V27" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M19 20L22 17M22 17L19 14" stroke="#66E6FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Wordmark -->
+            <text x="38" y="26" font-family="'Inter', sans-serif" font-weight="700" font-size="20" fill="{text_col}" letter-spacing="-0.5">Freight<tspan fill="#1667D9">IQ</tspan></text>
+        </svg>
+    """).strip()
+
+
 def render_top_shell(active_page_name: str = "Overview"):
-    """Renders clean top header shell with page breadcrumbs and status indicators."""
+    """Renders real app shell top navigation bar matching commercial SaaS standard."""
+    nav_items = [
+        ("Overview", "Overview"),
+        ("Markets", "Market Intelligence"),
+        ("Forecasts", "Forecasts"),
+        ("Scenarios", "Scenario Lab"),
+        ("Chartering", "Charter Workbench"),
+        ("Decision Twin", "Decision Twin"),
+        ("Data", "Data Integration")
+    ]
+
+    links_html = ""
+    for label, full_name in nav_items:
+        is_active = "active" if (active_page_name.lower() in label.lower() or active_page_name.lower() in full_name.lower()) else ""
+        links_html += f'<span class="fiq-nav-item {is_active}">{label}</span>'
+
+    logo_svg = get_freightiq_logo_svg(150, 34)
+
     html = textwrap.dedent(f"""
-        <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; margin-bottom: 20px; border-bottom: 1px solid #293541;">
-            <div>
-                <div style="font-size: 1.15rem; font-weight: 700; color: #E9EEF4; letter-spacing: -0.3px;">FreightIQ <span style="color: #A2ADBA; font-size: 0.85rem; font-weight: 400;">/ {active_page_name}</span></div>
-                <div style="color: #71808F; font-size: 0.78rem;">Ministry of Steel & Industrial Bulk Import Decision Support • India East Coast Network</div>
+        <div class="fiq-nav-bar">
+            <div class="fiq-brand">
+                {logo_svg}
             </div>
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <span class="badge-online">API ONLINE</span>
-                <span class="badge-demo">DEMO DATA</span>
+            <div class="fiq-nav-links">
+                {links_html}
+            </div>
+            <div class="fiq-right-nav">
+                <span class="badge-demo">DEMO MODE</span>
+                <span class="badge-online">LIVE API</span>
+                <div class="fiq-avatar" title="SteelProcure India Org">SP</div>
             </div>
         </div>
     """).strip()
@@ -159,29 +311,37 @@ def render_top_shell(active_page_name: str = "Overview"):
 
 
 def render_sidebar_status():
-    """Renders compact sidebar status module."""
-    html = textwrap.dedent("""
-        <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #293541; font-size: 0.75rem;">
-            <div style="color: #71808F; font-weight: 600; text-transform: uppercase; margin-bottom: 8px;">SYSTEM STATUS</div>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-                <span style="color: #71808F;">Data Mode</span>
-                <span style="color: #D9822B; font-weight: 500;">Demo</span>
+    """Renders compact clean sidebar status module and theme switch button."""
+    theme = get_active_theme()
+    theme_label = "☀ Switch to Light Mode" if theme == "dark" else "🌙 Switch to Dark Mode"
+
+    if st.sidebar.button(theme_label, key="sidebar_theme_switch_btn", use_container_width=True):
+        toggle_theme()
+        st.rerun()
+
+    html = textwrap.dedent(f"""
+        <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 0.78rem;">
+            <div style="color: var(--text-secondary); font-weight: 600; text-transform: uppercase; margin-bottom: 8px; font-size: 0.7rem; letter-spacing: 0.05em;">SYSTEM STATUS</div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                <span>Active Theme</span>
+                <span style="font-weight: 600; text-transform: capitalize;">{theme} Mode</span>
             </div>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-                <span style="color: #71808F;">Forecast Model</span>
-                <span style="color: #E9EEF4; font-weight: 500;">Auto</span>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                <span>Data Mode</span>
+                <span style="color: #92400E; font-weight: 600;">Demo Dataset</span>
             </div>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-                <span style="color: #71808F;">Optimizer</span>
-                <span style="color: #2E8B68; font-weight: 500;">Active</span>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                <span>Forecast Engine</span>
+                <span style="font-weight: 500;">Ensemble v2.4</span>
             </div>
             <div style="display: flex; justify-content: space-between;">
-                <span style="color: #71808F;">API</span>
-                <span style="color: #2E8B68; font-weight: 500;">Online</span>
+                <span>Optimizer</span>
+                <span style="color: #10B981; font-weight: 600;">Active</span>
             </div>
         </div>
     """).strip()
     st.sidebar.markdown(html, unsafe_allow_html=True)
+
 
 
 def render_disclaimer():

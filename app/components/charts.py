@@ -11,49 +11,65 @@ import numpy as np
 from typing import Optional, List
 from app.components.helpers import usd_to_inr
 
-# Industrial Palette
-COLOR_HISTORICAL = "#9CA8B5"
-COLOR_FORECAST = "#3B73B9"
-COLOR_CONFIDENCE = "rgba(59, 115, 185, 0.14)"
-COLOR_COMMODITY_A = "#B87945"
-COLOR_COMMODITY_B = "#7694B3"
-COLOR_POSITIVE = "#2E8B68"
-COLOR_WARNING = "#C98226"
-COLOR_BENCHMARK = "#7B8794"
-COLOR_GRID = "rgba(255, 255, 255, 0.05)"
+# Light SaaS Palette
+COLOR_HISTORICAL = "#64748B"
+COLOR_FORECAST = "#1667D9"
+COLOR_CONFIDENCE = "rgba(22, 103, 217, 0.10)"
+COLOR_COMMODITY_A = "#D97706"
+COLOR_COMMODITY_B = "#0284C7"
+COLOR_POSITIVE = "#10B981"
+COLOR_WARNING = "#F59E0B"
+COLOR_BENCHMARK = "#94A3B8"
+COLOR_GRID = "#F1F5F9"
 
 
-def apply_industrial_theme(fig: go.Figure, title: str = "", height: int = 380) -> go.Figure:
-    """Applies clean industrial Plotly layout styling."""
+def apply_industrial_theme(fig: go.Figure, title: str = "", height: int = 380, theme: Optional[str] = None) -> go.Figure:
+    """Applies clean SaaS Plotly layout styling matching active Light / Dark theme."""
+    if theme is None:
+        try:
+            import streamlit as st
+            theme = st.session_state.get("fiq_theme", "light")
+        except Exception:
+            theme = "light"
+
+    is_dark = (theme == "dark")
+
+    bg_plot = "#151A22" if is_dark else "#FFFFFF"
+    text_color = "#F5F7FA" if is_dark else "#111827"
+    subtext_color = "#98A2B3" if is_dark else "#6B7280"
+    grid_color = "#2A3240" if is_dark else "#F1F5F9"
+    legend_bg = "#151A22" if is_dark else "#FFFFFF"
+    legend_border = "#2A3240" if is_dark else "#E5E7EB"
+
     fig.update_layout(
         title=dict(
             text=title,
-            font=dict(color="#E9EEF4", size=14, family="IBM Plex Sans"),
+            font=dict(color=text_color, size=14, family="Inter"),
             x=0.0,
             y=0.95
-        ),
+        ) if title else None,
         paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="#151E28",
-        margin=dict(l=40, r=40, t=45, b=40),
+        plot_bgcolor=bg_plot,
+        margin=dict(l=40, r=40, t=35 if title else 20, b=40),
         height=height,
-        font=dict(color="#A2ADBA", family="IBM Plex Sans"),
+        font=dict(color=subtext_color, family="Inter"),
         xaxis=dict(
-            gridcolor=COLOR_GRID,
+            gridcolor=grid_color,
             showgrid=True,
-            zerolinecolor=COLOR_GRID,
-            tickfont=dict(size=10, color="#71808F")
+            zerolinecolor=grid_color,
+            tickfont=dict(size=10, color=subtext_color)
         ),
         yaxis=dict(
-            gridcolor=COLOR_GRID,
+            gridcolor=grid_color,
             showgrid=True,
-            zerolinecolor=COLOR_GRID,
-            tickfont=dict(size=10, color="#71808F")
+            zerolinecolor=grid_color,
+            tickfont=dict(size=10, color=subtext_color)
         ),
         legend=dict(
-            bgcolor="#101720",
-            bordercolor="#293541",
+            bgcolor=legend_bg,
+            bordercolor=legend_border,
             borderwidth=1,
-            font=dict(color="#A2ADBA", size=10),
+            font=dict(color=text_color, size=10),
             orientation="h",
             yanchor="bottom",
             y=1.02,
@@ -61,16 +77,18 @@ def apply_industrial_theme(fig: go.Figure, title: str = "", height: int = 380) -
             x=1
         ),
         hoverlabel=dict(
-            bgcolor="#1A2531",
+            bgcolor=legend_bg,
             font_size=11,
-            font_family="IBM Plex Mono",
-            bordercolor="#293541"
+            font_family="Inter",
+            bordercolor=legend_border,
+            font_color=text_color
         )
     )
     return fig
 
 
-def plot_freight_trend(df: pd.DataFrame, title: str = "Freight Rate Outlook (₹ / tonne)") -> go.Figure:
+
+def plot_freight_trend(df: pd.DataFrame, title: str = "") -> go.Figure:
     """Plots historical freight rates converted to INR per tonne."""
     fig = go.Figure()
 
@@ -101,7 +119,7 @@ def plot_freight_trend(df: pd.DataFrame, title: str = "Freight Rate Outlook (₹
 def plot_forecast_with_ci(
     historical_df: pd.DataFrame,
     forecast_df: pd.DataFrame,
-    title: str = "Freight Rate Forecast (₹ / tonne)",
+    title: str = "",
     lookback_days: int = 60
 ) -> go.Figure:
     """Plots historical rates along with future predicted rates and 95% CI bands in INR per tonne."""
@@ -192,7 +210,7 @@ def plot_commodity_signals(df: pd.DataFrame) -> go.Figure:
         )
     )
 
-    return apply_industrial_theme(fig, title="Commodity Price Signals (Demo Benchmark Converted to INR)")
+    return apply_industrial_theme(fig, title="")
 
 
 def plot_congestion_and_vessels(df: pd.DataFrame) -> go.Figure:
@@ -225,7 +243,7 @@ def plot_congestion_and_vessels(df: pd.DataFrame) -> go.Figure:
         )
     )
 
-    return apply_industrial_theme(fig, title="Port Congestion Index & Vessel Availability")
+    return apply_industrial_theme(fig, title="")
 
 
 def plot_backtest_cost_comparison(res_df: pd.DataFrame) -> go.Figure:
@@ -250,7 +268,7 @@ def plot_backtest_cost_comparison(res_df: pd.DataFrame) -> go.Figure:
     ))
 
     fig.update_layout(barmode="group")
-    return apply_industrial_theme(fig, title="Simulated Logistics Cost Comparison per Decision Period (₹)")
+    return apply_industrial_theme(fig, title="")
 
 
 def plot_cumulative_simulated_savings(res_df: pd.DataFrame) -> go.Figure:
@@ -264,11 +282,12 @@ def plot_cumulative_simulated_savings(res_df: pd.DataFrame) -> go.Figure:
         x=res_df["decision_date"],
         y=cum_savings_inr,
         mode="lines+markers",
-        name="Cumulative Simulated Cost Difference (₹)",
+        name="Cumulative Cost Difference (₹)",
         line=dict(color=COLOR_POSITIVE, width=2.2),
         fill="tozeroy",
-        fillcolor="rgba(46, 139, 104, 0.12)",
+        fillcolor="rgba(16, 185, 129, 0.10)",
         marker=dict(size=4, color=COLOR_POSITIVE)
     ))
 
-    return apply_industrial_theme(fig, title="Cumulative Simulated Cost Difference Curve (₹)")
+    return apply_industrial_theme(fig, title="Difference Curve (₹)")
+
