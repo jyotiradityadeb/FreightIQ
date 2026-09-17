@@ -1,0 +1,3 @@
+"""
+FreightIQ backend package
+"""

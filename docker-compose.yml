@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  freightiq-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"
+    environment:
+      - DATA_MODE=DEMO
+      - SIH_DEMO_MODE=true
+    restart: unless-stopped
+
+  freightiq-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: uvicorn backend.main:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    environment:
+      - DATA_MODE=DEMO
+      - SIH_DEMO_MODE=true
+    restart: unless-stopped

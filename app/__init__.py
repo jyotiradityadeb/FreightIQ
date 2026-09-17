@@ -1,0 +1,3 @@
+"""
+FreightIQ app package
+"""
