@@ -153,7 +153,12 @@ with c_inputs:
         with i1:
             weather_val = st.selectbox("Weather Risk", ["Low", "Moderate", "High", "Severe"], index=["Low", "Moderate", "High", "Severe"].index(st.session_state["weather_risk"]))
         with i2:
-            target_port_val = st.selectbox("Target Discharge Port", ["Paradip", "Visakhapatnam", "Kolkata/Haldia"], index=0)
+            from backend.domain.ports import get_ports_for_country
+            dest_ports = get_ports_for_country("India", is_origin=False)
+            dest_port_names = [p.port_name for p in dest_ports]
+            curr_target_port = st.session_state.get("target_port", "Paradip")
+            target_port_idx = dest_port_names.index(curr_target_port) if curr_target_port in dest_port_names else 0
+            target_port_val = st.selectbox("Target Discharge Port", dest_port_names, index=target_port_idx)
 
         st.markdown("<div style='height: 8px;'></div>", unsafe_allow_html=True)
         btn_run = st.button("Run Scenario Simulation", type="primary", use_container_width=True)

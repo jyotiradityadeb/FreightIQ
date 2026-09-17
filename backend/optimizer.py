@@ -103,10 +103,15 @@ def evaluate_charter_candidate(
     norm_dest = _normalize_location_alias(destination)
     route_key = f"{norm_origin} -> {norm_dest}"
 
-    if route_key not in ROUTES:
+    # Use canonical route resolver
+    from backend.domain.routes import resolve_route
+    from backend.domain.ports import get_port_by_id
+    route_res = resolve_route(origin, destination)
+
+    if not route_res.is_calibrated:
         return {
             "feasible": False,
-            "infeasibility_reason": f"UNSUPPORTED_ROUTE: Route '{route_key}' is not in supported routes."
+            "infeasibility_reason": f"UNSUPPORTED_ROUTE: Route '{origin}' → '{destination}' is CATALOG ONLY — optimization unavailable ({route_res.message})."
         }
 
     if vessel_class not in VESSEL_CLASSES:
@@ -115,15 +120,15 @@ def evaluate_charter_candidate(
             "infeasibility_reason": f"UNSUPPORTED_VESSEL: Vessel class '{vessel_class}' is not recognized."
         }
 
-    if norm_dest not in PORT_CONFIG:
-        return {
-            "feasible": False,
-            "infeasibility_reason": f"UNSUPPORTED_PORT: Destination port '{norm_dest}' is not recognized."
-        }
+    dest_port = get_port_by_id(destination) or get_port_by_id(norm_dest)
+    port_info = PORT_CONFIG.get(norm_dest, {
+        "base_congestion_index": 50.0,
+        "avg_laytime_hours": 48.0,
+        "congestion_cost_per_hour_usd": 700.0,
+        "draft_limit_m": dest_port.max_draft_m if dest_port else 18.0
+    })
 
-    route_info = ROUTES[route_key]
     vessel_info = VESSEL_CLASSES[vessel_class]
-    port_info = PORT_CONFIG[norm_dest]
 
     # 1. Capacity Feasibility Check
     if quantity_tonnes > vessel_info["max_capacity"]:
@@ -133,18 +138,19 @@ def evaluate_charter_candidate(
         }
 
     # 2. Port Route & Draft Compatibility Check
-    if vessel_class not in route_info.get("allowed_vessels", []):
-        return {
-            "feasible": False,
-            "infeasibility_reason": f"{vessel_class} is not compatible with route constraints for {norm_dest}."
-        }
-
     v_draft = vessel_info.get("draft_requirement_m", 0.0)
-    p_draft_limit = port_info.get("draft_limit_m", 99.0)
+    p_draft_limit = dest_port.max_draft_m if dest_port else port_info.get("draft_limit_m", 99.0)
     if v_draft > p_draft_limit:
         return {
             "feasible": False,
-            "infeasibility_reason": f"UNSUPPORTED_DRAFT: {vessel_class} draft ({v_draft}m) exceeds {norm_dest} max allowed draft limit ({p_draft_limit}m)."
+            "infeasibility_reason": f"UNSUPPORTED_DRAFT: {vessel_class} draft ({v_draft}m) exceeds {dest_port.port_name if dest_port else norm_dest} max allowed draft limit ({p_draft_limit}m)."
+        }
+
+    allowed_vessels = route_res.allowed_vessel_classes
+    if vessel_class not in allowed_vessels:
+        return {
+            "feasible": False,
+            "infeasibility_reason": f"{vessel_class} is not compatible with route constraints for {norm_dest}."
         }
 
     # 3. Minimum Availability Check
@@ -157,7 +163,7 @@ def evaluate_charter_candidate(
     # Calculate Costs
     unit_freight = (
         freight_rate_forecast
-        * route_info["base_freight_multiplier"]
+        * route_res.base_freight_multiplier
         * vessel_info["base_daily_charter_multiplier"]
     )
     freight_cost = unit_freight * quantity_tonnes

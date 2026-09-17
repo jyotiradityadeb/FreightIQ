@@ -30,6 +30,7 @@ COMMODITY_CATALOGUE: Dict[str, Commodity] = {
         category="Metallurgical Raw Material",
         bulk_type="Major Bulk",
         density_t_m3=0.85,
+        stowage_factor_m3_t=1.20,
         typical_lot_min=50000,
         typical_lot_max=150000,
         preferred_vessel_classes=["Panamax", "Capesize"],
@@ -42,18 +43,20 @@ COMMODITY_CATALOGUE: Dict[str, Commodity] = {
         category="Energy Coal",
         bulk_type="Major Bulk",
         density_t_m3=0.80,
+        stowage_factor_m3_t=1.25,
         typical_lot_min=40000,
         typical_lot_max=160000,
         preferred_vessel_classes=["Panamax", "Supramax"],
         default_demurrage_rate_usd_day=18000.0,
         source_region_preferences=["Indonesia", "South Africa", "Australia"]
     ),
-    "iron_ore": Commodity(
-        commodity_id="iron_ore",
-        display_name="Iron Ore Fines/Lump",
+    "iron_ore_fines": Commodity(
+        commodity_id="iron_ore_fines",
+        display_name="Iron Ore Fines",
         category="Iron & Steel Raw Material",
         bulk_type="Major Bulk",
         density_t_m3=2.40,
+        stowage_factor_m3_t=0.45,
         typical_lot_min=60000,
         typical_lot_max=200000,
         preferred_vessel_classes=["Capesize", "Newcastlemax", "Panamax"],
@@ -66,6 +69,7 @@ COMMODITY_CATALOGUE: Dict[str, Commodity] = {
         category="Beneficiated Ore",
         bulk_type="Major Bulk",
         density_t_m3=2.20,
+        stowage_factor_m3_t=0.50,
         typical_lot_min=50000,
         typical_lot_max=150000,
         preferred_vessel_classes=["Capesize", "Panamax"],
@@ -78,6 +82,7 @@ COMMODITY_CATALOGUE: Dict[str, Commodity] = {
         category="Flux & Industrial Minerals",
         bulk_type="Minor Bulk",
         density_t_m3=1.50,
+        stowage_factor_m3_t=0.70,
         typical_lot_min=30000,
         typical_lot_max=80000,
         preferred_vessel_classes=["Supramax", "Panamax"],
@@ -90,6 +95,7 @@ COMMODITY_CATALOGUE: Dict[str, Commodity] = {
         category="Flux Materials",
         bulk_type="Minor Bulk",
         density_t_m3=1.60,
+        stowage_factor_m3_t=0.65,
         typical_lot_min=25000,
         typical_lot_max=75000,
         preferred_vessel_classes=["Supramax", "Handymax"],
@@ -102,23 +108,12 @@ COMMODITY_CATALOGUE: Dict[str, Commodity] = {
         category="Alloy Raw Material",
         bulk_type="Minor Bulk",
         density_t_m3=2.10,
+        stowage_factor_m3_t=0.50,
         typical_lot_min=20000,
         typical_lot_max=60000,
         preferred_vessel_classes=["Supramax", "Handysize"],
         default_demurrage_rate_usd_day=15000.0,
         source_region_preferences=["South Africa", "Gabon", "Australia"]
-    ),
-    "bauxite": Commodity(
-        commodity_id="bauxite",
-        display_name="Bauxite",
-        category="Non-Ferrous Ores",
-        bulk_type="Major Bulk",
-        density_t_m3=1.30,
-        typical_lot_min=50000,
-        typical_lot_max=180000,
-        preferred_vessel_classes=["Capesize", "Panamax"],
-        default_demurrage_rate_usd_day=21000.0,
-        source_region_preferences=["Guinea", "Australia", "Indonesia"]
     ),
     "chromite_ore": Commodity(
         commodity_id="chromite_ore",
@@ -126,54 +121,85 @@ COMMODITY_CATALOGUE: Dict[str, Commodity] = {
         category="Specialty Ore",
         bulk_type="Minor Bulk",
         density_t_m3=2.20,
+        stowage_factor_m3_t=0.48,
         typical_lot_min=15000,
         typical_lot_max=45000,
         preferred_vessel_classes=["Handymax", "Handysize"],
         default_demurrage_rate_usd_day=14000.0,
         source_region_preferences=["South Africa", "Turkey", "Oman"]
     ),
+    "bauxite": Commodity(
+        commodity_id="bauxite",
+        display_name="Bauxite",
+        category="Non-Ferrous Ores",
+        bulk_type="Major Bulk",
+        density_t_m3=1.30,
+        stowage_factor_m3_t=0.77,
+        typical_lot_min=50000,
+        typical_lot_max=180000,
+        preferred_vessel_classes=["Capesize", "Panamax"],
+        default_demurrage_rate_usd_day=21000.0,
+        source_region_preferences=["Guinea", "Australia", "Indonesia"]
+    ),
     "met_coke": Commodity(
         commodity_id="met_coke",
-        display_name="Metallurgical Coke",
+        display_name="Coke / Met Coke",
         category="Refined Carbon",
         bulk_type="Minor Bulk",
         density_t_m3=0.55,
+        stowage_factor_m3_t=1.82,
         typical_lot_min=20000,
         typical_lot_max=60000,
         preferred_vessel_classes=["Supramax", "Panamax"],
         default_demurrage_rate_usd_day=17000.0,
         source_region_preferences=["China", "Japan", "Poland"]
     ),
-    "pci_coal": Commodity(
-        commodity_id="pci_coal",
-        display_name="PCI Coal",
-        category="Blast Furnace Fuel",
-        bulk_type="Major Bulk",
-        density_t_m3=0.82,
-        typical_lot_min=45000,
-        typical_lot_max=120000,
-        preferred_vessel_classes=["Panamax", "Capesize"],
-        default_demurrage_rate_usd_day=20000.0,
-        source_region_preferences=["Australia", "Russia", "USA"]
+    "petcoke": Commodity(
+        commodity_id="petcoke",
+        display_name="Petroleum Coke",
+        category="Refined Carbon",
+        bulk_type="Minor Bulk",
+        density_t_m3=0.75,
+        stowage_factor_m3_t=1.33,
+        typical_lot_min=30000,
+        typical_lot_max=80000,
+        preferred_vessel_classes=["Panamax", "Supramax"],
+        default_demurrage_rate_usd_day=18000.0,
+        source_region_preferences=["USA", "Saudi Arabia", "UAE"]
     ),
-    "fluxes": Commodity(
-        commodity_id="fluxes",
-        display_name="Steelmaking Fluxes & Additives",
-        category="Industrial Additives",
+    "slag": Commodity(
+        commodity_id="slag",
+        display_name="Metallurgical Slag",
+        category="Industrial Byproducts",
         bulk_type="Minor Bulk",
         density_t_m3=1.40,
-        typical_lot_min=15000,
+        stowage_factor_m3_t=0.71,
+        typical_lot_min=20000,
         typical_lot_max=50000,
-        preferred_vessel_classes=["Supramax", "Handysize"],
+        preferred_vessel_classes=["Supramax", "Handymax"],
         default_demurrage_rate_usd_day=14000.0,
-        source_region_preferences=["UAE", "Oman", "Vietnam"]
+        source_region_preferences=["Japan", "China", "South Korea"]
+    ),
+    "gypsum": Commodity(
+        commodity_id="gypsum",
+        display_name="Gypsum",
+        category="Industrial Minerals",
+        bulk_type="Minor Bulk",
+        density_t_m3=1.30,
+        stowage_factor_m3_t=0.77,
+        typical_lot_min=25000,
+        typical_lot_max=60000,
+        preferred_vessel_classes=["Supramax", "Handymax"],
+        default_demurrage_rate_usd_day=15000.0,
+        source_region_preferences=["Oman", "Thailand", "UAE"]
     ),
     "fertilizer": Commodity(
         commodity_id="fertilizer",
-        display_name="Bulk Fertilizer (Rock Phosphate / Urea)",
+        display_name="Fertilizer / Urea",
         category="Agricultural Chemicals",
         bulk_type="Minor Bulk",
         density_t_m3=0.95,
+        stowage_factor_m3_t=1.05,
         typical_lot_min=25000,
         typical_lot_max=65000,
         preferred_vessel_classes=["Supramax", "Handymax"],
@@ -182,28 +208,35 @@ COMMODITY_CATALOGUE: Dict[str, Commodity] = {
     ),
     "grain": Commodity(
         commodity_id="grain",
-        display_name="Agricultural Grain (Wheat / Maize)",
+        display_name="Grain / Bulk Agricultural Cargo",
         category="Agri-Bulk",
         bulk_type="Major Bulk",
         density_t_m3=0.76,
+        stowage_factor_m3_t=1.32,
         typical_lot_min=30000,
         typical_lot_max=75000,
         preferred_vessel_classes=["Panamax", "Supramax"],
         default_demurrage_rate_usd_day=18000.0,
-        source_region_preferences=["Australia", "Canada", "Black Sea"]
-    ),
-    "cement_clinker": Commodity(
-        commodity_id="cement_clinker",
-        display_name="Cement Clinker",
-        category="Building Materials",
-        bulk_type="Minor Bulk",
-        density_t_m3=1.35,
-        typical_lot_min=25000,
-        typical_lot_max=55000,
-        preferred_vessel_classes=["Supramax", "Handymax"],
-        default_demurrage_rate_usd_day=15000.0,
-        source_region_preferences=["Vietnam", "UAE", "Thailand"]
+        source_region_preferences=["Australia", "Canada", "USA"]
     )
+}
+
+# Alias mapping for backward compatibility
+COMMODITY_ALIASES: Dict[str, str] = {
+    "iron_ore": "iron_ore_fines",
+    "iron ore": "iron_ore_fines",
+    "iron ore fines": "iron_ore_fines",
+    "iron ore fines/lump": "iron_ore_fines",
+    "coking coal": "coking_coal",
+    "thermal coal": "thermal_coal",
+    "coke": "met_coke",
+    "metallurgical coke": "met_coke",
+    "petroleum coke": "petcoke",
+    "petcoke": "petcoke",
+    "fertilizer": "fertilizer",
+    "bulk fertilizer (rock phosphate / urea)": "fertilizer",
+    "grain": "grain",
+    "agricultural grain (wheat / maize)": "grain"
 }
 
 
@@ -213,9 +246,19 @@ def get_all_commodities() -> Dict[str, Commodity]:
 
 
 def get_commodity(commodity_id: str) -> Optional[Commodity]:
-    """Retrieves a commodity specification by ID or name."""
+    """Retrieves a commodity specification by ID, display name, or alias."""
+    if not commodity_id:
+        return None
     normalized_id = commodity_id.lower().replace(" ", "_")
-    return COMMODITY_CATALOGUE.get(normalized_id)
+    if normalized_id in COMMODITY_CATALOGUE:
+        return COMMODITY_CATALOGUE[normalized_id]
+    alias_target = COMMODITY_ALIASES.get(commodity_id.lower()) or COMMODITY_ALIASES.get(normalized_id)
+    if alias_target and alias_target in COMMODITY_CATALOGUE:
+        return COMMODITY_CATALOGUE[alias_target]
+    for c in COMMODITY_CATALOGUE.values():
+        if c.display_name.lower() == commodity_id.lower():
+            return c
+    return None
 
 
 def create_custom_commodity(

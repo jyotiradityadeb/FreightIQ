@@ -24,7 +24,8 @@ from app.components.helpers import (
     format_inr,
     usd_to_inr,
     get_active_shipment_context,
-    update_active_shipment_context
+    update_active_shipment_context,
+    render_procurement_input_toolbar
 )
 from app.components.cards import (
     render_charter_recommendation_panel,
@@ -58,39 +59,26 @@ st.markdown(f"<p style='color: #6B7280; font-size: 0.95rem; margin-bottom: 20px;
 
 # TOP PROCUREMENT TOOLBAR (Clean SaaS Card Surface)
 with st.container(border=True):
-    t1, t2, t3, t4, t5, t6 = st.columns([1.5, 1.2, 1.2, 1.2, 1.5, 1])
-    
-    with t1:
-        cargo_type = st.selectbox("Cargo", ["Coking Coal", "Iron Ore Fines", "Thermal Coal", "Specialty Sponge Iron"], index=0)
-    with t2:
-        quantity_tonnes = st.number_input("Quantity (t)", min_value=10000.0, max_value=250000.0, value=75000.0, step=5000.0)
-    with t3:
-        origin = st.selectbox("Origin Port", ["Australia", "Indonesia", "South Africa"], index=0)
-    with t4:
-        destination = st.selectbox("Destination Port", ["Paradip", "Visakhapatnam", "Kolkata/Haldia"], index=0)
-    with t5:
-        laycan_input = st.date_input("Laycan Window", value=[today_dt + timedelta(days=1), today_dt + timedelta(days=15)])
-        if isinstance(laycan_input, (list, tuple)) and len(laycan_input) == 2:
-            e_dt, l_dt = laycan_input[0], laycan_input[1]
-        elif isinstance(laycan_input, (list, tuple)) and len(laycan_input) == 1:
-            e_dt = laycan_input[0]
-            l_dt = e_dt + timedelta(days=14)
-        else:
-            e_dt = laycan_input if hasattr(laycan_input, "strftime") else today_dt + timedelta(days=1)
-            l_dt = e_dt + timedelta(days=14)
-    with t6:
-        st.markdown("<div style='height: 28px;'></div>", unsafe_allow_html=True)
-        run_opt = st.button("Solve Candidates", type="primary", use_container_width=True)
+    tb_inputs = render_procurement_input_toolbar(key_prefix="charter_wb", show_laycan=True)
+    cargo_type = tb_inputs["cargo_type"]
+    quantity_tonnes = tb_inputs["quantity_tonnes"]
+    origin = tb_inputs["origin"]
+    destination = tb_inputs["destination"]
+    laycan_input = tb_inputs["laycan_dates"]
+
+    if isinstance(laycan_input, (list, tuple)) and len(laycan_input) == 2:
+        e_dt, l_dt = laycan_input[0], laycan_input[1]
+    elif isinstance(laycan_input, (list, tuple)) and len(laycan_input) == 1:
+        e_dt = laycan_input[0]
+        l_dt = e_dt + timedelta(days=14)
+    else:
+        e_dt = laycan_input if hasattr(laycan_input, "strftime") else today_dt + timedelta(days=1)
+        l_dt = e_dt + timedelta(days=14)
+
+    st.markdown("<div style='height: 8px;'></div>", unsafe_allow_html=True)
+    run_opt = st.button("Solve Candidates", type="primary", use_container_width=True)
 
 st.markdown("<div style='height: 16px;'></div>", unsafe_allow_html=True)
-
-# Sync active shipment context
-update_active_shipment_context(
-    cargo_type=cargo_type,
-    quantity_tonnes=quantity_tonnes,
-    origin=origin,
-    destination=destination
-)
 
 # Input hash for caching candidate solutions
 current_inputs_key = f"{cargo_type}_{quantity_tonnes}_{origin}_{destination}_{e_dt}_{l_dt}"

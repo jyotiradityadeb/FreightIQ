@@ -23,10 +23,13 @@ from app.components.helpers import (
     render_disclaimer,
     get_cached_processed_data,
     format_inr,
-    usd_to_inr
+    usd_to_inr,
+    get_active_shipment_context,
+    update_active_shipment_context
 )
 from app.components.charts import plot_forecast_with_ci
 from backend.forecasting import generate_freight_forecast, HAS_PROPHET
+from backend.domain.routes import get_calibrated_routes, resolve_route
 from backend.validation import (
     run_real_validation,
     build_validation_chart_data,
@@ -38,17 +41,51 @@ render_sidebar_status()
 render_top_shell(active_page_name="Forecasts")
 
 df = get_cached_processed_data()
+shipment_ctx = get_active_shipment_context()
+
+# Retrieve calibrated route options
+calibrated_routes = get_calibrated_routes()
+route_display_labels = [r["display_label"] for r in calibrated_routes]
+
+# Active shipment synchronization
+active_origin = shipment_ctx.get("origin", "Hay Point")
+active_dest = shipment_ctx.get("destination", "Paradip")
+active_o_pid = shipment_ctx.get("origin_port_id", "AU_HPT")
+active_d_pid = shipment_ctx.get("destination_port_id", "IN_PDP")
+
+active_route_res = resolve_route(active_o_pid or active_origin, active_d_pid or active_dest)
+
+default_route_idx = 0
+unsupported_active_msg = None
+
+if active_route_res.is_calibrated:
+    for idx, r_dict in enumerate(calibrated_routes):
+        if r_dict["origin_port_id"] == active_route_res.origin_port_id and r_dict["destination_port_id"] == active_route_res.destination_port_id:
+            default_route_idx = idx
+            break
+else:
+    unsupported_active_msg = f"Forecast unavailable for active shipment route ({active_origin} → {active_dest}) — no demo-calibrated route model."
 
 # Header
 st.markdown("<h1 style='margin-bottom: 2px;'>Forecasts</h1>", unsafe_allow_html=True)
 st.markdown("<p style='color: #6B7280; font-size: 0.95rem; margin-bottom: 20px;'>Predictive spot freight rate models and demo-series simulation metrics.</p>", unsafe_allow_html=True)
 st.caption("Source: synthetic demonstration series — not real Baltic Exchange or AIS data")
 
+if unsupported_active_msg:
+    st.warning(f"⚠ {unsupported_active_msg}")
+
 # COMPACT TOOLBAR
 with st.container(border=True):
-    c1, c2, c3, c4 = st.columns([1.5, 1.2, 1.2, 1])
+    c1, c2, c3, c4 = st.columns([1.8, 1.2, 1.2, 1])
     with c1:
-        route_sel = st.selectbox("Route", ["Hay Point → Paradip", "Gladstone → Visakhapatnam", "Richards Bay → Haldia"], index=0)
+        selected_route_label = st.selectbox("Route", route_display_labels, index=default_route_idx)
+        selected_route_dict = calibrated_routes[route_display_labels.index(selected_route_label)]
+        origin_port_id = selected_route_dict["origin_port_id"]
+        destination_port_id = selected_route_dict["destination_port_id"]
+        origin_name = selected_route_dict["origin_name"]
+        destination_name = selected_route_dict["destination_name"]
+        route_key = selected_route_dict["route_key"]
+        route_multiplier = selected_route_dict["base_freight_multiplier"]
     with c2:
         model_options = ["Auto", "SARIMA", "Naive Baseline"]
         if HAS_PROPHET:
@@ -60,21 +97,44 @@ with st.container(border=True):
         st.markdown("<div style='height: 28px;'></div>", unsafe_allow_html=True)
         run_fc_btn = st.button("Update Forecast", type="primary", use_container_width=True)
 
+    st.markdown("<div style='height: 4px;'></div>", unsafe_allow_html=True)
+    tb_m1, tb_m2 = st.columns([2.5, 1])
+    with tb_m1:
+        st.caption(f"Demo route context — forecast series uses synthetic benchmark history (multiplier: {route_multiplier:.2f}x)")
+    with tb_m2:
+        st.markdown("<div style='text-align: right;'><span style='background-color: #DEF7EC; color: #03543F; font-size: 0.75rem; font-weight: 600; padding: 3px 8px; border-radius: 4px;'>🟢 DEMO-CALIBRATED</span></div>", unsafe_allow_html=True)
+
+# Sync active shipment context to selected route
+update_active_shipment_context(
+    origin=origin_name,
+    origin_port_id=origin_port_id,
+    destination=destination_name,
+    destination_port_id=destination_port_id
+)
+
 st.markdown("<div style='height: 16px;'></div>", unsafe_allow_html=True)
 
 # Generate Forecast
 fc_res = generate_freight_forecast(df, horizon=horizon, selected_model=selected_model)
-fc_df = fc_res["forecast_df"]
-metrics = fc_res["metrics"]
+fc_df = fc_res["forecast_df"].copy()
+df_scaled = df.copy()
 
+if route_multiplier != 1.0:
+    for col in ["predicted_freight_rate", "lower_ci", "upper_ci"]:
+        if col in fc_df.columns:
+            fc_df[col] = fc_df[col] * route_multiplier
+    if "freight_rate" in df_scaled.columns:
+        df_scaled["freight_rate"] = df_scaled["freight_rate"] * route_multiplier
+
+metrics = fc_res["metrics"]
 _metrics_ok = metrics.get("status") == "OK"
 
 # MAIN FORECAST CHART (DOMINATES PAGE)
 with st.container(border=True):
-    st.markdown(f"### Spot Freight Rate Forecast — {route_sel} ({horizon}-Day Horizon)")
-    st.caption(f"Model: {fc_res['selected_model']} • 95% Confidence Interval Band")
+    st.markdown(f"### Spot Freight Rate Forecast — {selected_route_label} ({horizon}-Day Horizon)")
+    st.caption(f"Model: {fc_res['selected_model']} • 95% Confidence Interval Band • Route Multiplier: {route_multiplier:.2f}x")
     fig_fc = plot_forecast_with_ci(
-        df,
+        df_scaled,
         fc_df,
         title="",
         lookback_days=90

@@ -60,17 +60,68 @@ st.markdown("<p style='color: #6B7280; font-size: 0.95rem; margin-bottom: 20px;'
 st.caption("Source: simulated futures on synthetic demo state — not real-market scenario data")
 
 # Sidebar Controls
-cargo_type = st.sidebar.selectbox("Cargo Type", ["Coking Coal", "Thermal Coal", "Iron Ore", "Custom Bulk Cargo"], index=0)
+from backend.domain.commodities import get_all_commodities
+from backend.domain.ports import get_origin_countries, get_destination_countries, get_ports_for_country
+from backend.domain.routes import resolve_route
+
+all_commodities = [c.display_name for c in get_all_commodities().values()]
+curr_cargo = shipment_ctx.get("cargo_type", "Coking Coal")
+cargo_idx = all_commodities.index(curr_cargo) if curr_cargo in all_commodities else 0
+
+cargo_type = st.sidebar.selectbox("Cargo Type", all_commodities, index=cargo_idx)
 quantity_tonnes = st.sidebar.number_input("Quantity (t)", min_value=10000, max_value=250000, value=int(shipment_ctx.get("quantity_tonnes", 75000)), step=5000)
-origin = st.sidebar.selectbox("Origin Region", ["Australia", "Indonesia", "South Africa"], index=0)
-destination = st.sidebar.selectbox("Destination Port", ["Paradip", "Visakhapatnam", "Haldia"], index=0)
+
+o_countries = get_origin_countries()
+curr_o_c = shipment_ctx.get("origin_country", "Australia")
+if curr_o_c not in o_countries:
+    curr_o_c = "Australia"
+o_country = st.sidebar.selectbox("Origin Country", o_countries, index=o_countries.index(curr_o_c))
+
+o_ports = get_ports_for_country(o_country, is_origin=True)
+o_port_labels = [f"{p.port_name} ({p.port_id})" for p in o_ports]
+curr_o_pid = shipment_ctx.get("origin_port_id", "AU_HPT")
+o_pid_idx = 0
+for idx, p in enumerate(o_ports):
+    if p.port_id == curr_o_pid or p.port_name == shipment_ctx.get("origin"):
+        o_pid_idx = idx
+        break
+sel_o_lbl = st.sidebar.selectbox("Origin Port", o_port_labels, index=o_pid_idx)
+sel_o_port = o_ports[o_port_labels.index(sel_o_lbl)]
+origin = sel_o_port.port_name
+
+d_countries = get_destination_countries()
+curr_d_c = shipment_ctx.get("destination_country", "India")
+if curr_d_c not in d_countries:
+    curr_d_c = "India"
+
+d_ports = get_ports_for_country(curr_d_c, is_origin=False)
+d_port_labels = [f"{p.port_name} ({p.port_id})" for p in d_ports]
+curr_d_pid = shipment_ctx.get("destination_port_id", "IN_PDP")
+d_pid_idx = 0
+for idx, p in enumerate(d_ports):
+    if p.port_id == curr_d_pid or p.port_name == shipment_ctx.get("destination"):
+        d_pid_idx = idx
+        break
+sel_d_lbl = st.sidebar.selectbox("Destination Port", d_port_labels, index=d_pid_idx)
+sel_d_port = d_ports[d_port_labels.index(sel_d_lbl)]
+destination = sel_d_port.port_name
+
+route_res = resolve_route(sel_o_port.port_id, sel_d_port.port_id)
+if route_res.is_calibrated:
+    st.sidebar.caption("🟢 Route Status: DEMO-CALIBRATED")
+else:
+    st.sidebar.caption("⚠️ Route Status: CATALOG ONLY")
 
 # Sync Active Context
 update_active_shipment_context(
     cargo_type=cargo_type,
     quantity_tonnes=quantity_tonnes,
+    origin_country=o_country,
     origin=origin,
-    destination=destination
+    origin_port_id=sel_o_port.port_id,
+    destination_country=curr_d_c,
+    destination=destination,
+    destination_port_id=sel_d_port.port_id
 )
 
 # Retrieve active scenario from session state

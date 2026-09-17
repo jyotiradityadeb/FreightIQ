@@ -418,9 +418,14 @@ def get_active_shipment_context() -> dict:
         st.session_state["shipment_workspace"] = {
             "shipment_id": "FIQ-2026-0001",
             "cargo_type": "Coking Coal",
+            "cargo_id": "coking_coal",
             "quantity_tonnes": 75000.0,
-            "origin": "Australia",
+            "origin_country": "Australia",
+            "origin": "Hay Point",
+            "origin_port_id": "AU_HPT",
+            "destination_country": "India",
             "destination": "Paradip",
+            "destination_port_id": "IN_PDP",
             "vessel_class": "Auto",
             "laytime_hours": 72.0,
             "demurrage_rate": 22000.0,
@@ -438,4 +443,138 @@ def update_active_shipment_context(**kwargs):
         if v is not None:
             ctx[k] = v
     st.session_state["shipment_workspace"] = ctx
+
+
+def render_procurement_input_toolbar(key_prefix: str = "toolbar", show_laycan: bool = True, laycan_default_days: int = 14) -> dict:
+    """
+    Renders standardized SaaS procurement toolbar with Country -> Port cascading selectboxes,
+    canonical domain data dropdowns, route calibration status badge, and subtle port metadata.
+    """
+    from backend.domain.commodities import get_all_commodities, get_commodity
+    from backend.domain.ports import (
+        get_origin_countries,
+        get_destination_countries,
+        get_ports_for_country,
+        get_port_by_id
+    )
+    from backend.domain.routes import resolve_route
+    from datetime import datetime, timedelta
+
+    shipment_ctx = get_active_shipment_context()
+    commodities = list(get_all_commodities().values())
+    cargo_names = [c.display_name for c in commodities]
+
+    # Preselect current context
+    curr_cargo = shipment_ctx.get("cargo_type", "Coking Coal")
+    cargo_idx = cargo_names.index(curr_cargo) if curr_cargo in cargo_names else 0
+
+    origin_countries = get_origin_countries()
+    curr_o_country = shipment_ctx.get("origin_country", "Australia")
+    if curr_o_country not in origin_countries:
+        curr_o_country = "Australia"
+    o_country_idx = origin_countries.index(curr_o_country)
+
+    dest_countries = get_destination_countries()
+    curr_d_country = shipment_ctx.get("destination_country", "India")
+    if curr_d_country not in dest_countries:
+        curr_d_country = "India"
+    d_country_idx = dest_countries.index(curr_d_country)
+
+    if show_laycan:
+        c1, c2, c3, c4, c5, c6 = st.columns([1.5, 1.1, 1.1, 1.2, 1.2, 1.5])
+    else:
+        c1, c2, c3, c4, c5 = st.columns([1.5, 1.1, 1.2, 1.3, 1.3])
+
+    with c1:
+        sel_cargo_name = st.selectbox("Cargo", cargo_names, index=cargo_idx, key=f"{key_prefix}_cargo")
+        selected_commodity = get_commodity(sel_cargo_name)
+        sel_cargo_id = selected_commodity.commodity_id if selected_commodity else "coking_coal"
+
+    with c2:
+        sel_qty = st.number_input("Quantity (t)", min_value=10000.0, max_value=250000.0, value=float(shipment_ctx.get("quantity_tonnes", 75000.0)), step=5000.0, key=f"{key_prefix}_qty")
+
+    with c3:
+        sel_o_country = st.selectbox("Origin Country", origin_countries, index=o_country_idx, key=f"{key_prefix}_o_country")
+
+    with c4:
+        o_ports = get_ports_for_country(sel_o_country, is_origin=True)
+        o_port_labels = [f"{p.port_name} ({p.port_id})" for p in o_ports]
+        curr_o_port_id = shipment_ctx.get("origin_port_id", "AU_HPT")
+        o_port_idx = 0
+        for i, p in enumerate(o_ports):
+            if p.port_id == curr_o_port_id or p.port_name == shipment_ctx.get("origin"):
+                o_port_idx = i
+                break
+        sel_o_port_lbl = st.selectbox("Origin Port", o_port_labels, index=o_port_idx, key=f"{key_prefix}_o_port")
+        sel_o_port = o_ports[o_port_labels.index(sel_o_port_lbl)]
+
+    with c5:
+        d_ports = get_ports_for_country(curr_d_country, is_origin=False)
+        d_port_labels = [f"{p.port_name} ({p.port_id})" for p in d_ports]
+        curr_d_port_id = shipment_ctx.get("destination_port_id", "IN_PDP")
+        d_port_idx = 0
+        for i, p in enumerate(d_ports):
+            if p.port_id == curr_d_port_id or p.port_name == shipment_ctx.get("destination"):
+                d_port_idx = i
+                break
+        sel_d_port_lbl = st.selectbox("Destination Port", d_port_labels, index=d_port_idx, key=f"{key_prefix}_d_port")
+        sel_d_port = d_ports[d_port_labels.index(sel_d_port_lbl)]
+
+    laycan_dates = None
+    if show_laycan:
+        with c6:
+            today_dt = datetime.now()
+            laycan_dates = st.date_input("Laycan Window", value=[today_dt + timedelta(days=1), today_dt + timedelta(days=laycan_default_days)], key=f"{key_prefix}_laycan")
+
+    # Route resolution check
+    route_res = resolve_route(sel_o_port.port_id, sel_d_port.port_id)
+
+    # Status badge & subtle metadata
+    st.markdown("<div style='height: 4px;'></div>", unsafe_allow_html=True)
+    m_col1, m_col2 = st.columns([2.5, 1])
+
+    with m_col1:
+        vessel_str = ", ".join(sel_d_port.supported_vessel_classes)
+        meta_html = f"""
+        <div style="font-size: 0.8rem; color: var(--text-secondary);">
+            Origin: <strong>{sel_o_port.port_name}</strong> ({sel_o_port.region}, {sel_o_port.country} | Draft: {sel_o_port.max_draft_m}m)
+            &nbsp;→&nbsp;
+            Destination: <strong>{sel_d_port.port_name}</strong> ({sel_d_port.region}, {sel_d_port.country} | Max Draft: {sel_d_port.max_draft_m}m)
+        </div>
+        """
+        st.markdown(meta_html, unsafe_allow_html=True)
+
+    with m_col2:
+        if route_res.is_calibrated:
+            badge_html = "<div style='text-align: right;'><span style='background-color: #DEF7EC; color: #03543F; font-size: 0.75rem; font-weight: 600; padding: 3px 8px; border-radius: 4px;'>🟢 DEMO-CALIBRATED ROUTE</span></div>"
+        else:
+            badge_html = "<div style='text-align: right;'><span style='background-color: #FEF3C7; color: #92400E; font-size: 0.75rem; font-weight: 600; padding: 3px 8px; border-radius: 4px;'>⚠️ CATALOG ONLY — optimization unavailable</span></div>"
+        st.markdown(badge_html, unsafe_allow_html=True)
+
+    # Sync to global active shipment workspace context
+    update_active_shipment_context(
+        cargo_type=sel_cargo_name,
+        cargo_id=sel_cargo_id,
+        quantity_tonnes=sel_qty,
+        origin_country=sel_o_country,
+        origin=sel_o_port.port_name,
+        origin_port_id=sel_o_port.port_id,
+        destination_country=curr_d_country,
+        destination=sel_d_port.port_name,
+        destination_port_id=sel_d_port.port_id
+    )
+
+    return {
+        "cargo_type": sel_cargo_name,
+        "cargo_id": sel_cargo_id,
+        "quantity_tonnes": sel_qty,
+        "origin_country": sel_o_country,
+        "origin": sel_o_port.port_name,
+        "origin_port_id": sel_o_port.port_id,
+        "destination_country": curr_d_country,
+        "destination": sel_d_port.port_name,
+        "destination_port_id": sel_d_port.port_id,
+        "laycan_dates": laycan_dates,
+        "route_resolution": route_res
+    }
 
