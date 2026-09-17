@@ -85,13 +85,16 @@ def forecast_naive(df: pd.DataFrame, horizon: int = 14) -> Tuple[pd.DataFrame, D
         "model": "Naive Baseline"
     })
 
-    # Historical fit metrics on last horizon days
-    if len(series) > horizon:
-        y_true = series[-horizon:]
-        y_pred = series[-horizon-1:-1]  # shift 1 step
-        metrics = calculate_metrics(y_true, y_pred)
+    # Calculate backtest metrics on test fold using identical protocol
+    train_len = len(series) - horizon
+    if train_len > 30:
+        train_series = series[:train_len]
+        last_train_val = train_series[-1]
+        recent_train_slope = (train_series[-1] - train_series[-14]) / 14.0 if len(train_series) >= 14 else 0.0
+        val_preds = np.array([last_train_val + recent_train_slope * (h + 1) * 0.5 for h in range(horizon)])
+        metrics = calculate_metrics(series[train_len:], val_preds)
     else:
-        metrics = make_insufficient_data_metrics(available=len(series), required=horizon + 1)
+        metrics = make_insufficient_data_metrics(available=len(series), required=horizon + 31)
 
     return fc_df, metrics
 

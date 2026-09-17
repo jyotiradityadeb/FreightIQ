@@ -20,19 +20,19 @@ It is **not** a production system, a licensed data service, or a commercial char
 |---|---|
 | "The AI predicts freight rates accurately" | "The time-series model (SARIMA / Naive Baseline) generates a probabilistic forecast estimate on synthetic demo data" |
 | "LP finds the global optimum" | "The optimizer enumerates charter date candidates and selects the lowest simulated-cost option under the configured assumptions" |
-| "83% real savings" | "In historical-style simulation on synthetic demo data, the system matched or outperformed an immediate-charter benchmark in approximately 83% of simulated decision windows" |
-| "82% robustness score means it always works" | "82% of 1,000 Monte Carlo draws on synthetic data kept the same recommendation — a relative stability indicator, not a real-market guarantee" |
+| "83% real savings" | "In historical-style simulation on synthetic demo data, the system matched or outperformed an immediate-charter benchmark in a portion of simulated decision windows" |
+| "Robustness score means it always works" | "The robustness score measures the fraction of Monte Carlo draws on synthetic data that keep the same recommendation — a relative stability indicator, not a real-market guarantee" |
 | "Industry-grade / production-ready" | "This is a functional prototype demonstrating the decision workflow" |
-| "Validated on real data" | "All metrics are computed on synthetic demonstration data seeded from realistic statistical distributions" |
+| "Validated on real data" | "All metrics are computed on synthetic demonstration data seeded from realistic statistical distributions, except external weather validation" |
 
 ---
 
 ## What the Demo Shows Well
 
 - **Workflow completeness**: the full procurement decision loop from signal ingestion → forecast → cost model → scenario lab → PDF export is connected end-to-end.
-- **Scenario sensitivity**: the tipping-point analysis shows non-obvious thresholds (e.g., the vessel availability level at which vessel class switches).
-- **Audit trail**: every manual override and model execution is logged with provenance.
-- **Connector architecture**: the integration layer is designed to swap synthetic data for live API feeds without changing the decision engine.
+- **Scenario sensitivity**: the scenario lab shows how perturbations affect candidate selection and logistics cost.
+- **Audit trail**: recorded manual overrides and key decision saves are logged with provenance.
+- **Connector architecture**: the integration layer is designed to structure synthetic data and live API feeds without changing the decision engine.
 
 ---
 
@@ -41,7 +41,7 @@ It is **not** a production system, a licensed data service, or a commercial char
 - Real Baltic Exchange freight rate data.
 - Real AIS vessel supply or port congestion readings.
 - Calibrated cost weights — demurrage rates, congestion penalties, and risk factors use illustrative defaults.
-- Real-market backtest results — the 83% win-rate figure is on synthetic data only.
+- Real-market backtest results — simulation win-rate figures are on synthetic data only.
 - A licensed or compliant data pipeline for production deployment.
 
 ---
@@ -49,18 +49,14 @@ It is **not** a production system, a licensed data service, or a commercial char
 ## Correct Way to Present Key Metrics
 
 **Forecast MAE / RMSE / MAPE**
-> "The model's demo-series error is X — this is the out-of-sample error on the synthetic
-> demonstration dataset, not a claim about real-market accuracy."
+> "The model's demo-series error is computed on the synthetic demonstration dataset, not a claim about real-market accuracy."
 
-**83% Simulated Win Rate**
-> "In the simulation backtest on synthetic data, the system's recommended charter date
-> produced a lower simulated cost than an immediate-charter benchmark in about 83% of
-> decision windows. This is a relative indicator on demo data, not a guaranteed savings figure."
+**Simulated Win Rate**
+> "In the simulation backtest on synthetic data, the system's recommended charter date is compared to an immediate-charter benchmark. This is a relative indicator on demo data, not a guaranteed savings figure."
 
-**82% Robustness Score**
-> "82% of 1,000 Monte Carlo draws on synthetic futures kept the same vessel/date recommendation.
-> It indicates relative stability of the recommendation under parameter uncertainty in the demo,
-> not a real-world probability."
+**Decision Robustness Score**
+> "Monte Carlo draws on synthetic futures evaluate recommendation stability under parameter uncertainty in the demo, not a real-world probability."
+
 
 ---
 

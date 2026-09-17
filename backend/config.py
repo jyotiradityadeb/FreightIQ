@@ -166,13 +166,13 @@ PORT_CONFIG: Dict[str, Dict[str, Any]] = {
         "base_congestion_index": 55.0,
         "avg_laytime_hours": 48.0,
         "congestion_cost_per_hour_usd": 750.0,
-        "draft_limit_m": 17.5
+        "draft_limit_m": 18.0
     },
     "Visakhapatnam": {
         "base_congestion_index": 45.0,
         "avg_laytime_hours": 36.0,
         "congestion_cost_per_hour_usd": 650.0,
-        "draft_limit_m": 16.5
+        "draft_limit_m": 18.5
     },
     "Kolkata/Haldia": {
         "base_congestion_index": 68.0,

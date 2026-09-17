@@ -422,17 +422,24 @@ def save_decision_version(
     now_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
     if isinstance(recommendation, int) and version_number is None:
-        # Signature: save_decision_version(shipment_id, version, recommendation_dict, reason)
         version_num = recommendation
         rec_dict = version_number if isinstance(version_number, dict) else {}
     elif isinstance(version_number, int):
         version_num = version_number
         rec_dict = recommendation if isinstance(recommendation, dict) else {}
     else:
-        version_num = 1
+        # Auto-query max version number for shipment
+        cursor.execute("SELECT MAX(version_number) FROM decision_versions WHERE shipment_id = ?", (shipment_id,))
+        row_max = cursor.fetchone()
+        max_v = row_max[0] if (row_max and row_max[0] is not None) else 0
+        version_num = max_v + 1
         rec_dict = recommendation if isinstance(recommendation, dict) else {}
 
     version_id = f"{shipment_id}_v{version_num}"
+
+    tot_usd = float(rec_dict.get("expected_total_logistics_cost_usd", rec_dict.get("expected_cost_usd", 0.0)))
+    tot_inr_cr = round((tot_usd * 84.0) / 1e7, 4) if tot_usd > 0 else 0.0
+    rob_score = int(rec_dict.get("robustness_score")) if rec_dict.get("robustness_score") is not None else None
 
     cursor.execute("""
         INSERT INTO decision_versions (
@@ -454,12 +461,12 @@ def save_decision_version(
         version_id,
         shipment_id,
         version_num,
-        rec_dict.get("recommended_charter_date", rec_dict.get("recommended_window", "01–05 Sep")),
-        rec_dict.get("recommended_vessel", rec_dict.get("vessel_class", "Panamax")),
-        rec_dict.get("destination", "Paradip"),
-        float(rec_dict.get("expected_total_logistics_cost_usd", rec_dict.get("expected_cost_usd", 0.0))),
-        float(rec_dict.get("expected_cost_inr_cr", 18.58)),
-        int(rec_dict.get("robustness_score", 82)),
+        rec_dict.get("recommended_charter_date", rec_dict.get("recommended_window", "-")),
+        rec_dict.get("recommended_vessel", rec_dict.get("vessel_class", "-")),
+        rec_dict.get("destination", "-"),
+        tot_usd,
+        tot_inr_cr,
+        rob_score,
         reason,
         now_str,
         json.dumps(rec_dict)

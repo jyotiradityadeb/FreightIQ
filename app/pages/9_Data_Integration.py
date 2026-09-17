@@ -58,12 +58,15 @@ with tab_conn:
         st.markdown("### Connector Status & Data Sources")
         st.caption("Active data pipelines feeding FreightIQ forecasting and Decision Twin engines")
 
+        rv_res = run_real_validation()
+        openmeteo_status = "PUBLIC_LIVE" if getattr(rv_res, "status", "UNAVAILABLE") in ("OK", "CACHED") else "UNAVAILABLE"
+
         conn_data = [
-            {"Source": "Open-Meteo Weather API", "Type": "Public Live API [P]", "Status": "Connected", "Freshness": "12m ago", "Last Update": "17 Sep 11:35 IST", "Action": "Refresh"},
-            {"Source": "Baltic Dry Index Feed", "Type": "Demo Synthetic [D]", "Status": "Active", "Freshness": "1h ago", "Last Update": "17 Sep 10:45 IST", "Action": "Configure"},
-            {"Source": "AIS Fleet Tracking (MarineTraffic)", "Type": "Commercial API [C]", "Status": "Unconfigured", "Freshness": "N/A", "Last Update": "Never", "Action": "Add Key"},
-            {"Source": "Paradip Port AIS Queue", "Type": "Demo Synthetic [D]", "Status": "Active", "Freshness": "30m ago", "Last Update": "17 Sep 11:15 IST", "Action": "Configure"},
-            {"Source": "Coking Coal Spot Index", "Type": "Demo Synthetic [D]", "Status": "Active", "Freshness": "2h ago", "Last Update": "17 Sep 09:30 IST", "Action": "Configure"}
+            {"Source": "Open-Meteo Weather API", "Type": "Public Live API [P]", "Status": openmeteo_status, "Freshness": getattr(rv_res, "retrieved_at", "Cached"), "Action": "Refresh"},
+            {"Source": "Baltic Dry Index Feed", "Type": "Demo Synthetic [D]", "Status": "DEMO", "Freshness": "Synthetic Baseline", "Action": "Configure"},
+            {"Source": "AIS Fleet Tracking (MarineTraffic)", "Type": "Commercial API [C]", "Status": "NOT_CONFIGURED", "Freshness": "N/A", "Action": "Add Key"},
+            {"Source": "Paradip Port AIS Queue", "Type": "Demo Synthetic [D]", "Status": "DEMO", "Freshness": "Synthetic Signal", "Action": "Configure"},
+            {"Source": "Coking Coal Spot Index", "Type": "Demo Synthetic [D]", "Status": "DEMO", "Freshness": "Synthetic Signal", "Action": "Configure"}
         ]
         st.dataframe(pd.DataFrame(conn_data), use_container_width=True, hide_index=True)
 
@@ -81,14 +84,14 @@ with tab_quality:
                 "Mode": s.mode,
                 "Freshness": s.freshness_status,
                 "Last Sync": s.retrieved_at,
-                "Validation": "100% Valid"
+                "Validation": "Schema Valid"
             })
         st.dataframe(pd.DataFrame(matrix_data), use_container_width=True, hide_index=True)
 
 with tab_overrides:
     with st.container(border=True):
-        st.markdown("### Manual Operator Overrides")
-        st.caption("Inject operator overrides for emergency scenario testing (logged in audit trail)")
+        st.markdown("### Manual Operator Override Notes")
+        st.caption("Record manual operator notes for audit trail (does not alter underlying physical model inputs)")
 
         o1, o2, o3 = st.columns(3)
         with o1:
@@ -98,13 +101,13 @@ with tab_overrides:
         with o3:
             ov_demurrage = st.number_input("Override Demurrage (₹/day)", value=1800000.0, step=50000.0)
 
-        if st.button("Apply Manual Override", type="primary"):
+        if st.button("Record Manual Override Note", type="primary"):
             append_audit_log(
-                action="MANUAL_OVERRIDE_APPLIED",
-                details=f"Override set: Congestion={ov_cong:.0f}, Vessels={ov_vessels}, Demurrage=₹{ov_demurrage:,.0f}/d",
+                action="MANUAL_OVERRIDE_RECORDED",
+                details=f"Operator Note: Congestion={ov_cong:.0f}, Vessels={ov_vessels}, Demurrage=₹{ov_demurrage:,.0f}/d",
                 source_mode="MANUAL_OVERRIDE"
             )
-            st.success("Override logged and applied to active workspace state.")
+            st.success("Override note logged to audit trail.")
 
 with tab_audit:
     with st.container(border=True):

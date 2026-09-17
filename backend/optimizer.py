@@ -60,31 +60,101 @@ def evaluate_charter_candidate(
       "demurrage_factor", "congestion_multiplier", "weather_penalty", "event_penalty"
     Any key absent from the dict falls back to the config_model constant.
     """
-    route_key = f"{origin} -> {destination}"
-    route_info = ROUTES.get(route_key, {
-        "base_transit_days": 12,
-        "base_freight_multiplier": 1.0,
-        "allowed_vessels": ["Capesize", "Panamax", "Supramax"]
-    })
+def _normalize_location_alias(name: str) -> str:
+    """Normalizes common display name aliases to canonical config names."""
+    if not name:
+        return name
+    name_clean = name.strip()
+    alias_map = {
+        "Haldia": "Kolkata/Haldia",
+        "Kolkata": "Kolkata/Haldia",
+        "Vizag": "Visakhapatnam",
+        "Paradeep": "Paradip",
+    }
+    return alias_map.get(name_clean, name_clean)
 
-    vessel_info = VESSEL_CLASSES.get(vessel_class, VESSEL_CLASSES["Panamax"])
-    port_info = PORT_CONFIG.get(destination, PORT_CONFIG["Paradip"])
+
+def evaluate_charter_candidate(
+    charter_date: pd.Timestamp,
+    vessel_class: str,
+    origin: str,
+    destination: str,
+    cargo_type: str,
+    quantity_tonnes: float,
+    freight_rate_forecast: float,
+    congestion_score: float,
+    waiting_hours: float,
+    vessel_avail_count: int,
+    weather_risk: float,
+    event_risk: float,
+    demurrage_rate_override: Optional[float] = None,
+    risk_tolerance: str = "Medium",
+    cost_factor_overrides: Optional[Dict[str, float]] = None,
+) -> Dict[str, Any]:
+    """
+    Evaluates exact logistics cost for a specific candidate (date, vessel_class, route).
+
+    cost_factor_overrides is an optional dict accepted by the sensitivity engine to
+    substitute specific cost factors without mutating global config.  Recognised keys:
+      "demurrage_factor", "congestion_multiplier", "weather_penalty", "event_penalty"
+    Any key absent from the dict falls back to the config_model constant.
+    """
+    norm_origin = _normalize_location_alias(origin)
+    norm_dest = _normalize_location_alias(destination)
+    route_key = f"{norm_origin} -> {norm_dest}"
+
+    if route_key not in ROUTES:
+        return {
+            "feasible": False,
+            "infeasibility_reason": f"UNSUPPORTED_ROUTE: Route '{route_key}' is not in supported routes."
+        }
+
+    if vessel_class not in VESSEL_CLASSES:
+        return {
+            "feasible": False,
+            "infeasibility_reason": f"UNSUPPORTED_VESSEL: Vessel class '{vessel_class}' is not recognized."
+        }
+
+    if norm_dest not in PORT_CONFIG:
+        return {
+            "feasible": False,
+            "infeasibility_reason": f"UNSUPPORTED_PORT: Destination port '{norm_dest}' is not recognized."
+        }
+
+    route_info = ROUTES[route_key]
+    vessel_info = VESSEL_CLASSES[vessel_class]
+    port_info = PORT_CONFIG[norm_dest]
 
     # 1. Capacity Feasibility Check
-    capacity = vessel_info["default_capacity"]
     if quantity_tonnes > vessel_info["max_capacity"]:
-        return {"feasible": False, "infeasibility_reason": f"Cargo quantity ({quantity_tonnes:,}t) exceeds max capacity of {vessel_class} ({vessel_info['max_capacity']:,}t)."}
+        return {
+            "feasible": False,
+            "infeasibility_reason": f"Cargo quantity ({quantity_tonnes:,}t) exceeds max capacity of {vessel_class} ({vessel_info['max_capacity']:,}t)."
+        }
 
-    # 2. Port Draft / Vessel Feasibility Check
+    # 2. Port Route & Draft Compatibility Check
     if vessel_class not in route_info.get("allowed_vessels", []):
-        return {"feasible": False, "infeasibility_reason": f"{vessel_class} is not compatible with port draft or route constraints for {destination}."}
+        return {
+            "feasible": False,
+            "infeasibility_reason": f"{vessel_class} is not compatible with route constraints for {norm_dest}."
+        }
+
+    v_draft = vessel_info.get("draft_requirement_m", 0.0)
+    p_draft_limit = port_info.get("draft_limit_m", 99.0)
+    if v_draft > p_draft_limit:
+        return {
+            "feasible": False,
+            "infeasibility_reason": f"UNSUPPORTED_DRAFT: {vessel_class} draft ({v_draft}m) exceeds {norm_dest} max allowed draft limit ({p_draft_limit}m)."
+        }
 
     # 3. Minimum Availability Check
     if vessel_avail_count < VESSEL_AVAILABILITY_MIN_THRESHOLD:
-        return {"feasible": False, "infeasibility_reason": f"Insufficient vessel availability ({vessel_avail_count} ships available, min threshold is {VESSEL_AVAILABILITY_MIN_THRESHOLD})."}
+        return {
+            "feasible": False,
+            "infeasibility_reason": f"Insufficient vessel availability ({vessel_avail_count} ships available, min threshold is {VESSEL_AVAILABILITY_MIN_THRESHOLD})."
+        }
 
     # Calculate Costs
-    # Base Freight Cost ($/tonne * tonnes * multipliers)
     unit_freight = (
         freight_rate_forecast
         * route_info["base_freight_multiplier"]
@@ -92,23 +162,19 @@ def evaluate_charter_candidate(
     )
     freight_cost = unit_freight * quantity_tonnes
 
-    # Resolve effective factors — cost_factor_overrides take precedence over config constants
     _ov = cost_factor_overrides or {}
     eff_demurrage_factor = _ov.get("demurrage_factor", DEMURRAGE_EXPOSURE_FACTOR)
     eff_congestion_mult = _ov.get("congestion_multiplier", CONGESTION_COST_MULTIPLIER)
     eff_weather_penalty = _ov.get("weather_penalty", WEATHER_RISK_PENALTY_PER_POINT)
     eff_event_penalty = _ov.get("event_penalty", EVENT_RISK_PENALTY_PER_POINT)
 
-    # Demurrage Cost
     demurrage_rate = demurrage_rate_override if demurrage_rate_override is not None else vessel_info["daily_demurrage_rate"]
     laytime_hours = port_info["avg_laytime_hours"]
     total_port_hours = laytime_hours + waiting_hours
     demurrage_cost = (total_port_hours / 24.0) * (demurrage_rate * eff_demurrage_factor)
 
-    # Congestion Cost
     congestion_cost = congestion_score * port_info["congestion_cost_per_hour_usd"] * eff_congestion_mult
 
-    # Risk Penalty Factor based on user tolerance
     risk_factor_map = {"Low": RISK_FACTOR_LOW, "Medium": RISK_FACTOR_MEDIUM, "High": RISK_FACTOR_HIGH}
     risk_factor = risk_factor_map.get(risk_tolerance, RISK_FACTOR_MEDIUM)
 
@@ -124,8 +190,8 @@ def evaluate_charter_candidate(
         "charter_date": charter_date.strftime("%Y-%m-%d"),
         "vessel_class": vessel_class,
         "route": route_key,
-        "origin": origin,
-        "destination": destination,
+        "origin": norm_origin,
+        "destination": norm_dest,
         "cargo_type": cargo_type,
         "quantity_tonnes": quantity_tonnes,
         "unit_freight_usd_per_tonne": round(unit_freight, 2),
@@ -160,7 +226,6 @@ def optimize_charter_timing(
     selects deterministic minimum total logistics cost candidate, and generates
     rule-based explainability text.
     """
-    # Filter forecast dates within decision window
     df_eval = forecast_df.copy()
     if not pd.api.types.is_datetime64_any_dtype(df_eval["date"]):
         df_eval["date"] = pd.to_datetime(df_eval["date"])
@@ -171,7 +236,7 @@ def optimize_charter_timing(
         df_eval = df_eval[df_eval["date"] <= pd.to_datetime(latest_date)]
 
     if len(df_eval) == 0:
-        df_eval = forecast_df.copy()  # fallback to full horizon
+        df_eval = forecast_df.copy()
 
     candidate_vessels = (
         ["Capesize", "Panamax", "Supramax"]
@@ -229,24 +294,24 @@ def optimize_charter_timing(
     # Generate Alternative Scenarios (Options A, B, C)
     option_a = best_option
     
-    # Option B: Alternative vessel or date with 2nd best cost
+    # Option B: Alternative candidate with 2nd best cost
     option_b = candidates[1] if len(candidates) > 1 else best_option
     
-    # Option C: Earliest date candidate
+    # Option C: Earliest date feasible candidate
     earliest_candidates = sorted(candidates, key=lambda x: x["charter_date"])
     option_c = earliest_candidates[0]
 
     # Rule-Based Explainability Generation
     rec_date_dt = pd.to_datetime(best_option["charter_date"])
-    earliest_dt = pd.to_datetime(candidates[0]["charter_date"])
+    earliest_date_str = earliest_candidates[0]["charter_date"]
+    earliest_dt = pd.to_datetime(earliest_date_str)
     days_from_start = (rec_date_dt - earliest_dt).days
 
     if days_from_start == 0:
-        action_text = "Charter immediately on earliest window date"
+        action_text = f"Charter on earliest window date ({best_option['charter_date']})"
     else:
-        action_text = f"Charter within the next {days_from_start} to {days_from_start + 2} days"
+        action_text = f"Charter on optimal date ({best_option['charter_date']}) — {days_from_start} days after window opens"
 
-    # Freight trend rationale
     first_rate = df_eval["predicted_freight_rate"].iloc[0] if "predicted_freight_rate" in df_eval.columns else 25.0
     last_rate = df_eval["predicted_freight_rate"].iloc[-1] if "predicted_freight_rate" in df_eval.columns else 25.0
     if last_rate > first_rate + FREIGHT_TREND_THRESHOLD:
@@ -262,7 +327,7 @@ def optimize_charter_timing(
     why_reasons = [
         f"{trend_reason}.",
         f"selected {best_option['vessel_class']} vessel provides the best-fit capacity for {quantity_tonnes:,} tonnes of {cargo_type}.",
-        f"port congestion and demurrage exposure at {destination} are minimized on {best_option['charter_date']}.",
+        f"port congestion and demurrage exposure at {best_option['destination']} are minimized on {best_option['charter_date']}.",
         f"total estimated logistics cost (${best_option['total_logistics_cost_usd']:,.2f}) is lower than alternative charter dates."
     ]
 
@@ -314,7 +379,6 @@ def generate_candidate_explainability(
     """
     best_total = best_option["total_logistics_cost_usd"]
 
-    # Why the winner won
     cost_fractions = {
         "freight": best_option["freight_cost_usd"] / best_total if best_total else 0,
         "demurrage": best_option["demurrage_cost_usd"] / best_total if best_total else 0,
@@ -329,13 +393,15 @@ def generate_candidate_explainability(
         "risk": "route risk penalty",
     }
 
+    dominant_field = "route_risk_penalty_usd" if dominant_component == "risk" else f"{dominant_component}_cost_usd"
+
     winner_reasons = [
         f"Lowest risk-adjusted total logistics cost among all feasible candidates "
         f"(${best_total:,.0f} total; ${best_option['effective_cost_per_tonne']:.2f}/t).",
         f"Capacity feasible: {best_option['vessel_class']} handles {best_option['quantity_tonnes']:,.0f} t "
         f"within vessel max capacity.",
         f"Dominant cost driver is {component_labels[dominant_component]} "
-        f"(${best_option[dominant_component + '_cost_usd']:,.0f}, "
+        f"(${best_option[dominant_field]:,.0f}, "
         f"{cost_fractions[dominant_component]*100:.1f}% of total).",
         f"Port waiting exposure: {best_option['waiting_hours']:.1f} h at charter date "
         f"(congestion score {best_option['congestion_score']:.0f}/100).",

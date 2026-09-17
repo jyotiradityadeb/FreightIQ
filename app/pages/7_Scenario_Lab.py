@@ -64,9 +64,9 @@ for key, val in default_shocks.items():
     if key not in st.session_state:
         st.session_state[key] = val
 
-# PRESET STRESS SCENARIO BUTTONS (Standard Secondary Action Buttons)
-st.markdown("### Presets")
-p1, p2, p3, p4, p5, p6 = st.columns(6)
+# PRESET STRESS SCENARIO BUTTONS
+st.markdown("### Presets & Actions")
+p1, p2, p3, p4, p5, p6, p7 = st.columns(7)
 with p1:
     if st.button("East Coast Disruption", use_container_width=True):
         st.session_state["freight_shock"] = 12.0
@@ -75,37 +75,64 @@ with p1:
         st.session_state["avail_shock"] = -30.0
         st.session_state["weather_risk"] = "High"
         st.session_state["geo_risk"] = "Elevated"
+        st.session_state["active_preset"] = "East Coast Disruption"
         st.rerun()
 with p2:
     if st.button("Freight Rate Spike", use_container_width=True):
         st.session_state["freight_shock"] = 15.0
         st.session_state["cong_shock"] = 0.0
+        st.session_state["target_port"] = "Paradip"
         st.session_state["avail_shock"] = 0.0
         st.session_state["weather_risk"] = "Low"
         st.session_state["geo_risk"] = "Normal"
+        st.session_state["active_preset"] = "Freight Rate Spike"
         st.rerun()
 with p3:
     if st.button("Paradip Congestion", use_container_width=True):
         st.session_state["freight_shock"] = 0.0
         st.session_state["cong_shock"] = 50.0
         st.session_state["target_port"] = "Paradip"
+        st.session_state["avail_shock"] = 0.0
+        st.session_state["weather_risk"] = "Low"
+        st.session_state["geo_risk"] = "Normal"
+        st.session_state["active_preset"] = "Paradip Congestion"
         st.rerun()
 with p4:
     if st.button("Vessel Shortage", use_container_width=True):
         st.session_state["freight_shock"] = 0.0
+        st.session_state["cong_shock"] = 0.0
+        st.session_state["target_port"] = "Paradip"
         st.session_state["avail_shock"] = -35.0
+        st.session_state["weather_risk"] = "Low"
+        st.session_state["geo_risk"] = "Normal"
+        st.session_state["active_preset"] = "Vessel Shortage"
         st.rerun()
 with p5:
     if st.button("Severe Weather Risk", use_container_width=True):
+        st.session_state["freight_shock"] = 0.0
+        st.session_state["cong_shock"] = 0.0
+        st.session_state["target_port"] = "Paradip"
+        st.session_state["avail_shock"] = 0.0
         st.session_state["weather_risk"] = "Severe"
+        st.session_state["geo_risk"] = "Normal"
+        st.session_state["active_preset"] = "Severe Weather Risk"
         st.rerun()
 with p6:
     if st.button("Market Relief", use_container_width=True):
         st.session_state["freight_shock"] = -10.0
         st.session_state["cong_shock"] = -20.0
+        st.session_state["target_port"] = "Paradip"
         st.session_state["avail_shock"] = 20.0
         st.session_state["weather_risk"] = "Low"
         st.session_state["geo_risk"] = "Normal"
+        st.session_state["active_preset"] = "Market Relief"
+        st.rerun()
+with p7:
+    if st.button("Reset Scenario", type="secondary", use_container_width=True):
+        for k, v in default_shocks.items():
+            st.session_state[k] = v
+        st.session_state["active_preset"] = "Baseline"
+        st.session_state["active_scenario"] = {"is_active": False, "scenario_name": "Baseline"}
         st.rerun()
 
 st.markdown("<div style='height: 16px;'></div>", unsafe_allow_html=True)
@@ -131,12 +158,31 @@ with c_inputs:
         st.markdown("<div style='height: 8px;'></div>", unsafe_allow_html=True)
         btn_run = st.button("Run Scenario Simulation", type="primary", use_container_width=True)
 
-# Update session state values
+# Update session state values & write canonical active_scenario
 st.session_state["freight_shock"] = freight_shock_val
 st.session_state["cong_shock"] = cong_shock_val
 st.session_state["target_port"] = target_port_val
 st.session_state["avail_shock"] = avail_shock_val
 st.session_state["weather_risk"] = weather_val
+
+is_scenario_active = (
+    freight_shock_val != 0.0 or
+    cong_shock_val != 0.0 or
+    avail_shock_val != 0.0 or
+    weather_val != "Low" or
+    target_port_val != "Paradip"
+)
+
+st.session_state["active_scenario"] = {
+    "is_active": is_scenario_active,
+    "scenario_name": st.session_state.get("active_preset", "Custom Shock" if is_scenario_active else "Baseline"),
+    "freight_pct": freight_shock_val,
+    "congestion_pct": cong_shock_val,
+    "availability_pct": avail_shock_val,
+    "weather_level": weather_val,
+    "target_port": target_port_val,
+    "geopolitical_level": "Normal",
+}
 
 # Run scenario simulation
 scenario_req = ScenarioRequest(
@@ -186,8 +232,14 @@ with c_preview:
 
             with p3:
                 st.caption("DECISION STATUS")
-                status_color = ":green[✓ UNCHANGED]" if sim_res["decision_status"] == "Recommendation Unchanged" else ":orange[⚠ ALTERED]"
-                st.markdown(f"**{status_color}**")
+                rec_changed = (base_rec["charter_date"] != stress_rec["charter_date"]) or (base_rec["vessel_class"] != stress_rec["vessel_class"])
+                if rec_changed:
+                    status_text = ":orange[⚠ RECOMMENDATION SHIFTED]"
+                elif abs(cost_diff_pct) > 0.5:
+                    status_text = f":blue[ℹ SAME RECOMMENDATION ({cost_diff_pct:+.1f}% COST)]"
+                else:
+                    status_text = ":green[✓ RECOMMENDATION UNCHANGED]"
+                st.markdown(f"**{status_text}**")
                 st.caption("Recommendation State")
 
             st.divider()

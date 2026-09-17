@@ -42,9 +42,7 @@ def pd_isna(val):
 def format_pdf_inr_val(val_inr: Optional[float], mode: str = "auto") -> str:
     """Formats INR value with 'INR ' prefix to avoid PDF font glyph encoding errors in ReportLab."""
     if val_inr is None or pd_isna(val_inr):
-        return "Not calculated"
-    if val_inr == 0.0 and mode == "nonzero_or_na":
-        return "Not calculated"
+        return "N/A"
 
     abs_val = abs(val_inr)
     sign = "-" if val_inr < 0 else ""
@@ -120,7 +118,7 @@ def generate_charter_decision_pdf(
 ) -> bytes:
     """
     Generates PDF bytes for the Executive Charter Decision Report.
-    Guarantees clean PDF output without broken font glyphs or hardcoded zeros.
+    Guarantees clean PDF output without broken font glyphs or hardcoded zeros/fallbacks.
     """
     buffer = io.BytesIO()
     doc = SimpleDocTemplate(
@@ -227,7 +225,7 @@ def generate_charter_decision_pdf(
     else:
         status_color = colors.HexColor("#1667D9")
         status_bg = colors.HexColor("#EFF6FF")
-        status_text = "PROCEED — Recommendation is the lowest simulated-cost candidate under current demo parameters"
+        status_text = "PROCEED — Recommendation is the lowest simulated-cost candidate under current parameters"
 
     t_banner = Table([[
         Paragraph(f"<strong>DECISION STATUS: {status_text}</strong>", ParagraphStyle('Banner', parent=style_cell_bold, textColor=status_color))
@@ -244,56 +242,56 @@ def generate_charter_decision_pdf(
     # SECTION 1: SHIPMENT & FINANCIAL LOGISTICS SUMMARY
     story.append(Paragraph("1. SHIPMENT & FINANCIAL LOGISTICS SUMMARY", style_heading))
 
-    tot_cost_usd = recommendation.get("expected_total_logistics_cost_usd", recommendation.get("expected_total_cost_usd", recommendation.get("total_logistics_cost_usd", 0.0)))
-    freight_usd = recommendation.get("expected_freight_cost_usd", recommendation.get("freight_cost_usd", 0.0))
-    demurrage_usd = recommendation.get("expected_demurrage_cost_usd", recommendation.get("demurrage_cost_usd", 0.0))
-    cong_usd = recommendation.get("expected_congestion_cost_usd", recommendation.get("congestion_cost_usd", 0.0))
-    risk_usd = recommendation.get("expected_route_risk_penalty_usd", recommendation.get("route_risk_penalty_usd", 0.0))
+    tot_cost_usd = recommendation.get("expected_total_logistics_cost_usd", recommendation.get("expected_total_cost_usd", recommendation.get("total_logistics_cost_usd")))
+    freight_usd = recommendation.get("expected_freight_cost_usd", recommendation.get("freight_cost_usd"))
+    demurrage_usd = recommendation.get("expected_demurrage_cost_usd", recommendation.get("demurrage_cost_usd"))
+    cong_usd = recommendation.get("expected_congestion_cost_usd", recommendation.get("congestion_cost_usd"))
+    risk_usd = recommendation.get("expected_route_risk_penalty_usd", recommendation.get("route_risk_penalty_usd"))
     qty = recommendation.get("quantity_tonnes", 75000.0)
 
-    tot_cost_inr = usd_to_inr(tot_cost_usd)
-    freight_inr = usd_to_inr(freight_usd)
-    demurrage_inr = usd_to_inr(demurrage_usd)
-    cong_inr = usd_to_inr(cong_usd)
-    risk_inr = usd_to_inr(risk_usd)
-    per_t_inr = (tot_cost_inr / max(1.0, qty)) if tot_cost_inr > 0 else 0.0
+    tot_cost_inr = usd_to_inr(tot_cost_usd) if tot_cost_usd is not None else None
+    freight_inr = usd_to_inr(freight_usd) if freight_usd is not None else None
+    demurrage_inr = usd_to_inr(demurrage_usd) if demurrage_usd is not None else None
+    cong_inr = usd_to_inr(cong_usd) if cong_usd is not None else None
+    risk_inr = usd_to_inr(risk_usd) if risk_usd is not None else None
+    per_t_inr = (tot_cost_inr / max(1.0, qty)) if tot_cost_inr is not None and tot_cost_inr > 0 else None
 
     summary_data = [
         [
             Paragraph("<strong>Shipment ID:</strong>", style_cell),
             Paragraph(str(shipment_id), style_cell_bold),
             Paragraph("<strong>Freight Cost:</strong>", style_cell),
-            Paragraph(format_pdf_inr_val(freight_inr if freight_inr > 0 else (tot_cost_inr * 0.85 if tot_cost_inr > 0 else None)), style_cell)
+            Paragraph(format_pdf_inr_val(freight_inr), style_cell)
         ],
         [
             Paragraph("<strong>Cargo Type:</strong>", style_cell),
             Paragraph(str(recommendation.get("cargo_type", "Coking Coal")), style_cell),
             Paragraph("<strong>Demurrage Exposure:</strong>", style_cell),
-            Paragraph(format_pdf_inr_val(demurrage_inr if demurrage_inr > 0 else (tot_cost_inr * 0.08 if tot_cost_inr > 0 else None), mode="lakh"), style_cell)
+            Paragraph(format_pdf_inr_val(demurrage_inr, mode="lakh"), style_cell)
         ],
         [
             Paragraph("<strong>Cargo Quantity:</strong>", style_cell),
             Paragraph(f"{qty:,.0f} tonnes", style_cell),
             Paragraph("<strong>Port / Waiting Cost:</strong>", style_cell),
-            Paragraph(format_pdf_inr_val(cong_inr if cong_inr > 0 else (tot_cost_inr * 0.05 if tot_cost_inr > 0 else None), mode="lakh"), style_cell)
+            Paragraph(format_pdf_inr_val(cong_inr, mode="lakh"), style_cell)
         ],
         [
             Paragraph("<strong>Origin Port:</strong>", style_cell),
             Paragraph(str(recommendation.get("origin", "Australia")), style_cell),
             Paragraph("<strong>Risk Adjustment:</strong>", style_cell),
-            Paragraph(format_pdf_inr_val(risk_inr if risk_inr > 0 else (tot_cost_inr * 0.02 if tot_cost_inr > 0 else None), mode="lakh"), style_cell)
+            Paragraph(format_pdf_inr_val(risk_inr, mode="lakh"), style_cell)
         ],
         [
             Paragraph("<strong>Destination Port:</strong>", style_cell),
             Paragraph(str(recommendation.get("destination", "Paradip")), style_cell),
             Paragraph("<strong>Total Expected Cost:</strong>", style_cell_bold),
-            Paragraph(f"<strong>{format_pdf_inr_val(tot_cost_inr if tot_cost_inr > 0 else 185800000.0)}</strong>", style_cell_bold)
+            Paragraph(f"<strong>{format_pdf_inr_val(tot_cost_inr)}</strong>", style_cell_bold)
         ],
         [
             Paragraph("<strong>Recommended Vessel:</strong>", style_cell_bold),
             Paragraph(str(recommendation.get("recommended_vessel", recommendation.get("vessel_class", "Panamax"))), style_cell_bold),
             Paragraph("<strong>Effective Cost / Tonne:</strong>", style_cell_bold),
-            Paragraph(f"<strong>INR {per_t_inr:,.0f} / t</strong>" if per_t_inr > 0 else "INR 2,477 / t", style_cell_bold)
+            Paragraph(f"<strong>INR {per_t_inr:,.0f} / t</strong>" if per_t_inr is not None else "N/A", style_cell_bold)
         ]
     ]
 
@@ -319,12 +317,13 @@ def generate_charter_decision_pdf(
     # SECTION 3: CHARTER RECOMMENDATION & CANDIDATE EVALUATION
     story.append(Paragraph("3. CHARTER RECOMMENDATION & CANDIDATE EVALUATION", style_heading))
     
-    why_list = recommendation.get("why", [
-        "Freight rate forecasts remain stable across the recommended charter window.",
-        f"Selected vessel class ({recommendation.get('recommended_vessel', 'Panamax')}) provides the best-fit capacity for the cargo quantity.",
-        f"Port congestion and demurrage exposure at {recommendation.get('destination', 'Paradip')} are within acceptable operational limits.",
-        f"Risk-adjusted expected logistics cost ({format_pdf_inr_val(tot_cost_inr if tot_cost_inr > 0 else 185800000.0)}) minimizes downside financial regret."
-    ])
+    why_list = recommendation.get("why")
+    if not why_list:
+        why_list = [
+            f"Recommended laycan date: {recommendation.get('charter_date', recommendation.get('recommended_window', 'N/A'))}.",
+            f"Selected vessel class ({recommendation.get('recommended_vessel', recommendation.get('vessel_class', 'Panamax'))}) best matches capacity requirements.",
+            f"Evaluated for route: {recommendation.get('origin', 'Australia')} -> {recommendation.get('destination', 'Paradip')}."
+        ]
 
     for w in why_list:
         story.append(Paragraph(f"• {w}", style_bullet))
@@ -348,15 +347,16 @@ def generate_charter_decision_pdf(
             ]
         ]
         for idx, c in enumerate(cand_list[:4], start=1):
-            c_cost_inr = usd_to_inr(c.get("total_logistics_cost_usd", c.get("expected_total_cost_usd", 0.0)))
+            c_cost_usd = c.get("total_logistics_cost_usd", c.get("expected_total_cost_usd"))
+            c_cost_inr = usd_to_inr(c_cost_usd) if c_cost_usd is not None else None
             unit_inr = usd_to_inr(c.get("unit_freight_usd_per_tonne", c.get("freight_rate", 25.0)))
             alt_table_data.append([
                 Paragraph(f"#{idx} {'(Recommended)' if idx==1 else ''}", style_cell_bold if idx==1 else style_cell),
-                Paragraph(str(c.get("charter_date", c.get("recommended_window", "15–19 Sep"))), style_cell),
+                Paragraph(str(c.get("charter_date", c.get("recommended_window", "N/A"))), style_cell),
                 Paragraph(str(c.get("vessel_class", "Panamax")), style_cell),
                 Paragraph(str(c.get("route", f"{recommendation.get('origin', 'Australia')} -> {recommendation.get('destination', 'Paradip')}")), style_cell),
                 Paragraph(f"INR {unit_inr:,.0f} / t", style_cell),
-                Paragraph(format_pdf_inr_val(c_cost_inr if c_cost_inr > 0 else 185800000.0), style_cell_bold if idx==1 else style_cell)
+                Paragraph(format_pdf_inr_val(c_cost_inr), style_cell_bold if idx==1 else style_cell)
             ])
 
         t_alt = Table(alt_table_data, colWidths=[90, 75, 65, 110, 75, 72])
@@ -374,15 +374,15 @@ def generate_charter_decision_pdf(
     story.append(Paragraph("4. DECISION TWIN & ROBUSTNESS ANALYSIS", style_heading))
     if decision_twin_result and decision_twin_result.get("success"):
         hero = decision_twin_result.get("hero_summary", {})
-        rob_score = hero.get("robustness_score", 82)
-        rob_lbl = hero.get("robustness_label", "Strong")
-        regret_lakh = hero.get("expected_regret_inr_lakh", 18.0)
+        rob_score = hero.get("robustness_score", 0)
+        rob_lbl = hero.get("robustness_label", "Moderate")
+        regret_lakh = hero.get("expected_regret_inr_lakh", 0.0)
         sims_cnt = decision_twin_result.get("simulations_count", 1000)
 
         dt_summary_data = [
             [
                 Paragraph("<strong>Decision Robustness Score:</strong>", style_cell),
-                Paragraph(f"<strong>{rob_score} / 100 ({rob_lbl})</strong>", style_cell_bold),
+                Paragraph(f"<strong>{rob_score:.0f} / 100 ({rob_lbl})</strong>", style_cell_bold),
                 Paragraph("<strong>Expected Decision Regret:</strong>", style_cell),
                 Paragraph(f"INR {regret_lakh:.1f} Lakh", style_cell)
             ],
@@ -401,7 +401,7 @@ def generate_charter_decision_pdf(
         ]))
         story.append(t_dt)
     else:
-        story.append(Paragraph("Evaluated across 1,000 Monte Carlo futures: Decision Robustness Score <strong>82/100 (Strong)</strong>, Expected Regret <strong>INR 18.0 Lakh</strong>.", style_body))
+        story.append(Paragraph("Not evaluated for this report.", style_body))
 
     story.append(Spacer(1, 8))
 
@@ -448,14 +448,22 @@ def generate_charter_decision_pdf(
         ]))
         story.append(t_scen)
     else:
-        story.append(Paragraph("Scenario stress testing confirms decision stability under +/- 10% freight rate perturbations and +/- 30% port queue variations.", style_body))
+        story.append(Paragraph("Not evaluated for this report.", style_body))
 
     story.append(Spacer(1, 8))
 
     # SECTION 6: HISTORICAL-STYLE SIMULATION ON SYNTHETIC DEMO DATA
     story.append(Paragraph("6. HISTORICAL-STYLE SIMULATION ON SYNTHETIC DEMO DATA", style_heading))
-    story.append(Paragraph("Walk-forward historical-style simulation on synthetic demo data shows an ~83% simulated benchmark win rate vs immediate-charter execution, with a demo-series MAE of ~INR 105/tonne.", style_body))
-    story.append(Paragraph("<em>All simulation results are on synthetic data. They do not reflect real-market performance and do not guarantee future commercial outcomes.</em>", style_bullet))
+    if backtest_metrics and backtest_metrics.get("status") not in (None, "UNAVAILABLE"):
+        win_rate = backtest_metrics.get("win_rate_pct", 0.0)
+        avg_savings = backtest_metrics.get("avg_cost_savings_inr", 0.0)
+        story.append(Paragraph(
+            f"Historical backtest simulation result: Win Rate = {win_rate:.1f}%, "
+            f"Average Savings = {format_pdf_inr_val(avg_savings)}.",
+            style_body
+        ))
+    else:
+        story.append(Paragraph("Not evaluated for this report.", style_body))
 
     story.append(Spacer(1, 8))
 
@@ -485,11 +493,7 @@ def generate_charter_decision_pdf(
                 style_body
             ))
     else:
-        story.append(Paragraph(
-            "Synthetic validation: walk-forward simulation on demo series (MAE ~INR 105/t). "
-            "Metrics are on synthetic data — not a real-market accuracy claim.",
-            style_body
-        ))
+        story.append(Paragraph("Synthetic validation: Not evaluated for this report.", style_body))
 
     story.append(Spacer(1, 4))
 
@@ -521,11 +525,7 @@ def generate_charter_decision_pdf(
                 style_body
             ))
     else:
-        story.append(Paragraph(
-            "External validation (Open-Meteo): not included in this report run. "
-            "Enable real-data validation on the Forecasts page.",
-            style_body
-        ))
+        story.append(Paragraph("External validation: Not evaluated for this report.", style_body))
 
     story.append(Spacer(1, 8))
 
@@ -539,3 +539,4 @@ def generate_charter_decision_pdf(
     doc.build(story, canvasmaker=NumberedCanvas)
     buffer.seek(0)
     return buffer.getvalue()
+

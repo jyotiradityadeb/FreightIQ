@@ -274,40 +274,53 @@ def get_freightiq_logo_svg(width: int = 140, height: int = 32) -> str:
 
 
 def render_top_shell(active_page_name: str = "Overview"):
-    """Renders real app shell top navigation bar matching commercial SaaS standard."""
+    """Renders functional app shell top navigation bar matching commercial SaaS standard."""
+    from app.navigation import (
+        DECISION_TWIN_PAGE,
+        OPERATIONS_PAGE,
+        MARKET_PAGE,
+        FORECAST_PAGE,
+        CHARTER_PAGE,
+        SCENARIO_PAGE,
+        VALIDATION_PAGE,
+        DATA_INTEGRATION_PAGE,
+        DATA_EXPLORER_PAGE,
+        navigate_to
+    )
+
     nav_items = [
-        ("Overview", "Overview"),
-        ("Markets", "Market Intelligence"),
-        ("Forecasts", "Forecasts"),
-        ("Scenarios", "Scenario Lab"),
-        ("Chartering", "Charter Workbench"),
-        ("Decision Twin", "Decision Twin"),
-        ("Data", "Data Integration")
+        ("Overview", "Home.py"),
+        ("Decision Twin", DECISION_TWIN_PAGE),
+        ("Operations", OPERATIONS_PAGE),
+        ("Markets", MARKET_PAGE),
+        ("Forecasts", FORECAST_PAGE),
+        ("Chartering", CHARTER_PAGE),
+        ("Scenarios", SCENARIO_PAGE),
+        ("Backtesting", VALIDATION_PAGE),
+        ("Data", DATA_INTEGRATION_PAGE),
+        ("Explorer", DATA_EXPLORER_PAGE),
     ]
 
-    links_html = ""
-    for label, full_name in nav_items:
-        is_active = "active" if (active_page_name.lower() in label.lower() or active_page_name.lower() in full_name.lower()) else ""
-        links_html += f'<span class="fiq-nav-item {is_active}">{label}</span>'
+    with st.container():
+        cols = st.columns([2.2] + [1.0] * len(nav_items))
+        with cols[0]:
+            st.markdown(get_freightiq_logo_svg(135, 28), unsafe_allow_html=True)
 
-    logo_svg = get_freightiq_logo_svg(150, 34)
+        for idx, (label, target_page) in enumerate(nav_items, start=1):
+            with cols[idx]:
+                is_active = (active_page_name.lower() in label.lower() or label.lower() in active_page_name.lower())
+                btn_kind = "primary" if is_active else "secondary"
+                if st.button(label, key=f"topnav_{label}_{active_page_name}", type=btn_kind, use_container_width=True):
 
-    html = textwrap.dedent(f"""
-        <div class="fiq-nav-bar">
-            <div class="fiq-brand">
-                {logo_svg}
-            </div>
-            <div class="fiq-nav-links">
-                {links_html}
-            </div>
-            <div class="fiq-right-nav">
-                <span class="badge-demo">DEMO MODE</span>
-                <span class="badge-online">LIVE API</span>
-                <div class="fiq-avatar" title="SteelProcure India Org">SP</div>
-            </div>
-        </div>
-    """).strip()
-    st.markdown(html, unsafe_allow_html=True)
+                    if target_page == "Home.py":
+                        try:
+                            st.switch_page("Home.py")
+                        except Exception:
+                            st.switch_page("pages/1_Control_Tower.py")
+                    else:
+                        navigate_to(target_page)
+
+    st.markdown("<div style='height: 12px;'></div>", unsafe_allow_html=True)
 
 
 def render_sidebar_status():
@@ -319,6 +332,8 @@ def render_sidebar_status():
         toggle_theme()
         st.rerun()
 
+    data_mode = st.session_state.get("data_mode", "DEMO")
+
     html = textwrap.dedent(f"""
         <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 0.78rem;">
             <div style="color: var(--text-secondary); font-weight: 600; text-transform: uppercase; margin-bottom: 8px; font-size: 0.7rem; letter-spacing: 0.05em;">SYSTEM STATUS</div>
@@ -328,11 +343,11 @@ def render_sidebar_status():
             </div>
             <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
                 <span>Data Mode</span>
-                <span style="color: #92400E; font-weight: 600;">Demo Dataset</span>
+                <span style="color: #92400E; font-weight: 600;">{data_mode}</span>
             </div>
             <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
                 <span>Forecast Engine</span>
-                <span style="font-weight: 500;">Ensemble v2.4</span>
+                <span style="font-weight: 500;">Auto Model Selection</span>
             </div>
             <div style="display: flex; justify-content: space-between;">
                 <span>Optimizer</span>
@@ -341,6 +356,7 @@ def render_sidebar_status():
         </div>
     """).strip()
     st.sidebar.markdown(html, unsafe_allow_html=True)
+
 
 
 

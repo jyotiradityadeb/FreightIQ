@@ -43,7 +43,9 @@ df = get_cached_processed_data()
 st.markdown("<h1 style='margin-bottom: 2px;'>Simulation Backtest</h1>", unsafe_allow_html=True)
 st.markdown("<p style='color: #6B7280; font-size: 0.95rem; margin-bottom: 20px;'>Historical-style simulation on synthetic demo data against an immediate-charter benchmark strategy.</p>", unsafe_allow_html=True)
 
-with st.expander("⚙ Simulation Window & Model Parameters", expanded=False):
+import time
+
+with st.container(border=True):
     b_c1, b_c2, b_c3, b_c4 = st.columns(4)
 
     min_d = df["date"].min().to_pydatetime()
@@ -58,25 +60,35 @@ with st.expander("⚙ Simulation Window & Model Parameters", expanded=False):
     with b_c4:
         step_days = st.selectbox("Interval Days", [7, 14, 21, 30], index=1)
 
-    run_sim = st.button("Re-run Simulation", type="primary", use_container_width=True)
+    run_sim = st.button("Run Simulation Backtest", type="primary", use_container_width=True)
 
 st.markdown("<div style='height: 16px;'></div>", unsafe_allow_html=True)
 
-# Run Simulation
-sim_res = run_historical_simulation(
-    df=df,
-    start_date=sim_start.strftime("%Y-%m-%d"),
-    end_date=sim_end.strftime("%Y-%m-%d"),
-    horizon=horizon,
-    step_days=step_days,
-    cargo_type="Coking Coal",
-    vessel_class="Panamax"
-)
+# Cache / Gate Backtest Execution
+if run_sim or "backtest_result" not in st.session_state:
+    with st.spinner("Executing walk-forward historical simulation across decision windows..."):
+        t0 = time.time()
+        sim_res = run_historical_simulation(
+            df=df,
+            start_date=sim_start.strftime("%Y-%m-%d"),
+            end_date=sim_end.strftime("%Y-%m-%d"),
+            horizon=horizon,
+            step_days=step_days,
+            cargo_type="Coking Coal",
+            vessel_class="Panamax"
+        )
+        sim_res["elapsed_seconds"] = time.time() - t0
+        st.session_state["backtest_result"] = sim_res
 
-if sim_res["success"]:
+sim_res = st.session_state["backtest_result"]
+
+if sim_res.get("success"):
     sim_diff_inr = usd_to_inr(sim_res["simulated_cost_difference_total"])
     _fam = sim_res["forecast_accuracy_metrics"]
     mae_inr = usd_to_inr(_fam["MAE"]) if _fam.get("MAE") is not None else None
+    elapsed_sec = sim_res.get("elapsed_seconds", 0.0)
+
+    st.caption(f"✓ Simulation completed in {elapsed_sec:.2f} seconds")
 
     with st.container(border=True):
         k1, k2, k3, k4 = st.columns(4)
@@ -154,6 +166,7 @@ if sim_res["success"]:
 
 else:
     st.error(f"Simulation Error: {sim_res.get('error')}")
+
 
 render_disclaimer()
 

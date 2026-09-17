@@ -189,18 +189,11 @@ class DecisionTwinEngine:
                     })
 
         if not candidates:
-            # Fallback candidate if over-constrained
-            candidates.append({
-                "candidate_id": f"Panamax | {self.destination} | Day 1 ({dates[0][-5:]})",
-                "date_idx": 0,
-                "date_str": dates[0],
-                "charter_date": self.forecast_df["date"].iloc[0],
-                "vessel_class": "Panamax",
-                "destination": self.destination,
-                "route": f"{self.origin} -> {self.destination}",
-                "vessel_info": VESSEL_CLASSES["Panamax"],
-                "route_info": ROUTES.get(f"{self.origin} -> {self.destination}", {})
-            })
+            return {
+                "success": False,
+                "error": "No feasible candidate under this simulated state.",
+                "disclaimer": "Decision Twin results unavailable — all candidate options violated capacity or draft constraints."
+            }
 
         M = len(candidates)
         costs_matrix = np.zeros((M, N))  # Cost for each candidate across N simulations
@@ -219,6 +212,7 @@ class DecisionTwinEngine:
             f_rates = futures["freight_paths"][:, d_idx]
             c_scores = futures["congestion_paths"][:, d_idx]
             w_hours = futures["waiting_paths"][:, d_idx]
+            v_counts = futures["vessel_paths"][:, d_idx]
             w_risks = futures["weather_paths"][:, d_idx]
             e_risks = futures["event_paths"][:, d_idx]
 
@@ -244,6 +238,11 @@ class DecisionTwinEngine:
 
             # Total cost in USD
             total_costs_usd = freight_cost + demurrage_cost + congestion_cost + route_risk_penalty
+
+            # Enforce minimum vessel availability threshold on path s
+            infeasible_mask = v_counts < VESSEL_AVAILABILITY_MIN_THRESHOLD
+            total_costs_usd[infeasible_mask] = 1e12
+
             costs_matrix[m_idx, :] = total_costs_usd
 
         # Calculate Hindsight Minimum Cost per simulation path s

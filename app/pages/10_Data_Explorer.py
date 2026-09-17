@@ -65,8 +65,9 @@ tab_data, tab_corr, tab_quality, tab_upload = st.tabs([
     "Dataset",
     "Correlation Matrix",
     "Quality Audit",
-    "Upload Dataset"
+    "Validate & Preview Dataset"
 ])
+
 
 with tab_data:
     with st.container(border=True):
@@ -131,9 +132,10 @@ with tab_quality:
 
 with tab_upload:
     with st.container(border=True):
-        st.markdown("### Upload Custom Dataset")
-        st.caption("Upload custom CSV observations to replace synthetic demo data")
-        uploaded_file = st.file_uploader("Upload CSV Dataset", type=["csv"])
+        st.markdown("### Validate & Preview Custom Dataset")
+        st.caption("Upload custom CSV observations to validate format and preview schema (does not alter active forecast dataset)")
+        uploaded_file = st.file_uploader("Upload CSV Dataset for Validation", type=["csv"])
+
 
         if uploaded_file is not None:
             try:

@@ -54,7 +54,7 @@ def render_control_tower_page(active_page_name: str = "Control Tower"):
 
     # Page Title & Subtitle
     st.markdown(f"<h1 style='margin-bottom: 2px;'>{active_page_name}</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 20px;'>Real-time freight exposure, market signals, and charter decision monitoring.</p>", unsafe_allow_html=True)
+    st.markdown("<p style='color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 20px;'>Freight exposure and chartering decisions.</p>", unsafe_allow_html=True)
 
     # Load Processed Dataset & Run Disruption Engine with Fallbacks
     try:
@@ -63,7 +63,7 @@ def render_control_tower_page(active_page_name: str = "Control Tower"):
         forecast_df = fc_res["forecast_df"]
         ct_data = evaluate_control_tower_state(forecast_df=forecast_df)
     except Exception as e:
-        st.warning(f"Unable to refresh live market feeds ({e}). Displaying cached demonstration state.")
+        st.warning(f"Unable to refresh market feeds ({e}). Displaying cached demonstration state.")
         # Fallback dataset construction if load fails
         dates = pd.date_range(end=pd.Timestamp.now(), periods=60, freq="D")
         df = pd.DataFrame({
@@ -82,10 +82,14 @@ def render_control_tower_page(active_page_name: str = "Control Tower"):
         ct_data = evaluate_control_tower_state(forecast_df=forecast_df)
 
     curr_rec = ct_data.get("current_recommendation", {
-        "expected_total_cost_inr_formatted": "₹18.58 Cr",
         "recommended_window": "15–19 Sep",
         "vessel_class": "Panamax"
     })
+
+    # Check session state for actual computed Twin / Scenario / Validation results
+    dt_res = st.session_state.get("decision_twin_result")
+    active_scen_res = st.session_state.get("active_scenario_result")
+    real_val = st.session_state.get("real_validation_result")
 
     # ACTIVE SHIPMENT HERO CARD
     with st.container(border=True):
@@ -98,7 +102,7 @@ def render_control_tower_page(active_page_name: str = "Control Tower"):
                     <span style="font-size: 1.15rem; font-weight: 700;">{shipment_ctx.get('quantity_tonnes', 75000):,.0f} t {shipment_ctx.get('cargo_type', 'Coking Coal')}</span>
                 </div>
                 <div style="font-size: 0.875rem;">
-                    Route: <strong>{shipment_ctx.get('origin', 'Hay Point')}</strong> → <strong>{shipment_ctx.get('destination', 'Paradip')}</strong>
+                    Route: <strong>{shipment_ctx.get('origin', 'Australia')}</strong> → <strong>{shipment_ctx.get('destination', 'Paradip')}</strong>
                 </div>
             """, unsafe_allow_html=True)
 
@@ -116,18 +120,32 @@ def render_control_tower_page(active_page_name: str = "Control Tower"):
 
         with m1:
             st.caption("EXPECTED LOGISTICS COST")
-            st.markdown(f"<h2 style='color: #1667D9; margin: 0;'>{curr_rec.get('expected_total_cost_inr_formatted', '₹18.58 Cr')}</h2>", unsafe_allow_html=True)
+            cost_val_inr = curr_rec.get("expected_total_cost_inr_formatted")
+            if not cost_val_inr:
+                cost_usd = curr_rec.get("expected_total_logistics_cost_usd", curr_rec.get("expected_total_cost_usd"))
+                if cost_usd:
+                    cost_val_inr = format_inr(usd_to_inr(cost_usd))
+                else:
+                    cost_val_inr = "N/A"
+            st.markdown(f"<h2 style='color: #1667D9; margin: 0;'>{cost_val_inr}</h2>", unsafe_allow_html=True)
             st.caption("Base rate + port demurrage + risk factor")
 
         with m2:
             st.caption("RECOMMENDED CHARTER WINDOW")
-            st.markdown(f"<h2 style='margin: 0;'>{curr_rec.get('recommended_window', '15–19 Sep')}</h2>", unsafe_allow_html=True)
+            window_str = curr_rec.get("recommended_window", curr_rec.get("charter_date", "N/A"))
+            st.markdown(f"<h2 style='margin: 0;'>{window_str}</h2>", unsafe_allow_html=True)
             st.caption(f"{curr_rec.get('vessel_class', 'Panamax')} Vessel Class")
 
         with m3:
             st.caption("DECISION ROBUSTNESS")
-            st.markdown("<h2 style='color: #10B981; margin: 0;'>82%</h2>", unsafe_allow_html=True)
-            st.caption("Stable across 820 / 1,000 simulated futures (demo data)")
+            if dt_res and dt_res.get("success"):
+                score_val = dt_res.get("hero_summary", {}).get("robustness_score", 0)
+                sims_cnt = dt_res.get("simulations_count", 1000)
+                st.markdown(f"<h2 style='color: #10B981; margin: 0;'>{score_val:.0f}%</h2>", unsafe_allow_html=True)
+                st.caption(f"Evaluated across {sims_cnt:,} simulated futures")
+            else:
+                st.markdown("<h2 style='color: #6B7280; margin: 0;'>N/A</h2>", unsafe_allow_html=True)
+                st.caption("Run Decision Twin to compute stability")
 
         st.markdown("<div style='height: 12px;'></div>", unsafe_allow_html=True)
 
@@ -140,7 +158,13 @@ def render_control_tower_page(active_page_name: str = "Control Tower"):
             if st.button("Run Scenario", type="secondary", use_container_width=True, key=f"{active_page_name}_btn_scen"):
                 navigate_to(SCENARIO_PAGE)
         with b3:
-            pdf_bytes = generate_charter_decision_pdf(recommendation=curr_rec, data_mode="DEMO")
+            pdf_bytes = generate_charter_decision_pdf(
+                recommendation=curr_rec,
+                decision_twin_result=dt_res,
+                scenario_result=active_scen_res,
+                real_validation=real_val,
+                data_mode=st.session_state.get("data_mode", "DEMO")
+            )
             st.download_button(
                 label="Download PDF Report",
                 data=pdf_bytes,

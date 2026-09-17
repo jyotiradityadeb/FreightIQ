@@ -73,6 +73,19 @@ update_active_shipment_context(
     destination=destination
 )
 
+# Retrieve active scenario from session state
+active_scenario = st.session_state.get("active_scenario", {})
+active_shock_dict = {}
+if active_scenario.get("is_active"):
+    active_shock_dict = {
+        "freight_rate_shock_pct": active_scenario.get("freight_pct", 0.0),
+        "port_congestion_shock_pct": active_scenario.get("congestion_pct", 0.0),
+        "vessel_availability_shock_pct": active_scenario.get("availability_pct", 0.0),
+        "weather_risk_level": active_scenario.get("weather_level", "Low"),
+        "geopolitical_risk_level": active_scenario.get("geopolitical_level", "Normal"),
+    }
+    st.info(f"⚡ Active Scenario Applied: **{active_scenario.get('scenario_name', 'Custom Shock')}**")
+
 # Load Data & Run Engine
 feat_df = get_cached_processed_data()
 fc_res = generate_freight_forecast(feat_df, horizon=14, selected_model="Auto")
@@ -87,10 +100,19 @@ dt_engine = DecisionTwinEngine(
     vessel_class="Auto",
     risk_tolerance="Medium",
     simulations_count=1000,
-    seed=42
+    seed=42,
+    active_shock=active_shock_dict
 )
 
 res = dt_engine.run()
+
+if not res.get("success"):
+    st.warning(f"⚠ Optimization Infeasible: {res.get('error', 'No feasible candidate under this simulated state.')}")
+    if "disclaimer" in res:
+        st.info(res["disclaimer"])
+    render_disclaimer()
+    st.stop()
+
 hero = res["hero_summary"]
 
 # TOP: RECOMMENDATION SUMMARY (Clean SaaS Surface)
@@ -107,7 +129,7 @@ with st.container(border=True):
     with r3:
         st.caption("DECISION ROBUSTNESS")
         st.markdown(f"<h3 style='color: #10B981;'>{hero['robustness_score']} / 100</h3>", unsafe_allow_html=True)
-        st.caption("Stable in 82% of simulated scenarios (demo data)")
+        st.caption(f"Stable in {hero['robustness_score']}% of simulated scenarios (demo data)")
     with r4:
         st.caption("EXPECTED REGRET")
         st.markdown(f"### ₹{hero['expected_regret_inr_lakh']:.1f} Lakh")
@@ -127,7 +149,12 @@ with st.container(border=True):
             "recommended_window": hero['recommended_date'],
             "expected_total_cost_usd": hero['expected_cost_inr_cr'] * 10000000.0 / DEMO_USD_INR_RATE if 'DEMO_USD_INR_RATE' in globals() else 2200000.0
         }
-        pdf_bytes = generate_charter_decision_pdf(recommendation=dt_rec, decision_twin_result=res, data_mode="DEMO")
+        pdf_bytes = generate_charter_decision_pdf(
+            recommendation=dt_rec,
+            decision_twin_result=res,
+            scenario_result=active_scenario if active_scenario.get("is_active") else None,
+            data_mode="DEMO"
+        )
         st.download_button(
             label="Download Decision Twin Report (PDF)",
             data=pdf_bytes,
@@ -238,21 +265,18 @@ st.markdown("<div style='height: 16px;'></div>", unsafe_allow_html=True)
 # BELOW: WHAT WOULD CHANGE THIS DECISION?
 with st.container(border=True):
     st.markdown("### What Would Change This Decision?")
-    st.caption("Quantitative counterfactual tipping points indicating when the recommendation alters")
+    st.caption("Quantitative counterfactual tipping points indicating when recommendation alters (Model-derived heuristic threshold)")
 
-    c1, c2, c3 = st.columns(3)
-    with c1:
-        st.markdown("**Paradip Congestion Index**")
-        st.caption("Current: 58 • Tipping Point: 74")
-        st.write("If congestion index exceeds 74, optimizer switches to Visakhapatnam.")
-    with c2:
-        st.markdown("**Vessel Availability**")
-        st.caption("Current: 19 vessels • Tipping Point: 11 vessels")
-        st.write("If Panamax supply drops below 11, Capesize vessel becomes the lower-cost candidate.")
-    with c3:
-        st.markdown("**Freight Rate Spike**")
-        st.caption("Current: +2.1% • Tipping Point: +8.4%")
-        st.write("If 14-day freight outlook exceeds +8.4%, immediate fixture is required.")
+    cf_list = res.get("counterfactuals", [])
+    if cf_list:
+        cols = st.columns(min(len(cf_list), 4))
+        for idx, cf in enumerate(cf_list[:4]):
+            with cols[idx]:
+                st.markdown(f"**{cf['trigger_event']}**")
+                st.caption(f"Current: {cf['current_val']} • Tipping Point: {cf['threshold_val']}")
+                st.write(cf['action'])
+    else:
+        st.caption("No counterfactual tipping points derived for this state.")
 
 render_disclaimer()
 

@@ -126,23 +126,36 @@ with col_met:
 
 with col_exp:
     with st.container(border=True):
-        st.markdown("### Forecast Explanation & Drivers")
-        st.caption("Quantitative driver impact decomposition for the selected forecast horizon")
+        st.markdown("### Contextual Market Signals")
+        st.caption("Qualitative market indicators — not used as explicit model regressors in univariate forecast")
 
         drivers = [
-            {"Driver": "Bunker Fuel Spot Prices", "Impact": "-₹180 / t", "Direction": "Bearish", "Confidence": "High"},
-            {"Driver": "East Coast Port Congestion", "Impact": "+₹320 / t", "Direction": "Bullish", "Confidence": "High"},
-            {"Driver": "Panamax Fleet Availability", "Impact": "-₹90 / t", "Direction": "Bearish", "Confidence": "Medium"},
-            {"Driver": "Queensland Rail Throughput", "Impact": "+₹140 / t", "Direction": "Bullish", "Confidence": "Medium"}
+            {"Signal": "Bunker Fuel Spot Prices", "Indicator": "Softening", "Context": "Macro cost driver", "Relevance": "High"},
+            {"Signal": "East Coast Port Congestion", "Indicator": "Elevated", "Context": "Logistics queue delay", "Relevance": "High"},
+            {"Signal": "Panamax Fleet Availability", "Indicator": "Tight", "Context": "Spot vessel liquidity", "Relevance": "Medium"},
+            {"Signal": "Queensland Rail Throughput", "Indicator": "Stable", "Context": "Supply rail bottleneck", "Relevance": "Medium"}
         ]
         st.dataframe(pd.DataFrame(drivers), use_container_width=True, hide_index=True)
 
         st.divider()
         st.caption("FORECAST INTERPRETATION")
-        if _metrics_ok:
-            st.write(f"Freight rates are projected to soften moderately over the next {horizon} days based on {fc_res['selected_model']} model analysis. The model achieves an out-of-sample MAPE of {metrics['MAPE']:.2f}% on the synthetic demo series.")
+        if not fc_df.empty:
+            start_val = float(fc_df["predicted_freight_rate"].iloc[0])
+            end_val = float(fc_df["predicted_freight_rate"].iloc[-1])
+            diff_val = end_val - start_val
+            if diff_val > 0.5:
+                trend_desc = f"projected to rise by ₹{usd_to_inr(diff_val):.0f}/t"
+            elif diff_val < -0.5:
+                trend_desc = f"projected to soften by ₹{usd_to_inr(abs(diff_val)):.0f}/t"
+            else:
+                trend_desc = "projected to remain relatively stable"
         else:
-            st.write(f"Freight rates are projected to soften moderately over the next {horizon} days based on {fc_res['selected_model']} model analysis. Demo-series metrics unavailable — insufficient data for error estimation.")
+            trend_desc = "projected to remain stable"
+
+        if _metrics_ok:
+            st.write(f"Freight rates are {trend_desc} over the next {horizon} days based on {fc_res['selected_model']} model analysis. The model achieves an out-of-sample MAPE of {metrics['MAPE']:.2f}% on the synthetic demo series.")
+        else:
+            st.write(f"Freight rates are {trend_desc} over the next {horizon} days based on {fc_res['selected_model']} model analysis. Demo-series metrics unavailable — insufficient data for error estimation.")
 
 st.markdown("<div style='height: 16px;'></div>", unsafe_allow_html=True)
 
@@ -233,14 +246,27 @@ with st.container(border=True):
             ))
 
             # Train/test split line
-            fig_rv.add_vline(
-                x=chart_data["split_date"],
-                line_dash="dot",
-                line_color="#D97706",
-                annotation_text="Train / Test split",
-                annotation_position="top left",
-                annotation_font_color="#D97706",
+            split_x_str = str(pd.Timestamp(chart_data["split_date"]).date())
+            fig_rv.add_shape(
+                type="line",
+                x0=split_x_str,
+                x1=split_x_str,
+                y0=0,
+                y1=1,
+                yref="paper",
+                line=dict(color="#D97706", width=1.5, dash="dot")
             )
+            fig_rv.add_annotation(
+                x=split_x_str,
+                y=1.0,
+                yref="paper",
+                text="Train / Test split",
+                showarrow=False,
+                xanchor="right",
+                yanchor="bottom",
+                font=dict(size=10, color="#D97706")
+            )
+
 
             # Metric annotation box
             if result.mae is not None:

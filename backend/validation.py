@@ -20,7 +20,7 @@ import warnings
 from dataclasses import dataclass
 from datetime import date, timedelta
 from enum import Enum
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Tuple
 
 import numpy as np
 import pandas as pd
@@ -69,6 +69,9 @@ class ValidationResult:
     status: str                    # "OK" | "INSUFFICIENT_DATA" | "UNAVAILABLE" | "SYNTHETIC"
     notes: str = ""
     variable_label: str = ""
+    signal_unit: str = "m/s"
+    source_unit: str = "m/s"
+    requested_model: str = "SARIMA"
 
 
 # ── Cache helpers ──────────────────────────────────────────────────────────────
@@ -95,24 +98,28 @@ def fetch_openmeteo_series(
     Returns a DataFrame with columns [date (Timestamp), value (float)],
     or None if data is unavailable (network down, no cache).
 
-    Strategy:
-      1. If a valid cache exists (>= MIN_TRAIN_DAYS + TEST_DAYS rows), use it.
-      2. Otherwise attempt an HTTP fetch and overwrite the cache.
-      3. On any network failure, fall back to whatever cache exists.
-      4. If nothing works, return None — caller must not fabricate data.
+    Values are guaranteed to be in m/s. If cached data was stored in km/h
+    (mean > 10 m/s for wind), it is automatically converted to m/s (val / 3.6).
     """
     _ensure_cache_dir()
     cache_file = _cache_path(cache_filename)
+
+    def _clean_and_convert_units(df_in: pd.DataFrame) -> pd.DataFrame:
+        df_out = df_in.copy()
+        # Open-Meteo wind speed in km/h typically has mean > 10. In m/s, mean is ~3-5 m/s.
+        if "value" in df_out.columns and len(df_out) > 0 and df_out["value"].mean() > 10.0:
+            df_out["value"] = df_out["value"] / 3.6
+        return df_out
 
     if not force_refresh and os.path.exists(cache_file):
         try:
             df = pd.read_csv(cache_file, parse_dates=["date"])
             if len(df) >= MIN_TRAIN_DAYS + TEST_DAYS:
-                return df
+                return _clean_and_convert_units(df)
         except Exception:
             pass  # corrupt cache → try network
 
-    # Attempt live fetch
+    # Attempt live fetch requesting wind_speed_unit="ms" explicitly
     end_dt = date.today() - timedelta(days=5)  # archive lags ~5 days
     start_dt = end_dt - timedelta(days=lookback_days)
 
@@ -124,6 +131,7 @@ def fetch_openmeteo_series(
             "start_date": start_dt.isoformat(),
             "end_date": end_dt.isoformat(),
             "daily": variable,
+            "wind_speed_unit": "ms",
             "timezone": "Asia/Kolkata",
         }
         resp = requests.get(OPEN_METEO_ARCHIVE_URL, params=params, timeout=12)
@@ -136,13 +144,14 @@ def fetch_openmeteo_series(
         df = df.dropna().reset_index(drop=True)
 
         df.to_csv(cache_file, index=False)
-        return df
+        return _clean_and_convert_units(df)
 
     except Exception:
         # Network failure or API error → use existing cache (even if short)
         if os.path.exists(cache_file):
             try:
-                return pd.read_csv(cache_file, parse_dates=["date"])
+                cached_df = pd.read_csv(cache_file, parse_dates=["date"])
+                return _clean_and_convert_units(cached_df)
             except Exception:
                 return None
         return None
@@ -172,14 +181,17 @@ def run_real_validation(
         source_name="Open-Meteo Archive API",
         source_type="Public daily weather observations — CC BY 4.0",
         data_mode=DataMode.PUBLIC_REAL,
-        model_name=model_name,
         horizon=horizon,
         variable_label=DEFAULT_VARIABLE_LABEL,
+        signal_unit="m/s",
+        source_unit="m/s",
+        requested_model=model_name,
     )
 
     if df is None or len(df) == 0:
         return ValidationResult(
             **_meta,
+            model_name=model_name,
             start_date=None,
             end_date=None,
             n_observations=None,
@@ -201,6 +213,7 @@ def run_real_validation(
     if n < horizon + MIN_TRAIN_DAYS:
         return ValidationResult(
             **_meta,
+            model_name=model_name,
             start_date=start_str,
             end_date=end_str,
             n_observations=n,
@@ -217,11 +230,12 @@ def run_real_validation(
     train = series[:-horizon]
     test = series[-horizon:]
 
-    y_pred = _predict(model_name, train, horizon)
+    y_pred, actual_model_used = _predict(model_name, train, horizon)
     metrics = calculate_metrics(test, y_pred)
 
     return ValidationResult(
         **_meta,
+        model_name=actual_model_used,
         start_date=start_str,
         end_date=end_str,
         n_observations=n,
@@ -231,13 +245,13 @@ def run_real_validation(
         status=metrics.get("status", "OK"),
         notes=(
             f"Train: {len(train)} obs | Test (held-out): {horizon} obs. "
-            f"Series: {DEFAULT_VARIABLE_LABEL}."
+            f"Series: {DEFAULT_VARIABLE_LABEL} ({actual_model_used})."
         ),
     )
 
 
-def _predict(model_name: str, train: np.ndarray, horizon: int) -> np.ndarray:
-    """Runs model on `train`, returns `horizon`-step forecast."""
+def _predict(model_name: str, train: np.ndarray, horizon: int) -> Tuple[np.ndarray, str]:
+    """Runs model on `train`, returns `(horizon_step_forecast, actual_model_name)`."""
     if model_name == "SARIMA":
         try:
             from statsmodels.tsa.statespace.sarimax import SARIMAX
@@ -252,14 +266,16 @@ def _predict(model_name: str, train: np.ndarray, horizon: int) -> np.ndarray:
                 )
                 r = m.fit(disp=False)
                 preds = r.forecast(steps=horizon)
-                return np.asarray(preds, dtype=float)
+                return np.asarray(preds, dtype=float), "SARIMA"
         except Exception:
-            pass  # fall through to naive
+            pass  # fall through to naive fallback
 
-    # Naive: last value + damped trend
+    # Naive fallback: last value + damped trend
     last = float(train[-1])
     slope = float((train[-1] - train[-14]) / 14.0) if len(train) >= 14 else 0.0
-    return np.array([last + slope * (h + 1) * 0.5 for h in range(horizon)], dtype=float)
+    preds = np.array([last + slope * (h + 1) * 0.5 for h in range(horizon)], dtype=float)
+    actual_name = "Naive (SARIMA Fallback)" if model_name == "SARIMA" else "Naive Baseline"
+    return preds, actual_name
 
 
 # ── Synthetic validation wrapper ───────────────────────────────────────────────
@@ -324,7 +340,7 @@ def build_validation_chart_data(
     train_dates = dates[:-horizon]
     test_dates = dates[-horizon:]
 
-    y_pred = _predict(model_name, train_vals, horizon)
+    y_pred, _ = _predict(model_name, train_vals, horizon)
 
     # Naive 1-sigma from recent train std
     sigma = float(np.std(train_vals[-60:])) if len(train_vals) >= 60 else float(np.std(train_vals))

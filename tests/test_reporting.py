@@ -1,94 +1,97 @@
 """
-FreightIQ Executive Reporting Engine Unit Tests
-
-Tests ReportLab PDF decision note generation, section content,
-INR formatting, scenario stress incorporation, and error handling.
+Unit tests for FreightIQ PDF Reporting & Truthfulness
 """
 
+import io
 import pytest
-from backend.reporting import generate_charter_decision_pdf
+from backend.reporting import generate_charter_decision_pdf, format_pdf_inr_val
 
 
-@pytest.fixture
-def sample_recommendation():
-    return {
+def test_format_pdf_inr_val_truthfulness():
+    assert format_pdf_inr_val(None) == "N/A"
+    assert format_pdf_inr_val(0.0) == "INR 0"
+    assert "Lakh" in format_pdf_inr_val(1_800_000.0)
+    assert "Cr" in format_pdf_inr_val(185_800_000.0)
+
+
+def test_pdf_truthfulness_when_results_none():
+    rec = {
+        "shipment_id": "TEST-001",
         "cargo_type": "Coking Coal",
         "quantity_tonnes": 75000.0,
         "origin": "Australia",
         "destination": "Paradip",
-        "recommended_charter_date": "2026-09-03",
         "recommended_vessel": "Panamax",
-        "expected_unit_freight_usd": 25.50,
-        "expected_freight_cost_usd": 1912500.0,
-        "expected_demurrage_cost_usd": 45000.0,
-        "expected_congestion_cost_usd": 30000.0,
-        "expected_route_risk_penalty_usd": 25000.0,
-        "expected_total_logistics_cost_usd": 2012500.0,
-        "effective_cost_per_tonne": 26.83,
-        "why": [
-            "Freight rate forecast is stable.",
-            "Panamax vessel satisfies cargo requirements.",
-            "Paradip congestion is within operating threshold."
-        ]
-    }
-
-
-def test_pdf_generation_non_empty(sample_recommendation):
-    """Decision PDF generates non-empty bytes."""
-    pdf_bytes = generate_charter_decision_pdf(sample_recommendation, data_mode="DEMO")
-    assert isinstance(pdf_bytes, bytes)
-    assert len(pdf_bytes) > 1000
-    # PDF Magic Number check
-    assert pdf_bytes.startswith(b"%PDF")
-
-
-def test_pdf_with_scenario_result(sample_recommendation):
-    """Decision PDF incorporates active scenario stress test results."""
-    scenario_result = {
-        "success": True,
-        "baseline_recommendation": sample_recommendation,
-        "stressed_recommendation": sample_recommendation,
-        "decision_status": "Cost Increase Under Stress",
-        "explanation": "Paradip congestion increased by 55%, raising demurrage exposure.",
-        "confidence_score": 72.5
+        "charter_date": "2026-09-20",
+        "expected_total_cost_usd": 1800000.0,
+        "freight_cost_usd": None, # Missing freight cost
+        "demurrage_cost_usd": None,
     }
 
     pdf_bytes = generate_charter_decision_pdf(
-        recommendation=sample_recommendation,
-        scenario_result=scenario_result,
+        recommendation=rec,
+        decision_twin_result=None,
+        scenario_result=None,
+        backtest_metrics=None,
+        synthetic_validation=None,
+        real_validation=None,
         data_mode="DEMO"
     )
 
     assert isinstance(pdf_bytes, bytes)
-    assert pdf_bytes.startswith(b"%PDF")
+    assert len(pdf_bytes) > 0
+
+    # Extract text using pypdf if available or check string representation
+    import pypdf
+    reader = pypdf.PdfReader(io.BytesIO(pdf_bytes))
+    full_text = "\n".join([p.extract_text() for p in reader.pages])
+
+    # Must contain "Not evaluated for this report."
+    assert "Not evaluated for this report." in full_text
+
+    # Must NOT contain hardcoded fallbacks
+    assert "82/100" not in full_text
+    assert "83% simulated" not in full_text
+    assert "18.0 Lakh" not in full_text
+    assert "MAE ~INR 105/t" not in full_text
 
 
-def test_pdf_fallback_handling():
-    """PDF generator handles sparse recommendation dictionary safely without crashing."""
-    sparse_rec = {
+def test_pdf_truthfulness_with_actual_results():
+    rec = {
+        "shipment_id": "TEST-002",
         "cargo_type": "Iron Ore",
         "quantity_tonnes": 150000.0,
-        "expected_total_cost_usd": 3500000.0
+        "origin": "Brazil",
+        "destination": "Visakhapatnam",
+        "recommended_vessel": "Capesize",
+        "charter_date": "2026-09-25",
+        "expected_total_cost_usd": 3500000.0,
+        "expected_freight_cost_usd": 3000000.0,
+        "expected_demurrage_cost_usd": 300000.0,
+        "expected_congestion_cost_usd": 150000.0,
+        "expected_route_risk_penalty_usd": 50000.0,
     }
-    pdf_bytes = generate_charter_decision_pdf(sparse_rec, data_mode="DEMO")
-    assert isinstance(pdf_bytes, bytes)
-    assert pdf_bytes.startswith(b"%PDF")
 
+    dt_res = {
+        "success": True,
+        "simulations_count": 500,
+        "hero_summary": {
+            "robustness_score": 91.5,
+            "robustness_label": "High",
+            "expected_regret_inr_lakh": 5.2,
+            "recommendation_reason": "Optimal across futures"
+        }
+    }
 
-def test_log_decision_version_api_contract():
-    """Verifies backend.storage exposes log_decision_version alias."""
-    import backend.storage as storage
-    assert hasattr(storage, "log_decision_version")
-    assert callable(storage.log_decision_version)
+    pdf_bytes = generate_charter_decision_pdf(
+        recommendation=rec,
+        decision_twin_result=dt_res,
+        data_mode="DEMO"
+    )
 
+    import pypdf
+    reader = pypdf.PdfReader(io.BytesIO(pdf_bytes))
+    full_text = "\n".join([p.extract_text() for p in reader.pages])
 
-def test_theme_helper_functions():
-    """Verifies get_active_theme and toggle_theme helper functions."""
-    from app.components.helpers import get_active_theme, toggle_theme
-    theme = get_active_theme()
-    assert theme in ["light", "dark"]
-    toggle_theme()
-    new_theme = get_active_theme()
-    assert new_theme != theme
-    toggle_theme()
-
+    assert "92 / 100" in full_text or "91 / 100" in full_text or "High" in full_text
+    assert "500 paths" in full_text

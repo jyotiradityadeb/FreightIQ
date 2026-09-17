@@ -67,13 +67,17 @@ with st.container(border=True):
     with t3:
         origin = st.selectbox("Origin Port", ["Australia", "Indonesia", "South Africa"], index=0)
     with t4:
-        destination = st.selectbox("Destination Port", ["Paradip", "Visakhapatnam", "Haldia", "Gangavaram"], index=0)
+        destination = st.selectbox("Destination Port", ["Paradip", "Visakhapatnam", "Kolkata/Haldia"], index=0)
     with t5:
-        earliest_date = st.date_input("Laycan Window", value=[today_dt + timedelta(days=1), today_dt + timedelta(days=15)])
-        if isinstance(earliest_date, list) and len(earliest_date) == 2:
-            e_dt, l_dt = earliest_date
+        laycan_input = st.date_input("Laycan Window", value=[today_dt + timedelta(days=1), today_dt + timedelta(days=15)])
+        if isinstance(laycan_input, (list, tuple)) and len(laycan_input) == 2:
+            e_dt, l_dt = laycan_input[0], laycan_input[1]
+        elif isinstance(laycan_input, (list, tuple)) and len(laycan_input) == 1:
+            e_dt = laycan_input[0]
+            l_dt = e_dt + timedelta(days=14)
         else:
-            e_dt, l_dt = today_dt + timedelta(days=1), today_dt + timedelta(days=15)
+            e_dt = laycan_input if hasattr(laycan_input, "strftime") else today_dt + timedelta(days=1)
+            l_dt = e_dt + timedelta(days=14)
     with t6:
         st.markdown("<div style='height: 28px;'></div>", unsafe_allow_html=True)
         run_opt = st.button("Solve Candidates", type="primary", use_container_width=True)
@@ -88,25 +92,46 @@ update_active_shipment_context(
     destination=destination
 )
 
-# Run Forecasting Engine & Optimizer
-fc_res = generate_freight_forecast(df, horizon=30, selected_model="Auto")
-opt_res = optimize_charter_timing(
-    forecast_df=fc_res["forecast_df"],
-    cargo_type=cargo_type,
-    quantity_tonnes=quantity_tonnes,
-    origin=origin,
-    destination=destination,
-    earliest_date=e_dt.strftime("%Y-%m-%d"),
-    latest_date=l_dt.strftime("%Y-%m-%d"),
-    vessel_class="Auto",
-    demurrage_rate=22000.0,
-    risk_tolerance="Medium"
-)
+# Input hash for caching candidate solutions
+current_inputs_key = f"{cargo_type}_{quantity_tonnes}_{origin}_{destination}_{e_dt}_{l_dt}"
+
+# Check active scenario in session state
+active_scenario = st.session_state.get("active_scenario", {})
+scenario_cost_overrides = None
+if active_scenario.get("is_active"):
+    scenario_cost_overrides = {
+        "demurrage_factor": 0.15 * (1.0 + active_scenario.get("demurrage_pct", 0.0) / 100.0),
+        "congestion_multiplier": 0.5 * (1.0 + active_scenario.get("congestion_pct", 0.0) / 100.0),
+    }
+
+if run_opt or "optimizer_result" not in st.session_state or st.session_state.get("opt_inputs_key") != current_inputs_key:
+    fc_res = generate_freight_forecast(df, horizon=30, selected_model="Auto")
+    st.session_state["opt_forecast_df"] = fc_res["forecast_df"]
+    opt_res = optimize_charter_timing(
+        forecast_df=fc_res["forecast_df"],
+        cargo_type=cargo_type,
+        quantity_tonnes=quantity_tonnes,
+        origin=origin,
+        destination=destination,
+        earliest_date=e_dt.strftime("%Y-%m-%d"),
+        latest_date=l_dt.strftime("%Y-%m-%d"),
+        vessel_class="Auto",
+        demurrage_rate=22000.0,
+        risk_tolerance="Medium",
+        cost_factor_overrides=scenario_cost_overrides,
+    )
+    st.session_state["optimizer_result"] = opt_res
+    st.session_state["opt_inputs_key"] = current_inputs_key
+
+    if opt_res["success"]:
+        rec = opt_res["recommendation"]
+        save_shipment(shipment_ctx)
+        log_decision_version(shipment_ctx.get("shipment_id", "FIQ-2026-0001"), rec, reason="Solver Execution")
+else:
+    opt_res = st.session_state["optimizer_result"]
 
 if opt_res["success"]:
     rec = opt_res["recommendation"]
-    save_shipment(shipment_ctx)
-    log_decision_version(shipment_ctx.get("shipment_id", "FIQ-2026-0001"), rec)
 
     # MAIN SECTION: CANDIDATE PROCUREMENT TABLE
     with st.container(border=True):
@@ -230,7 +255,7 @@ if opt_res["success"]:
         )
 
         sens_res = run_sensitivity_analysis(
-            forecast_df=fc_res["forecast_df"],
+            forecast_df=st.session_state.get("opt_forecast_df", df),
             cargo_type=cargo_type,
             quantity_tonnes=quantity_tonnes,
             origin=origin,
