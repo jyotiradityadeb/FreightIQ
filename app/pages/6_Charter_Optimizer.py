@@ -38,6 +38,7 @@ from backend.domain.ports import PORT_MASTER
 from backend.domain.routes import ROUTE_MASTER, get_route_info
 from backend.forecasting import generate_freight_forecast
 from backend.optimizer import optimize_charter_timing
+from backend.sensitivity import run_sensitivity_analysis
 from backend.reporting import generate_charter_decision_pdf
 from backend.storage import save_shipment, log_decision_version
 
@@ -154,6 +155,128 @@ if opt_res["success"]:
     with c_right:
         safe_render_section("Route Visualization", lambda: render_route_visualization_card(origin, destination))
         safe_render_section("Scenario Comparison", lambda: render_scenario_comparison_table(opt_res["scenarios"]))
+
+    st.markdown("<div style='height: 16px;'></div>", unsafe_allow_html=True)
+
+    # ── COST MODEL TRANSPARENCY ──────────────────────────────────────────────
+    with st.container(border=True):
+        st.markdown("### Cost Model Breakdown — Top Candidates")
+        st.caption(
+            "Exact cost components computed by the optimizer for each candidate. "
+            "Formula: Total = Freight + Demurrage + Congestion + Route Risk Penalty"
+        )
+        breakdown_rows = []
+        for idx, c in enumerate(cand_list[:6], start=1):
+            breakdown_rows.append({
+                "Rank": f"#{idx}",
+                "Vessel / Date": f"{c['vessel_class']} · {c['charter_date']}",
+                "Freight (₹)": format_inr(usd_to_inr(c["freight_cost_usd"])),
+                "Demurrage (₹)": format_inr(usd_to_inr(c["demurrage_cost_usd"])),
+                "Congestion (₹)": format_inr(usd_to_inr(c["congestion_cost_usd"])),
+                "Risk Adj. (₹)": format_inr(usd_to_inr(c["route_risk_penalty_usd"])),
+                "Total (₹)": format_inr(usd_to_inr(c["total_logistics_cost_usd"])),
+                "₹/t": f"₹{usd_to_inr(c['effective_cost_per_tonne']):,.0f}",
+            })
+        st.dataframe(pd.DataFrame(breakdown_rows), use_container_width=True, hide_index=True)
+
+    st.markdown("<div style='height: 16px;'></div>", unsafe_allow_html=True)
+
+    # ── OPTIMIZER EXPLAINABILITY ─────────────────────────────────────────────
+    expl = opt_res.get("explainability", {})
+    if expl:
+        with st.container(border=True):
+            st.markdown("### Why This Recommendation Was Selected")
+            st.caption("Derived from computed candidate costs — not generic boilerplate")
+
+            winner = expl.get("winner", {})
+            if winner:
+                ex_c1, ex_c2 = st.columns(2)
+                with ex_c1:
+                    st.markdown(f"**Selected:** {winner['candidate']}")
+                    for reason in winner.get("why_won", []):
+                        st.markdown(f"- {reason}")
+                with ex_c2:
+                    bd = winner.get("cost_breakdown_usd", {})
+                    total = winner.get("total_cost_usd", 1)
+                    breakdown_items = [
+                        {"Component": "Freight", "USD": f"${bd.get('freight', 0):,.0f}", "Share": f"{bd.get('freight', 0)/total*100:.1f}%"},
+                        {"Component": "Demurrage", "USD": f"${bd.get('demurrage', 0):,.0f}", "Share": f"{bd.get('demurrage', 0)/total*100:.1f}%"},
+                        {"Component": "Congestion", "USD": f"${bd.get('congestion', 0):,.0f}", "Share": f"{bd.get('congestion', 0)/total*100:.1f}%"},
+                        {"Component": "Risk Penalty", "USD": f"${bd.get('risk_penalty', 0):,.0f}", "Share": f"{bd.get('risk_penalty', 0)/total*100:.1f}%"},
+                    ]
+                    st.dataframe(pd.DataFrame(breakdown_items), use_container_width=True, hide_index=True)
+
+            alts = expl.get("alternatives", [])
+            if alts:
+                st.markdown("**Why alternatives were ranked lower:**")
+                for alt in alts:
+                    delta_inr = format_inr(usd_to_inr(alt["delta_vs_winner_usd"]))
+                    with st.expander(
+                        f"{alt['candidate']} — total ${alt['total_cost_usd']:,.0f} "
+                        f"(+{delta_inr} vs selected)"
+                    ):
+                        for r in alt["loss_reasons"]:
+                            st.markdown(f"- {r}")
+
+    st.markdown("<div style='height: 16px;'></div>", unsafe_allow_html=True)
+
+    # ── ASSUMPTION SENSITIVITY / ROBUSTNESS PANEL ────────────────────────────
+    with st.container(border=True):
+        st.markdown("### Assumption Sensitivity — Robustness Panel")
+        st.caption(
+            "Each key cost assumption is perturbed ±15% and ±30% (one at a time) and "
+            "the optimizer re-run. 'Held' = same vessel and charter date as baseline. "
+            "Computed on synthetic demo series — not real-market robustness."
+        )
+
+        sens_res = run_sensitivity_analysis(
+            forecast_df=fc_res["forecast_df"],
+            cargo_type=cargo_type,
+            quantity_tonnes=quantity_tonnes,
+            origin=origin,
+            destination=destination,
+            risk_tolerance="Medium",
+            demurrage_rate=22000.0,
+            earliest_date=e_dt.strftime("%Y-%m-%d"),
+            latest_date=l_dt.strftime("%Y-%m-%d"),
+        )
+
+        if sens_res["success"]:
+            st.markdown(
+                f"**Overall stability:** {sens_res['stability_summary']} "
+                f"(demo data)"
+            )
+
+            sens_rows = []
+            for pr in sens_res["param_results"]:
+                sens_rows.append({
+                    "Assumption": pr["parameter_label"],
+                    "Baseline Value": pr["baseline_value"],
+                    "Range Tested": f"{pr['baseline_value']*0.7:.4g} – {pr['baseline_value']*1.3:.4g}",
+                    "Held / Tested": f"{pr['stable_count']} / {pr['tested_count']}",
+                    "Stable Across ±30%": "Yes" if pr["holds_across_range"] else "No",
+                    "First Flip At": pr["first_flip_at"] if pr["first_flip_at"] else "—",
+                })
+            st.dataframe(pd.DataFrame(sens_rows), use_container_width=True, hide_index=True)
+
+            # Per-assumption drill-down
+            with st.expander("Detailed perturbation results"):
+                for pr in sens_res["param_results"]:
+                    st.markdown(f"**{pr['parameter_label']}** ({pr['unit']})")
+                    detail_rows = []
+                    for lv in pr["levels"]:
+                        detail_rows.append({
+                            "Perturbation": f"{lv['perturbation_pct']:+.0f}%",
+                            "Value": f"{lv['perturbed_value']:.4g}",
+                            "Vessel": lv["recommended_vessel"] or "—",
+                            "Date": lv["recommended_date"] or "—",
+                            "Total Cost (₹)": format_inr(usd_to_inr(lv["total_cost_usd"])) if lv["total_cost_usd"] else "—",
+                            "Held": "Yes" if lv["recommendation_held"] else ("—" if lv["perturbation_pct"] == 0 else "No"),
+                        })
+                    st.dataframe(pd.DataFrame(detail_rows), use_container_width=True, hide_index=True)
+                    st.markdown("")
+        else:
+            st.warning("Sensitivity analysis could not be computed for this configuration.")
 
 else:
     st.warning("⚠ Optimization Infeasible: No feasible charter option found for the selected constraints.")

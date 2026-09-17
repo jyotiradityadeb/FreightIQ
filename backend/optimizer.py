@@ -49,10 +49,16 @@ def evaluate_charter_candidate(
     weather_risk: float,
     event_risk: float,
     demurrage_rate_override: Optional[float] = None,
-    risk_tolerance: str = "Medium"
+    risk_tolerance: str = "Medium",
+    cost_factor_overrides: Optional[Dict[str, float]] = None,
 ) -> Dict[str, Any]:
     """
     Evaluates exact logistics cost for a specific candidate (date, vessel_class, route).
+
+    cost_factor_overrides is an optional dict accepted by the sensitivity engine to
+    substitute specific cost factors without mutating global config.  Recognised keys:
+      "demurrage_factor", "congestion_multiplier", "weather_penalty", "event_penalty"
+    Any key absent from the dict falls back to the config_model constant.
     """
     route_key = f"{origin} -> {destination}"
     route_info = ROUTES.get(route_key, {
@@ -86,21 +92,28 @@ def evaluate_charter_candidate(
     )
     freight_cost = unit_freight * quantity_tonnes
 
+    # Resolve effective factors — cost_factor_overrides take precedence over config constants
+    _ov = cost_factor_overrides or {}
+    eff_demurrage_factor = _ov.get("demurrage_factor", DEMURRAGE_EXPOSURE_FACTOR)
+    eff_congestion_mult = _ov.get("congestion_multiplier", CONGESTION_COST_MULTIPLIER)
+    eff_weather_penalty = _ov.get("weather_penalty", WEATHER_RISK_PENALTY_PER_POINT)
+    eff_event_penalty = _ov.get("event_penalty", EVENT_RISK_PENALTY_PER_POINT)
+
     # Demurrage Cost
     demurrage_rate = demurrage_rate_override if demurrage_rate_override is not None else vessel_info["daily_demurrage_rate"]
     laytime_hours = port_info["avg_laytime_hours"]
     total_port_hours = laytime_hours + waiting_hours
-    demurrage_cost = (total_port_hours / 24.0) * (demurrage_rate * DEMURRAGE_EXPOSURE_FACTOR)
+    demurrage_cost = (total_port_hours / 24.0) * (demurrage_rate * eff_demurrage_factor)
 
     # Congestion Cost
-    congestion_cost = congestion_score * port_info["congestion_cost_per_hour_usd"] * CONGESTION_COST_MULTIPLIER
+    congestion_cost = congestion_score * port_info["congestion_cost_per_hour_usd"] * eff_congestion_mult
 
     # Risk Penalty Factor based on user tolerance
     risk_factor_map = {"Low": RISK_FACTOR_LOW, "Medium": RISK_FACTOR_MEDIUM, "High": RISK_FACTOR_HIGH}
     risk_factor = risk_factor_map.get(risk_tolerance, RISK_FACTOR_MEDIUM)
 
-    weather_penalty = weather_risk * WEATHER_RISK_PENALTY_PER_POINT * risk_factor
-    event_penalty = event_risk * EVENT_RISK_PENALTY_PER_POINT * risk_factor
+    weather_penalty = weather_risk * eff_weather_penalty * risk_factor
+    event_penalty = event_risk * eff_event_penalty * risk_factor
     route_risk_penalty = weather_penalty + event_penalty
 
     total_cost = freight_cost + demurrage_cost + congestion_cost + route_risk_penalty
@@ -139,7 +152,8 @@ def optimize_charter_timing(
     latest_date: Optional[str] = None,
     vessel_class: str = "Auto",
     demurrage_rate: Optional[float] = None,
-    risk_tolerance: str = "Medium"
+    risk_tolerance: str = "Medium",
+    cost_factor_overrides: Optional[Dict[str, float]] = None,
 ) -> Dict[str, Any]:
     """
     Evaluates all candidate dates and vessel options within decision window,
@@ -192,7 +206,8 @@ def optimize_charter_timing(
                 weather_risk=w_risk,
                 event_risk=e_risk,
                 demurrage_rate_override=demurrage_rate,
-                risk_tolerance=risk_tolerance
+                risk_tolerance=risk_tolerance,
+                cost_factor_overrides=cost_factor_overrides,
             )
             if res["feasible"]:
                 candidates.append(res)
@@ -272,6 +287,8 @@ def optimize_charter_timing(
         "disclaimer": "Prototype decision-support estimate — not a commercial charter commitment."
     }
 
+    explainability = generate_candidate_explainability(best_option, candidates)
+
     return {
         "success": True,
         "recommendation": recommendation_card,
@@ -281,5 +298,96 @@ def optimize_charter_timing(
             "Option B (Alternative)": option_b,
             "Option C (Earliest Date)": option_c
         },
-        "all_evaluated_candidates": candidates
+        "all_evaluated_candidates": candidates,
+        "explainability": explainability,
+    }
+
+
+def generate_candidate_explainability(
+    best_option: Dict[str, Any],
+    all_candidates: List[Dict[str, Any]],
+    top_n: int = 3,
+) -> Dict[str, Any]:
+    """
+    Generates per-candidate explainability from actual computed cost fields.
+    No generic boilerplate — all figures are pulled from the candidates list.
+    """
+    best_total = best_option["total_logistics_cost_usd"]
+
+    # Why the winner won
+    cost_fractions = {
+        "freight": best_option["freight_cost_usd"] / best_total if best_total else 0,
+        "demurrage": best_option["demurrage_cost_usd"] / best_total if best_total else 0,
+        "congestion": best_option["congestion_cost_usd"] / best_total if best_total else 0,
+        "risk": best_option["route_risk_penalty_usd"] / best_total if best_total else 0,
+    }
+    dominant_component = max(cost_fractions, key=cost_fractions.get)
+    component_labels = {
+        "freight": "freight cost",
+        "demurrage": "demurrage exposure",
+        "congestion": "congestion charge",
+        "risk": "route risk penalty",
+    }
+
+    winner_reasons = [
+        f"Lowest risk-adjusted total logistics cost among all feasible candidates "
+        f"(${best_total:,.0f} total; ${best_option['effective_cost_per_tonne']:.2f}/t).",
+        f"Capacity feasible: {best_option['vessel_class']} handles {best_option['quantity_tonnes']:,.0f} t "
+        f"within vessel max capacity.",
+        f"Dominant cost driver is {component_labels[dominant_component]} "
+        f"(${best_option[dominant_component + '_cost_usd']:,.0f}, "
+        f"{cost_fractions[dominant_component]*100:.1f}% of total).",
+        f"Port waiting exposure: {best_option['waiting_hours']:.1f} h at charter date "
+        f"(congestion score {best_option['congestion_score']:.0f}/100).",
+    ]
+
+    # Why top alternatives lost
+    alternatives = [c for c in all_candidates if c is not best_option][:top_n]
+    alt_explanations = []
+    for alt in alternatives:
+        delta = alt["total_logistics_cost_usd"] - best_total
+        reasons = []
+        if alt["freight_cost_usd"] > best_option["freight_cost_usd"] + 1:
+            reasons.append(
+                f"freight cost ${alt['freight_cost_usd']:,.0f} vs ${best_option['freight_cost_usd']:,.0f} "
+                f"(+${alt['freight_cost_usd'] - best_option['freight_cost_usd']:,.0f})"
+            )
+        if alt["demurrage_cost_usd"] > best_option["demurrage_cost_usd"] + 1:
+            reasons.append(
+                f"demurrage ${alt['demurrage_cost_usd']:,.0f} vs ${best_option['demurrage_cost_usd']:,.0f} "
+                f"(+${alt['demurrage_cost_usd'] - best_option['demurrage_cost_usd']:,.0f})"
+            )
+        if alt["congestion_cost_usd"] > best_option["congestion_cost_usd"] + 1:
+            reasons.append(
+                f"congestion ${alt['congestion_cost_usd']:,.0f} vs ${best_option['congestion_cost_usd']:,.0f} "
+                f"(+${alt['congestion_cost_usd'] - best_option['congestion_cost_usd']:,.0f})"
+            )
+        if alt["route_risk_penalty_usd"] > best_option["route_risk_penalty_usd"] + 1:
+            reasons.append(
+                f"risk adjustment ${alt['route_risk_penalty_usd']:,.0f} vs "
+                f"${best_option['route_risk_penalty_usd']:,.0f}"
+            )
+        if not reasons:
+            reasons.append("marginally higher total cost due to combined factor accumulation")
+
+        alt_explanations.append({
+            "candidate": f"{alt['vessel_class']} on {alt['charter_date']}",
+            "total_cost_usd": alt["total_logistics_cost_usd"],
+            "delta_vs_winner_usd": round(delta, 2),
+            "loss_reasons": reasons,
+        })
+
+    return {
+        "winner": {
+            "candidate": f"{best_option['vessel_class']} on {best_option['charter_date']}",
+            "total_cost_usd": best_total,
+            "cost_breakdown_usd": {
+                "freight": best_option["freight_cost_usd"],
+                "demurrage": best_option["demurrage_cost_usd"],
+                "congestion": best_option["congestion_cost_usd"],
+                "risk_penalty": best_option["route_risk_penalty_usd"],
+            },
+            "why_won": winner_reasons,
+        },
+        "alternatives": alt_explanations,
     }
