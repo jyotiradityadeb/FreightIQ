@@ -1,0 +1,185 @@
+# FreightIQ Decision-Model Parameter Registry
+#
+# Every numeric constant that drives the optimizer cost function is listed here
+# with explicit provenance so operators know what is measured vs. assumed.
+#
+# classification values:
+#   OBSERVED              - directly read from a live or historical data source
+#   DERIVED               - calculated from OBSERVED values with a documented formula
+#   LITERATURE_INFORMED   - value is consistent with published industry range (cite source)
+#   CONFIGURED_ASSUMPTION - reasonable default that an operator should tune per contract
+#   DEMO_ONLY_ASSUMPTION  - placeholder calibrated to make demo output look plausible;
+#                           must be replaced before any production use
+#
+# editable: true means a future UI should allow authorised operators to override this.
+
+parameters:
+
+  # ── Demurrage cost model ──────────────────────────────────────────────────
+
+  demurrage_exposure_factor:
+    value: 0.15
+    unit: "dimensionless fraction of daily demurrage rate"
+    classification: DEMO_ONLY_ASSUMPTION
+    source: "Internal prototype calibration — no empirical basis"
+    note: >
+      Scales the daily demurrage rate to an expected per-shipment cost.
+      Real demurrage exposure depends on laytime clauses, commodity-specific
+      stowage rates, and port productivity — none of which are modelled here.
+      Must be replaced with a contract-specific calculation before production use.
+    sensitivity_range:
+      min: 0.05
+      max: 0.50
+    editable: true
+
+  # ── Congestion cost model ─────────────────────────────────────────────────
+
+  congestion_cost_multiplier:
+    value: 0.5
+    unit: "dimensionless scaling factor on congestion_score × cost_per_hour"
+    classification: DEMO_ONLY_ASSUMPTION
+    source: "Internal prototype calibration — no empirical basis"
+    note: >
+      Converts the 0–100 port congestion index and port-specific cost-per-hour
+      into a total congestion charge.  The 0.5 factor is arbitrary; real port
+      waiting cost depends on berth allocation, commodity priority, and operator
+      agreements.
+    sensitivity_range:
+      min: 0.10
+      max: 2.00
+    editable: true
+
+  # ── Vessel availability threshold ─────────────────────────────────────────
+
+  vessel_availability_min_threshold:
+    value: 8
+    unit: "vessel count (integer)"
+    classification: CONFIGURED_ASSUMPTION
+    source: "Operator judgment — consistent with thin spot-market liquidity heuristic"
+    note: >
+      Below this fleet count a charter date is declared infeasible.
+      Calibrate to actual spot-market depth for each trade lane.
+    sensitivity_range:
+      min: 3
+      max: 20
+    editable: true
+
+  # ── Risk tolerance scaling ────────────────────────────────────────────────
+
+  risk_factor_low_tolerance:
+    value: 1.5
+    unit: "dimensionless multiplier on risk penalty"
+    classification: CONFIGURED_ASSUMPTION
+    source: "Symmetric design choice: Low=1.5× Medium, High=0.5× Medium"
+    note: >
+      Applied to weather and event risk penalties when the user selects
+      Low risk tolerance (i.e. they are more averse to risk and pay a larger
+      penalty for uncertain outcomes).
+    sensitivity_range:
+      min: 1.0
+      max: 3.0
+    editable: true
+
+  risk_factor_medium_tolerance:
+    value: 1.0
+    unit: "dimensionless multiplier on risk penalty"
+    classification: CONFIGURED_ASSUMPTION
+    source: "Baseline (neutral) reference value"
+    note: "Reference level — all other risk factors are scaled relative to this."
+    sensitivity_range:
+      min: 1.0
+      max: 1.0
+    editable: false
+
+  risk_factor_high_tolerance:
+    value: 0.5
+    unit: "dimensionless multiplier on risk penalty"
+    classification: CONFIGURED_ASSUMPTION
+    source: "Symmetric design choice: High=0.5× Medium"
+    note: >
+      Applied when the user selects High risk tolerance (willing to accept
+      uncertain outcomes; risk penalty is discounted by half).
+    sensitivity_range:
+      min: 0.1
+      max: 1.0
+    editable: true
+
+  # ── Risk penalty weights ───────────────────────────────────────────────────
+
+  weather_risk_penalty_per_point:
+    value: 1200.0
+    unit: "USD per risk-score point"
+    classification: DEMO_ONLY_ASSUMPTION
+    source: "Internal prototype calibration — no empirical basis"
+    note: >
+      Cost penalty applied per unit of the 0–10 weather risk score.
+      The 1200 USD/point figure was chosen to make weather risk visible
+      in the cost breakdown without dominating it; it has no contractual or
+      actuarial foundation and must be replaced by real insurance/delay cost
+      data before production use.
+    sensitivity_range:
+      min: 200.0
+      max: 5000.0
+    editable: true
+
+  event_risk_penalty_per_point:
+    value: 1800.0
+    unit: "USD per risk-score point"
+    classification: DEMO_ONLY_ASSUMPTION
+    source: "Internal prototype calibration — no empirical basis"
+    note: >
+      Cost penalty applied per unit of the 0–10 event risk score (port
+      strikes, geopolitical disruptions, regulatory changes).  The 1800
+      USD/point figure is a prototype placeholder — 50% higher than weather
+      risk to reflect the historically longer tail of event disruptions, but
+      with no actuarial or empirical basis.
+    sensitivity_range:
+      min: 300.0
+      max: 8000.0
+    editable: true
+
+  availability_shortage_penalty_per_vessel:
+    value: 2500.0
+    unit: "USD per vessel below threshold"
+    classification: DEMO_ONLY_ASSUMPTION
+    source: "Internal prototype calibration — not currently applied in cost calculation"
+    note: >
+      Placeholder for a future penalty when fleet count drops toward the
+      minimum threshold.  Not applied in the current cost formula — vessel
+      availability below threshold causes hard infeasibility instead.
+    sensitivity_range:
+      min: 500.0
+      max: 10000.0
+    editable: true
+
+  # ── Freight trend detection ───────────────────────────────────────────────
+
+  freight_trend_detection_threshold:
+    value: 0.5
+    unit: "USD/tonne"
+    classification: CONFIGURED_ASSUMPTION
+    source: "Heuristic — prevents noise from triggering trend labels on flat series"
+    note: >
+      Minimum rate change between the first and last forecast point required
+      to label the outlook as 'Rising' or 'Softening' rather than 'Stable'.
+      Tune to the typical intra-period volatility of the trade lane being modelled.
+    sensitivity_range:
+      min: 0.1
+      max: 5.0
+    editable: true
+
+  # ── Decision Twin Monte Carlo ─────────────────────────────────────────────
+
+  congestion_to_waiting_hours_factor:
+    value: 0.55
+    unit: "hours per congestion-index point"
+    classification: DEMO_ONLY_ASSUMPTION
+    source: "Internal prototype calibration — no port-operations data basis"
+    note: >
+      Converts the 0–100 congestion index to waiting hours for Decision Twin
+      Monte Carlo simulation paths.  The 0.55 factor is a placeholder;
+      production use requires AIS berth-queue data or port productivity models.
+    sensitivity_range:
+      min: 0.1
+      max: 2.0
+    editable: true

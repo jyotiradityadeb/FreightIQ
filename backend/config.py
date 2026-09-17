@@ -181,10 +181,3 @@ PORT_CONFIG: Dict[str, Dict[str, Any]] = {
         "draft_limit_m": 12.5
     }
 }
-
-# Risk Weightings in Optimizer Cost Function
-RISK_WEIGHTS = {
-    "weather_risk_penalty_per_point": 1200.0,  # USD cost penalty per risk score point
-    "event_risk_penalty_per_point": 1800.0,    # USD cost penalty per event risk point
-    "availability_shortage_penalty_per_vessel": 2500.0
-}

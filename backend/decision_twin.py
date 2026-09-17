@@ -14,8 +14,18 @@ from backend.config import (
     VESSEL_CLASSES,
     ROUTES,
     PORT_CONFIG,
-    RISK_WEIGHTS,
     DEMO_USD_INR_RATE
+)
+from backend.config_model import (
+    DEMURRAGE_EXPOSURE_FACTOR,
+    CONGESTION_COST_MULTIPLIER,
+    VESSEL_AVAILABILITY_MIN_THRESHOLD,
+    RISK_FACTOR_LOW,
+    RISK_FACTOR_MEDIUM,
+    RISK_FACTOR_HIGH,
+    WEATHER_RISK_PENALTY_PER_POINT,
+    EVENT_RISK_PENALTY_PER_POINT,
+    CONGESTION_TO_WAITING_HOURS_FACTOR,
 )
 from backend.optimizer import evaluate_charter_candidate
 
@@ -77,7 +87,7 @@ class DecisionTwinEngine:
             
             base_freight = base_freight * (1.0 + f_shock_pct)
             base_congestion = np.clip(base_congestion * (1.0 + c_shock_pct), 5.0, 98.0)
-            base_waiting = base_congestion * 0.55
+            base_waiting = base_congestion * CONGESTION_TO_WAITING_HOURS_FACTOR
             base_vessels = np.clip(base_vessels * (1.0 + v_shock_pct), 3.0, 80.0)
 
             w_level = self.active_shock.get("weather_risk_level", "Low")
@@ -102,7 +112,7 @@ class DecisionTwinEngine:
         # Congestion disturbance
         c_noise = np.random.normal(0, 3.5, size=(N, num_days))
         congestion_paths = np.clip(base_congestion[None, :] + c_noise, 5.0, 98.0)
-        waiting_paths = congestion_paths * 0.55
+        waiting_paths = congestion_paths * CONGESTION_TO_WAITING_HOURS_FACTOR
 
         # Vessel availability disturbance
         v_noise = np.random.normal(0, 2.5, size=(N, num_days))
@@ -219,17 +229,17 @@ class DecisionTwinEngine:
             # Demurrage cost
             demurrage_rate = v_info["daily_demurrage_rate"]
             total_port_hours = port_info["avg_laytime_hours"] + w_hours
-            demurrage_cost = (total_port_hours / 24.0) * (demurrage_rate * 0.15)
+            demurrage_cost = (total_port_hours / 24.0) * (demurrage_rate * DEMURRAGE_EXPOSURE_FACTOR)
 
             # Congestion cost
-            congestion_cost = c_scores * port_info["congestion_cost_per_hour_usd"] * 0.5
+            congestion_cost = c_scores * port_info["congestion_cost_per_hour_usd"] * CONGESTION_COST_MULTIPLIER
 
             # Risk penalties
-            risk_factor_map = {"Low": 1.5, "Medium": 1.0, "High": 0.5}
-            rf = risk_factor_map.get(self.risk_tolerance, 1.0)
+            risk_factor_map = {"Low": RISK_FACTOR_LOW, "Medium": RISK_FACTOR_MEDIUM, "High": RISK_FACTOR_HIGH}
+            rf = risk_factor_map.get(self.risk_tolerance, RISK_FACTOR_MEDIUM)
 
-            weather_penalty = w_risks * RISK_WEIGHTS["weather_risk_penalty_per_point"] * rf
-            event_penalty = e_risks * RISK_WEIGHTS["event_risk_penalty_per_point"] * rf
+            weather_penalty = w_risks * WEATHER_RISK_PENALTY_PER_POINT * rf
+            event_penalty = e_risks * EVENT_RISK_PENALTY_PER_POINT * rf
             route_risk_penalty = weather_penalty + event_penalty
 
             # Total cost in USD
@@ -428,7 +438,7 @@ class DecisionTwinEngine:
         
         validity_thresholds = {
             "port_congestion_limit": round(min(95.0, c_base + 22.0), 1),
-            "vessel_availability_min": max(8, v_base - 12),
+            "vessel_availability_min": max(VESSEL_AVAILABILITY_MIN_THRESHOLD, v_base - 12),
             "freight_outlook_max_pct": 7.8,
             "weather_risk_limit": "Severe",
             "trigger_status": "0 of 4 thresholds approaching limit",

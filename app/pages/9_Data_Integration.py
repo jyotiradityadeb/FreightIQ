@@ -25,6 +25,7 @@ from app.components.error_boundary import safe_render_section
 from backend.data_quality import get_system_data_quality, evaluate_signal_freshness
 from backend.integrations.integration_manager import IntegrationManager
 from backend.storage import get_audit_trail, append_audit_log
+from backend.config_model import get_decision_params_registry
 
 st.set_page_config(page_title="FreightIQ — Data & Integrations", page_icon=None, layout="wide")
 
@@ -40,12 +41,13 @@ mgr = IntegrationManager(mode="DEMO")
 dq_summary = get_system_data_quality("DEMO")
 
 # ADMIN / SETTINGS TABS
-tab_conn, tab_quality, tab_overrides, tab_audit, tab_limits = st.tabs([
+tab_conn, tab_quality, tab_overrides, tab_audit, tab_limits, tab_params = st.tabs([
     "Connections",
     "Data Quality",
     "Overrides",
     "Audit Trail",
-    "Model & Data Limitations"
+    "Model & Data Limitations",
+    "Decision Parameters"
 ])
 
 with tab_conn:
@@ -129,6 +131,39 @@ with tab_limits:
 
 **Decision support — not chartering advice:** FreightIQ is a decision-support prototype. Outputs do not constitute commercial chartering recommendations, legal advice, or financial commitments. All charter decisions require professional chartering-broker judgment and contractual verification.
 """)
+
+with tab_params:
+    with st.container(border=True):
+        st.markdown("### Decision Parameters & Provenance")
+        st.caption(
+            "Read-only registry of every numeric constant used in the optimizer and cost model. "
+            "Classification shows whether each value is observed, derived, or assumed."
+        )
+
+        registry = get_decision_params_registry()
+        display_rows = []
+        for r in registry:
+            display_rows.append({
+                "Parameter": r["parameter"],
+                "Value": r["value"],
+                "Unit": r["unit"],
+                "Classification": r["classification"],
+                "Sensitivity Range": f"{r['sensitivity_min']} – {r['sensitivity_max']}",
+                "Source": r["source"],
+                "Note": r["note"][:120] + "…" if len(r["note"]) > 120 else r["note"],
+            })
+        st.dataframe(pd.DataFrame(display_rows), use_container_width=True, hide_index=True)
+
+        classification_legend = {
+            "OBSERVED": "Directly measured from a live or historical data source",
+            "DERIVED": "Calculated from observed values with a documented formula",
+            "LITERATURE_INFORMED": "Consistent with a published industry range",
+            "CONFIGURED_ASSUMPTION": "Reasonable default — tune per contract or trade lane",
+            "DEMO_ONLY_ASSUMPTION": "Prototype placeholder — must be replaced before production use",
+        }
+        with st.expander("Classification legend"):
+            for cls, desc in classification_legend.items():
+                st.markdown(f"**{cls}** — {desc}")
 
 render_disclaimer()
 

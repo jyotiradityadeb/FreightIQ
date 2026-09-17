@@ -19,7 +19,6 @@ from backend.config import (
     VESSEL_CLASSES,
     ROUTES,
     PORT_CONFIG,
-    RISK_WEIGHTS
 )
 from backend.optimizer import optimize_charter_timing
 from backend.scenario_engine import build_shocked_forecast_df, usd_to_inr, format_inr_val

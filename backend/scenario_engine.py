@@ -19,7 +19,6 @@ from backend.config import (
     VESSEL_CLASSES,
     ROUTES,
     PORT_CONFIG,
-    RISK_WEIGHTS
 )
 from backend.optimizer import optimize_charter_timing
 from backend.schemas import ScenarioRequest, ScenarioShock

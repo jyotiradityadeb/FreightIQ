@@ -1,14 +1,16 @@
 """
 FreightIQ Charter-Timing Optimizer Module
 
-Linear programming / candidate optimization engine for charter date, vessel selection,
-and route evaluation minimizing total expected logistics cost:
+Constraint-aware exhaustive candidate evaluation engine for charter date, vessel
+selection, and route evaluation minimising total expected logistics cost:
     Expected Total Logistics Cost = Freight Cost + Demurrage Cost + Congestion Cost + Route Risk Penalty
+
+Enumeration is appropriate here: the candidate space is small (O(dates × 3 vessel classes)),
+deterministic, and fully auditable — no LP solver is needed or used.
 
 Outputs deterministic recommendations with rule-based explanations.
 """
 
-import pulp
 import numpy as np
 import pandas as pd
 from datetime import datetime, timedelta
@@ -19,7 +21,17 @@ from backend.config import (
     ROUTES,
     CARGO_TYPES,
     PORT_CONFIG,
-    RISK_WEIGHTS
+)
+from backend.config_model import (
+    DEMURRAGE_EXPOSURE_FACTOR,
+    CONGESTION_COST_MULTIPLIER,
+    VESSEL_AVAILABILITY_MIN_THRESHOLD,
+    RISK_FACTOR_LOW,
+    RISK_FACTOR_MEDIUM,
+    RISK_FACTOR_HIGH,
+    WEATHER_RISK_PENALTY_PER_POINT,
+    EVENT_RISK_PENALTY_PER_POINT,
+    FREIGHT_TREND_THRESHOLD,
 )
 
 
@@ -62,8 +74,8 @@ def evaluate_charter_candidate(
         return {"feasible": False, "infeasibility_reason": f"{vessel_class} is not compatible with port draft or route constraints for {destination}."}
 
     # 3. Minimum Availability Check
-    if vessel_avail_count < 8:
-        return {"feasible": False, "infeasibility_reason": f"Insufficient vessel availability ({vessel_avail_count} ships available, min threshold is 8)."}
+    if vessel_avail_count < VESSEL_AVAILABILITY_MIN_THRESHOLD:
+        return {"feasible": False, "infeasibility_reason": f"Insufficient vessel availability ({vessel_avail_count} ships available, min threshold is {VESSEL_AVAILABILITY_MIN_THRESHOLD})."}
 
     # Calculate Costs
     # Base Freight Cost ($/tonne * tonnes * multipliers)
@@ -78,17 +90,17 @@ def evaluate_charter_candidate(
     demurrage_rate = demurrage_rate_override if demurrage_rate_override is not None else vessel_info["daily_demurrage_rate"]
     laytime_hours = port_info["avg_laytime_hours"]
     total_port_hours = laytime_hours + waiting_hours
-    demurrage_cost = (total_port_hours / 24.0) * (demurrage_rate * 0.15)  # expected exposure factor
+    demurrage_cost = (total_port_hours / 24.0) * (demurrage_rate * DEMURRAGE_EXPOSURE_FACTOR)
 
     # Congestion Cost
-    congestion_cost = congestion_score * port_info["congestion_cost_per_hour_usd"] * 0.5
+    congestion_cost = congestion_score * port_info["congestion_cost_per_hour_usd"] * CONGESTION_COST_MULTIPLIER
 
     # Risk Penalty Factor based on user tolerance
-    risk_factor_map = {"Low": 1.5, "Medium": 1.0, "High": 0.5}
-    risk_factor = risk_factor_map.get(risk_tolerance, 1.0)
+    risk_factor_map = {"Low": RISK_FACTOR_LOW, "Medium": RISK_FACTOR_MEDIUM, "High": RISK_FACTOR_HIGH}
+    risk_factor = risk_factor_map.get(risk_tolerance, RISK_FACTOR_MEDIUM)
 
-    weather_penalty = weather_risk * RISK_WEIGHTS["weather_risk_penalty_per_point"] * risk_factor
-    event_penalty = event_risk * RISK_WEIGHTS["event_risk_penalty_per_point"] * risk_factor
+    weather_penalty = weather_risk * WEATHER_RISK_PENALTY_PER_POINT * risk_factor
+    event_penalty = event_risk * EVENT_RISK_PENALTY_PER_POINT * risk_factor
     route_risk_penalty = weather_penalty + event_penalty
 
     total_cost = freight_cost + demurrage_cost + congestion_cost + route_risk_penalty
@@ -222,10 +234,10 @@ def optimize_charter_timing(
     # Freight trend rationale
     first_rate = df_eval["predicted_freight_rate"].iloc[0] if "predicted_freight_rate" in df_eval.columns else 25.0
     last_rate = df_eval["predicted_freight_rate"].iloc[-1] if "predicted_freight_rate" in df_eval.columns else 25.0
-    if last_rate > first_rate + 0.5:
+    if last_rate > first_rate + FREIGHT_TREND_THRESHOLD:
         freight_trend = "Upward trend expected (rising rates)"
         trend_reason = "freight rates are forecast to rise after the recommended window"
-    elif last_rate < first_rate - 0.5:
+    elif last_rate < first_rate - FREIGHT_TREND_THRESHOLD:
         freight_trend = "Downward trend expected (softening rates)"
         trend_reason = "freight rates are expected to soften towards the end of window"
     else:
