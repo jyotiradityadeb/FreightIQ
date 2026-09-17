@@ -23,11 +23,23 @@ except ImportError:
     HAS_PROPHET = False
 
 
-def calculate_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> Dict[str, float]:
+def make_insufficient_data_metrics(available: int, required: int) -> Dict[str, Any]:
+    """Returns a metrics dict signalling that the series is too short for valid error estimates."""
+    return {
+        "status": "INSUFFICIENT_DATA",
+        "MAE": None,
+        "RMSE": None,
+        "MAPE": None,
+        "minimum_required_observations": required,
+        "available_observations": available,
+    }
+
+
+def calculate_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> Dict[str, Any]:
     """Calculates MAE, RMSE, and MAPE with zero-safety protection."""
     mae = float(mean_absolute_error(y_true, y_pred))
     rmse = float(np.sqrt(mean_squared_error(y_true, y_pred)))
-    
+
     # Avoid division by zero or near-zero in MAPE
     mask = (y_true != 0) & (~np.isnan(y_true))
     if np.any(mask):
@@ -37,9 +49,10 @@ def calculate_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> Dict[str, float
         mape = 0.0
 
     return {
+        "status": "OK",
         "MAE": round(mae, 3),
         "RMSE": round(rmse, 3),
-        "MAPE": round(mape, 2)
+        "MAPE": round(mape, 2),
     }
 
 
@@ -78,7 +91,7 @@ def forecast_naive(df: pd.DataFrame, horizon: int = 14) -> Tuple[pd.DataFrame, D
         y_pred = series[-horizon-1:-1]  # shift 1 step
         metrics = calculate_metrics(y_true, y_pred)
     else:
-        metrics = {"MAE": 0.0, "RMSE": 0.0, "MAPE": 0.0}
+        metrics = make_insufficient_data_metrics(available=len(series), required=horizon + 1)
 
     return fc_df, metrics
 
@@ -117,7 +130,7 @@ def forecast_sarima(df: pd.DataFrame, horizon: int = 14) -> Tuple[pd.DataFrame, 
             val_preds = r_train.forecast(steps=horizon)
             metrics = calculate_metrics(series[train_len:], val_preds)
         else:
-            metrics = {"MAE": 1.2, "RMSE": 1.5, "MAPE": 5.0}
+            metrics = make_insufficient_data_metrics(available=len(series), required=horizon + 31)
 
         return fc_df, metrics
     except Exception as e:
@@ -158,7 +171,7 @@ def forecast_prophet(df: pd.DataFrame, horizon: int = 14) -> Tuple[pd.DataFrame,
             val_fc = m_train.predict(fut_train).tail(horizon)
             metrics = calculate_metrics(df["freight_rate"].iloc[train_len:].values, val_fc["yhat"].values)
         else:
-            metrics = {"MAE": 1.1, "RMSE": 1.4, "MAPE": 4.8}
+            metrics = make_insufficient_data_metrics(available=len(df), required=horizon + 31)
 
         return fc_df, metrics
     except Exception as e:
@@ -199,21 +212,33 @@ def generate_freight_forecast(
     if selected_model != "Auto" and selected_model in candidate_models:
         chosen_name = selected_model
         chosen_fc, chosen_met = candidate_models[selected_model]
-        selection_reason = f"Manually selected model: {chosen_name}"
+        if chosen_met.get("status") == "INSUFFICIENT_DATA":
+            selection_reason = f"Manually selected model: {chosen_name} (metrics unavailable — insufficient data)"
+        else:
+            selection_reason = f"Manually selected model: {chosen_name}"
     else:
-        # Auto mode: Pick model with lowest MAE
-        best_name = min(candidate_models, key=lambda k: candidate_models[k][1]["MAE"])
-        chosen_name = best_name
-        chosen_fc, chosen_met = candidate_models[best_name]
-        selection_reason = f"Selected model ({chosen_name}) based on demo-series simulation performance (MAE: {chosen_met['MAE']})."
+        # Auto mode: pick model with lowest MAE among candidates with valid metrics.
+        # Candidates whose MAE is None (INSUFFICIENT_DATA) are excluded from ranking.
+        eligible = {k: v for k, v in candidate_models.items() if v[1].get("MAE") is not None}
+        if eligible:
+            best_name = min(eligible, key=lambda k: eligible[k][1]["MAE"])
+            chosen_name = best_name
+            chosen_fc, chosen_met = eligible[best_name]
+            selection_reason = f"Selected model ({chosen_name}) based on demo-series simulation performance (MAE: {chosen_met['MAE']})."
+        else:
+            # All candidates have INSUFFICIENT_DATA; fall back to Naive and surface the status.
+            chosen_name = "Naive Baseline"
+            chosen_fc, chosen_met = candidate_models["Naive Baseline"]
+            selection_reason = "All models have INSUFFICIENT_DATA for metric computation; Naive Baseline selected as fallback."
 
     # Compare table format
     comparison_table = [
         {
             "Model": name,
-            "MAE": met["MAE"],
-            "RMSE": met["RMSE"],
-            "MAPE (%)": met["MAPE"],
+            "MAE": met.get("MAE"),
+            "RMSE": met.get("RMSE"),
+            "MAPE (%)": met.get("MAPE"),
+            "status": met.get("status", "OK"),
             "Selected": "Yes" if name == chosen_name else "No"
         }
         for name, (_, met) in candidate_models.items()

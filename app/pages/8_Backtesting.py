@@ -75,7 +75,8 @@ sim_res = run_historical_simulation(
 
 if sim_res["success"]:
     sim_diff_inr = usd_to_inr(sim_res["simulated_cost_difference_total"])
-    mae_inr = usd_to_inr(sim_res["forecast_accuracy_metrics"]["MAE"])
+    _fam = sim_res["forecast_accuracy_metrics"]
+    mae_inr = usd_to_inr(_fam["MAE"]) if _fam.get("MAE") is not None else None
 
     with st.container(border=True):
         k1, k2, k3, k4 = st.columns(4)
@@ -97,7 +98,12 @@ if sim_res["success"]:
 
         with k4:
             st.caption("FORECAST MAE (DEMO SERIES)")
-            st.markdown(f"### {format_inr(mae_inr)} / t")
+            if mae_inr is not None:
+                st.markdown(f"### {format_inr(mae_inr)} / t")
+            else:
+                _av = _fam.get("available_observations", "?")
+                _rq = _fam.get("minimum_required_observations", "?")
+                st.markdown(f"Validation unavailable — insufficient historical observations (available: {_av}, required: {_rq})")
             st.caption("Demo-series walk-forward error")
 
     st.markdown("<div style='height: 16px;'></div>", unsafe_allow_html=True)

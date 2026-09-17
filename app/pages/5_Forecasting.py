@@ -60,8 +60,7 @@ fc_res = generate_freight_forecast(df, horizon=horizon, selected_model=selected_
 fc_df = fc_res["forecast_df"]
 metrics = fc_res["metrics"]
 
-mae_inr = usd_to_inr(metrics["MAE"])
-rmse_inr = usd_to_inr(metrics["RMSE"])
+_metrics_ok = metrics.get("status") == "OK"
 
 # MAIN FORECAST CHART (DOMINATES PAGE)
 with st.container(border=True):
@@ -85,32 +84,35 @@ with col_met:
         st.markdown("### Demo-Series Model Metrics")
         st.caption("Out-of-sample error on synthetic demo series — not a real-market accuracy claim")
         st.caption("Validation source: synthetic demonstration series")
-        
-        m_col1, m_col2, m_col3 = st.columns(3)
-        with m_col1:
-            st.caption("MAE")
-            st.markdown(f"**{format_inr(mae_inr)} / t**")
-            st.caption("Mean Absolute Error")
-        with m_col2:
-            st.caption("RMSE")
-            st.markdown(f"**{format_inr(rmse_inr)} / t**")
-            st.caption("Root Mean Squared Error")
-        with m_col3:
-            st.caption("MAPE")
-            st.markdown(f"**{metrics['MAPE']:.2f}%**")
-            st.caption("Mean Absolute Pct Error")
+
+        if not _metrics_ok:
+            _avail = metrics.get("available_observations", "?")
+            _req = metrics.get("minimum_required_observations", "?")
+            st.warning(f"Validation unavailable — insufficient historical observations (available: {_avail}, required: {_req})")
+        else:
+            m_col1, m_col2, m_col3 = st.columns(3)
+            with m_col1:
+                st.caption("MAE")
+                st.markdown(f"**{format_inr(usd_to_inr(metrics['MAE']))} / t**")
+                st.caption("Mean Absolute Error")
+            with m_col2:
+                st.caption("RMSE")
+                st.markdown(f"**{format_inr(usd_to_inr(metrics['RMSE']))} / t**")
+                st.caption("Root Mean Squared Error")
+            with m_col3:
+                st.caption("MAPE")
+                st.markdown(f"**{metrics['MAPE']:.2f}%**")
+                st.caption("Mean Absolute Pct Error")
 
         st.divider()
         st.markdown("#### Model Comparison Benchmark")
         comp_rows = []
         for m in fc_res["comparison_table"]:
-            m_mae = usd_to_inr(m["MAE"])
-            m_rmse = usd_to_inr(m["RMSE"])
             comp_rows.append({
                 "Model": m["Model"],
-                "MAE (₹/t)": f"₹{m_mae:.0f}",
-                "RMSE (₹/t)": f"₹{m_rmse:.0f}",
-                "MAPE": f"{m['MAPE (%)']:.2f}%",
+                "MAE (₹/t)": f"₹{usd_to_inr(m['MAE']):.0f}" if m.get("MAE") is not None else "—",
+                "RMSE (₹/t)": f"₹{usd_to_inr(m['RMSE']):.0f}" if m.get("RMSE") is not None else "—",
+                "MAPE": f"{m['MAPE (%)']:.2f}%" if m.get("MAPE (%)") is not None else "—",
                 "Status": "Selected" if m["Selected"] == "Yes" else "Evaluated"
             })
         st.dataframe(comp_rows, use_container_width=True, hide_index=True)
@@ -130,7 +132,10 @@ with col_exp:
 
         st.divider()
         st.caption("FORECAST INTERPRETATION")
-        st.write(f"Freight rates are projected to soften moderately over the next {horizon} days based on {fc_res['selected_model']} model analysis. The model achieves an out-of-sample MAPE of {metrics['MAPE']:.2f}% on the synthetic demo series.")
+        if _metrics_ok:
+            st.write(f"Freight rates are projected to soften moderately over the next {horizon} days based on {fc_res['selected_model']} model analysis. The model achieves an out-of-sample MAPE of {metrics['MAPE']:.2f}% on the synthetic demo series.")
+        else:
+            st.write(f"Freight rates are projected to soften moderately over the next {horizon} days based on {fc_res['selected_model']} model analysis. Demo-series metrics unavailable — insufficient data for error estimation.")
 
 render_disclaimer()
 

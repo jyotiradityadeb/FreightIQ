@@ -132,7 +132,7 @@ try:
 
         render_forecast_interpretation_box(
             title="Forecast Interpretation",
-            text=f"Freight rates are projected to {fc_trend_str.lower()} over the next 14 days based on {fc_res['selected_model']} model analysis (demo-series MAE: {format_inr(usd_to_inr(fc_res['metrics']['MAE']))}/tonne)."
+            text=f"Freight rates are projected to {fc_trend_str.lower()} over the next 14 days based on {fc_res['selected_model']} model analysis (demo-series MAE: {format_inr(usd_to_inr(fc_res['metrics']['MAE'])) + '/tonne' if fc_res['metrics'].get('MAE') is not None else 'unavailable'})."
         )
 
     with c_rec:

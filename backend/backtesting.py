@@ -15,7 +15,7 @@ import numpy as np
 import pandas as pd
 from typing import Dict, Any, List, Optional
 
-from backend.forecasting import generate_freight_forecast, calculate_metrics
+from backend.forecasting import generate_freight_forecast, calculate_metrics, make_insufficient_data_metrics
 from backend.optimizer import evaluate_charter_candidate
 
 BACKTEST_DISCLAIMER = (
@@ -191,7 +191,7 @@ def run_historical_simulation(
     if len(y_actuals) > 0:
         forecast_metrics = calculate_metrics(np.array(y_actuals), np.array(y_forecasts))
     else:
-        forecast_metrics = {"MAE": 0.0, "RMSE": 0.0, "MAPE": 0.0}
+        forecast_metrics = make_insufficient_data_metrics(available=0, required=1)
 
     return {
         "success": True,

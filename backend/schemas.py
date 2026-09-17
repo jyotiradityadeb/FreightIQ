@@ -38,7 +38,7 @@ class ForecastRequest(BaseModel):
 
 class ForecastResponse(BaseModel):
     selected_model: str
-    metrics: Dict[str, float]
+    metrics: Dict[str, Any]
     selection_reason: str
     forecast_records: List[Dict[str, Any]]
     comparison_table: List[Dict[str, Any]]
@@ -88,7 +88,7 @@ class BacktestResponse(BaseModel):
     freightiq_simulated_cost_total: float
     simulated_cost_difference_total: float
     simulated_savings_percentage: float
-    forecast_accuracy_metrics: Dict[str, float]
+    forecast_accuracy_metrics: Dict[str, Any]
     period_results_table: List[Dict[str, Any]]
     disclaimer: str
     is_demo_data: bool = True
