@@ -1,4 +1,4 @@
-# FreightIQ – AI-Driven Freight Rate Forecasting & Vessel Chartering Optimizer
+# FreightIQ – Decision-Support Prototype for Freight Rate Forecasting & Vessel Chartering
 
 **FreightIQ** is a maritime freight decision-support prototype built for Indian bulk cargo procurement teams (coking coal and iron ore imports into India's East Coast ports: Paradip, Visakhapatnam, Kolkata/Haldia).
 

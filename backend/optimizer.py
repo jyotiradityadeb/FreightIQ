@@ -234,7 +234,7 @@ def optimize_charter_timing(
 
     why_reasons = [
         f"{trend_reason}.",
-        f"selected {best_option['vessel_class']} vessel provides optimal capacity efficiency for {quantity_tonnes:,} tonnes of {cargo_type}.",
+        f"selected {best_option['vessel_class']} vessel provides the best-fit capacity for {quantity_tonnes:,} tonnes of {cargo_type}.",
         f"port congestion and demurrage exposure at {destination} are minimized on {best_option['charter_date']}.",
         f"total estimated logistics cost (${best_option['total_logistics_cost_usd']:,.2f}) is lower than alternative charter dates."
     ]

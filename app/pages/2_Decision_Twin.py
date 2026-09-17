@@ -98,7 +98,7 @@ with st.container(border=True):
     with r1:
         st.caption("RECOMMENDED ACTION")
         st.markdown(f"### {hero['recommended_vessel']} / {hero['recommended_date']}")
-        st.caption("Optimal vessel & charter window")
+        st.caption("Recommended vessel & charter window (simulated)")
     with r2:
         st.caption("EXPECTED LOGISTICS COST")
         st.markdown(f"<h3 style='color: #1667D9;'>₹{hero['expected_cost_inr_cr']:.2f} Cr</h3>", unsafe_allow_html=True)
@@ -106,7 +106,7 @@ with st.container(border=True):
     with r3:
         st.caption("DECISION ROBUSTNESS")
         st.markdown(f"<h3 style='color: #10B981;'>{hero['robustness_score']} / 100</h3>", unsafe_allow_html=True)
-        st.caption("Stable in 82% of scenarios")
+        st.caption("Stable in 82% of simulated scenarios (demo data)")
     with r4:
         st.caption("EXPECTED REGRET")
         st.markdown(f"### ₹{hero['expected_regret_inr_lakh']:.1f} Lakh")
@@ -247,7 +247,7 @@ with st.container(border=True):
     with c2:
         st.markdown("**Vessel Availability**")
         st.caption("Current: 19 vessels • Tipping Point: 11 vessels")
-        st.write("If Panamax supply drops below 11, Capesize vessel becomes optimal.")
+        st.write("If Panamax supply drops below 11, Capesize vessel becomes the lower-cost candidate.")
     with c3:
         st.markdown("**Freight Rate Spike**")
         st.caption("Current: +2.1% • Tipping Point: +8.4%")

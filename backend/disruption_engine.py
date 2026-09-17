@@ -361,7 +361,7 @@ def evaluate_control_tower_state(
     if rec_changed:
         action_text = f"Update charter recommendation to {active_opt['vessel_class']} on {active_opt['charter_date']}."
         action_why = [
-            f"Market disruption altered cost balance: previous charter date ({base_opt['charter_date']}) is no longer optimal.",
+            f"Market disruption altered cost balance: previous charter date ({base_opt['charter_date']}) is no longer the lowest-cost candidate.",
             f"Port congestion / risk adjustment at {destination} increased exposure by {format_inr_val(usd_to_inr(active_opt['total_logistics_cost_usd'] - base_opt['total_logistics_cost_usd']), mode='lakh')}.",
             f"Selected candidate minimizes total expected logistics cost at {format_inr_val(usd_to_inr(active_opt['total_logistics_cost_usd']))}."
         ]

@@ -205,7 +205,7 @@ def generate_freight_forecast(
         best_name = min(candidate_models, key=lambda k: candidate_models[k][1]["MAE"])
         chosen_name = best_name
         chosen_fc, chosen_met = candidate_models[best_name]
-        selection_reason = f"Selected model ({chosen_name}) based on historical validation performance (MAE: {chosen_met['MAE']})."
+        selection_reason = f"Selected model ({chosen_name}) based on demo-series simulation performance (MAE: {chosen_met['MAE']})."
 
     # Compare table format
     comparison_table = [

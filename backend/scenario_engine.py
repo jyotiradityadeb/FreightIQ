@@ -318,7 +318,7 @@ def calculate_threshold_analysis(
                 thresholds.append({
                     "variable": "Freight Rate",
                     "tipping_point": f"Immediate charter becomes preferred above +{f_pct}%",
-                    "impact": f"Rate increase exceeding +{f_pct}% alters optimal charter date window.",
+                    "impact": f"Rate increase exceeding +{f_pct}% alters the recommended charter date window.",
                     "status": "Threshold Identified"
                 })
                 freight_threshold_found = True
@@ -328,7 +328,7 @@ def calculate_threshold_analysis(
         thresholds.append({
             "variable": "Freight Rate",
             "tipping_point": "Linear cost scaling above +8%",
-            "impact": "Charter timing window remains optimal across rate variations.",
+            "impact": "Charter timing window remains the lowest-cost candidate across simulated rate variations.",
             "status": "Linear Scaling"
         })
 
@@ -643,7 +643,7 @@ def run_scenario_simulation(
         )
     else:
         explanation_parts.append(
-            f"Despite shock conditions, the baseline recommendation on {base_opt['charter_date']} using {base_opt['vessel_class']} remains the optimal minimum total cost choice."
+            f"Despite shock conditions, the baseline recommendation on {base_opt['charter_date']} using {base_opt['vessel_class']} remains the lowest simulated-cost candidate."
         )
 
     explanation_text = " ".join(explanation_parts)

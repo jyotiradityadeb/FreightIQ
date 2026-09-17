@@ -35,7 +35,7 @@ df = get_cached_processed_data()
 
 # Header
 st.markdown("<h1 style='margin-bottom: 2px;'>Forecasts</h1>", unsafe_allow_html=True)
-st.markdown("<p style='color: #6B7280; font-size: 0.95rem; margin-bottom: 20px;'>Predictive spot freight rate models and historical validation metrics.</p>", unsafe_allow_html=True)
+st.markdown("<p style='color: #6B7280; font-size: 0.95rem; margin-bottom: 20px;'>Predictive spot freight rate models and demo-series simulation metrics.</p>", unsafe_allow_html=True)
 
 # COMPACT TOOLBAR
 with st.container(border=True):
@@ -82,8 +82,9 @@ col_met, col_exp = st.columns([1, 1])
 
 with col_met:
     with st.container(border=True):
-        st.markdown("### Model Validation Metrics")
-        st.caption("Out-of-sample backtest precision across rolling 14-day test windows")
+        st.markdown("### Demo-Series Model Metrics")
+        st.caption("Out-of-sample error on synthetic demo series — not a real-market accuracy claim")
+        st.caption("Validation source: synthetic demonstration series")
         
         m_col1, m_col2, m_col3 = st.columns(3)
         with m_col1:
@@ -129,7 +130,7 @@ with col_exp:
 
         st.divider()
         st.caption("FORECAST INTERPRETATION")
-        st.write(f"Freight rates are projected to soften moderately over the next {horizon} days based on {fc_res['selected_model']} model analysis. The model achieves an out-of-sample MAPE of {metrics['MAPE']:.2f}% relative to historical actuals.")
+        st.write(f"Freight rates are projected to soften moderately over the next {horizon} days based on {fc_res['selected_model']} model analysis. The model achieves an out-of-sample MAPE of {metrics['MAPE']:.2f}% on the synthetic demo series.")
 
 render_disclaimer()
 

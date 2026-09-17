@@ -40,11 +40,12 @@ mgr = IntegrationManager(mode="DEMO")
 dq_summary = get_system_data_quality("DEMO")
 
 # ADMIN / SETTINGS TABS
-tab_conn, tab_quality, tab_overrides, tab_audit = st.tabs([
+tab_conn, tab_quality, tab_overrides, tab_audit, tab_limits = st.tabs([
     "Connections",
     "Data Quality",
     "Overrides",
-    "Audit Trail"
+    "Audit Trail",
+    "Model & Data Limitations"
 ])
 
 with tab_conn:
@@ -110,6 +111,24 @@ with tab_audit:
             st.dataframe(pd.DataFrame(logs), use_container_width=True, hide_index=True)
         else:
             st.info("No audit events recorded yet.")
+
+with tab_limits:
+    with st.container(border=True):
+        st.markdown("### Model & Data Limitations")
+        st.caption("Read before interpreting any metric or recommendation shown in this tool")
+        st.markdown("""
+**Data source:** All datasets are synthetic unless a live connector is explicitly enabled and verified in the Connections tab. Synthetic data is seeded from realistic statistical distributions but is not real Baltic Exchange, AIS, port, or commodity data.
+
+**Metric provenance:** MAE, RMSE, MAPE, win-rate, and robustness-score figures are computed on the same synthetic demo series used for model training and simulation. They do not establish real-market forecast accuracy.
+
+**Live deployment requirements:** Production use requires licensed data feeds (Baltic Exchange, MarineTraffic AIS, commodity pricing APIs). Unconfigured connectors fall back to synthetic data silently.
+
+**Recommendation weights:** Optimizer cost weights (demurrage rates, congestion penalties, risk factors) use illustrative defaults. Operational deployment requires calibration against real shipment records and contractual terms.
+
+**Forecasts are probabilistic estimates:** Confidence intervals reflect in-sample model uncertainty on synthetic data. Real freight markets exhibit structural breaks, geopolitical events, and supply shocks not present in the demo series.
+
+**Decision support — not chartering advice:** FreightIQ is a decision-support prototype. Outputs do not constitute commercial chartering recommendations, legal advice, or financial commitments. All charter decisions require professional chartering-broker judgment and contractual verification.
+""")
 
 render_disclaimer()
 

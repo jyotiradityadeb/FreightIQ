@@ -225,7 +225,7 @@ def generate_charter_decision_pdf(
     else:
         status_color = colors.HexColor("#1667D9")
         status_bg = colors.HexColor("#EFF6FF")
-        status_text = "PROCEED — Recommendation optimal under current market & operational parameters"
+        status_text = "PROCEED — Recommendation is the lowest simulated-cost candidate under current demo parameters"
 
     t_banner = Table([[
         Paragraph(f"<strong>DECISION STATUS: {status_text}</strong>", ParagraphStyle('Banner', parent=style_cell_bold, textColor=status_color))
@@ -319,7 +319,7 @@ def generate_charter_decision_pdf(
     
     why_list = recommendation.get("why", [
         "Freight rate forecasts remain stable across the recommended charter window.",
-        f"Selected vessel class ({recommendation.get('recommended_vessel', 'Panamax')}) provides optimal capacity efficiency.",
+        f"Selected vessel class ({recommendation.get('recommended_vessel', 'Panamax')}) provides the best-fit capacity for the cargo quantity.",
         f"Port congestion and demurrage exposure at {recommendation.get('destination', 'Paradip')} are within acceptable operational limits.",
         f"Risk-adjusted expected logistics cost ({format_pdf_inr_val(tot_cost_inr if tot_cost_inr > 0 else 185800000.0)}) minimizes downside financial regret."
     ])
@@ -450,10 +450,10 @@ def generate_charter_decision_pdf(
 
     story.append(Spacer(1, 8))
 
-    # SECTION 6: HISTORICAL VALIDATION
-    story.append(Paragraph("6. HISTORICAL VALIDATION & MODEL ACCURACY", style_heading))
-    story.append(Paragraph("Walk-forward historical simulation demonstrates an ~83% win rate vs spot execution with a validation MAE of ~INR 105/tonne.", style_body))
-    story.append(Paragraph("<em>Historical simulation results do not guarantee future commercial performance.</em>", style_bullet))
+    # SECTION 6: HISTORICAL-STYLE SIMULATION ON SYNTHETIC DEMO DATA
+    story.append(Paragraph("6. HISTORICAL-STYLE SIMULATION ON SYNTHETIC DEMO DATA", style_heading))
+    story.append(Paragraph("Walk-forward historical-style simulation on synthetic demo data shows an ~83% simulated benchmark win rate vs immediate-charter execution, with a demo-series MAE of ~INR 105/tonne.", style_body))
+    story.append(Paragraph("<em>All simulation results are on synthetic data. They do not reflect real-market performance and do not guarantee future commercial outcomes.</em>", style_bullet))
 
     story.append(Spacer(1, 8))
 

@@ -1,5 +1,5 @@
 """
-FreightIQ Streamlit Page 4: Historical Validation
+FreightIQ Streamlit Page 4: Historical-Style Simulation Backtest on Synthetic Demo Data
 """
 
 import os
@@ -30,18 +30,18 @@ from app.components.charts import (
 from backend.backtesting import run_historical_simulation
 
 
-st.set_page_config(page_title="FreightIQ — Historical Validation", page_icon=None, layout="wide")
+st.set_page_config(page_title="FreightIQ — Simulation Backtest", page_icon=None, layout="wide")
 
 inject_custom_css()
 render_sidebar_status()
-render_top_shell(active_page_name="Historical Validation")
+render_top_shell(active_page_name="Simulation Backtest")
 
 
 df = get_cached_processed_data()
 
 # Header
-st.markdown("<h1 style='margin-bottom: 2px;'>Historical Validation</h1>", unsafe_allow_html=True)
-st.markdown("<p style='color: #6B7280; font-size: 0.95rem; margin-bottom: 20px;'>Walk-forward simulation against immediate-charter benchmark strategy.</p>", unsafe_allow_html=True)
+st.markdown("<h1 style='margin-bottom: 2px;'>Simulation Backtest</h1>", unsafe_allow_html=True)
+st.markdown("<p style='color: #6B7280; font-size: 0.95rem; margin-bottom: 20px;'>Historical-style simulation on synthetic demo data against an immediate-charter benchmark strategy.</p>", unsafe_allow_html=True)
 
 with st.expander("⚙ Simulation Window & Model Parameters", expanded=False):
     b_c1, b_c2, b_c3, b_c4 = st.columns(4)
@@ -58,7 +58,7 @@ with st.expander("⚙ Simulation Window & Model Parameters", expanded=False):
     with b_c4:
         step_days = st.selectbox("Interval Days", [7, 14, 21, 30], index=1)
 
-    run_sim = st.button("Re-run Historical Simulation", type="primary", use_container_width=True)
+    run_sim = st.button("Re-run Simulation", type="primary", use_container_width=True)
 
 st.markdown("<div style='height: 16px;'></div>", unsafe_allow_html=True)
 
@@ -83,28 +83,28 @@ if sim_res["success"]:
         with k1:
             st.caption("DECISION WINDOWS")
             st.markdown(f"### {sim_res['test_periods_count']}")
-            st.caption("Historical decision points")
+            st.caption("Simulated decision points on demo data")
 
         with k2:
-            st.caption("WIN RATE")
+            st.caption("SIMULATED WIN RATE (DEMO DATA)")
             st.markdown(f"<h3 style='color: #10B981;'>{sim_res['win_rate_percentage']:.1f}%</h3>", unsafe_allow_html=True)
-            st.caption(f"{sim_res['win_count']} of {sim_res['test_periods_count']} windows")
+            st.caption(f"{sim_res['win_count']} of {sim_res['test_periods_count']} simulated windows (synthetic series)")
 
         with k3:
             st.caption("SIMULATED COST DIFFERENCE")
             st.markdown(f"<h3 style='color: #10B981;'>{format_inr(sim_diff_inr)}</h3>", unsafe_allow_html=True)
-            st.caption(f"{sim_res['simulated_savings_percentage']:+.2f}% vs Immediate Charter")
+            st.caption(f"{sim_res['simulated_savings_percentage']:+.2f}% vs immediate charter (synthetic sim)")
 
         with k4:
-            st.caption("FORECAST MAE")
+            st.caption("FORECAST MAE (DEMO SERIES)")
             st.markdown(f"### {format_inr(mae_inr)} / t")
-            st.caption("Walk-forward forecast error")
+            st.caption("Demo-series walk-forward error")
 
     st.markdown("<div style='height: 16px;'></div>", unsafe_allow_html=True)
 
     render_forecast_interpretation_box(
-        title="Historical Validation Interpretation",
-        text=f"FreightIQ outperformed the immediate-charter benchmark in {sim_res['win_count']} of {sim_res['test_periods_count']} simulated decision windows ({sim_res['win_rate_percentage']}% win rate), resulting in a simulated cost difference of {format_inr(sim_diff_inr)}."
+        title="Simulation Backtest Interpretation",
+        text=f"On synthetic demo data, FreightIQ recommendations matched or outperformed the immediate-charter benchmark in {sim_res['win_count']} of {sim_res['test_periods_count']} simulated decision windows ({sim_res['win_rate_percentage']}% simulated win rate), resulting in a simulated cost difference of {format_inr(sim_diff_inr)}. These results are on synthetic data and do not reflect real-market performance."
     )
 
     st.markdown("<div style='height: 16px;'></div>", unsafe_allow_html=True)

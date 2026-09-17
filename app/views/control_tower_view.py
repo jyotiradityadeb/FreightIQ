@@ -127,7 +127,7 @@ def render_control_tower_page(active_page_name: str = "Control Tower"):
         with m3:
             st.caption("DECISION ROBUSTNESS")
             st.markdown("<h2 style='color: #10B981; margin: 0;'>82%</h2>", unsafe_allow_html=True)
-            st.caption("Stable across 820 / 1,000 simulated futures")
+            st.caption("Stable across 820 / 1,000 simulated futures (demo data)")
 
         st.markdown("<div style='height: 12px;'></div>", unsafe_allow_html=True)
 

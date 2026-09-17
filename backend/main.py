@@ -112,7 +112,7 @@ def post_forecast(req: ForecastRequest):
 
 @app.post("/optimize", response_model=OptimizeResponse)
 def post_optimize(req: OptimizeRequest):
-    """Calculates optimal charter date and vessel class minimizing total expected logistics cost."""
+    """Calculates the lowest-cost charter date and vessel class candidate from simulated scenarios."""
     try:
         raw_df = load_raw_datasets()
         feat_df = generate_features(raw_df)
