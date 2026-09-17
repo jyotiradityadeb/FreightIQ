@@ -613,3 +613,102 @@ class DecisionTwinEngine:
                 "action": "Wait for market softening to capture lower freight rate"
             }
         ]
+
+
+import hashlib
+import json
+import sys
+
+
+def compute_decision_twin_hash(
+    shipment_ctx: Dict[str, Any],
+    active_scenario: Optional[Dict[str, Any]] = None,
+    simulations_count: int = 1000,
+    seed: int = 42
+) -> str:
+    """Generates a unique deterministic SHA-256 hash string for a Decision Twin execution context."""
+    scen = active_scenario or {}
+    key_dict = {
+        "shipment_id": str(shipment_ctx.get("shipment_id", "FIQ-2026-0001")),
+        "cargo_type": str(shipment_ctx.get("cargo_type", "Coking Coal")),
+        "quantity_tonnes": float(shipment_ctx.get("quantity_tonnes", 75000.0)),
+        "origin": str(shipment_ctx.get("origin", "Australia")),
+        "destination": str(shipment_ctx.get("destination", "Paradip")),
+        "vessel_class": str(shipment_ctx.get("vessel_class", "Auto")),
+        "risk_tolerance": str(shipment_ctx.get("risk_tolerance", "Medium")),
+        "simulations_count": int(simulations_count),
+        "seed": int(seed),
+        "scenario_active": bool(scen.get("is_active", False)),
+        "freight_pct": float(scen.get("freight_pct", 0.0)),
+        "congestion_pct": float(scen.get("congestion_pct", 0.0)),
+        "availability_pct": float(scen.get("availability_pct", 0.0)),
+        "weather_level": str(scen.get("weather_level", "Low")),
+        "geopolitical_level": str(scen.get("geopolitical_level", "Normal")),
+    }
+    raw = json.dumps(key_dict, sort_keys=True)
+    return hashlib.sha256(raw.encode("utf-8")).hexdigest()
+
+
+def get_or_compute_decision_twin(
+    shipment_ctx: Dict[str, Any],
+    active_scenario: Optional[Dict[str, Any]] = None,
+    forecast_df: Optional[pd.DataFrame] = None,
+    simulations_count: int = 1000,
+    seed: int = 42
+) -> Dict[str, Any]:
+    """
+    Computes or retrieves cached Decision Twin simulation results for the given shipment & scenario context.
+    Guarantees 100% consistency across Overview (Control Tower) and Decision Twin pages.
+    """
+    st = sys.modules.get("streamlit")
+
+    inp_hash = compute_decision_twin_hash(shipment_ctx, active_scenario, simulations_count, seed)
+
+    if st is not None and hasattr(st, "session_state"):
+        cached = st.session_state.get("overview_decision_twin")
+        if cached and isinstance(cached, dict) and cached.get("hash") == inp_hash:
+            return cached["result"]
+
+    if forecast_df is None:
+        from backend.data_loader import load_raw_datasets
+        from backend.features import generate_features
+        from backend.forecasting import generate_freight_forecast
+        raw_df = load_raw_datasets()
+        feat_df = generate_features(raw_df)
+        fc_res = generate_freight_forecast(feat_df, horizon=30, selected_model="Auto")
+
+        forecast_df = fc_res["forecast_df"]
+
+    active_shock_dict = {}
+    if active_scenario and active_scenario.get("is_active"):
+        active_shock_dict = {
+            "freight_rate_shock_pct": active_scenario.get("freight_pct", 0.0),
+            "port_congestion_shock_pct": active_scenario.get("congestion_pct", 0.0),
+            "vessel_availability_shock_pct": active_scenario.get("availability_pct", 0.0),
+            "weather_risk_level": active_scenario.get("weather_level", "Low"),
+            "geopolitical_risk_level": active_scenario.get("geopolitical_level", "Normal"),
+        }
+
+    engine = DecisionTwinEngine(
+        forecast_df=forecast_df,
+        cargo_type=shipment_ctx.get("cargo_type", "Coking Coal"),
+        quantity_tonnes=float(shipment_ctx.get("quantity_tonnes", 75000.0)),
+        origin=shipment_ctx.get("origin", "Australia"),
+        destination=shipment_ctx.get("destination", "Paradip"),
+        vessel_class=shipment_ctx.get("vessel_class", "Auto"),
+        risk_tolerance=shipment_ctx.get("risk_tolerance", "Medium"),
+        simulations_count=simulations_count,
+        seed=seed,
+        active_shock=active_shock_dict
+    )
+    result = engine.run()
+
+    if st is not None and hasattr(st, "session_state"):
+        st.session_state["overview_decision_twin"] = {
+            "hash": inp_hash,
+            "result": result
+        }
+        st.session_state["decision_twin_result"] = result
+
+    return result
+

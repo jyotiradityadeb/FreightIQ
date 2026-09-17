@@ -40,7 +40,7 @@ from app.components.helpers import (
 from app.components.error_boundary import safe_render_section
 from backend.config import DEMO_USD_INR_RATE
 from backend.forecasting import generate_freight_forecast
-from backend.decision_twin import DecisionTwinEngine
+from backend.decision_twin import DecisionTwinEngine, get_or_compute_decision_twin
 from backend.reporting import generate_charter_decision_pdf
 
 
@@ -75,36 +75,22 @@ update_active_shipment_context(
 
 # Retrieve active scenario from session state
 active_scenario = st.session_state.get("active_scenario", {})
-active_shock_dict = {}
 if active_scenario.get("is_active"):
-    active_shock_dict = {
-        "freight_rate_shock_pct": active_scenario.get("freight_pct", 0.0),
-        "port_congestion_shock_pct": active_scenario.get("congestion_pct", 0.0),
-        "vessel_availability_shock_pct": active_scenario.get("availability_pct", 0.0),
-        "weather_risk_level": active_scenario.get("weather_level", "Low"),
-        "geopolitical_risk_level": active_scenario.get("geopolitical_level", "Normal"),
-    }
     st.info(f"⚡ Active Scenario Applied: **{active_scenario.get('scenario_name', 'Custom Shock')}**")
 
-# Load Data & Run Engine
+# Load Data & Run / Retrieve Engine Result
 feat_df = get_cached_processed_data()
-fc_res = generate_freight_forecast(feat_df, horizon=14, selected_model="Auto")
+fc_res = generate_freight_forecast(feat_df, horizon=30, selected_model="Auto")
 forecast_df = fc_res["forecast_df"]
 
-dt_engine = DecisionTwinEngine(
-    forecast_df=forecast_df,
-    cargo_type=cargo_type,
-    quantity_tonnes=quantity_tonnes,
-    origin=origin,
-    destination=destination,
-    vessel_class="Auto",
-    risk_tolerance="Medium",
-    simulations_count=1000,
-    seed=42,
-    active_shock=active_shock_dict
-)
 
-res = dt_engine.run()
+res = get_or_compute_decision_twin(
+    shipment_ctx=get_active_shipment_context(),
+    active_scenario=active_scenario,
+    forecast_df=forecast_df,
+    simulations_count=1000,
+    seed=42
+)
 
 if not res.get("success"):
     st.warning(f"⚠ Optimization Infeasible: {res.get('error', 'No feasible candidate under this simulated state.')}")

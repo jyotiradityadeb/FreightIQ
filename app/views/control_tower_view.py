@@ -36,6 +36,7 @@ from backend.forecasting import generate_freight_forecast
 from backend.schemas import ScenarioShock
 from backend.disruption_engine import evaluate_control_tower_state
 from backend.reporting import generate_charter_decision_pdf
+from backend.decision_twin import get_or_compute_decision_twin
 
 
 def render_control_tower_page(active_page_name: str = "Control Tower"):
@@ -49,8 +50,9 @@ def render_control_tower_page(active_page_name: str = "Control Tower"):
     # 3. Top Shell Navigation Bar
     render_top_shell(active_page_name=active_page_name)
 
-    # 4. Global Active Shipment Sync
+    # 4. Global Active Shipment & Active Scenario Sync
     shipment_ctx = get_active_shipment_context()
+    active_scenario = st.session_state.get("active_scenario", {})
 
     # Page Title & Subtitle
     st.markdown(f"<h1 style='margin-bottom: 2px;'>{active_page_name}</h1>", unsafe_allow_html=True)
@@ -86,8 +88,13 @@ def render_control_tower_page(active_page_name: str = "Control Tower"):
         "vessel_class": "Panamax"
     })
 
-    # Check session state for actual computed Twin / Scenario / Validation results
-    dt_res = st.session_state.get("decision_twin_result")
+    # Automatically compute or retrieve cached Decision Twin for current active shipment & scenario
+    dt_res = get_or_compute_decision_twin(
+        shipment_ctx=shipment_ctx,
+        active_scenario=active_scenario,
+        forecast_df=forecast_df
+    )
+
     active_scen_res = st.session_state.get("active_scenario_result")
     real_val = st.session_state.get("real_validation_result")
 
@@ -139,13 +146,15 @@ def render_control_tower_page(active_page_name: str = "Control Tower"):
         with m3:
             st.caption("DECISION ROBUSTNESS")
             if dt_res and dt_res.get("success"):
-                score_val = dt_res.get("hero_summary", {}).get("robustness_score", 0)
+                hero = dt_res.get("hero_summary", {})
+                score_val = hero.get("robustness_score", 0)
                 sims_cnt = dt_res.get("simulations_count", 1000)
-                st.markdown(f"<h2 style='color: #10B981; margin: 0;'>{score_val:.0f}%</h2>", unsafe_allow_html=True)
-                st.caption(f"Evaluated across {sims_cnt:,} simulated futures")
+                st.markdown(f"<h2 style='color: #10B981; margin: 0;'>{score_val:.0f} / 100</h2>", unsafe_allow_html=True)
+                st.caption(f"Across {sims_cnt:,} simulated futures")
             else:
-                st.markdown("<h2 style='color: #6B7280; margin: 0;'>N/A</h2>", unsafe_allow_html=True)
-                st.caption("Run Decision Twin to compute stability")
+                st.markdown("<h2 style='color: #6B7280; margin: 0;'>Unavailable</h2>", unsafe_allow_html=True)
+                st.caption("Decision Twin could not evaluate candidate")
+
 
         st.markdown("<div style='height: 12px;'></div>", unsafe_allow_html=True)
 
