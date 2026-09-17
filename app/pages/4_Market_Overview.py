@@ -23,19 +23,32 @@ from app.components.helpers import (
     get_cached_processed_data,
     format_inr,
     usd_to_inr,
-    format_hours
+    format_hours,
+    get_active_shipment_context
 )
 from app.components.charts import (
     plot_freight_trend,
     plot_commodity_signals,
     plot_congestion_and_vessels
 )
+from backend.domain.routes import resolve_route
+from backend.route_market import get_route_market_history
 
 inject_custom_css()
 render_sidebar_status()
 render_top_shell(active_page_name="Market Intelligence")
 
 df = get_cached_processed_data()
+shipment_ctx = get_active_shipment_context()
+active_o_pid = shipment_ctx.get("origin_port_id", shipment_ctx.get("origin", "AU_HPT"))
+active_d_pid = shipment_ctx.get("destination_port_id", shipment_ctx.get("destination", "IN_PDP"))
+active_res = resolve_route(active_o_pid, active_d_pid)
+active_route_key = active_res.route_key if active_res.route_key else f"{active_o_pid} -> {active_d_pid}"
+active_route_df = get_route_market_history(active_route_key)
+latest_active = active_route_df.iloc[-1]
+start_rate = active_route_df["freight_rate"].iloc[-14] if len(active_route_df) >= 14 else active_route_df["freight_rate"].iloc[0]
+end_rate = latest_active["freight_rate"]
+pct_change = ((end_rate - start_rate) / max(1.0, start_rate)) * 100.0
 
 # Date Window Filter in Sidebar
 st.sidebar.header("Filter Date Range")
@@ -60,6 +73,29 @@ latest = filtered_df.iloc[-1]
 # Header
 st.markdown("<h1 style='margin-bottom: 2px;'>Market Intelligence</h1>", unsafe_allow_html=True)
 st.markdown("<p style='color: #6B7280; font-size: 0.95rem; margin-bottom: 20px;'>Financial market indicators, commodity price signals, and port congestion metrics.</p>", unsafe_allow_html=True)
+
+# ACTIVE ROUTE SNAPSHOT
+with st.container(border=True):
+    st.markdown(f"### Active Route Snapshot — {shipment_ctx.get('origin', 'Hay Point')} → {shipment_ctx.get('destination', 'Paradip')}")
+    st.caption("Route-specific demo synthetic market state for active procurement workspace")
+    ar_c1, ar_c2, ar_c3, ar_c4 = st.columns(4)
+    with ar_c1:
+        st.caption("ROUTE SPOT RATE")
+        st.markdown(f"**{format_inr(usd_to_inr(latest_active['freight_rate']))} / t**")
+        st.caption(f"USD ${latest_active['freight_rate']:.2f}/t spot")
+    with ar_c2:
+        st.caption("14-DAY ROUTE TREND")
+        trend_color = "#059669" if pct_change <= 0 else "#D97706"
+        st.markdown(f"<strong style='color: {trend_color}; font-size: 1.1rem;'>{pct_change:+.1f}%</strong>", unsafe_allow_html=True)
+        st.caption("Route freight momentum")
+    with ar_c3:
+        st.caption("DESTINATION CONGESTION")
+        st.markdown(f"**{latest_active.get('port_congestion_score', 45.0):.0f} / 100**")
+        st.caption(f"Waiting: ~{latest_active.get('avg_waiting_hours', 24.0):.0f} hours")
+    with ar_c4:
+        st.caption("ROUTE VESSEL SUPPLY")
+        st.markdown(f"**{int(latest_active.get('vessel_availability_count', 25))} Vessels**")
+        st.caption("Available in region")
 
 # SMALL SUMMARY STRIP (Clean SaaS Bordered Container)
 ore_inr = usd_to_inr(latest['iron_ore_price'])

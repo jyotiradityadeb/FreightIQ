@@ -67,7 +67,10 @@ class DecisionTwinEngine:
         Generates stochastic Monte Carlo trajectories for freight rate, congestion,
         vessel availability, and weather risk across the forecast horizon.
         """
-        np.random.seed(self.seed)
+        from backend.route_market import get_route_seed
+        route_key = f"{self.origin} -> {self.destination}"
+        calc_seed = (self.seed + get_route_seed(route_key)) % (2**31 - 1)
+        np.random.seed(calc_seed)
         num_days = len(self.forecast_df)
         N = self.simulations_count
 
@@ -78,6 +81,13 @@ class DecisionTwinEngine:
         base_vessels = self.forecast_df.get("vessel_availability_count", pd.Series([25]*num_days)).to_numpy(dtype=float)
         base_weather = self.forecast_df.get("weather_risk_score", pd.Series([3.0]*num_days)).to_numpy(dtype=float)
         base_event = self.forecast_df.get("event_risk_score", pd.Series([2.0]*num_days)).to_numpy(dtype=float)
+
+        # Estimate route-specific volatility from historical freight rates if available
+        if "freight_rate" in self.forecast_df.columns:
+            r_std = float(self.forecast_df["freight_rate"].std())
+            route_sigma = float(np.clip(r_std * 0.35, 0.4, 2.5))
+        else:
+            route_sigma = 0.75
 
         # Apply active shock adjustments if present
         if self.active_shock:
@@ -99,15 +109,14 @@ class DecisionTwinEngine:
             base_event = np.clip(base_event + g_add_map.get(g_level, 0.0), 1.0, 10.0)
 
         # Vectorized stochastic simulation over N paths and num_days
-        # Freight rate AR(1) disturbance
         freight_paths = np.zeros((N, num_days))
         for i in range(N):
-            noise = np.random.normal(0, 0.75, size=num_days)
+            noise = np.random.normal(0, route_sigma, size=num_days)
             ar1 = np.zeros(num_days)
             ar1[0] = noise[0]
             for t in range(1, num_days):
                 ar1[t] = 0.82 * ar1[t-1] + noise[t]
-            freight_paths[i, :] = np.maximum(5.0, base_freight + ar1)
+            freight_paths[i, :] = np.maximum(2.0, base_freight + ar1)
 
         # Congestion disturbance
         c_noise = np.random.normal(0, 3.5, size=(N, num_days))
@@ -633,7 +642,9 @@ def compute_decision_twin_hash(
         "cargo_type": str(shipment_ctx.get("cargo_type", "Coking Coal")),
         "quantity_tonnes": float(shipment_ctx.get("quantity_tonnes", 75000.0)),
         "origin": str(shipment_ctx.get("origin", "Australia")),
+        "origin_port_id": str(shipment_ctx.get("origin_port_id", "AU_HPT")),
         "destination": str(shipment_ctx.get("destination", "Paradip")),
+        "destination_port_id": str(shipment_ctx.get("destination_port_id", "IN_PDP")),
         "vessel_class": str(shipment_ctx.get("vessel_class", "Auto")),
         "risk_tolerance": str(shipment_ctx.get("risk_tolerance", "Medium")),
         "simulations_count": int(simulations_count),
@@ -670,13 +681,15 @@ def get_or_compute_decision_twin(
             return cached["result"]
 
     if forecast_df is None:
-        from backend.data_loader import load_raw_datasets
-        from backend.features import generate_features
+        from backend.domain.routes import resolve_route
+        from backend.route_market import get_route_market_history
         from backend.forecasting import generate_freight_forecast
-        raw_df = load_raw_datasets()
-        feat_df = generate_features(raw_df)
-        fc_res = generate_freight_forecast(feat_df, horizon=30, selected_model="Auto")
-
+        o_pid = shipment_ctx.get("origin_port_id", shipment_ctx.get("origin", "AU_HPT"))
+        d_pid = shipment_ctx.get("destination_port_id", shipment_ctx.get("destination", "IN_PDP"))
+        route_res = resolve_route(o_pid, d_pid)
+        r_key = route_res.route_key if route_res.route_key else f"{o_pid} -> {d_pid}"
+        route_df = get_route_market_history(r_key)
+        fc_res = generate_freight_forecast(route_df, horizon=30, selected_model="Auto")
         forecast_df = fc_res["forecast_df"]
 
     active_shock_dict = {}

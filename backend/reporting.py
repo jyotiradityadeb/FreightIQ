@@ -308,8 +308,9 @@ def generate_charter_decision_pdf(
     # SECTION 2: MARKET OUTLOOK & FREIGHT SIGNALS
     story.append(Paragraph("2. MARKET OUTLOOK & FREIGHT SIGNALS", style_heading))
     mkt_text = (
-        "Panamax & Capesize spot freight rate forward trajectories indicate moderate stability across East Coast India discharge routes. "
-        "Bunker VLSFO in Singapore trades near INR 54,200/t. Port queue indices at Paradip and Visakhapatnam remain within normal seasonal bounds."
+        f"Forecast source: Synthetic route-specific demonstration series ({recommendation.get('origin', 'Australia')} → {recommendation.get('destination', 'Paradip')}). "
+        "Panamax & Capesize spot freight rate forward trajectories indicate route-calibrated behavior across East Coast India discharge routes. "
+        "Bunker VLSFO in Singapore trades near INR 54,200/t. Port queue indices remain within normal seasonal bounds."
     )
     story.append(Paragraph(mkt_text, style_body))
     story.append(Spacer(1, 8))

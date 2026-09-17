@@ -27,9 +27,10 @@ from app.components.helpers import (
     get_active_shipment_context,
     update_active_shipment_context
 )
-from app.components.charts import plot_forecast_with_ci
+from app.components.charts import plot_forecast_with_ci, apply_industrial_theme
 from backend.forecasting import generate_freight_forecast, HAS_PROPHET
 from backend.domain.routes import get_calibrated_routes, resolve_route
+from backend.route_market import get_route_market_history
 from backend.validation import (
     run_real_validation,
     build_validation_chart_data,
@@ -40,7 +41,6 @@ inject_custom_css()
 render_sidebar_status()
 render_top_shell(active_page_name="Forecasts")
 
-df = get_cached_processed_data()
 shipment_ctx = get_active_shipment_context()
 
 # Retrieve calibrated route options
@@ -69,7 +69,7 @@ else:
 # Header
 st.markdown("<h1 style='margin-bottom: 2px;'>Forecasts</h1>", unsafe_allow_html=True)
 st.markdown("<p style='color: #6B7280; font-size: 0.95rem; margin-bottom: 20px;'>Predictive spot freight rate models and demo-series simulation metrics.</p>", unsafe_allow_html=True)
-st.caption("Source: synthetic demonstration series — not real Baltic Exchange or AIS data")
+st.caption("Source: synthetic route-specific demonstration series — not real Baltic Exchange or AIS data")
 
 if unsupported_active_msg:
     st.warning(f"⚠ {unsupported_active_msg}")
@@ -85,7 +85,6 @@ with st.container(border=True):
         origin_name = selected_route_dict["origin_name"]
         destination_name = selected_route_dict["destination_name"]
         route_key = selected_route_dict["route_key"]
-        route_multiplier = selected_route_dict["base_freight_multiplier"]
     with c2:
         model_options = ["Auto", "SARIMA", "Naive Baseline"]
         if HAS_PROPHET:
@@ -100,7 +99,7 @@ with st.container(border=True):
     st.markdown("<div style='height: 4px;'></div>", unsafe_allow_html=True)
     tb_m1, tb_m2 = st.columns([2.5, 1])
     with tb_m1:
-        st.caption(f"Demo route context — forecast series uses synthetic benchmark history (multiplier: {route_multiplier:.2f}x)")
+        st.caption(f"Demo route context — forecast uses route-specific synthetic history ({route_key})")
     with tb_m2:
         st.markdown("<div style='text-align: right;'><span style='background-color: #DEF7EC; color: #03543F; font-size: 0.75rem; font-weight: 600; padding: 3px 8px; border-radius: 4px;'>🟢 DEMO-CALIBRATED</span></div>", unsafe_allow_html=True)
 
@@ -114,17 +113,12 @@ update_active_shipment_context(
 
 st.markdown("<div style='height: 16px;'></div>", unsafe_allow_html=True)
 
-# Generate Forecast
-fc_res = generate_freight_forecast(df, horizon=horizon, selected_model=selected_model)
-fc_df = fc_res["forecast_df"].copy()
-df_scaled = df.copy()
+# Load Route-Specific Synthetic History (No scalar scaling)
+route_df = get_route_market_history(route_key)
 
-if route_multiplier != 1.0:
-    for col in ["predicted_freight_rate", "lower_ci", "upper_ci"]:
-        if col in fc_df.columns:
-            fc_df[col] = fc_df[col] * route_multiplier
-    if "freight_rate" in df_scaled.columns:
-        df_scaled["freight_rate"] = df_scaled["freight_rate"] * route_multiplier
+# Generate Forecast on route_df
+fc_res = generate_freight_forecast(route_df, horizon=horizon, selected_model=selected_model)
+fc_df = fc_res["forecast_df"].copy()
 
 metrics = fc_res["metrics"]
 _metrics_ok = metrics.get("status") == "OK"
@@ -132,14 +126,39 @@ _metrics_ok = metrics.get("status") == "OK"
 # MAIN FORECAST CHART (DOMINATES PAGE)
 with st.container(border=True):
     st.markdown(f"### Spot Freight Rate Forecast — {selected_route_label} ({horizon}-Day Horizon)")
-    st.caption(f"Model: {fc_res['selected_model']} • 95% Confidence Interval Band • Route Multiplier: {route_multiplier:.2f}x")
+    st.caption(f"Model: {fc_res['selected_model']} • 95% Confidence Interval Band • Data: SYNTHETIC ROUTE-SPECIFIC DEMO HISTORY")
     fig_fc = plot_forecast_with_ci(
-        df_scaled,
+        route_df,
         fc_df,
         title="",
         lookback_days=90
     )
     st.plotly_chart(fig_fc, use_container_width=True)
+
+    # Optional Route Comparison Feature
+    with st.expander("📊 Compare Route Freight Trajectories (Optional)"):
+        st.caption("Overlay up to 3 calibrated routes to inspect route-specific historical freight variations.")
+        compare_selected = st.multiselect(
+            "Select routes to compare",
+            options=route_display_labels,
+            default=[selected_route_label] if selected_route_label in route_display_labels else route_display_labels[:2],
+            max_selections=3
+        )
+        if compare_selected:
+            fig_cmp = go.Figure()
+            colors = ["#1667D9", "#D97706", "#059669"]
+            for c_idx, label in enumerate(compare_selected):
+                r_info = calibrated_routes[route_display_labels.index(label)]
+                r_hist = get_route_market_history(r_info["route_key"]).tail(120)
+                fig_cmp.add_trace(go.Scatter(
+                    x=r_hist["date"],
+                    y=r_hist["freight_rate"].apply(usd_to_inr),
+                    mode="lines",
+                    name=label,
+                    line=dict(color=colors[c_idx % len(colors)], width=2.0)
+                ))
+            apply_industrial_theme(fig_cmp, title="", height=320)
+            st.plotly_chart(fig_cmp, use_container_width=True)
 
 st.markdown("<div style='height: 16px;'></div>", unsafe_allow_html=True)
 

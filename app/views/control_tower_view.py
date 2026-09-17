@@ -58,12 +58,26 @@ def render_control_tower_page(active_page_name: str = "Control Tower"):
     st.markdown(f"<h1 style='margin-bottom: 2px;'>{active_page_name}</h1>", unsafe_allow_html=True)
     st.markdown("<p style='color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 20px;'>Freight exposure and chartering decisions.</p>", unsafe_allow_html=True)
 
-    # Load Processed Dataset & Run Disruption Engine with Fallbacks
+    # Load Active Route Processed Dataset & Run Disruption Engine
     try:
-        df = get_cached_processed_data()
+        from backend.domain.routes import resolve_route
+        from backend.route_market import get_route_market_history
+        active_o_pid = shipment_ctx.get("origin_port_id", shipment_ctx.get("origin", "AU_HPT"))
+        active_d_pid = shipment_ctx.get("destination_port_id", shipment_ctx.get("destination", "IN_PDP"))
+        r_res = resolve_route(active_o_pid, active_d_pid)
+        r_key = r_res.route_key if r_res.route_key else f"{active_o_pid} -> {active_d_pid}"
+        df = get_route_market_history(r_key)
         fc_res = generate_freight_forecast(df, horizon=30, selected_model="Auto")
         forecast_df = fc_res["forecast_df"]
-        ct_data = evaluate_control_tower_state(forecast_df=forecast_df)
+        ct_data = evaluate_control_tower_state(
+            forecast_df=forecast_df,
+            origin=shipment_ctx.get("origin", "Hay Point"),
+            destination=shipment_ctx.get("destination", "Paradip"),
+            cargo_type=shipment_ctx.get("cargo_type", "Coking Coal"),
+            quantity_tonnes=float(shipment_ctx.get("quantity_tonnes", 75000.0)),
+            vessel_class=shipment_ctx.get("vessel_class", "Auto"),
+            risk_tolerance=shipment_ctx.get("risk_tolerance", "Medium")
+        )
     except Exception as e:
         st.warning(f"Unable to refresh market feeds ({e}). Displaying cached demonstration state.")
         # Fallback dataset construction if load fails

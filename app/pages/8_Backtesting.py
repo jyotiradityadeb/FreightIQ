@@ -20,13 +20,16 @@ from app.components.helpers import (
     render_disclaimer,
     get_cached_processed_data,
     usd_to_inr,
-    format_inr
+    format_inr,
+    get_active_shipment_context
 )
 from app.components.cards import render_forecast_interpretation_box
 from app.components.charts import (
     plot_backtest_cost_comparison,
     plot_cumulative_simulated_savings
 )
+from backend.domain.routes import get_calibrated_routes, resolve_route
+from backend.route_market import get_route_market_history
 from backend.backtesting import run_historical_simulation
 
 
@@ -36,20 +39,43 @@ inject_custom_css()
 render_sidebar_status()
 render_top_shell(active_page_name="Simulation Backtest")
 
+shipment_ctx = get_active_shipment_context()
+calibrated_routes = get_calibrated_routes()
+route_display_labels = [r["display_label"] for r in calibrated_routes]
 
-df = get_cached_processed_data()
+active_o_pid = shipment_ctx.get("origin_port_id", shipment_ctx.get("origin", "AU_HPT"))
+active_d_pid = shipment_ctx.get("destination_port_id", shipment_ctx.get("destination", "IN_PDP"))
+active_res = resolve_route(active_o_pid, active_d_pid)
+
+default_idx = 0
+if active_res.is_calibrated:
+    for idx, r_dict in enumerate(calibrated_routes):
+        if r_dict["origin_port_id"] == active_res.origin_port_id and r_dict["destination_port_id"] == active_res.destination_port_id:
+            default_idx = idx
+            break
 
 # Header
 st.markdown("<h1 style='margin-bottom: 2px;'>Simulation Backtest</h1>", unsafe_allow_html=True)
-st.markdown("<p style='color: #6B7280; font-size: 0.95rem; margin-bottom: 20px;'>Historical-style simulation on synthetic demo data against an immediate-charter benchmark strategy.</p>", unsafe_allow_html=True)
+st.markdown("<p style='color: #6B7280; font-size: 0.95rem; margin-bottom: 20px;'>Historical-style simulation on synthetic route-specific data against an immediate-charter benchmark strategy.</p>", unsafe_allow_html=True)
 
 import time
 
 with st.container(border=True):
+    r_col1, r_col2 = st.columns([2, 2])
+    with r_col1:
+        selected_route_label = st.selectbox("Simulation Route", route_display_labels, index=default_idx)
+        selected_route_dict = calibrated_routes[route_display_labels.index(selected_route_label)]
+        selected_route_key = selected_route_dict["route_key"]
+    with r_col2:
+        st.caption("ROUTE DATA MODE")
+        st.markdown("<span style='background-color: #DEF7EC; color: #03543F; font-size: 0.85rem; font-weight: 600; padding: 4px 10px; border-radius: 4px;'>🟢 SYNTHETIC ROUTE-SPECIFIC DEMO SERIES</span>", unsafe_allow_html=True)
+
+    st.markdown("<div style='height: 8px;'></div>", unsafe_allow_html=True)
     b_c1, b_c2, b_c3, b_c4 = st.columns(4)
 
-    min_d = df["date"].min().to_pydatetime()
-    max_d = df["date"].max().to_pydatetime()
+    route_df = get_route_market_history(selected_route_key)
+    min_d = route_df["date"].min().to_pydatetime()
+    max_d = route_df["date"].max().to_pydatetime()
 
     with b_c1:
         sim_start = st.date_input("Simulation Start Date", value=pd.to_datetime("2024-06-01"))
@@ -64,23 +90,27 @@ with st.container(border=True):
 
 st.markdown("<div style='height: 16px;'></div>", unsafe_allow_html=True)
 
+cache_key = f"backtest_{selected_route_key}_{sim_start}_{sim_end}_{horizon}_{step_days}"
+
 # Cache / Gate Backtest Execution
-if run_sim or "backtest_result" not in st.session_state:
+if run_sim or cache_key not in st.session_state:
     with st.spinner("Executing walk-forward historical simulation across decision windows..."):
         t0 = time.time()
         sim_res = run_historical_simulation(
-            df=df,
+            df=route_df,
             start_date=sim_start.strftime("%Y-%m-%d"),
             end_date=sim_end.strftime("%Y-%m-%d"),
             horizon=horizon,
             step_days=step_days,
-            cargo_type="Coking Coal",
+            cargo_type=shipment_ctx.get("cargo_type", "Coking Coal"),
+            origin=selected_route_dict["origin_name"],
+            destination=selected_route_dict["destination_name"],
             vessel_class="Panamax"
         )
         sim_res["elapsed_seconds"] = time.time() - t0
-        st.session_state["backtest_result"] = sim_res
+        st.session_state[cache_key] = sim_res
 
-sim_res = st.session_state["backtest_result"]
+sim_res = st.session_state[cache_key]
 
 if sim_res.get("success"):
     sim_diff_inr = usd_to_inr(sim_res["simulated_cost_difference_total"])

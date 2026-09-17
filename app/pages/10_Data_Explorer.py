@@ -59,17 +59,48 @@ with st.container(border=True):
         st.markdown(f"### {df['date'].max().strftime('%d %b %Y')}")
         st.caption("Latest observation")
 
-st.markdown("<div style='height: 16px;'></div>", unsafe_allow_html=True)
+from backend.route_market import get_all_route_market_histories, get_available_route_keys
 
-tab_data, tab_corr, tab_quality, tab_upload = st.tabs([
+tab_routes, tab_data, tab_corr, tab_quality, tab_upload = st.tabs([
+    "Route Freight Series",
     "Dataset",
     "Correlation Matrix",
     "Quality Audit",
     "Validate & Preview Dataset"
 ])
 
+with tab_routes:
+    with st.container(border=True):
+        col_rt1, col_rt2 = st.columns([3, 1])
+        with col_rt1:
+            st.markdown("### Canonical Route Freight Series (Long Format)")
+            st.caption("Route-specific synthetic daily time series across 22+ demo-calibrated routes")
+        with col_rt2:
+            all_routes_df = get_all_route_market_histories()
+            csv_rt_bytes = all_routes_df.to_csv(index=False).encode('utf-8')
+            st.download_button(
+                label="Download Route Rates CSV",
+                data=csv_rt_bytes,
+                file_name="FreightIQ_route_freight_rates.csv",
+                mime="text/csv",
+                use_container_width=True
+            )
 
-with tab_data:
+        avail_keys = get_available_route_keys()
+        r_f1, r_f2 = st.columns([2, 2])
+        with r_f1:
+            filter_route = st.selectbox("Filter Route Key", ["All Routes"] + avail_keys, index=0)
+
+        display_routes = all_routes_df.copy()
+        if filter_route != "All Routes":
+            display_routes = display_routes[display_routes["route_key"] == filter_route]
+
+        display_routes["Date"] = pd.to_datetime(display_routes["date"]).dt.strftime("%d-%b-%Y")
+        display_routes["Spot Rate ($/t)"] = display_routes["freight_rate"].apply(lambda x: f"${x:.2f}")
+        display_routes["Spot Rate (₹/t)"] = display_routes["freight_rate"].apply(lambda x: f"₹{usd_to_inr(x):,.0f}")
+
+        view_cols = ["Date", "route_key", "origin_port_id", "destination_port_id", "Spot Rate ($/t)", "Spot Rate (₹/t)", "port_congestion_score", "vessel_availability_count", "data_mode"]
+        st.dataframe(display_routes[view_cols], use_container_width=True, hide_index=True)
     with st.container(border=True):
         col_dl1, col_dl2 = st.columns([3, 1])
         with col_dl1:
