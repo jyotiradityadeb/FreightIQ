@@ -115,7 +115,9 @@ with st.container(border=True):
     with r3:
         st.caption("DECISION ROBUSTNESS")
         st.markdown(f"<h3 style='color: #10B981;'>{hero['robustness_score']} / 100</h3>", unsafe_allow_html=True)
-        st.caption(f"Stable in {hero['robustness_score']}% of simulated scenarios (demo data)")
+        sims_cnt = res.get("simulations_count", 1000)
+        st.caption(f"Composite robustness score across {sims_cnt:,} simulated futures")
+
     with r4:
         st.caption("EXPECTED REGRET")
         st.markdown(f"### ₹{hero['expected_regret_inr_lakh']:.1f} Lakh")
