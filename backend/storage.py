@@ -74,6 +74,15 @@ def init_db(db_path: str = DB_PATH):
         )
     """)
 
+    # Migrate stale schema: old DBs used 'log_id' as PK; current schema uses 'id'.
+    cursor.execute("PRAGMA table_info(audit_logs)")
+    existing_cols = [col[1] for col in cursor.fetchall()]
+    if "log_id" in existing_cols and "id" not in existing_cols:
+        cursor.execute("ALTER TABLE audit_logs RENAME COLUMN log_id TO id")
+        # Re-read after rename
+        cursor.execute("PRAGMA table_info(audit_logs)")
+        existing_cols = [col[1] for col in cursor.fetchall()]
+
     expected_audit_cols = {
         "timestamp": "TEXT",
         "shipment_id": "TEXT",
@@ -87,8 +96,6 @@ def init_db(db_path: str = DB_PATH):
         "decision_version": "TEXT",
         "snapshot_json": "TEXT"
     }
-    cursor.execute("PRAGMA table_info(audit_logs)")
-    existing_cols = [col[1] for col in cursor.fetchall()]
     if existing_cols:
         for col_name, col_type in expected_audit_cols.items():
             if col_name not in existing_cols:
@@ -385,7 +392,9 @@ def get_audit_trail(
                 "decision_version": r[10] or "-"
             })
         return records
-    except Exception:
+    except sqlite3.OperationalError as exc:
+        import sys
+        print(f"[get_audit_trail] SQLite error: {exc}", file=sys.stderr)
         return []
 
 
