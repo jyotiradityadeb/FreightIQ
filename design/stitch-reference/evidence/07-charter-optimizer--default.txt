@@ -1,0 +1,206 @@
+Home
+
+Control Tower
+
+Decision Twin
+
+Operations Overview
+
+Market Overview
+
+Forecasting
+
+Charter Optimizer
+
+Scenario Lab
+
+Backtesting
+
+Data Integration
+
+Data Explorer
+
+🌙 Switch to Dark Mode
+
+SYSTEM STATUS
+Active Theme
+Light Mode
+Data Mode
+DEMO
+Forecast Engine
+Auto Model Selection
+Optimizer
+Active
+Deploy
+FreightIQ
+
+Overview
+
+Decision Twin
+
+Operations
+
+Markets
+
+Forecasts
+
+Chartering
+
+Scenarios
+
+Backtesting
+
+Data
+
+Explorer
+
+Charter Workbench
+
+Commercial procurement solver for active shipment FIQ-2026-0001
+
+Cargo
+
+Coking Coal
+
+Quantity (t)
+
+Origin Country
+
+Australia
+
+Origin Port
+
+Hay Point (AU_HPT)
+
+Destination Port
+
+Paradip (IN_PDP)
+
+Laycan Window
+
+Press the down arrow key to interact with the calendar and select a date. Press the escape button to close the calendar.
+
+Selected date range is from 2026/10/25 to 2026/11/07.
+
+Origin: Hay Point (Queensland, Australia | Draft: 20.0m)  →  Destination: Paradip (East Coast, India | Max Draft: 17.5m)
+🟢 DEMO-CALIBRATED ROUTE
+
+Solve Candidates
+
+Feasible Charter Candidate Matrix
+
+Ranked commercial options evaluated across predicted freight, port queue demurrage, and route risk
+
+Download Procurement Report (PDF)
+
+DECISION STATUS
+
+✓ RECOMMENDED CHARTER ACTION
+
+Charter on optimal date (2026-09-04) — 3 days after window opens
+
+EXPECTED LOGISTICS COST
+
+₹22.15 Cr
+
+₹2,954 / tonne
+
+RECOMMENDED WINDOW
+
+2026-09-04
+
+VESSEL CLASS
+
+Panamax
+
+CARGO
+
+75,000 t Coking Coal
+
+ROUTE
+
+Hay Point → Paradip
+
+Freight Cost
+
+₹21.87 Cr
+
+Expected Demurrage
+
+₹8.3 lakh
+
+Port / Waiting Cost
+
+₹14.2 lakh
+
+Risk Adjustment
+
+₹6.0 lakh
+
+KEY DECISION DRIVERS
+
+• freight rates remain flat across the evaluation window.
+
+• selected Panamax vessel provides the best-fit capacity for 75,000.0 tonnes of Coking Coal.
+
+• port congestion and demurrage exposure at Paradip are minimized on 2026-09-04.
+
+• total estimated logistics cost ($2,637,225.00) is lower than alternative charter dates.
+
+MARITIME ROUTE SPECIFICATIONS
+
+Hay Point
+
+ORIGIN PORT
+
+Hay Point ───────────────→ Paradip
+
+~3,500 Nautical Miles • ~12 Transit Days
+
+Paradip
+
+DESTINATION PORT
+
+Port Draft Check: 15.0m
+
+Scenario Comparison
+Cost Model Breakdown — Top Candidates
+
+Exact cost components computed by the optimizer for each candidate. Formula: Total = Freight + Demurrage + Congestion + Route Risk Penalty
+
+Why This Recommendation Was Selected
+
+Derived from computed candidate costs — not generic boilerplate
+
+Selected: Panamax on 2026-09-04
+
+Lowest risk-adjusted total logistics cost among all feasible candidates (2,637,225 total; 35.16/t).
+Capacity feasible: Panamax handles 75,000 t within vessel max capacity.
+Dominant cost driver is freight cost ($2,603,250, 98.7% of total).
+Port waiting exposure: 24.0 h at charter date (congestion score 45/100).
+
+Why alternatives were ranked lower:
+
+keyboard_arrow_right
+
+Panamax on 2026-09-07 — total $2,637,225 (+₹0 vs selected)
+
+keyboard_arrow_right
+
+Panamax on 2026-09-06 — total $2,637,975 (+₹63,000 vs selected)
+
+keyboard_arrow_right
+
+Panamax on 2026-09-08 — total $2,637,975 (+₹63,000 vs selected)
+
+Assumption Sensitivity — Robustness Panel
+
+Each key cost assumption is perturbed ±15% and ±30% (one at a time) and the optimizer re-run. 'Held' = same vessel and charter date as baseline. Computed on synthetic demo series — not real-market robustness.
+
+Overall stability: Panamax on 2026-09-04 held in 16 of 16 perturbed settings (100%) (demo data)
+
+keyboard_arrow_right
+
+Detailed perturbation results
+
+Prototype Disclaimer: International freight benchmarks may originate in USD, while FreightIQ presents decision-support costs in INR for Indian procurement users. Prototype demonstration using synthetic data. Not live maritime market data.

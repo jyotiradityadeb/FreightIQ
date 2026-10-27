@@ -1,0 +1,109 @@
+keyboard_double_arrow_left
+
+Home
+
+Control Tower
+
+Decision Twin
+
+Operations Overview
+
+Market Overview
+
+Forecasting
+
+Charter Optimizer
+
+Scenario Lab
+
+Backtesting
+
+Data Integration
+
+Data Explorer
+
+🌙 Switch to Dark Mode
+
+SYSTEM STATUS
+Active Theme
+Light Mode
+Data Mode
+DEMO
+Forecast Engine
+Auto Model Selection
+Optimizer
+Active
+Deploy
+FreightIQ
+
+Overview
+
+Decision Twin
+
+Operations
+
+Markets
+
+Forecasts
+
+Chartering
+
+Scenarios
+
+Backtesting
+
+Data
+
+Explorer
+
+Data Explorer
+
+Modelling dataset inspection, feature correlation matrix, and data quality audit.
+
+OBSERVATIONS
+
+974
+
+Daily time series records
+
+FEATURES
+
+35
+
+Engineered parameters
+
+START DATE
+
+01 Jan 2024
+
+Earliest observation
+
+END DATE
+
+31 Aug 2026
+
+Latest observation
+
+Route Freight Series
+
+Dataset
+
+Correlation Matrix
+
+Quality Audit
+
+Validate & Preview Dataset
+
+Validate & Preview Custom Dataset
+
+Upload custom CSV observations to validate format and preview schema (does not alter active forecast dataset)
+
+Upload CSV Dataset for Validation
+
+incomplete-demo.csv
+50.0B
+add
+
+Missing expected columns: ['bdi', 'capesize_index', 'panamax_index', 'iron_ore_price', 'coking_coal_price', 'port_congestion_score', 'avg_waiting_hours', 'vessel_availability_count', 'weather_risk_score', 'event_risk_score']. Missing fields imputed with defaults.
+
+Prototype Disclaimer: International freight benchmarks may originate in USD, while FreightIQ presents decision-support costs in INR for Indian procurement users. Prototype demonstration using synthetic data. Not live maritime market data.

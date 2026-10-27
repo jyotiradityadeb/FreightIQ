@@ -1,0 +1,96 @@
+Home
+
+Control Tower
+
+Decision Twin
+
+Operations Overview
+
+Market Overview
+
+Forecasting
+
+Charter Optimizer
+
+Scenario Lab
+
+Backtesting
+
+Data Integration
+
+Data Explorer
+
+🌙 Switch to Dark Mode
+
+SYSTEM STATUS
+Active Theme
+Light Mode
+Data Mode
+DEMO
+Forecast Engine
+Auto Model Selection
+Optimizer
+Active
+Deploy
+FreightIQ
+
+Overview
+
+Decision Twin
+
+Operations
+
+Markets
+
+Forecasts
+
+Chartering
+
+Scenarios
+
+Backtesting
+
+Data
+
+Explorer
+
+Charter Workbench
+
+Commercial procurement solver for active shipment FIQ-2026-0001
+
+Cargo
+
+Coking Coal
+
+Quantity (t)
+
+Origin Country
+
+Brazil
+
+Origin Port
+
+Ponta da Madeira (BR_PDM)
+
+Destination Port
+
+Mumbai (IN_BOM)
+
+Laycan Window
+
+Press the down arrow key to interact with the calendar and select a date. Press the escape button to close the calendar.
+
+Selected date range is from 2026/09/01 to 2026/09/15.
+
+Origin: Ponta da Madeira (Maranhão, Brazil | Draft: 23.0m)  →  Destination: Mumbai (West Coast, India | Max Draft: 12.0m)
+⚠️ CATALOG ONLY — optimization unavailable
+
+Solve Candidates
+
+⚠
+
+Optimization Infeasible: No feasible charter option found for the selected constraints.
+
+• UNSUPPORTED_ROUTE: Route 'Ponta da Madeira' → 'Mumbai' is CATALOG ONLY — optimization unavailable (Route currently not calibrated in demo model).
+
+Prototype Disclaimer: International freight benchmarks may originate in USD, while FreightIQ presents decision-support costs in INR for Indian procurement users. Prototype demonstration using synthetic data. Not live maritime market data.

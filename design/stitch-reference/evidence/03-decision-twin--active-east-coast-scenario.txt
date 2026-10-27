@@ -1,0 +1,354 @@
+Home
+
+Control Tower
+
+Decision Twin
+
+Operations Overview
+
+Market Overview
+
+Forecasting
+
+Charter Optimizer
+
+Scenario Lab
+
+Backtesting
+
+Data Integration
+
+Data Explorer
+
+🌙 Switch to Dark Mode
+
+SYSTEM STATUS
+Active Theme
+Light Mode
+Data Mode
+DEMO
+Forecast Engine
+Auto Model Selection
+Optimizer
+Active
+
+Cargo Type
+
+Coking Coal
+
+Quantity (t)
+
+Origin Country
+
+Australia
+
+Origin Port
+
+Hay Point (AU_HPT)
+
+Destination Port
+
+Paradip (IN_PDP)
+
+🟢 Route Status: DEMO-CALIBRATED
+
+Deploy
+FreightIQ
+
+Overview
+
+Decision Twin
+
+Operations
+
+Markets
+
+Forecasts
+
+Chartering
+
+Scenarios
+
+Backtesting
+
+Data
+
+Explorer
+
+Decision Twin
+
+Stress-test charter recommendations across simulated market conditions.
+
+Source: simulated futures on synthetic demo state — not real-market scenario data
+
+⚡
+
+Active Scenario Applied: East Coast Disruption
+
+RECOMMENDED ACTION
+
+Panamax / 2026-09-06
+
+Recommended vessel & charter window (simulated)
+
+EXPECTED LOGISTICS COST
+
+₹24.85 Cr
+
+Mean across 1,000 futures
+
+DECISION ROBUSTNESS
+
+51 / 100
+
+Composite robustness score across 1,000 simulated futures
+
+EXPECTED REGRET
+
+₹125.0 Lakh
+
+Minimal downside regret
+
+Download Decision Twin Report (PDF)
+
+Decision Surface
+
+Expected risk-adjusted total logistics cost across candidate choices and charter dates
+
+₹34.88Cr
+₹34.84Cr
+₹34.85Cr
+₹34.82Cr
+₹34.76Cr
+₹34.76Cr
+₹34.81Cr
+₹34.79Cr
+₹34.78Cr
+₹34.77Cr
+₹34.80Cr
+₹34.82Cr
+₹34.80Cr
+₹34.78Cr
+₹34.81Cr
+₹34.80Cr
+₹34.82Cr
+₹34.82Cr
+₹34.85Cr
+₹34.79Cr
+₹34.80Cr
+₹34.85Cr
+₹34.85Cr
+₹34.83Cr
+₹34.79Cr
+₹34.77Cr
+₹34.79Cr
+₹34.80Cr
+₹34.83Cr
+₹34.84Cr
+₹34.80Cr
+₹34.80Cr
+₹34.78Cr
+₹34.71Cr
+₹34.71Cr
+₹34.76Cr
+₹34.75Cr
+₹34.73Cr
+₹34.73Cr
+₹34.76Cr
+₹34.77Cr
+₹34.75Cr
+₹34.74Cr
+₹34.77Cr
+₹34.76Cr
+₹34.78Cr
+₹34.77Cr
+₹34.80Cr
+₹34.74Cr
+₹34.76Cr
+₹34.81Cr
+₹34.80Cr
+₹34.79Cr
+₹34.74Cr
+₹34.73Cr
+₹34.75Cr
+₹34.76Cr
+₹34.79Cr
+₹34.79Cr
+₹34.75Cr
+₹34.76Cr
+₹34.73Cr
+₹34.67Cr
+₹34.67Cr
+₹34.72Cr
+₹34.70Cr
+₹34.69Cr
+₹34.68Cr
+₹34.71Cr
+₹34.73Cr
+₹34.71Cr
+₹34.69Cr
+₹34.72Cr
+₹34.71Cr
+₹34.73Cr
+₹34.73Cr
+₹34.76Cr
+₹34.70Cr
+₹34.71Cr
+₹34.76Cr
+₹34.76Cr
+₹34.74Cr
+₹34.70Cr
+₹34.68Cr
+₹34.70Cr
+₹34.71Cr
+₹34.74Cr
+₹25.02Cr
+₹24.99Cr
+₹24.99Cr
+₹24.97Cr
+₹24.93Cr
+₹24.93Cr
+₹24.97Cr
+₹24.95Cr
+₹24.94Cr
+₹24.94Cr
+₹24.96Cr
+₹24.97Cr
+₹24.96Cr
+₹24.94Cr
+₹24.97Cr
+₹24.96Cr
+₹24.98Cr
+₹24.97Cr
+₹24.99Cr
+₹24.95Cr
+₹24.96Cr
+₹24.99Cr
+₹24.99Cr
+₹24.98Cr
+₹24.95Cr
+₹24.94Cr
+₹24.95Cr
+₹24.96Cr
+₹24.98Cr
+₹24.98Cr
+₹24.95Cr
+₹24.95Cr
+₹24.93Cr
+₹24.89Cr
+₹24.89Cr
+₹24.92Cr
+₹24.91Cr
+₹24.90Cr
+₹24.90Cr
+₹24.92Cr
+₹24.93Cr
+₹24.91Cr
+₹24.90Cr
+₹24.92Cr
+₹24.92Cr
+₹24.93Cr
+₹24.93Cr
+₹24.95Cr
+₹24.91Cr
+₹24.92Cr
+₹24.95Cr
+₹24.95Cr
+₹24.94Cr
+₹24.91Cr
+₹24.90Cr
+₹24.91Cr
+₹24.92Cr
+₹24.94Cr
+₹24.94Cr
+₹24.91Cr
+₹24.91Cr
+₹24.89Cr
+₹24.85Cr
+₹24.85Cr
+₹24.88Cr
+₹24.87Cr
+₹24.86Cr
+₹24.86Cr
+₹24.88Cr
+₹24.89Cr
+₹24.87Cr
+₹24.86Cr
+₹24.88Cr
+₹24.88Cr
+₹24.89Cr
+₹24.89Cr
+₹24.91Cr
+₹24.87Cr
+₹24.88Cr
+₹24.91Cr
+₹24.91Cr
+₹24.90Cr
+₹24.87Cr
+₹24.86Cr
+₹24.87Cr
+₹24.88Cr
+₹24.90Cr
+Jan 2009
+Mar 2009
+May 2009
+Jul 2009
+Sep 2009
+Nov 2009
+Capesize / Kolkata/Haldia
+Capesize / Paradip
+Capesize / Visakhapatnam
+Panamax / Kolkata/Haldia
+Panamax / Paradip
+Panamax / Visakhapatnam
+Simulated Freight Futures
+
+Stochastic freight trajectories with 10–90% simulation envelope across 1,000 futures
+
+Sep 32026
+Sep 6
+Sep 9
+Sep 12
+Sep 15
+Sep 18
+Sep 21
+Sep 24
+Sep 27
+Sep 30
+3150
+3200
+3250
+3300
+3350
+3400
+10–90% Envelope
+Median Forecast Path (₹/t)
+What Would Change This Decision?
+
+Quantitative counterfactual tipping points indicating when recommendation alters (Model-derived heuristic threshold)
+
+Switch Destination Port to Paradip
+
+Current: 45.0 • Tipping Point: 64.3
+
+Reroute cargo to Paradip to avoid demurrage surge
+
+Advance Charter Date to Immediate
+
+Current: +1.2% • Tipping Point: +4.9%
+
+Fix charter immediately before freight rate increase
+
+Switch Vessel Class to Capesize
+
+Current: 75,000 t • Tipping Point: 110,000 t
+
+Transition to Capesize vessel for scale economy
+
+Delay Charter Date by 5 Days
+
+Current: +1.2% • Tipping Point: -6.2%
+
+Wait for market softening to capture lower freight rate
+
+Prototype Disclaimer: International freight benchmarks may originate in USD, while FreightIQ presents decision-support costs in INR for Indian procurement users. Prototype demonstration using synthetic data. Not live maritime market data.

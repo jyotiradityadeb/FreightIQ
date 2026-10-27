@@ -1,0 +1,162 @@
+keyboard_double_arrow_left
+
+Home
+
+Control Tower
+
+Decision Twin
+
+Operations Overview
+
+Market Overview
+
+Forecasting
+
+Charter Optimizer
+
+Scenario Lab
+
+Backtesting
+
+Data Integration
+
+Data Explorer
+
+🌙 Switch to Dark Mode
+
+SYSTEM STATUS
+Active Theme
+Light Mode
+Data Mode
+DEMO
+Forecast Engine
+Auto Model Selection
+Optimizer
+Active
+Filter Date Range
+
+Date Window
+
+Press the down arrow key to interact with the calendar and select a date. Press the escape button to close the calendar.
+
+Selected date range is from 2026/06/01 to 2026/08/31.
+
+Deploy
+FreightIQ
+
+Overview
+
+Decision Twin
+
+Operations
+
+Markets
+
+Forecasts
+
+Chartering
+
+Scenarios
+
+Backtesting
+
+Data
+
+Explorer
+
+Market Intelligence
+
+Financial market indicators, commodity price signals, and port congestion metrics.
+
+Active Route Snapshot — Hay Point → Paradip
+
+Route-specific demo synthetic market state for active procurement workspace
+
+ROUTE SPOT RATE
+
+₹1,153 / t
+
+USD $13.73/t spot
+
+14-DAY ROUTE TREND
+
+-6.9%
+
+Route freight momentum
+
+DESTINATION CONGESTION
+
+30 / 100
+
+Waiting: ~17 hours
+
+ROUTE VESSEL SUPPLY
+
+24 Vessels
+
+Available in region
+
+BDI / FREIGHT
+
+1,556 BDI
+
+₹2,901/t
+
+COKING COAL
+
+₹20,063 / t
+
+Premium Hard Coking
+
+IRON ORE
+
+₹10,235 / t
+
+62% Fe CFR China
+
+PARADIP CONGESTION
+
+78 / 100
+
+52h avg wait
+
+AVAILABLE VESSELS
+
+28 Vessels
+
+Open East Coast AU
+
+Freight Market Benchmark & Commodity Signals
+Jan 2024
+Jul 2024
+Jan 2025
+Jul 2025
+Jan 2026
+Jul 2026
+2000
+2200
+2400
+2600
+2800
+3000
+3200
+Freight Rate (₹/t)
+14-Day Moving Average
+undefined
+Market Signals
+
+Key driver metrics and status indicators
+
+Market Events & Operational News
+
+Recent market developments impacting East Coast freight
+
+17 Sep 2026
+Paradip Coal Berth maintenance scheduled for 22-24 Sep; queue expected to rise to 48h.
+15 Sep 2026
+Queensland rail haulage bottlenecks resolved; vessel loading rates back to 4,200 t/h.
+12 Sep 2026
+Singapore VLSFO bunker prices drop ₹450/t following lower crude oil futures.
+08 Sep 2026
+Visakhapatnam inner harbor dredging complete; draft constraint relaxed to 16.5m.
+Prototype Disclaimer: International freight benchmarks may originate in USD, while FreightIQ presents decision-support costs in INR for Indian procurement users. Prototype demonstration using synthetic data. Not live maritime market data.

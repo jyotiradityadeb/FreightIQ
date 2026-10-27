@@ -1,0 +1,2763 @@
+{
+  "screenshot_count": 306,
+  "all_images_decoded": true,
+  "source_files_changed": [],
+  "source_head": "0e1d2e87f6fa43c3c47e34d651323e9fd013860d",
+  "current_head": "0e1d2e87f6fa43c3c47e34d651323e9fd013860d",
+  "screenshots": [
+    {
+      "file": "screenshots/desktop-1920/01-overview--default--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "b8030e9119ea429a5fba10b8a0a56f8062e0f0a6db8b65911b8d79dc0340dbf3",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/01-overview--default--full.png",
+      "pixels": [
+        1920,
+        2028
+      ],
+      "sha256": "ef32fe7781e22e11c2a07b93c12e526c6b87e30ae4fe43f70a5e4940c87c07be",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/01-overview--default--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "e7f531bd2b6eae53235a0599cfab2ffb46e0e8a41677ec0430f6af837067a619",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/01-overview--default--full.png",
+      "pixels": [
+        1440,
+        2124
+      ],
+      "sha256": "15a1c0074c077e771ed7cc068b33d7e4be8ba8d2f6751ccfd9322135a1bb9dd0",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/01-overview--default--chart-01.png",
+      "pixels": [
+        934,
+        380
+      ],
+      "sha256": "c5fd955a5d3e39e7f1fefc566cdf04c50c03aa506d6e8e72b50bdb8a2c339e2d",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/01-overview--default--chart-02.png",
+      "pixels": [
+        1428,
+        381
+      ],
+      "sha256": "63f24abed6cd2ea76f71fa67cee6a2b62b891f667166001b1569c97d2630be0c",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/02-control-tower--default--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "9acca46c3884862895ef3b34837f129b847e9eb0b295a0fd1af74aaddfd10be3",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/02-control-tower--default--full.png",
+      "pixels": [
+        1920,
+        2028
+      ],
+      "sha256": "62db26b945dd5fbe4d775ab5cce19dc5410bc279b89acac0d3f30e7eb7c627b0",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/02-control-tower--default--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "fb3106a74e9615011385b6287f2861d8b02e89c7f255be00b8eb7777061b9992",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/02-control-tower--default--full.png",
+      "pixels": [
+        1440,
+        2124
+      ],
+      "sha256": "05a0988abac46c61d25409323116b9887dae8c80cc4cb5759e72fde026545042",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/02-control-tower--default--chart-01.png",
+      "pixels": [
+        934,
+        380
+      ],
+      "sha256": "c5fd955a5d3e39e7f1fefc566cdf04c50c03aa506d6e8e72b50bdb8a2c339e2d",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/02-control-tower--default--chart-02.png",
+      "pixels": [
+        1428,
+        381
+      ],
+      "sha256": "63f24abed6cd2ea76f71fa67cee6a2b62b891f667166001b1569c97d2630be0c",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/03-decision-twin--default--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "7afdc3ad5560ec0438e5610a996bf93acd1cc36f1bdb5743f8ec1fbec5032573",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/03-decision-twin--default--full.png",
+      "pixels": [
+        1920,
+        2138
+      ],
+      "sha256": "fa92838cedcc082cd6ca00f30148f38a3139637de5a3337d868ea6928de090cc",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/03-decision-twin--default--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "4c5dcd78dd16d2b6ccd9fba56d47f337ea85b07fa30210bfd095cd73e54bcbb0",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/03-decision-twin--default--full.png",
+      "pixels": [
+        1440,
+        2257
+      ],
+      "sha256": "2f66a82e9247de1b5f3eb0f721b9b290b2e3d20806f4ae8c97fed36476a6faaf",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/03-decision-twin--default--chart-01.png",
+      "pixels": [
+        1428,
+        321
+      ],
+      "sha256": "555d5b10e41a2c6478f4a314280f5eb6411a6801c4d3866ed01b1ff4ef803b34",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/03-decision-twin--default--chart-02.png",
+      "pixels": [
+        1428,
+        321
+      ],
+      "sha256": "104904c16304649f78e49377c986f35d2d99b1258ae5275e889954e761d761e5",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/04-operations--default--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "01ffe2d18d98fdc17917a9f6cfbcec1bcfe6637d5544838886f7cd1db47c68fb",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/04-operations--default--full.png",
+      "pixels": [
+        1920,
+        1717
+      ],
+      "sha256": "0fbed055248115b3fe05d34c48a933a60c64a292f29987288420738f26f71eaa",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/04-operations--default--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "aa9a3cb6ad311674611241e5e40460e55cc24ad2855a0ff3248987ddff47e7e1",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/04-operations--default--full.png",
+      "pixels": [
+        1440,
+        2005
+      ],
+      "sha256": "d8d367ad4d51c346be4505589791bf26531c6e848f7afaf24c499dafbc1c5f1f",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/04-operations--default--chart-01.png",
+      "pixels": [
+        941,
+        381
+      ],
+      "sha256": "f4affa5a0f5b135ee819cb00afe0a35c07ba9f3661c1885df217a90fc46522f4",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/05-market-intelligence--default--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "3d20b2ec482cde7ec100c92d10d87d51f65a384cda9bf8d06ace06ee5f6111a8",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/05-market-intelligence--default--full.png",
+      "pixels": [
+        1920,
+        1835
+      ],
+      "sha256": "5af3c1c3b82e60238fe57058dcb2802f88b929f2ef0c431c25e9b8cdc2b972e6",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/05-market-intelligence--default--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "7f5afbded1b4d4bef464341a86a2799932e0b1ed15fbe9aae9c01e8e0b9e9931",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/05-market-intelligence--default--full.png",
+      "pixels": [
+        1440,
+        1971
+      ],
+      "sha256": "6e1c854a33576919a296a8977d6b6017934fe8ddbfeae2e3fe01ed47b532bab0",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/05-market-intelligence--default--chart-01.png",
+      "pixels": [
+        1428,
+        381
+      ],
+      "sha256": "4052ff6647446b3dcfb37515c0d3e00cdff24846044454b62f3fc74f10603c2c",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/05-market-intelligence--default--table-01.png",
+      "pixels": [
+        690,
+        221
+      ],
+      "sha256": "6fbbf646f4f914ad35e9748d4a72abfb9dc5086b60aff06fdccb98283b42345f",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--default--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "f99da680d2bd94fb3aef5b10db3a04d20c7b60d7309b2209674106de16569ea3",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--default--full.png",
+      "pixels": [
+        1920,
+        2569
+      ],
+      "sha256": "065a5e808609391baffad1ed2ca97164a1400422f0020f56a43d7f634ed77bc6",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/06-forecasting--default--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "17ea200fe86956294ae164893b5a1c307217223b6ee63bd23ec71a303f4b9a95",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/06-forecasting--default--full.png",
+      "pixels": [
+        1440,
+        2729
+      ],
+      "sha256": "44cfabf10f6e04e0b359cc08ecb66b4934940f8d7c30580aa4b7abdc8fc1e112",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--default--chart-01.png",
+      "pixels": [
+        1428,
+        381
+      ],
+      "sha256": "13deb5c844b86e4bcdd64f9feea9ee5abbafa81ab71dbc58c6ef8b9c79f30849",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--default--chart-03.png",
+      "pixels": [
+        1428,
+        381
+      ],
+      "sha256": "09143f5d1451a15d5c149ac15ff4fb7685736035a460db09520ae02ee3f86735",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--default--table-01.png",
+      "pixels": [
+        690,
+        115
+      ],
+      "sha256": "659a88caab2da6081ab94c23e15f8fca49921bcc6b6c91139c6e4b01107becaf",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--default--table-02.png",
+      "pixels": [
+        690,
+        186
+      ],
+      "sha256": "a007113dd9b59faf2f2da8d426a82f80c4f1abac8e0f66fc72756e0d1d663990",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--expanded-keyboard-arrow-right-compare-route-freight-trajectories-optional--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "359660417c56d7b35055cc6de36bce2cf48c63d2d628049280be419e654dd05e",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--expanded-keyboard-arrow-right-compare-route-freight-trajectories-optional--full.png",
+      "pixels": [
+        1920,
+        3044
+      ],
+      "sha256": "29faedaf55a759c6336c7e5ff108323e55d9f9e436303f703d02fbca58d36634",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--expanded-keyboard-arrow-right-compare-route-freight-trajectories-optional--chart-01.png",
+      "pixels": [
+        1428,
+        381
+      ],
+      "sha256": "13deb5c844b86e4bcdd64f9feea9ee5abbafa81ab71dbc58c6ef8b9c79f30849",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--expanded-keyboard-arrow-right-compare-route-freight-trajectories-optional--chart-02.png",
+      "pixels": [
+        1394,
+        321
+      ],
+      "sha256": "60c52c69fdc5af3f51f4843bd0036a5a8df40ecd82782d992cff3ed6437db5ba",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--expanded-keyboard-arrow-right-compare-route-freight-trajectories-optional--chart-03.png",
+      "pixels": [
+        1428,
+        381
+      ],
+      "sha256": "50654b3cee17a82b922b69d2b33c95c26629dde185bd160b8c1ee24b7205d2dc",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--expanded-keyboard-arrow-right-compare-route-freight-trajectories-optional--table-01.png",
+      "pixels": [
+        690,
+        116
+      ],
+      "sha256": "d5a26ef1cb474722504e42284902640c89b9531b3c6d690a0eb50290fa6658ea",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--expanded-keyboard-arrow-right-compare-route-freight-trajectories-optional--table-02.png",
+      "pixels": [
+        690,
+        185
+      ],
+      "sha256": "73dbbc1b173b5686c183c3a7be8f72eb2eb50b4bc4d3f0441b3c08cf2e9e6307",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--default--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "faa44d70e0206a4ae6ae1fae2636f3bee0d78810934393d45d675d240e3430b6",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--default--full.png",
+      "pixels": [
+        1920,
+        3503
+      ],
+      "sha256": "62131688600e5600a5cf99905fa4b7ee5544598a3aeae66454ec0fa0d50ccf65",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/07-charter-optimizer--default--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "1a5fb8f0664ae837a7cf35053d91966b781b4987f5a5a3f45162573a377fcb55",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/07-charter-optimizer--default--full.png",
+      "pixels": [
+        1440,
+        3797
+      ],
+      "sha256": "bb503cfcb5cc262593d836f102a310df1152ace9116d45ef87d0570d6847bbfd",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--default--table-01.png",
+      "pixels": [
+        1428,
+        318
+      ],
+      "sha256": "d8d3fd6876d94782a7a43e91cbbba3fd14acb115a09ba421a815e9827e0e7621",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--default--table-02.png",
+      "pixels": [
+        656,
+        151
+      ],
+      "sha256": "a45b7bfa94ffbaa842ea5461c2d1f7ea6ea138e902ab1b915cae44f22e6d810e",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--default--table-03.png",
+      "pixels": [
+        1428,
+        248
+      ],
+      "sha256": "a82addf2b8c4733f0952c1c03001872dd18fe442e5110176d9a187d446c8d92a",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--default--table-04.png",
+      "pixels": [
+        706,
+        185
+      ],
+      "sha256": "e1f01b824a0257707f6739c06418b44226d4db42c35cc110dcb11a467577faa0",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--default--table-05.png",
+      "pixels": [
+        1428,
+        178
+      ],
+      "sha256": "63ca0b3747b9b679846da261a653dd66ded68392012f1ccdfcbb293692870c2e",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--default--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "11fdbe9a6edaaa5838bdee79a1e9bcf330fa3e38ce6b8ec22050a3bc58ce8ba9",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--default--full.png",
+      "pixels": [
+        1920,
+        1740
+      ],
+      "sha256": "22ae630bbf4da0283522b77c63581eaf94e7440f95635fa0d422aead0cd35ed6",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/08-scenario-lab--default--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "d22ef0179c124f40b723645f31c4f7accba9792f30277504548e56bfa22e9968",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/08-scenario-lab--default--full.png",
+      "pixels": [
+        1440,
+        1866
+      ],
+      "sha256": "4ddd7b6bd084f31a3c4d91dba43a9846bee7f60b70aebd83b21cb91ed89d6fbb",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/08-scenario-lab--default--table-01.png",
+      "pixels": [
+        1428,
+        388
+      ],
+      "sha256": "e4e0b36db0e69c4af3004131341e58aa6eea5adb421e2069e3a108d7b3c6c092",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/09-backtesting--default--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "c29168e47d059677aaddde78f0a2f84f0d75ae7f4f66d91525e8d3f30a4676da",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/09-backtesting--default--full.png",
+      "pixels": [
+        1920,
+        2236
+      ],
+      "sha256": "dd56378e1adce1cfa93aeee78d49b7ef56e27a3f389b9957838c47cd9fe768b9",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/09-backtesting--default--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "df7dc7a152f4f4ab6d93a74dfebe789607d64289d66835bbb891a085a1255762",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/09-backtesting--default--full.png",
+      "pixels": [
+        1440,
+        2355
+      ],
+      "sha256": "a3042d6a6c6f359ba7854fadb1d7421dcf28d99665d8d0756fa32e39070c8eeb",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/09-backtesting--default--chart-01.png",
+      "pixels": [
+        690,
+        381
+      ],
+      "sha256": "2286f3f728b95743fd4da542bbfe056692f620247fd906520caa3c90d8814738",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/09-backtesting--default--chart-02.png",
+      "pixels": [
+        690,
+        381
+      ],
+      "sha256": "daed7d4eb24e67fa68bee257bc9fbe38eb810c89c97664d8cf61b90a2ff66399",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/09-backtesting--default--table-01.png",
+      "pixels": [
+        1428,
+        401
+      ],
+      "sha256": "aa4a42279b3c6803559055d2e68db0ddd2ce586f1c122a9af8982090dd147c38",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--default--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "fa07796cd218ddc7b3cd3f356d1bcb1e5b6f9b1a38c4b3cf4be5ef398b26a20a",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--default--full.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "fa07796cd218ddc7b3cd3f356d1bcb1e5b6f9b1a38c4b3cf4be5ef398b26a20a",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-connections--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "fa07796cd218ddc7b3cd3f356d1bcb1e5b6f9b1a38c4b3cf4be5ef398b26a20a",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-connections--full.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "fa07796cd218ddc7b3cd3f356d1bcb1e5b6f9b1a38c4b3cf4be5ef398b26a20a",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-data-quality--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "48d610ad71f0f3738baba1373a7cfde9949f271e80755bebf6e23a30d6c1a467",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-data-quality--full.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "48d610ad71f0f3738baba1373a7cfde9949f271e80755bebf6e23a30d6c1a467",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-overrides--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "edcded9bb18a89168d83c05fb56d6220ec17b85f011d13c6aa05db4f3a7002b0",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-overrides--full.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "edcded9bb18a89168d83c05fb56d6220ec17b85f011d13c6aa05db4f3a7002b0",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-audit-trail--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "ba2adc3c46d2ee4a089ad6d6ae1f7f75e21095ec1c3bc254df9b9efcbf2bc02b",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-audit-trail--full.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "ba2adc3c46d2ee4a089ad6d6ae1f7f75e21095ec1c3bc254df9b9efcbf2bc02b",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-model-data-limitations--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "19d6accea9c954685891a6e95b1f2418632e978f044b388e3419e57c1f6a9cb2",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-model-data-limitations--full.png",
+      "pixels": [
+        1920,
+        1105
+      ],
+      "sha256": "b63ed9c84300eefc8ddae1a43c60325441d5dd4a2427b632be4cb6bc73b81980",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-decision-parameters--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "2102665285ad3e36d2da1113fa65bca6399b84f932b88c1dee344d9bc16e43d2",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-decision-parameters--full.png",
+      "pixels": [
+        1920,
+        1207
+      ],
+      "sha256": "697a2379456505494197cfe520bc3627369e71339197f6d097ab20cf720003b2",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-model-cards--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "284b9c9fc09f97577ba08032126f03ae7ffa2ded6dec7edd6420a3c1815fd376",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-model-cards--full.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "284b9c9fc09f97577ba08032126f03ae7ffa2ded6dec7edd6420a3c1815fd376",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-model-status--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "c2a7bf0f5de71ac17300994269704d5d7d779e471def9db8ad3c4aff6714facb",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-model-status--full.png",
+      "pixels": [
+        1920,
+        1415
+      ],
+      "sha256": "959449363a6f783f916bd0ef9990d832161a9ede0d58b2f75afb6f5a44b33b7e",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--default--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "ba8e5ef7a134e11dee14a83f217a2c2c3b08c8df08a2bd2d2bdce72455b1daf0",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--default--full.png",
+      "pixels": [
+        1440,
+        1034
+      ],
+      "sha256": "22c47cb05a60dfa946caa6ee2f95c46066725e821c4a0c3c8bc99ef1a0f5e172",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-connections--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "ba8e5ef7a134e11dee14a83f217a2c2c3b08c8df08a2bd2d2bdce72455b1daf0",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-connections--full.png",
+      "pixels": [
+        1440,
+        1034
+      ],
+      "sha256": "22c47cb05a60dfa946caa6ee2f95c46066725e821c4a0c3c8bc99ef1a0f5e172",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-data-quality--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "a2d1446b8894ae7cc814e2988e9bb228f588fb3aab85cd78ccf9df1dfcf7d991",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-data-quality--full.png",
+      "pixels": [
+        1440,
+        1034
+      ],
+      "sha256": "63a42536cc7abc76caa6569423d5736f4b517a58645bc08a76d3298eb6e201d4",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-overrides--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "950e3d934fa0f453c149531a733b9af066a412b80d292805a6ae8199ce11890f",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-overrides--full.png",
+      "pixels": [
+        1440,
+        940
+      ],
+      "sha256": "968b2a90e469b08d1b7cdeb0d95c2bc42d8cf411df0055f57004e78c0e5cac29",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-audit-trail--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "3b213d64d96e5d423b882002ffc14fcd23b5a55267570a67a7944609d6cf9583",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-audit-trail--full.png",
+      "pixels": [
+        1440,
+        999
+      ],
+      "sha256": "e25532ef3cb4224b87f7205c0637edaf9ae3510423449929426373fe3f45d881",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-model-data-limitations--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "f0b712a84b5c361ec63ab1cb6094844c1365e88f70c20092405b9c60c3e5a710",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-model-data-limitations--full.png",
+      "pixels": [
+        1440,
+        1227
+      ],
+      "sha256": "4754a97896c5b2994fceb542608096e7618f7d11829e2eda02c7569b13852c72",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-decision-parameters--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "0efc352e308b99416defdd7429a2b26f87ed9eb3be3ca62dc558c8800ea9e403",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-decision-parameters--full.png",
+      "pixels": [
+        1440,
+        1278
+      ],
+      "sha256": "8108752c08a21298670e1ace0634847d0500452edca40c2f576dcf26fd51451e",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-model-cards--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "1596f880f064e90d5ac6a634cb7ac50a6cff5ddbc358e4dfd9d9eae67e22cbfd",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-model-cards--full.png",
+      "pixels": [
+        1440,
+        990
+      ],
+      "sha256": "253cc8e69024d5fedc1f71d0adac79291213578fa8ded3c48f700999b2fabac6",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-model-status--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "4f87dfa3cbd59096565f794efed93d81d94228e4c2cc23faf26368ea53992331",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-model-status--full.png",
+      "pixels": [
+        1440,
+        1485
+      ],
+      "sha256": "19a0bb1cafd587682f843e59f85743ec631ac6a91900c8737b3be929c5546b75",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/10-data-integrations--tab-connections--table-01.png",
+      "pixels": [
+        1428,
+        213
+      ],
+      "sha256": "661838e9d8330436b999d38cf376f93807232f48b293d30e8d5b84fa7880a536",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/10-data-integrations--tab-data-quality--table-02.png",
+      "pixels": [
+        1428,
+        213
+      ],
+      "sha256": "836dc1ef556a68e35331363c184835eea6b974170a3a0334ce6c067f3c9e4904",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/10-data-integrations--tab-audit-trail--table-03.png",
+      "pixels": [
+        1428,
+        178
+      ],
+      "sha256": "f4e8aed5caaa6f4cb1b137f54427624ce3bb9c2818042af5ae0da6d03b9a0a63",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/10-data-integrations--tab-decision-parameters--table-04.png",
+      "pixels": [
+        1428,
+        401
+      ],
+      "sha256": "3cda2bbd4b9bce32e2b87dd8575e543d4c52853b4d5739c3919c306cd9c2f596",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--expanded-keyboard-arrow-right-classification-legend--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "16232f76387f9b9dfaaf931b5fe3c4b90b054e6739534e5c1c93e63985ccf866",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--expanded-keyboard-arrow-right-classification-legend--full.png",
+      "pixels": [
+        1920,
+        1432
+      ],
+      "sha256": "21f838b3a9dd134ccdaffcba42a0cfd56c26ec2abbd2c70a85fc297a9ee21a60",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--expanded-keyboard-arrow-right-forecasting-engine--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "6686dcd68606c803e327a60892e3127794922f56cc4607f9b4faf491da578f18",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--expanded-keyboard-arrow-right-forecasting-engine--full.png",
+      "pixels": [
+        1920,
+        1322
+      ],
+      "sha256": "0decfa7a59948505979bf2a19369bbd63ac8dcb9c3e6149739cfcd56c14e4c82",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--expanded-keyboard-arrow-right-charter-optimizer--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "fd268b7bfbfc3f4148d92cc97c7ac5fdb80cb31b19a80cf283a335f48113bc53",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--expanded-keyboard-arrow-right-charter-optimizer--full.png",
+      "pixels": [
+        1920,
+        1450
+      ],
+      "sha256": "9db428bd1a8ccb6e1394defd1fc6c7b7d17fc122bdfd894a123db59e3df10c85",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--expanded-keyboard-arrow-right-decision-twin-monte-carlo--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "9ed508aa444fbd3f5e4726ff5ca33645a7a496cb8f2c1c8472a4e09fc4a99658",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--expanded-keyboard-arrow-right-decision-twin-monte-carlo--full.png",
+      "pixels": [
+        1920,
+        1373
+      ],
+      "sha256": "b7b2269c4386c58024a9ccc23343d72fcb7aed42a291200b70c6f8c29f57cf9e",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--expanded-keyboard-arrow-right-scenario-engine--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "89eb64b80345513db154398e53d0c62137785cd7895bcab7c8da4e9da5d633bd",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--expanded-keyboard-arrow-right-scenario-engine--full.png",
+      "pixels": [
+        1920,
+        1322
+      ],
+      "sha256": "a3295d7c1c3efc5db623d7fcdbd618d5acc994034415a99de506e05cdf8a9cca",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/10-data-integrations--tab-model-status--table-05.png",
+      "pixels": [
+        1428,
+        213
+      ],
+      "sha256": "1c828cb0902c018d16dfe045ad8c097b5fe263fa0be1e60d7e8ef41a3ba2f7fa",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--default--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "1d874bafbd8af3e2d160196fad22bcd618892ab1320ee39d6ea2120ddda3570a",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--default--full.png",
+      "pixels": [
+        1920,
+        1928
+      ],
+      "sha256": "ac69d76afb710455694e105e2fd70d05dfa69fa80ed63e40c62426a5bd1ba3db",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--tab-route-freight-series--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "1d874bafbd8af3e2d160196fad22bcd618892ab1320ee39d6ea2120ddda3570a",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--tab-route-freight-series--full.png",
+      "pixels": [
+        1920,
+        1928
+      ],
+      "sha256": "ac69d76afb710455694e105e2fd70d05dfa69fa80ed63e40c62426a5bd1ba3db",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--tab-dataset--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "11f320467c8008ca90727ad74cd66d81af20ae4574fb1768cc6f7ab4894d4441",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--tab-dataset--full.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "11f320467c8008ca90727ad74cd66d81af20ae4574fb1768cc6f7ab4894d4441",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--tab-correlation-matrix--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "2ea169314acb6b9ac5fe3b33e164e49a54c2bc3447fe709ea37e1ebad2f6197d",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--tab-correlation-matrix--full.png",
+      "pixels": [
+        1920,
+        1328
+      ],
+      "sha256": "38fe3709e06442089a2672c7e5ad50606669034be32fe22838d7962890440521",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--tab-quality-audit--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "711fc7161c61680ccd67eb60cc6b352fa1b050f080635c3499f698da6a5dc8d4",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--tab-quality-audit--full.png",
+      "pixels": [
+        1920,
+        1286
+      ],
+      "sha256": "12be96471349dfaf87eda956b5f728083c3183bd3abbdde826f653cf987c055d",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--tab-validate-preview-dataset--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "ceec49c08ab17aedf428120dbc6575216de502ebb7cf2adac11bb8eeb660a1f6",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--tab-validate-preview-dataset--full.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "ceec49c08ab17aedf428120dbc6575216de502ebb7cf2adac11bb8eeb660a1f6",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/11-data-explorer--default--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "f906cb70475a88e682fa3ff1677fef654a38c1a4709bc8c12ecec4dd036e3656",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/11-data-explorer--default--full.png",
+      "pixels": [
+        1440,
+        1998
+      ],
+      "sha256": "deae32e5912a4d6975c944617043b0268ab5644ce67757c11e4d919b4a7fb321",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/11-data-explorer--tab-route-freight-series--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "f906cb70475a88e682fa3ff1677fef654a38c1a4709bc8c12ecec4dd036e3656",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/11-data-explorer--tab-route-freight-series--full.png",
+      "pixels": [
+        1440,
+        1998
+      ],
+      "sha256": "deae32e5912a4d6975c944617043b0268ab5644ce67757c11e4d919b4a7fb321",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/11-data-explorer--tab-dataset--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "045bf362d0919a41e42b9e7c2a1e94ee535fdd7a8df37d95f62fedda9fac0b1a",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/11-data-explorer--tab-dataset--full.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "045bf362d0919a41e42b9e7c2a1e94ee535fdd7a8df37d95f62fedda9fac0b1a",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/11-data-explorer--tab-correlation-matrix--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "59d96728e40d92a97ab6520612114e84b6d23c56c7b6e0ae091c92e8efa824f7",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/11-data-explorer--tab-correlation-matrix--full.png",
+      "pixels": [
+        1440,
+        1399
+      ],
+      "sha256": "ee71887710c8d98962cea71840889899ddc0c1031bb0ba27cb80b3a65597eb36",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/11-data-explorer--tab-quality-audit--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "22f4141f1e6714b389277bd2e03ecfd4999dd12f4ec88683011f255647f660b4",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/11-data-explorer--tab-quality-audit--full.png",
+      "pixels": [
+        1440,
+        1356
+      ],
+      "sha256": "60ade307535d50178299d765b67a5cdbd4a3ab65dad33faff6d26c3e91802272",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/11-data-explorer--tab-validate-preview-dataset--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "aecf2588fe5693c76df770d96fd6c1b2f3fe19a4501faeaa3fb7dad7c1992588",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/11-data-explorer--tab-validate-preview-dataset--full.png",
+      "pixels": [
+        1440,
+        1083
+      ],
+      "sha256": "0ba8830aaa8659487ae823c3680618e245b91c5eb8e45af09763673bbacdba5a",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/11-data-explorer--tab-route-freight-series--table-01.png",
+      "pixels": [
+        1428,
+        401
+      ],
+      "sha256": "f6a4144263c5a478ab133539978aaec44f250c1014c913c6c4d35985af6cdfed",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/11-data-explorer--tab-route-freight-series--table-02.png",
+      "pixels": [
+        1428,
+        401
+      ],
+      "sha256": "0308d6b0527aff6c78d8f1adea85e809ad98d0d928941be194c0827ef4cfc19e",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/11-data-explorer--tab-correlation-matrix--chart-01.png",
+      "pixels": [
+        1428,
+        451
+      ],
+      "sha256": "5389c34560a81dab5c55696cfd601fb96a4ab084ab6f5b2ff32e07d44885620d",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/11-data-explorer--tab-quality-audit--table-03.png",
+      "pixels": [
+        1428,
+        401
+      ],
+      "sha256": "eb1320ae5f65e4b521e179b10292dcdeb0e19e7f8598f7d34c55c2be532ccf14",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--demo-laycan-2026-09-01-to-15--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "f259c7542cd29141951071d89cf4343a76f0e1aabf7cd8363677bf40aae3eeca",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--demo-laycan-2026-09-01-to-15--full.png",
+      "pixels": [
+        1920,
+        3503
+      ],
+      "sha256": "4cada7c4106d965c97c651fbb9c1bb1749ae22f0fabedea59562cea0c5c70b44",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/07-charter-optimizer--demo-laycan-2026-09-01-to-15--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "d85d1bb81d029663260d66faae11f366d7e9fe741e1e4618b24e479fc84c9c4a",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/07-charter-optimizer--demo-laycan-2026-09-01-to-15--full.png",
+      "pixels": [
+        1440,
+        3797
+      ],
+      "sha256": "abb4ca7b96ec43f5229e1230d09961d05c61da9c18caea2d757cc9f627acd2e3",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--demo-laycan-2026-09-01-to-15--table-01.png",
+      "pixels": [
+        1428,
+        318
+      ],
+      "sha256": "d8d3fd6876d94782a7a43e91cbbba3fd14acb115a09ba421a815e9827e0e7621",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--demo-laycan-2026-09-01-to-15--table-02.png",
+      "pixels": [
+        656,
+        151
+      ],
+      "sha256": "a45b7bfa94ffbaa842ea5461c2d1f7ea6ea138e902ab1b915cae44f22e6d810e",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--demo-laycan-2026-09-01-to-15--table-03.png",
+      "pixels": [
+        1428,
+        248
+      ],
+      "sha256": "a82addf2b8c4733f0952c1c03001872dd18fe442e5110176d9a187d446c8d92a",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--demo-laycan-2026-09-01-to-15--table-04.png",
+      "pixels": [
+        706,
+        185
+      ],
+      "sha256": "e1f01b824a0257707f6739c06418b44226d4db42c35cc110dcb11a467577faa0",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--demo-laycan-2026-09-01-to-15--table-05.png",
+      "pixels": [
+        1428,
+        178
+      ],
+      "sha256": "63ca0b3747b9b679846da261a653dd66ded68392012f1ccdfcbb293692870c2e",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-07-total-2-637-225-0-vs-selected--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "f259c7542cd29141951071d89cf4343a76f0e1aabf7cd8363677bf40aae3eeca",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-07-total-2-637-225-0-vs-selected--full.png",
+      "pixels": [
+        1920,
+        3564
+      ],
+      "sha256": "059102994bf2868b5fe07f17522b6e624e3b75aca64e8dc6e845b2a1096e2486",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-07-total-2-637-225-0-vs-selected--table-01.png",
+      "pixels": [
+        1428,
+        318
+      ],
+      "sha256": "d8d3fd6876d94782a7a43e91cbbba3fd14acb115a09ba421a815e9827e0e7621",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-07-total-2-637-225-0-vs-selected--table-02.png",
+      "pixels": [
+        656,
+        151
+      ],
+      "sha256": "a45b7bfa94ffbaa842ea5461c2d1f7ea6ea138e902ab1b915cae44f22e6d810e",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-07-total-2-637-225-0-vs-selected--table-03.png",
+      "pixels": [
+        1428,
+        248
+      ],
+      "sha256": "a82addf2b8c4733f0952c1c03001872dd18fe442e5110176d9a187d446c8d92a",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-07-total-2-637-225-0-vs-selected--table-04.png",
+      "pixels": [
+        706,
+        185
+      ],
+      "sha256": "e1f01b824a0257707f6739c06418b44226d4db42c35cc110dcb11a467577faa0",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-07-total-2-637-225-0-vs-selected--table-05.png",
+      "pixels": [
+        1428,
+        178
+      ],
+      "sha256": "63ca0b3747b9b679846da261a653dd66ded68392012f1ccdfcbb293692870c2e",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-06-total-2-637-975-63-000-vs-selected--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "f259c7542cd29141951071d89cf4343a76f0e1aabf7cd8363677bf40aae3eeca",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-06-total-2-637-975-63-000-vs-selected--full.png",
+      "pixels": [
+        1920,
+        3564
+      ],
+      "sha256": "8e9a4d4e8e2126f76e987adaafd0049bda57bf956ca951e0d6279061797f18a7",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-06-total-2-637-975-63-000-vs-selected--table-01.png",
+      "pixels": [
+        1428,
+        318
+      ],
+      "sha256": "d8d3fd6876d94782a7a43e91cbbba3fd14acb115a09ba421a815e9827e0e7621",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-06-total-2-637-975-63-000-vs-selected--table-02.png",
+      "pixels": [
+        656,
+        151
+      ],
+      "sha256": "a45b7bfa94ffbaa842ea5461c2d1f7ea6ea138e902ab1b915cae44f22e6d810e",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-06-total-2-637-975-63-000-vs-selected--table-03.png",
+      "pixels": [
+        1428,
+        248
+      ],
+      "sha256": "a82addf2b8c4733f0952c1c03001872dd18fe442e5110176d9a187d446c8d92a",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-06-total-2-637-975-63-000-vs-selected--table-04.png",
+      "pixels": [
+        706,
+        185
+      ],
+      "sha256": "e1f01b824a0257707f6739c06418b44226d4db42c35cc110dcb11a467577faa0",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-06-total-2-637-975-63-000-vs-selected--table-05.png",
+      "pixels": [
+        1428,
+        178
+      ],
+      "sha256": "63ca0b3747b9b679846da261a653dd66ded68392012f1ccdfcbb293692870c2e",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-08-total-2-637-975-63-000-vs-selected--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "f259c7542cd29141951071d89cf4343a76f0e1aabf7cd8363677bf40aae3eeca",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-08-total-2-637-975-63-000-vs-selected--full.png",
+      "pixels": [
+        1920,
+        3564
+      ],
+      "sha256": "bc9d547457a07bcd612db15517bcabdab8991b62d7c58b8350898fbcc88486fd",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-08-total-2-637-975-63-000-vs-selected--table-01.png",
+      "pixels": [
+        1428,
+        318
+      ],
+      "sha256": "d8d3fd6876d94782a7a43e91cbbba3fd14acb115a09ba421a815e9827e0e7621",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-08-total-2-637-975-63-000-vs-selected--table-02.png",
+      "pixels": [
+        656,
+        151
+      ],
+      "sha256": "a45b7bfa94ffbaa842ea5461c2d1f7ea6ea138e902ab1b915cae44f22e6d810e",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-08-total-2-637-975-63-000-vs-selected--table-03.png",
+      "pixels": [
+        1428,
+        248
+      ],
+      "sha256": "a82addf2b8c4733f0952c1c03001872dd18fe442e5110176d9a187d446c8d92a",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-08-total-2-637-975-63-000-vs-selected--table-04.png",
+      "pixels": [
+        706,
+        185
+      ],
+      "sha256": "e1f01b824a0257707f6739c06418b44226d4db42c35cc110dcb11a467577faa0",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-08-total-2-637-975-63-000-vs-selected--table-05.png",
+      "pixels": [
+        1428,
+        178
+      ],
+      "sha256": "63ca0b3747b9b679846da261a653dd66ded68392012f1ccdfcbb293692870c2e",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--expanded-keyboard-arrow-right-detailed-perturbation-results--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "f259c7542cd29141951071d89cf4343a76f0e1aabf7cd8363677bf40aae3eeca",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--expanded-keyboard-arrow-right-detailed-perturbation-results--full.png",
+      "pixels": [
+        1920,
+        4692
+      ],
+      "sha256": "132a46de82adc36b15fca5a91d26cc4994ebab2130200bbefe7d1a9318eab72f",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-detailed-perturbation-results--table-01.png",
+      "pixels": [
+        1428,
+        318
+      ],
+      "sha256": "d8d3fd6876d94782a7a43e91cbbba3fd14acb115a09ba421a815e9827e0e7621",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-detailed-perturbation-results--table-02.png",
+      "pixels": [
+        656,
+        151
+      ],
+      "sha256": "a45b7bfa94ffbaa842ea5461c2d1f7ea6ea138e902ab1b915cae44f22e6d810e",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-detailed-perturbation-results--table-03.png",
+      "pixels": [
+        1428,
+        248
+      ],
+      "sha256": "a82addf2b8c4733f0952c1c03001872dd18fe442e5110176d9a187d446c8d92a",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-detailed-perturbation-results--table-04.png",
+      "pixels": [
+        706,
+        185
+      ],
+      "sha256": "e1f01b824a0257707f6739c06418b44226d4db42c35cc110dcb11a467577faa0",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-detailed-perturbation-results--table-05.png",
+      "pixels": [
+        1428,
+        178
+      ],
+      "sha256": "63ca0b3747b9b679846da261a653dd66ded68392012f1ccdfcbb293692870c2e",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-detailed-perturbation-results--table-06.png",
+      "pixels": [
+        1394,
+        213
+      ],
+      "sha256": "da8eaed2eaac98606870838d33f71a2b906362a82dbbf3c91e75d545fc0c785e",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-detailed-perturbation-results--table-07.png",
+      "pixels": [
+        1394,
+        213
+      ],
+      "sha256": "b90c340e0742ad9fa40694904dce5d0afbed1e535f7f542e2a6bddd69ec59261",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-detailed-perturbation-results--table-08.png",
+      "pixels": [
+        1394,
+        213
+      ],
+      "sha256": "c9d0be64882f9b5db5795b3d7bf009f193aabecca4b922acb304f451dc7704cc",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-detailed-perturbation-results--table-09.png",
+      "pixels": [
+        1394,
+        213
+      ],
+      "sha256": "f8a156f617f266c0b39767025356ea37aba8bd57ef49c2fedd6af57ec28cf3bd",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--laycan-calendar.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "3f197559bf67b435081bb12f2c6c6cf27f705850c0bba41d98146360c9189fd8",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--cargo-menu.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "1948cfe8a91a813318df5be8577b58911af7a20e10a6d312c0101b40ef2769c5",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--infeasible-250000-tonnes--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "ab3998467216d6340586b1fffe3258ecb1b591caab565f0539a1b9c5577ff0f9",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--infeasible-250000-tonnes--full.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "ab3998467216d6340586b1fffe3258ecb1b591caab565f0539a1b9c5577ff0f9",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--east-coast-disruption--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "070e49dd79744a755f47874395057dd5aab3cf974468cd76cd769796c8cdada1",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--east-coast-disruption--full.png",
+      "pixels": [
+        1920,
+        1747
+      ],
+      "sha256": "13fa1582f5870e8b27aaa787826778f85af19fc7f3215b50be61fb508ee3f883",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/08-scenario-lab--east-coast-disruption--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "a833fa7b1a3f0b8816ae33cd5578d62d9e918787187b6766e74e6107550067df",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/08-scenario-lab--east-coast-disruption--full.png",
+      "pixels": [
+        1440,
+        1968
+      ],
+      "sha256": "2ccf27534a1eb8b44a9091bc5ca44430cb92539c9bab8522a8948d84b7496e0b",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--freight-rate-spike--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "16042afbb4c9a0f785389db3275509b5e488b51496ebd9a735b8e1ebbab67bbf",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--freight-rate-spike--full.png",
+      "pixels": [
+        1920,
+        1740
+      ],
+      "sha256": "0c07b3d530a8dc1d29d2628a1b00aefb133393b8d9a80873ce69658f78a18391",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--paradip-congestion--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "8215083e32e197742cc906aff4334de24837213776fef6a5bc6b0c402e7cc324",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--paradip-congestion--full.png",
+      "pixels": [
+        1920,
+        1740
+      ],
+      "sha256": "4dbb2b9b0901923cec7d7178f9bb971671066574ea379e33e3fc83ef7049e8a2",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--vessel-shortage--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "eae6fe3bafa724f682089433e172fada7ddb8406703b31ba578d0348d6acbbe7",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--vessel-shortage--full.png",
+      "pixels": [
+        1920,
+        1740
+      ],
+      "sha256": "510ac6afa393d8ead98ab18bfb34ff2588d95ee41aa7c0aa185d8c81e880a7b3",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--severe-weather-risk--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "681d2f95a8a76c7c1c37592179ca0efa90d67ffa15f5b2f529de7cacfce3bb0d",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--severe-weather-risk--full.png",
+      "pixels": [
+        1920,
+        1740
+      ],
+      "sha256": "94afe22f6264fa9f28850dab5067bc6ae2bb5a6086887a2f345d63312b492364",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--market-relief--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "1ba6fbd12c575f863398fa330076cc43aa9c81b866a79b402ebf8a41dbeca88c",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--market-relief--full.png",
+      "pixels": [
+        1920,
+        1740
+      ],
+      "sha256": "c494ac345827682643b49af5b5757d2c0749a819b6dc8743b07851f5fe95714c",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--reset-scenario--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "11fdbe9a6edaaa5838bdee79a1e9bcf330fa3e38ce6b8ec22050a3bc58ce8ba9",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--reset-scenario--full.png",
+      "pixels": [
+        1920,
+        1740
+      ],
+      "sha256": "22ae630bbf4da0283522b77c63581eaf94e7440f95635fa0d422aead0cd35ed6",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/03-decision-twin--active-east-coast-scenario--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "f3fd9bdda23784fa48a2e9c5e7f74666cce095a6663b52bbb2adbaa09dc9eebd",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/03-decision-twin--active-east-coast-scenario--full.png",
+      "pixels": [
+        1920,
+        2210
+      ],
+      "sha256": "0a05370a6af0e80221e88dfff464a26d2017aa11459235e4561a8db2f067589c",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/03-decision-twin--active-east-coast-scenario--chart-01.png",
+      "pixels": [
+        1428,
+        321
+      ],
+      "sha256": "bca72259803e791daa18310ad264f905776204e7b68e538a0a9fc5e171d1840a",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/03-decision-twin--active-east-coast-scenario--chart-02.png",
+      "pixels": [
+        1428,
+        321
+      ],
+      "sha256": "ebb0c2d21302e9f514677ef21d6c404cf903e1aa34fe14497c2d8e134b2b8372",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--override-note-recorded--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "fc171d0bd5bd92736b7d47049b74fc72d85486ecb660afce7a34f769c18da4ae",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--override-note-recorded--full.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "fc171d0bd5bd92736b7d47049b74fc72d85486ecb660afce7a34f769c18da4ae",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--audit-after-demo-note--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "609373362726817f11538ee8c775133d733aeb49e477aa88b2dfb7833635c18f",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--audit-after-demo-note--full.png",
+      "pixels": [
+        1920,
+        1138
+      ],
+      "sha256": "e138a8c8c07bad148a654f38c144c9027d1641caf091bd33acf727f31b1cb975",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/10-data-integrations--audit-after-demo-note--table-03.png",
+      "pixels": [
+        1428,
+        388
+      ],
+      "sha256": "e0296e017f81874a1d9075f71e367fea1e007add08817a2911fc539df4c44aca",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/01-overview--dark-mode--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "5d6ea9e6b0b23a742bc1b21ef99f911dc7700a034a9ddd859424f6cdf354819d",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/01-overview--dark-mode--full.png",
+      "pixels": [
+        1920,
+        2028
+      ],
+      "sha256": "926adde3998acf4197d22a0f208b4565e6a7551917b8b8e129f6e66be36da139",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/01-overview--dark-mode--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "4dd91af4df8ab02224b69ce11b0b7823eb700285d0c658cb60a65ea764867948",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/01-overview--dark-mode--full.png",
+      "pixels": [
+        1440,
+        2124
+      ],
+      "sha256": "562da21cff6d99180d96d314f7bbd09eb242323d97cbb3fec2e8581f34335bc5",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/01-overview--dark-mode--chart-01.png",
+      "pixels": [
+        934,
+        380
+      ],
+      "sha256": "88507ac6cc1596d6883cba9bc8770be48875f0b81a8883e0bf4b7dc738a5657d",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/01-overview--dark-mode--chart-02.png",
+      "pixels": [
+        1428,
+        381
+      ],
+      "sha256": "77d3be1788eaf672383e89af542441758c433376fcee1ebfcab8f9df599ac611",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--dark-mode--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "98e7c54c7e3c732832962239e30e112688490cfe793e1714af951364356bdd61",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--dark-mode--full.png",
+      "pixels": [
+        1920,
+        2569
+      ],
+      "sha256": "add0ced0dace6e7dd20014b7ce0ef842a92cc71d7bc1ebfa2efa4f527e7013fa",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--dark-mode--chart-01.png",
+      "pixels": [
+        1428,
+        381
+      ],
+      "sha256": "a5e95356eaf6402dc8bf9f7ae1fba36c510be814a42c7add9116c074a45ad2b4",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--dark-mode--chart-03.png",
+      "pixels": [
+        1428,
+        381
+      ],
+      "sha256": "766c6d67fbe6df44a935da493a2e27865cee43fd80adb44deb34b1ab63a70cab",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--dark-mode--table-01.png",
+      "pixels": [
+        690,
+        115
+      ],
+      "sha256": "dddab65351e6cdea7d1aca2ea34d2bd52a1f42cd012b2a1b8b0cbc5076bfcb8a",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--dark-mode--table-02.png",
+      "pixels": [
+        690,
+        186
+      ],
+      "sha256": "a590ec2a69be7984d65a384868745350a20b8e7a371a693f3f75a03bd99a89cc",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--dark-mode--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "b5945cbea1667c3bc2f90d492f3dfa38423bca73af64199a68475cc68060cddf",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--dark-mode--full.png",
+      "pixels": [
+        1920,
+        1928
+      ],
+      "sha256": "6b8e64cfa0d2a5045a93ed33801003e8bc740842e02bc5535074c97dbc51ffb9",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/11-data-explorer--dark-mode--table-01.png",
+      "pixels": [
+        1428,
+        401
+      ],
+      "sha256": "f1a95c930cf0bbb660ccb2e1aa3c12e1869a31f8b48ef6d0f9b3d845c96d8eb1",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/11-data-explorer--dark-mode--table-02.png",
+      "pixels": [
+        1428,
+        401
+      ],
+      "sha256": "564080ce4eb00be32083213a8bb86eb11596a9afb3b68d80b3328a7bb0af4229",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/responsive/01-overview--responsive-768--viewport.png",
+      "pixels": [
+        768,
+        1024
+      ],
+      "sha256": "f625fcdfde016be86092e99ebd10aa30d78a0ce340dc29ca07bf57b5d6026977",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/responsive/01-overview--responsive-768--full.png",
+      "pixels": [
+        768,
+        2756
+      ],
+      "sha256": "f598594857a3220b825ab944b050ce7f2f80b8cf79642fd286af74e49e4afc7f",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/responsive/06-forecasting--responsive-768--viewport.png",
+      "pixels": [
+        768,
+        1024
+      ],
+      "sha256": "a70f6085b0c02de0a225c94df3e0d25b59833087fb5b0acb47a8c756779bf309",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/responsive/06-forecasting--responsive-768--full.png",
+      "pixels": [
+        768,
+        2959
+      ],
+      "sha256": "5de15fae3a4d11dd4445933ab68b5bc19e3f02af8485e0dd3383a68fe6b02cce",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/responsive/07-charter-optimizer--responsive-768--viewport.png",
+      "pixels": [
+        768,
+        1024
+      ],
+      "sha256": "2c89c18c691da1bde325e5e9d346eb97540d2f2298e2cc33e0e46d0edaaa6d0d",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/responsive/07-charter-optimizer--responsive-768--full.png",
+      "pixels": [
+        768,
+        4137
+      ],
+      "sha256": "e84e9d454ce7630bb9969d6c415ccab9f65a76409da1cb28aa0799d22cc5f5b6",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/responsive/10-data-integrations--responsive-768--viewport.png",
+      "pixels": [
+        768,
+        1024
+      ],
+      "sha256": "3115e032103d4274e55e505ee1f6d1b63b81abffc81bb352aa071deda0416d61",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/responsive/10-data-integrations--responsive-768--full.png",
+      "pixels": [
+        768,
+        1162
+      ],
+      "sha256": "b3b5222c1497239953f7afabf0beb5b28904d81d13daf2c33706655a493881ef",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--sarima-30-day--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "2aecec99fc4747fd2dc41207bcaf2d1d8c93738f79f6b03fb7abafa9d485fa22",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--sarima-30-day--full.png",
+      "pixels": [
+        1920,
+        2569
+      ],
+      "sha256": "3cc08cb1625a0d06f2af6d16d12830c628212a776fa649be7585eba7e37a2321",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/06-forecasting--sarima-30-day--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "d874fd4e1ecf917ec70c10676ba6c7bcce0dd831274f2e5280b6981704941777",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/06-forecasting--sarima-30-day--full.png",
+      "pixels": [
+        1440,
+        2729
+      ],
+      "sha256": "16813a9c3585bc30d97995f7c1066ec473855bf4e6c604965c705de9183a49b8",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--sarima-30-day--chart-01.png",
+      "pixels": [
+        1428,
+        381
+      ],
+      "sha256": "13deb5c844b86e4bcdd64f9feea9ee5abbafa81ab71dbc58c6ef8b9c79f30849",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--sarima-30-day--chart-03.png",
+      "pixels": [
+        1428,
+        381
+      ],
+      "sha256": "09143f5d1451a15d5c149ac15ff4fb7685736035a460db09520ae02ee3f86735",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--sarima-30-day--table-01.png",
+      "pixels": [
+        690,
+        115
+      ],
+      "sha256": "659a88caab2da6081ab94c23e15f8fca49921bcc6b6c91139c6e4b01107becaf",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--sarima-30-day--table-02.png",
+      "pixels": [
+        690,
+        186
+      ],
+      "sha256": "a007113dd9b59faf2f2da8d426a82f80c4f1abac8e0f66fc72756e0d1d663990",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--naive-baseline-30-day--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "91a49760e856bf3507db4a385a4f17cffaf43239fa0f8c70fea6078b7b32c612",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--naive-baseline-30-day--full.png",
+      "pixels": [
+        1920,
+        2569
+      ],
+      "sha256": "05f2e044b0284d68ed590472cdd5faea292a9eafa875af0f620ccf6a30f5dd15",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--filtered-brazil-paradip--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "e312a8c16261c3ce6d36fa10f5faa165b4255d26567b845d756edf3246561f9d",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--filtered-brazil-paradip--full.png",
+      "pixels": [
+        1920,
+        1928
+      ],
+      "sha256": "bdb340dfdfe53befd743c5c4fed6656d13aca712221c2df596238fc5457ab4fa",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/11-data-explorer--filtered-brazil-paradip--table-01.png",
+      "pixels": [
+        1428,
+        401
+      ],
+      "sha256": "857319c2af33911ee5a0fb3fff7d0cc30cda66cb1e2f6187c4923e90618dfd91",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/11-data-explorer--filtered-brazil-paradip--table-02.png",
+      "pixels": [
+        1428,
+        401
+      ],
+      "sha256": "0308d6b0527aff6c78d8f1adea85e809ad98d0d928941be194c0827ef4cfc19e",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--upload-valid-demo-preview--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "36fb3a3d7ca79d927b8021271ef28949881623c1a647c25afc861e8a892099e2",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--upload-valid-demo-preview--full.png",
+      "pixels": [
+        1920,
+        1495
+      ],
+      "sha256": "eaa8945e8a3c18b8d1c0473e505a323f23f3f7403886e26680861da818e2bfd4",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/11-data-explorer--upload-valid-demo-preview--table-04.png",
+      "pixels": [
+        1428,
+        388
+      ],
+      "sha256": "9a43387d5b4fe142b150b1591fb84574019098abf58e57dc8d766ea3ebd2b25b",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--upload-missing-columns-warning--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "040675b4cd56cd70afb2029078c051ecdaa74a4889ec69f15b3eda0c49c6f66e",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--upload-missing-columns-warning--full.png",
+      "pixels": [
+        1920,
+        1239
+      ],
+      "sha256": "3c4f16dff6224dac78227babe0063d729fd0947ef3f5dba2665baab152c95df0",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/11-data-explorer--upload-missing-columns-warning--table-04.png",
+      "pixels": [
+        1428,
+        108
+      ],
+      "sha256": "de22d65685485f479c9afbcb49cc00693e4cfd6c90a1814a74fb526ef7832bab",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--three-route-comparison--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "359660417c56d7b35055cc6de36bce2cf48c63d2d628049280be419e654dd05e",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--three-route-comparison--full.png",
+      "pixels": [
+        1920,
+        3044
+      ],
+      "sha256": "7dbef248d1743ff164e1b1d3c457ff748703b4c2984b7422a9e4a8976033e3a6",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/06-forecasting--three-route-comparison--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "17ea200fe86956294ae164893b5a1c307217223b6ee63bd23ec71a303f4b9a95",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/06-forecasting--three-route-comparison--full.png",
+      "pixels": [
+        1440,
+        3204
+      ],
+      "sha256": "e2b1a79617bab41ac8eeb66d8c7c7e06a5b1e0268fc193cc5062f3d708f6c823",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--three-route-comparison--chart-01.png",
+      "pixels": [
+        1428,
+        381
+      ],
+      "sha256": "13deb5c844b86e4bcdd64f9feea9ee5abbafa81ab71dbc58c6ef8b9c79f30849",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--three-route-comparison--chart-02.png",
+      "pixels": [
+        1394,
+        321
+      ],
+      "sha256": "852c9e52095f56bdac00bb91dc0a1e48d4a7ce47b628685693d9cfd1245cd226",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--three-route-comparison--chart-03.png",
+      "pixels": [
+        1428,
+        381
+      ],
+      "sha256": "50654b3cee17a82b922b69d2b33c95c26629dde185bd160b8c1ee24b7205d2dc",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--three-route-comparison--table-01.png",
+      "pixels": [
+        690,
+        116
+      ],
+      "sha256": "d5a26ef1cb474722504e42284902640c89b9531b3c6d690a0eb50290fa6658ea",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--three-route-comparison--table-02.png",
+      "pixels": [
+        690,
+        185
+      ],
+      "sha256": "73dbbc1b173b5686c183c3a7be8f72eb2eb50b4bc4d3f0441b3c08cf2e9e6307",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--alternate-route-brazil-paradip--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "259095e8e1fb4f67cb1272ff9a5451496db2a987964b59eddabffd97e0547b52",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--alternate-route-brazil-paradip--full.png",
+      "pixels": [
+        1920,
+        3044
+      ],
+      "sha256": "ff2860fe10d31d7cfec15ab163e3f088d6d5d721b5782f1f8703b8d26abb8894",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/06-forecasting--alternate-route-brazil-paradip--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "0415d6c9ab19802397b956abe60e1d1203160981d672fd54d7ac89eea91d99e4",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/06-forecasting--alternate-route-brazil-paradip--full.png",
+      "pixels": [
+        1440,
+        3204
+      ],
+      "sha256": "13ad814254ed9b91e8ae21a473dccb6e8223a8260d3024d652ec277e6917b491",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--alternate-route-brazil-paradip--chart-01.png",
+      "pixels": [
+        1428,
+        381
+      ],
+      "sha256": "ee711dfd346626b4df56938cc4155cf2e8ed7e4fbb43def949d822325fd627f3",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--alternate-route-brazil-paradip--chart-02.png",
+      "pixels": [
+        1394,
+        321
+      ],
+      "sha256": "3f76b43385d76fb9813474abb62ba7474da7b06402a8567be0771332e458f1ba",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--alternate-route-brazil-paradip--chart-03.png",
+      "pixels": [
+        1428,
+        381
+      ],
+      "sha256": "50654b3cee17a82b922b69d2b33c95c26629dde185bd160b8c1ee24b7205d2dc",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--alternate-route-brazil-paradip--table-01.png",
+      "pixels": [
+        690,
+        116
+      ],
+      "sha256": "901bdfeac851c9209da8371ed10f620e2759bea07770b978103bd9312f40d594",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/06-forecasting--alternate-route-brazil-paradip--table-02.png",
+      "pixels": [
+        690,
+        185
+      ],
+      "sha256": "73dbbc1b173b5686c183c3a7be8f72eb2eb50b4bc4d3f0441b3c08cf2e9e6307",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/03-decision-twin--dark-mode--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "ab63c3f8af2c1759a192e91771c791ac66697fd3e53a11fdb4a14050169c8c8b",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/03-decision-twin--dark-mode--full.png",
+      "pixels": [
+        1920,
+        2138
+      ],
+      "sha256": "bdaa393f250cc9cb7a49a22af389bbf7de0980c559d180323d742c46616a9963",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/03-decision-twin--dark-mode--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "916c3ffba00dd0d19c555c49f579288c71b61eab6410d283ca391423a21ac9ac",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/03-decision-twin--dark-mode--full.png",
+      "pixels": [
+        1440,
+        2257
+      ],
+      "sha256": "fb0e0e0103f8b8264c3329668a499397ccdc5676f2ea5cbdf77aad3f0c4ce7cc",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/03-decision-twin--dark-mode--chart-01.png",
+      "pixels": [
+        1428,
+        321
+      ],
+      "sha256": "c6c203f0125ac8bb840ddd8d9afa6b604da5fc64af77eefe1ed710df2b0eb077",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/03-decision-twin--dark-mode--chart-02.png",
+      "pixels": [
+        1428,
+        321
+      ],
+      "sha256": "bfce99e6ba755cf521fbea7a872766adb42f752751dba2f57fec8e1a093893a5",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--brazil-gangavaram-150000t--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "11ec1a523d504d3028ea52db2631aac8ed9c06fd0728fd16cedd0ab80d08090a",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--brazil-gangavaram-150000t--full.png",
+      "pixels": [
+        1920,
+        3528
+      ],
+      "sha256": "dc4e6fd3154f572029d003757844dc2b0f7969fd773c384d61ff7436ea09930d",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--brazil-gangavaram-150000t--table-01.png",
+      "pixels": [
+        1428,
+        318
+      ],
+      "sha256": "35310ac7f343ad3a5acaccb7b840e616ef4d4cddbc8880fe2f27ccbac3bae77e",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--brazil-gangavaram-150000t--table-02.png",
+      "pixels": [
+        656,
+        151
+      ],
+      "sha256": "650c5d333f0a9a35009d37b4a8f11d3ea1d709f4302b5620e7ee0bf670d098b7",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--brazil-gangavaram-150000t--table-03.png",
+      "pixels": [
+        1428,
+        248
+      ],
+      "sha256": "d05abe8d68c04573567dfa2ad1a0c7b8a2ecfc88d5c25e46bc2aaa7b302eb570",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--brazil-gangavaram-150000t--table-04.png",
+      "pixels": [
+        706,
+        186
+      ],
+      "sha256": "4a03298ff0d9c4330e459627f90440e2da51a80fa7e65cc766b2b85cbb56c75c",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--brazil-gangavaram-150000t--table-05.png",
+      "pixels": [
+        1428,
+        178
+      ],
+      "sha256": "f865a03684adb6cc65b8cb61b7cccd55fe3bb399f8d537ce13f813cacda8fd6c",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--catalog-only-unsupported-route--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "7d421e99a91556b613052d507ba1e7a14c8eeb2e5425eaff28dc6b07c1283f76",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--catalog-only-unsupported-route--full.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "7d421e99a91556b613052d507ba1e7a14c8eeb2e5425eaff28dc6b07c1283f76",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/07-charter-optimizer--catalog-only-unsupported-route--viewport.png",
+      "pixels": [
+        1440,
+        900
+      ],
+      "sha256": "699e1ad4600ebc427e08b8b35fa812623c98da42d37883087ad470a53feb95e8",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1440/07-charter-optimizer--catalog-only-unsupported-route--full.png",
+      "pixels": [
+        1440,
+        1023
+      ],
+      "sha256": "26d310f45bee1c9842664708eca2f761e659f634f53733ece7256cecd81da38a",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/10-data-integrations--decision-parameters-table-1-rightmost-columns-last-rows.png",
+      "pixels": [
+        1428,
+        401
+      ],
+      "sha256": "4d59a2e7522139c7faf830019eee3d931d17b30222ede23445198163588e504c",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/10-data-integrations--model-status-table-1-rightmost-columns-last-rows.png",
+      "pixels": [
+        1428,
+        213
+      ],
+      "sha256": "fd9aee8d0f9826f095b4e9c70294e209915644a80f590a4af72eeffa9af58745",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/11-data-explorer--route-freight-series-table-1-rightmost-columns-last-rows.png",
+      "pixels": [
+        1428,
+        401
+      ],
+      "sha256": "e9e5e3952d11b26db16f83c29ef8313588b901df0ab8aa014933924fca281e46",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/11-data-explorer--route-freight-series-table-2-rightmost-columns-last-rows.png",
+      "pixels": [
+        1428,
+        401
+      ],
+      "sha256": "3559e5f8114beb14da4a9eaeba9ced922407e37f7af271f28717da8885ee5139",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/11-data-explorer--quality-audit-table-1-rightmost-columns-last-rows.png",
+      "pixels": [
+        1428,
+        401
+      ],
+      "sha256": "f470e86e3389eae50ff809b8e57c51a63e25c147050af87a40a1e730dfaeb059",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/09-backtesting--short-period-7-day-horizon-30-day-interval--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "bba8e92c725ce4a37ccd8be5ca0295456f468b69f0b9d9658cac20f1401cff87",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/09-backtesting--short-period-7-day-horizon-30-day-interval--full.png",
+      "pixels": [
+        1920,
+        2013
+      ],
+      "sha256": "01db19563d55ed8b00a69fadd53baff4014f8beda48bd8b3b4d7e872a1ca1e26",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/09-backtesting--short-period-7-day-horizon-30-day-interval--chart-01.png",
+      "pixels": [
+        690,
+        381
+      ],
+      "sha256": "132f86f20d2b7f4f883691a0ab96aca724bedf95b9053c68902b1c9135a52ca8",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/09-backtesting--short-period-7-day-horizon-30-day-interval--chart-02.png",
+      "pixels": [
+        690,
+        381
+      ],
+      "sha256": "b6f5507bb9d32a9df953a7cb9ef050ebec3c193e94fffe70a8756068c9c02012",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/components/09-backtesting--short-period-7-day-horizon-30-day-interval--table-01.png",
+      "pixels": [
+        1428,
+        178
+      ],
+      "sha256": "69c1076f0669fcdd6dbf7852547e8ef229b7488b150b2eeaf38568b03c53f323",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/05-market-intelligence--date-range-calendar.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "b5ea30c1ec974ae6c47a894631863fd6aba8791b68a6ab276a14d918fa6dfefd",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/05-market-intelligence--date-window-june-to-august-2026--viewport.png",
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "c2a71666fc7daa3b995efdfbcef75f53141c078dc919dc0342c959540d9fb1ed",
+      "decoded": true
+    },
+    {
+      "file": "screenshots/desktop-1920/05-market-intelligence--date-window-june-to-august-2026--full.png",
+      "pixels": [
+        1920,
+        1835
+      ],
+      "sha256": "464ce2a03241dfa80e2a497d17f1349cfed41a7693dc64b9878179c8bc45e10e",
+      "decoded": true
+    }
+  ]
+}

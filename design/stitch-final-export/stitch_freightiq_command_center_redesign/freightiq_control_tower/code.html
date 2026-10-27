@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=JetBrains+Mono:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"tertiary-container":"#4adba0","on-tertiary-fixed":"#002113","surface":"#061424","on-secondary-fixed":"#002019","on-error":"#690005","surface-container-low":"#0f1c2d","inverse-primary":"#006973","primary-container":"#35d6e8","primary-fixed":"#90f1ff","on-surface-variant":"#bbc9cb","on-primary-fixed-variant":"#004f57","background":"#061424","error-container":"#93000a","on-primary-fixed":"#001f23","on-primary":"#00363c","inverse-surface":"#d6e3fa","surface-dim":"#061424","on-secondary-fixed-variant":"#005141","tertiary":"#6bf8ba","on-tertiary":"#003824","primary":"#7ff0ff","primary-fixed-dim":"#3bd9eb","on-surface":"#d6e3fa","on-error-container":"#ffdad6","outline":"#859395","tertiary-fixed":"#6ffbbe","on-background":"#d6e3fa","secondary-fixed":"#65fbd5","surface-container-high":"#1e2b3c","secondary-container":"#00c19e","on-secondary":"#00382c","on-primary-container":"#005962","on-secondary-container":"#00493a","surface-container-lowest":"#020f1f","secondary-fixed-dim":"#41deb9","surface-container":"#132031","on-tertiary-container":"#005c3e","outline-variant":"#3c494b","surface-variant":"#293647","surface-bright":"#2d3a4c","on-tertiary-fixed-variant":"#005236","error":"#ffb4ab","surface-container-highest":"#293647","secondary":"#41deb9","surface-tint":"#3bd9eb","tertiary-fixed-dim":"#4edea3","inverse-on-surface":"#243142"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"space-md":"0.75rem","space-xs":"0.25rem","space-lg":"1rem","space-xl":"1.5rem","space-sm":"0.5rem","gutter-desktop":"1rem","gutter":"0.75rem","margin":"1rem","margin-desktop":"1.5rem"},fontFamily:{"body-sm":["Geist"],"display-lg":["Geist"],"label-xs":["JetBrains Mono"],"display-md":["Geist"],"headline-sm":["Geist"],"code-sm":["JetBrains Mono"],"code-data":["JetBrains Mono"],"title-md":["Geist"],"body-md":["Geist"]},fontSize:{"body-sm":["12px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"400"}],"display-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-xs":["10px",{"lineHeight":"12px","letterSpacing":"0.08em","fontWeight":"600"}],"display-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"headline-sm":["18px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"code-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.03em","fontWeight":"400"}],"code-data":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"500"}],"title-md":["15px",{"lineHeight":"20px","letterSpacing":"-0.005em","fontWeight":"500"}],"body-md":["13px",{"lineHeight":"18px","letterSpacing":"0em","fontWeight":"400"}]}}}};</script></head><body class="bg-background text-on-surface font-body-md text-body-md selection:bg-primary-container selection:text-on-primary-container min-h-screen"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-low border-r border-outline-variant z-50 flex flex-col justify-between overflow-hidden"><div class="flex flex-col flex-1 min-h-0"><div class="h-16 px-space-lg flex items-center gap-space-md border-b border-outline-variant bg-surface-container-lowest"><div class="w-9 h-9 rounded bg-surface-container-high border border-outline-variant flex items-center justify-center relative"><span class="material-symbols-outlined text-primary text-[22px]">radar</span><span class="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span></div><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm font-bold tracking-tight text-on-surface">Freight<span class="text-primary">IQ</span></span><span class="font-label-xs text-label-xs px-1 rounded bg-surface-container text-secondary border border-outline-variant">v4.2</span></div><span class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-widest">Maritime Intelligence</span></div></div><div class="flex-1 overflow-y-auto px-space-sm py-space-md space-y-space-lg"><nav class="space-y-space-sm" data-active-classes="bg-surface-container-highest text-primary font-title-md border-l-2 border-primary"><div class="px-space-sm pb-space-xs"><span class="font-label-xs text-label-xs uppercase text-outline tracking-wider">Operations & Control</span></div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="overview" href="#"><span class="material-symbols-outlined text-[18px]">space_dashboard</span><span class="font-body-sm text-body-sm truncate">Overview</span></a><a aria-current="page" class="flex items-center gap-space-md px-space-md py-space-xs rounded transition-colors bg-surface-container-highest text-primary font-title-md border-l-2 border-primary" data-path="control-tower" href="#"><span class="material-symbols-outlined text-[18px]">hub</span><span class="font-body-sm text-body-sm truncate">Control Tower</span><span class="ml-auto w-2 h-2 rounded-full bg-primary"></span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="operations-overview" href="#"><span class="material-symbols-outlined text-[18px]">directions_boat</span><span class="font-body-sm text-body-sm truncate">Operations Overview</span></a><div class="px-space-sm pt-space-sm pb-space-xs"><span class="font-label-xs text-label-xs uppercase text-outline tracking-wider">Analytics & Forecasting</span></div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="market-intelligence" href="#"><span class="material-symbols-outlined text-[18px]">analytics</span><span class="font-body-sm text-body-sm truncate">Market Intelligence</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="forecasts" href="#"><span class="material-symbols-outlined text-[18px]">trending_up</span><span class="font-body-sm text-body-sm truncate">Forecasts</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="decision-twin" href="#"><span class="material-symbols-outlined text-[18px]">schema</span><span class="font-body-sm text-body-sm truncate">Decision Twin</span></a><div class="px-space-sm pt-space-sm pb-space-xs"><span class="font-label-xs text-label-xs uppercase text-outline tracking-wider">Charter Execution & Stress Testing</span></div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="charter-workbench" href="#"><span class="material-symbols-outlined text-[18px]">balance</span><span class="font-body-sm text-body-sm truncate">Charter Workbench</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="scenario-lab" href="#"><span class="material-symbols-outlined text-[18px]">experiment</span><span class="font-body-sm text-body-sm truncate">Scenario Lab</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="simulation-backtest" href="#"><span class="material-symbols-outlined text-[18px]">history</span><span class="font-body-sm text-body-sm truncate">Simulation Backtest</span></a><div class="px-space-sm pt-space-sm pb-space-xs"><span class="font-label-xs text-label-xs uppercase text-outline tracking-wider">Platform & Data Repositories</span></div><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="data-integrations" href="#"><span class="material-symbols-outlined text-[18px]">cable</span><span class="font-body-sm text-body-sm truncate">Data & Integrations</span></a><a class="flex items-center gap-space-md px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="data-explorer" href="#"><span class="material-symbols-outlined text-[18px]">database</span><span class="font-body-sm text-body-sm truncate">Data Explorer</span></a></nav></div></div><div class="p-space-sm border-t border-outline-variant bg-surface-container-lowest space-y-space-sm"><div class="bg-surface-container p-space-sm rounded border border-outline-variant flex flex-col gap-space-xs"><div class="flex items-center justify-between"><span class="font-label-xs text-label-xs text-outline">TELEMETRY STATUS</span><span class="font-label-xs text-label-xs px-1.5 py-0.5 rounded bg-tertiary-container/20 text-tertiary border border-tertiary-container/40 font-bold uppercase">DEMO-CALIBRATED</span></div><div class="flex items-center justify-between pt-space-xs border-t border-outline-variant/60"><span class="font-code-sm text-code-sm text-on-surface-variant">Forecast Engine</span><span class="font-code-sm text-code-sm text-primary flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span>Auto Select</span></div></div><div class="flex items-center justify-between px-space-xs"><div class="flex items-center gap-space-xs text-outline"><span class="material-symbols-outlined text-[16px]">terminal</span><span class="font-code-sm text-code-sm">SYS_ONLINE</span></div><div class="flex items-center bg-surface-container rounded p-0.5 border border-outline-variant"><button class="px-1.5 py-0.5 rounded text-primary hover:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined text-[14px]">dark_mode</span></button><button class="px-1.5 py-0.5 rounded text-outline hover:text-on-surface hover:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined text-[14px]">light_mode</span></button></div></div></div></aside><div class="pl-64 flex flex-col min-h-screen"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-low/95 backdrop-blur-md border-b border-outline-variant z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm font-code-sm text-code-sm text-outline"><span class="material-symbols-outlined text-[16px] text-primary">explore</span><span>FIQ-CORE</span><span class="text-outline-variant">/</span><span class="text-on-surface uppercase">COMMAND DECK</span></div></div><div class="hidden xl:flex items-center bg-surface-container px-space-md py-1.5 rounded border border-outline-variant gap-space-md"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[16px]">sailing</span><span class="font-code-data text-code-data text-on-surface font-semibold">FIQ-2026-0001</span></div><span class="text-outline-variant">•</span><span class="font-body-sm text-body-sm text-on-surface-variant">75,000 t Coking Coal</span><span class="text-outline-variant">•</span><div class="flex items-center gap-space-xs text-secondary font-code-sm text-code-sm"><span>Hay Point (AU)</span><span class="material-symbols-outlined text-[14px]">arrow_forward</span><span>Paradip (IN)</span></div><span class="font-label-xs text-label-xs px-1.5 py-0.5 rounded bg-tertiary-container/20 text-tertiary border border-tertiary-container/30">[DEMO-CALIBRATED]</span></div><div class="flex items-center gap-space-md"><div class="hidden md:flex flex-col text-right font-code-sm text-code-sm"><span class="text-outline font-label-xs text-label-xs uppercase">Data Coverage</span><span class="text-on-surface">Jan 2024 - Aug 2026</span></div><div class="h-8 w-[1px] bg-outline-variant hidden md:block"></div><button class="hidden sm:flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container border border-outline-variant hover:border-primary transition-colors" type="button"><span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span><span class="font-code-sm text-code-sm text-on-surface">5/5 Connectors</span><span class="font-label-xs text-label-xs text-outline">(Cached)</span></button><button class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors relative" type="button"><span class="material-symbols-outlined text-[18px]">notifications</span><span class="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-primary"></span></button><div class="flex items-center gap-space-sm pl-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-4rem)]"><div class="w-full p-space-lg"><div class="flex flex-col w-full space-y-space-lg text-on-surface">
+<!-- ========================================== -->
+<!-- 1. PAGE HEADER & TELEMETRY EYEBROW -->
+<!-- ========================================== -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md pb-space-xs">
+<div class="flex flex-col space-y-space-xs">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-surface-container-high text-secondary font-code-sm text-code-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+          RADAR 01 :: DISPATCH CONSOLE
+        </span>
+<span class="font-code-sm text-code-sm text-outline">/</span>
+<span class="font-label-xs text-label-xs uppercase tracking-widest text-on-surface-variant">Voyage Optimization Engine</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-surface tracking-tight">Control Tower</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+        Freight exposure, active route telemetry, and predictive AI chartering decisions for industrial dry-bulk procurement.
+      </p>
+</div>
+<!-- Telemetry Badges & Scope Indicator -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center gap-space-sm self-start lg:self-end">
+<div class="flex items-center gap-space-sm px-space-md py-space-xs rounded bg-surface-container border border-outline-variant/60 shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">sensors</span>
+<div class="flex flex-col font-code-sm text-code-sm leading-tight">
+<span class="text-on-surface font-semibold">AU_HPT → IN_PDP</span>
+<span class="text-outline text-label-xs font-label-xs">DAILY SYNTHETIC TAPE</span>
+</div>
+<span class="px-1.5 py-0.5 rounded bg-tertiary-container/20 text-tertiary font-label-xs text-label-xs uppercase font-bold tracking-wider">
+          Demo-Calibrated
+        </span>
+</div>
+<div class="flex items-center gap-1 font-code-sm text-code-sm text-on-surface-variant bg-surface-container px-space-md py-1.5 rounded border border-outline-variant/40">
+<span class="material-symbols-outlined text-[15px] text-secondary">update</span>
+<span>LAYCAN: <strong class="text-on-surface">SEP 2026</strong></span>
+</div>
+</div>
+</div>
+<!-- ========================================== -->
+<!-- 2. EXECUTIVE TOP TIER (2:1 GRID) -->
+<!-- ========================================== -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg">
+<!-- LEFT CARD: Active Shipment & Decision Card (8 Cols) -->
+<div class="xl:col-span-8 flex flex-col justify-between rounded bg-surface-container p-space-lg border border-outline-variant/60 relative overflow-hidden shadow-md">
+<!-- Glow effect top border accent -->
+<div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-primary via-secondary to-transparent"></div>
+<div class="flex flex-col space-y-space-md">
+<!-- Card Header & Badge -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm pb-space-xs border-b border-outline-variant/40">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">directions_boat</span>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-code-data text-code-data font-semibold text-primary">FIQ-2026-0001</span>
+<span class="text-outline-variant">•</span>
+<span class="font-title-md text-title-md text-on-surface font-medium">75,000 t Coking Coal</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest font-code-sm text-code-sm text-on-surface-variant">
+              Hay Point → Paradip
+            </span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/30 font-label-xs text-label-xs uppercase tracking-wider font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+            Recommended Action
+          </span>
+</div>
+<!-- 4 KPI Distinct Boxes with Provenance -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-sm pt-space-xs">
+<!-- KPI 1 -->
+<div class="p-space-md rounded bg-surface-container-low border border-outline-variant/40 flex flex-col justify-between">
+<div class="flex items-center justify-between font-label-xs text-label-xs text-outline uppercase tracking-wider mb-1">
+<span>Expected Cost</span>
+<span class="text-primary font-code-sm">[TCO_CALC]</span>
+</div>
+<div class="flex items-baseline gap-1 my-1">
+<span class="font-display-md text-display-md text-on-surface font-semibold tracking-tight">₹8.91</span>
+<span class="font-label-xs text-label-xs text-primary font-bold">Cr</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[11px] leading-tight">
+              Base rate + port demurrage + modeled risk factor
+            </p>
+</div>
+<!-- KPI 2 -->
+<div class="p-space-md rounded bg-surface-container-low border border-outline-variant/40 flex flex-col justify-between">
+<div class="flex items-center justify-between font-label-xs text-label-xs text-outline uppercase tracking-wider mb-1">
+<span>Charter Window</span>
+<span class="text-secondary font-code-sm">[OPT_LAYCAN]</span>
+</div>
+<div class="flex items-baseline gap-1 my-1">
+<span class="font-headline-sm text-headline-sm text-secondary font-semibold font-code-data tracking-tight">2026-09-04</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[11px] leading-tight">
+              Panamax vessel class • +3d shift past window open
+            </p>
+</div>
+<!-- KPI 3 -->
+<div class="p-space-md rounded bg-surface-container-low border border-outline-variant/40 flex flex-col justify-between">
+<div class="flex items-center justify-between font-label-xs text-label-xs text-outline uppercase tracking-wider mb-1">
+<span>Robustness Score</span>
+<span class="text-outline font-code-sm">[MC_SIM]</span>
+</div>
+<div class="flex items-baseline gap-1 my-1">
+<span class="font-display-md text-display-md text-on-surface font-semibold tracking-tight">38</span>
+<span class="font-body-sm text-body-sm text-outline">/ 100</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[11px] leading-tight">
+              1,000 simulated futures • Not probability
+            </p>
+</div>
+<!-- KPI 4 -->
+<div class="p-space-md rounded bg-surface-container-low border border-outline-variant/40 flex flex-col justify-between">
+<div class="flex items-center justify-between font-label-xs text-label-xs text-outline uppercase tracking-wider mb-1">
+<span>Spot Benchmark</span>
+<span class="text-tertiary font-code-sm">[INDEX_BDI]</span>
+</div>
+<div class="flex items-baseline gap-1.5 my-1">
+<span class="font-display-md text-display-md text-on-surface font-semibold tracking-tight">₹1,405</span>
+<span class="font-label-xs text-label-xs text-outline">/ t</span>
+</div>
+<div class="flex items-center gap-1 font-code-sm text-code-sm text-tertiary text-[11px]">
+<span class="material-symbols-outlined text-[13px]">trending_down</span>
+<span>-2.4% vs 14d MA (Softening)</span>
+</div>
+</div>
+</div>
+<!-- Operational Interpretation Banner -->
+<div class="flex items-center gap-space-sm p-space-sm rounded bg-surface-container-high/70 border border-outline-variant/50 text-on-surface">
+<div class="w-6 h-6 rounded bg-primary/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[16px]">psychology</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant leading-snug">
+<strong class="text-on-surface">Operational Dispatch Rationale:</strong> Panamax vessel provides optimal capacity match; delay charter execution by 3 days past laycan open to hedge demurrage congestion at Paradip harbor.
+          </span>
+</div>
+</div>
+<!-- Action Footer with CTA buttons -->
+<div class="flex flex-wrap items-center justify-between gap-space-md pt-space-md mt-space-sm border-t border-outline-variant/40">
+<div class="flex items-center gap-space-sm flex-wrap">
+<button class="px-space-md py-2 rounded bg-primary text-on-primary font-title-md text-title-md font-semibold hover:bg-primary-container hover:shadow-lg transition-all flex items-center gap-space-xs" type="button">
+<span>View Recommendation</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+<button class="px-space-md py-2 rounded bg-surface-container-high text-on-surface font-body-md text-body-md border border-outline-variant hover:border-primary hover:text-primary transition-colors flex items-center gap-space-xs" type="button">
+<span class="material-symbols-outlined text-[16px]">biotech</span>
+<span>Run Scenario Stress Test</span>
+</button>
+</div>
+<button class="px-space-sm py-2 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors flex items-center gap-space-xs font-code-sm text-code-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">picture_as_pdf</span>
+<span>Download PDF Report</span>
+</button>
+</div>
+</div>
+<!-- RIGHT CARD: Maritime Route Schematic Panel (Visual Anchor - 4 Cols) -->
+<div class="xl:col-span-4 flex flex-col rounded bg-surface-container border border-outline-variant/60 overflow-hidden shadow-md">
+<!-- Header -->
+<div class="p-space-md border-b border-outline-variant/40 flex items-center justify-between bg-surface-container-low">
+<div class="flex items-center gap-space-xs font-label-xs text-label-xs uppercase tracking-wider text-outline">
+<span class="material-symbols-outlined text-[16px] text-secondary">explore</span>
+<span>Voyage Hydrography</span>
+</div>
+<span class="font-code-sm text-code-sm text-secondary">~3,500 NM</span>
+</div>
+<!-- Bathymetric Vector Canvas & Map Visualization -->
+<div class="relative flex-1 min-h-[220px] bg-surface-container-lowest overflow-hidden flex flex-col justify-between p-space-md">
+<!-- SVG Bathymetric Contours & Route Arc -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" preserveaspectratio="none" viewbox="0 0 400 240" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<radialgradient cx="50%" cy="50%" id="oceanGlow" r="50%">
+<stop offset="0%" stop-color="#00c19e" stop-opacity="0.12"></stop>
+<stop offset="100%" stop-color="#061424" stop-opacity="0"></stop>
+</radialgradient>
+<lineargradient id="routeGradient" x1="0%" x2="100%" y1="100%" y2="0%">
+<stop offset="0%" stop-color="#35d6e8"></stop>
+<stop offset="100%" stop-color="#6bf8ba"></stop>
+</lineargradient>
+<filter height="140%" id="glow" width="140%" x="-20%" y="-20%">
+<fegaussianblur result="coloredBlur" stddeviation="3"></fegaussianblur>
+<femerge>
+<femergenode in="coloredBlur"></femergenode>
+<femergenode in="SourceGraphic"></femergenode>
+</femerge>
+</filter>
+</defs>
+<!-- Ambient Ocean Depth Glow -->
+<rect fill="url(#oceanGlow)" height="240" width="400" x="0" y="0"></rect>
+<!-- Bathymetric Depth Contour Lines (40% Opacity) -->
+<path d="M -20,20 C 80,40 160,-10 260,30 C 340,70 380,40 420,50" fill="none" opacity="0.6" stroke="#293647" stroke-dasharray="2,3" stroke-width="1"></path>
+<path d="M -20,70 C 60,90 140,50 240,90 C 320,130 370,100 420,110" fill="none" opacity="0.5" stroke="#293647" stroke-width="1.2"></path>
+<path d="M -20,130 C 70,160 150,110 230,150 C 310,190 380,160 420,180" fill="none" opacity="0.4" stroke="#293647" stroke-dasharray="4,4" stroke-width="1"></path>
+<path d="M -20,190 C 90,220 180,180 270,210 C 340,240 390,210 420,220" fill="none" opacity="0.3" stroke="#293647" stroke-width="1"></path>
+<!-- Alternative Route (Dashed cyan) -->
+<path d="M 80,60 Q 180,140 330,190" fill="none" opacity="0.3" stroke="#35d6e8" stroke-dasharray="4,4" stroke-width="1.5"></path>
+<!-- Primary Active Route Bezier (Glowing Arc) -->
+<!-- Hay Point (AU) ~ X:330, Y:190 -> Paradip (IN) ~ X:80, Y:60 -->
+<path d="M 330,190 C 260,160 170,100 80,60" fill="none" filter="url(#glow)" stroke="url(#routeGradient)" stroke-width="2.5"></path>
+<!-- Waypoint Pulses & Ports -->
+<!-- Paradip Destination -->
+<circle cx="80" cy="60" fill="#35d6e8" fill-opacity="0.15" r="10"></circle>
+<circle cx="80" cy="60" fill="#35d6e8" r="4"></circle>
+<circle cx="80" cy="60" fill="#061424" r="1.5"></circle>
+<!-- Hay Point Origin -->
+<circle cx="330" cy="190" fill="#6bf8ba" fill-opacity="0.15" r="12"></circle>
+<circle cx="330" cy="190" fill="#6bf8ba" r="4.5"></circle>
+<circle cx="330" cy="190" fill="#061424" r="2"></circle>
+<!-- Real-Time Simulated Vessel Coordinate -->
+<circle cx="195" cy="115" fill="#ffffff" r="3"></circle>
+<circle cx="195" cy="115" fill="none" opacity="0.8" r="7" stroke="#35d6e8" stroke-width="1">
+<animate attributename="r" dur="1.8s" repeatcount="indefinite" values="3;9"></animate>
+<animate attributename="opacity" dur="1.8s" repeatcount="indefinite" values="1;0"></animate>
+</circle>
+</svg>
+<!-- Route Badges Floating on Schematics -->
+<div class="relative z-10 flex justify-between items-start">
+<div class="px-2 py-1 rounded bg-surface-container-high/90 border border-outline-variant/60 backdrop-blur-sm">
+<div class="flex items-center gap-1 font-label-xs text-label-xs text-secondary font-bold">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>DEST: PARADIP (IN_PDP)</span>
+</div>
+<div class="font-code-sm text-code-sm text-on-surface-variant text-[10px]">20°15' N, 86°40' E</div>
+</div>
+<div class="px-2 py-1 rounded bg-surface-container-high/90 border border-outline-variant/60 backdrop-blur-sm text-right">
+<div class="flex items-center justify-end gap-1 font-label-xs text-label-xs text-primary font-bold">
+<span>ORIG: HAY POINT (AU_HPT)</span>
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+</div>
+<div class="font-code-sm text-code-sm text-on-surface-variant text-[10px]">21°17' S, 149°18' E</div>
+</div>
+</div>
+<div class="relative z-10 flex justify-between items-end pt-8">
+<div class="flex flex-col gap-0.5 bg-surface-container-lowest/80 p-1.5 rounded border border-outline-variant/40 backdrop-blur-sm">
+<span class="font-label-xs text-label-xs text-outline">EST. TRANSIT</span>
+<span class="font-code-data text-code-data text-on-surface font-semibold">12.4 Days</span>
+</div>
+<div class="flex flex-col gap-0.5 bg-surface-container-lowest/80 p-1.5 rounded border border-outline-variant/40 backdrop-blur-sm text-right">
+<span class="font-label-xs text-label-xs text-outline">MAX ARRIVAL DRAFT</span>
+<span class="font-code-data text-code-data text-on-surface font-semibold">15.0 m</span>
+</div>
+</div>
+</div>
+<!-- Watermark / Footer Disclaimer -->
+<div class="p-space-xs px-space-sm bg-surface-container-low border-t border-outline-variant/30 flex items-center justify-between text-outline font-label-xs text-label-xs">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">info</span>
+          Illustrative route schematic • Not live AIS feeds
+        </span>
+<span class="font-code-sm text-code-sm text-primary">S_ENG: ACTIVE</span>
+</div>
+</div>
+</div>
+<!-- ========================================== -->
+<!-- 3. MIDDLE TIER (EVIDENCE & ANALYTICS GRID) -->
+<!-- ========================================== -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg">
+<!-- LEFT: Historical Freight Rate Trajectory (8 Cols) -->
+<div class="xl:col-span-8 flex flex-col rounded bg-surface-container p-space-lg border border-outline-variant/60 shadow-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-space-sm border-b border-outline-variant/40">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Historical Panamax / Capesize Spot Freight Rate Trajectory</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Daily time-series Jan 2024 – Aug 2026 (₹/tonne) with 14-Day Moving Average</p>
+</div>
+<!-- Interactive Legend -->
+<div class="flex items-center gap-space-md font-code-sm text-code-sm bg-surface-container-low px-space-sm py-1 rounded border border-outline-variant/40 shrink-0">
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-0.5 bg-primary rounded-full"></span>
+<span class="text-on-surface">Freight Rate (₹/t)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-0.5 bg-secondary border-b border-dashed border-secondary"></span>
+<span class="text-on-surface-variant">14-Day MA</span>
+</div>
+</div>
+</div>
+<!-- Vector Line Chart Area -->
+<div class="relative w-full h-64 pt-space-md pb-space-xs">
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 800 240">
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#35d6e8" stop-opacity="0.25"></stop>
+<stop offset="100%" stop-color="#35d6e8" stop-opacity="0.0"></stop>
+</lineargradient>
+</defs>
+<!-- Horizontal Grid Lines & Price Labels -->
+<!-- 1600 -->
+<line stroke="#293647" stroke-dasharray="2,4" stroke-width="1" x1="40" x2="800" y1="20" y2="20"></line>
+<text class="font-code-sm text-[10px]" fill="#859395" x="5" y="24">1600</text>
+<!-- 1400 -->
+<line stroke="#293647" stroke-dasharray="2,4" stroke-width="1" x1="40" x2="800" y1="75" y2="75"></line>
+<text class="font-code-sm text-[10px]" fill="#859395" x="5" y="79">1400</text>
+<!-- 1200 -->
+<line stroke="#293647" stroke-dasharray="2,4" stroke-width="1" x1="40" x2="800" y1="130" y2="130"></line>
+<text class="font-code-sm text-[10px]" fill="#859395" x="5" y="134">1200</text>
+<!-- 1000 -->
+<line stroke="#293647" stroke-dasharray="2,4" stroke-width="1" x1="40" x2="800" y1="185" y2="185"></line>
+<text class="font-code-sm text-[10px]" fill="#859395" x="5" y="189">1000</text>
+<!-- 800 Baseline -->
+<line stroke="#3c494b" stroke-width="1.5" x1="40" x2="800" y1="230" y2="230"></line>
+<text class="font-code-sm text-[10px]" fill="#859395" x="5" y="234">800</text>
+<!-- Area Fill Under Spot Freight Curve -->
+<path d="M 40,115 Q 80,70 120,95 T 180,140 T 240,195 T 300,160 T 360,75 T 420,130 T 480,205 T 540,165 T 600,120 T 660,110 T 720,135 L 770,120 L 770,230 L 40,230 Z" fill="url(#chartGradient)"></path>
+<!-- 14-Day Moving Average Line (Secondary Smooth Line) -->
+<path d="M 40,120 Q 80,80 120,100 T 180,135 T 240,185 T 300,150 T 360,85 T 420,125 T 480,195 T 540,160 T 600,125 T 660,115 T 720,130 L 770,122" fill="none" stroke="#41deb9" stroke-dasharray="3,3" stroke-width="1.5"></path>
+<!-- Historical Spot Rate Trajectory (Ocean Blue primary) -->
+<path d="M 40,115 L 60,80 L 75,70 L 95,90 L 115,85 L 130,120 L 150,110 L 170,145 L 185,135 L 205,170 L 225,160 L 245,200 L 265,190 L 285,150 L 305,165 L 325,120 L 345,100 L 360,70 L 380,85 L 400,115 L 420,135 L 440,150 L 460,180 L 480,210 L 500,195 L 520,180 L 540,160 L 560,140 L 580,155 L 600,115 L 620,125 L 640,105 L 660,115 L 680,100 L 700,120 L 720,140 L 745,115 L 770,120" fill="none" stroke="#35d6e8" stroke-width="2"></path>
+<!-- Data Indicator Marker on Latest Point -->
+<circle cx="770" cy="120" fill="#35d6e8" r="5"></circle>
+<circle cx="770" cy="120" fill="none" opacity="0.6" r="9" stroke="#35d6e8" stroke-width="1.5"></circle>
+</svg>
+<!-- Dynamic Tooltip Badge on Latest Spot -->
+<div class="absolute right-2 top-8 bg-surface-container-highest/95 border border-primary/60 px-2 py-1 rounded shadow-lg backdrop-blur-md flex flex-col font-code-sm text-code-sm">
+<div class="text-outline text-label-xs font-label-xs">LATEST SPOT TAPE</div>
+<div class="text-primary font-bold text-body-md">₹1,405 / t</div>
+<div class="text-tertiary text-[10px] font-mono">14d MA: ₹1,439 (-2.4%)</div>
+</div>
+</div>
+<!-- X-Axis Milestone Labels -->
+<div class="grid grid-cols-6 text-center font-code-sm text-code-sm text-outline pt-space-xs border-t border-outline-variant/40">
+<span>Jan 2024</span>
+<span>Jul 2024</span>
+<span>Jan 2025</span>
+<span>Jul 2025</span>
+<span>Jan 2026</span>
+<span>Jul 2026</span>
+</div>
+</div>
+<!-- RIGHT: Shipment & Destination Operational Activity Panel (4 Cols) -->
+<div class="xl:col-span-4 flex flex-col rounded bg-surface-container p-space-lg border border-outline-variant/60 shadow-md justify-between">
+<div class="space-y-space-md">
+<div class="flex items-center justify-between pb-space-xs border-b border-outline-variant/40">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">stream</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Shipment Activity</h3>
+</div>
+<span class="font-label-xs text-label-xs px-1.5 py-0.5 rounded bg-surface-container-high text-outline">
+            TELEMETRY
+          </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Current vessel queue and maritime transit conditions for destination sector:</p>
+<!-- Signal Items List -->
+<div class="space-y-space-sm">
+<!-- Item 1: Paradip Port Queue -->
+<div class="p-space-sm rounded bg-surface-container-low border border-outline-variant/40 space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md text-on-surface font-medium flex items-center gap-1.5">
+<span class="material-symbols-outlined text-error text-[16px]">anchor</span>
+                Paradip Port Queue
+              </span>
+<span class="px-1.5 py-0.5 rounded bg-error-container/40 text-error font-label-xs text-label-xs font-bold uppercase">
+                Elevated
+              </span>
+</div>
+<div class="flex items-baseline justify-between font-code-data text-code-data text-on-surface">
+<span>Congestion Index: <strong>64 / 100</strong></span>
+<span class="text-error font-semibold">Avg Wait: 39h</span>
+</div>
+</div>
+<!-- Item 2: Vessel Availability -->
+<div class="p-space-sm rounded bg-surface-container-low border border-outline-variant/40 space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md text-on-surface font-medium flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[16px]">sailing</span>
+                Vessel Availability
+              </span>
+<span class="px-1.5 py-0.5 rounded bg-tertiary-container/20 text-tertiary font-label-xs text-label-xs font-bold uppercase">
+                Stable
+              </span>
+</div>
+<div class="font-code-data text-code-data text-on-surface">
+              East Coast Australia: <strong class="text-secondary font-bold">18 Panamax</strong> vessels open
+            </div>
+</div>
+<!-- Item 3: Bunker Fuel Benchmark -->
+<div class="p-space-sm rounded bg-surface-container-low border border-outline-variant/40 space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md text-on-surface font-medium flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[16px]">local_gas_station</span>
+                Bunker Fuel (VLSFO)
+              </span>
+<span class="font-code-sm text-code-sm text-outline">0.5% Sulphur</span>
+</div>
+<div class="flex items-baseline justify-between font-code-data text-code-data text-on-surface">
+<span>Singapore Hub:</span>
+<span class="text-primary font-semibold">₹54,200 / t (Stable)</span>
+</div>
+</div>
+<!-- Item 4: Weather Warning -->
+<div class="p-space-sm rounded bg-surface-container-low border border-outline-variant/40 space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md text-on-surface font-medium flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[16px]">air</span>
+                Weather Advisory
+              </span>
+<span class="font-code-sm text-code-sm text-secondary">Normal</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[11px]">
+              Bay of Bengal: Normal passage conditions (Open-Meteo obs: 4.8 m/s wind, 1.2m swell)
+            </p>
+</div>
+</div>
+</div>
+<!-- Footer Badge -->
+<div class="mt-space-md pt-space-xs border-t border-outline-variant/30 flex items-center justify-between text-outline font-label-xs text-label-xs">
+<span>Illustrative context signals</span>
+<span class="text-secondary font-code-sm font-semibold">DATA REFRESH: OK</span>
+</div>
+</div>
+</div>
+<!-- ========================================== -->
+<!-- 4. BOTTOM TIER (PREDICTIVE FREIGHT FORECAST) -->
+<!-- ========================================== -->
+<div class="flex flex-col rounded bg-surface-container p-space-lg border border-outline-variant/60 shadow-md space-y-space-md">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-sm border-b border-outline-variant/40">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">timeline</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">30-Day Predictive Freight Rate Outlook</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Statistical projection with 95% Confidence Interval Fan Chart (±2σ boundary) – Unit: ₹/tonne
+        </p>
+</div>
+<!-- Forecast Validation Badge -->
+<div class="flex items-center gap-space-sm flex-wrap">
+<div class="px-space-md py-1 rounded bg-surface-container-low border border-outline-variant/50 font-code-sm text-code-sm flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="text-on-surface font-medium">SARIMA (1,1,1)</span>
+<span class="text-outline-variant">|</span>
+<span class="text-on-surface-variant">MAPE: <strong class="text-tertiary">6.15%</strong></span>
+<span class="text-outline-variant">|</span>
+<span class="text-on-surface-variant">MAE: <strong class="text-secondary">₹70/t</strong></span>
+</div>
+<!-- Legend for Forecast -->
+<div class="flex items-center gap-space-sm font-code-sm text-code-sm bg-surface-container-low px-space-sm py-1 rounded border border-outline-variant/40">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 bg-primary rounded-full"></span>
+<span class="text-on-surface">Forecast Mean</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-2 bg-primary/20 rounded border border-primary/40"></span>
+<span class="text-on-surface-variant">95% CI Band</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-0.5 bg-outline"></span>
+<span class="text-on-surface-variant">Recent Actuals</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 95% Confidence Fan Chart Visualization -->
+<div class="relative w-full h-72 py-space-xs">
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 900 240">
+<defs>
+<lineargradient id="confidenceFan" x1="0" x2="1" y1="0" y2="0">
+<stop offset="0%" stop-color="#35d6e8" stop-opacity="0.25"></stop>
+<stop offset="100%" stop-color="#35d6e8" stop-opacity="0.10"></stop>
+</lineargradient>
+<pattern height="40" id="forecastGrid" patternunits="userSpaceOnUse" width="40">
+<path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e2b3c" stroke-width="0.75"></path>
+</pattern>
+</defs>
+<rect fill="url(#forecastGrid)" height="200" opacity="0.4" width="850" x="50" y="10"></rect>
+<!-- Price Guidelines -->
+<!-- 1400 -->
+<line stroke="#293647" stroke-dasharray="2,3" stroke-width="1" x1="50" x2="900" y1="30" y2="30"></line>
+<text class="font-code-sm text-[10px]" fill="#859395" x="10" y="34">1400</text>
+<!-- 1300 -->
+<line stroke="#293647" stroke-dasharray="2,3" stroke-width="1" x1="50" x2="900" y1="75" y2="75"></line>
+<text class="font-code-sm text-[10px]" fill="#859395" x="10" y="79">1300</text>
+<!-- 1200 -->
+<line stroke="#293647" stroke-dasharray="2,3" stroke-width="1" x1="50" x2="900" y1="120" y2="120"></line>
+<text class="font-code-sm text-[10px]" fill="#859395" x="10" y="124">1200</text>
+<!-- 1100 -->
+<line stroke="#293647" stroke-dasharray="2,3" stroke-width="1" x1="50" x2="900" y1="165" y2="165"></line>
+<text class="font-code-sm text-[10px]" fill="#859395" x="10" y="169">1100</text>
+<!-- 1000 Baseline -->
+<line stroke="#3c494b" stroke-width="1.2" x1="50" x2="900" y1="210" y2="210"></line>
+<text class="font-code-sm text-[10px]" fill="#859395" x="10" y="214">1000</text>
+<!-- Forecast Split Dividing Line (Aug 31) -->
+<line stroke="#35d6e8" stroke-dasharray="4,4" stroke-width="1" x1="540" x2="540" y1="15" y2="210"></line>
+<text class="font-code-sm text-[10px] uppercase font-bold tracking-wider" fill="#35d6e8" x="546" y="26">Forecast Horizon →</text>
+<!-- Widening 95% Confidence Interval Fan Area -->
+<!-- Starts at X:540, Y:138. Upper extends to Y:35 at X:880. Lower extends to Y:195 at X:880. -->
+<path d="M 540,138 C 640,110 740,65 880,35 L 880,195 C 740,175 640,155 540,138 Z" fill="url(#confidenceFan)"></path>
+<path d="M 540,138 C 640,110 740,65 880,35" fill="none" opacity="0.6" stroke="#35d6e8" stroke-dasharray="3,3" stroke-width="1"></path>
+<path d="M 540,138 C 640,175 740,175 880,195" fill="none" opacity="0.6" stroke="#35d6e8" stroke-dasharray="3,3" stroke-width="1"></path>
+<!-- Historical Observations (Grey Line leading into cut-off) -->
+<path d="M 50,75 L 75,30 L 110,60 L 150,90 L 190,125 L 230,120 L 270,95 L 310,105 L 350,145 L 390,130 L 430,90 L 470,110 L 510,140 L 540,138" fill="none" stroke="#859395" stroke-width="2"></path>
+<!-- 30-Day Mean Forecast Curve (Vibrant Ocean Cyan Line with Nodes) -->
+<path d="M 540,138 L 580,138 L 620,137 L 660,138 L 700,137 L 740,138 L 780,137 L 820,138 L 860,137 L 880,138" fill="none" stroke="#35d6e8" stroke-width="2.5"></path>
+<!-- Forecast Nodes -->
+<circle cx="540" cy="138" fill="#35d6e8" r="4"></circle>
+<circle cx="620" cy="137" fill="#35d6e8" r="3"></circle>
+<circle cx="700" cy="137" fill="#35d6e8" r="3"></circle>
+<circle cx="780" cy="137" fill="#35d6e8" r="3"></circle>
+<circle cx="860" cy="137" fill="#35d6e8" r="3"></circle>
+<circle cx="880" cy="138" fill="#6bf8ba" r="4"></circle>
+</svg>
+</div>
+<!-- Timeline Axis Labels -->
+<div class="grid grid-cols-6 text-center font-code-sm text-code-sm text-outline border-t border-outline-variant/40 pt-space-xs">
+<span>Jul 26, 2026</span>
+<span>Aug 9</span>
+<span>Aug 23</span>
+<span class="text-primary font-bold">Aug 31 (T-0)</span>
+<span>Sep 14</span>
+<span>Oct 4, 2026</span>
+</div>
+</div>
+<!-- ========================================== -->
+<!-- 5. PROTOTYPE LEGAL & MARITIME DISCLAIMER -->
+<!-- ========================================== -->
+<div class="p-space-md rounded bg-surface-container-low border border-outline-variant/30 flex items-start gap-space-sm text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-outline text-[18px] shrink-0 mt-0.5">verified_user</span>
+<p class="leading-relaxed">
+<strong class="text-on-surface font-semibold">Prototype Disclaimer:</strong> International freight benchmarks may originate in USD, while FreightIQ presents operational decision-support costs in INR for Indian procurement stakeholders. Prototype demonstration uses synthetic econometric time-series calibrated for institutional dry-bulk testing. Not live maritime commercial brokerage advice.
+    </p>
+</div>
+</div></div></main><footer class="w-full bg-surface-container-lowest border-t border-outline-variant py-space-sm px-space-lg"><div class="flex flex-col sm:flex-row items-center justify-between gap-space-xs text-on-surface-variant font-code-sm text-code-sm"><div><span>FREIGHTIQ TACTICAL TELEMETRY © 2026</span><span class="mx-2 text-outline-variant">|</span><span>HIGH FREQUENCY MARITIME ORCHESTRATION</span></div><div class="flex items-center gap-space-md font-label-xs text-label-xs text-outline"><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>NODE: SYD-PRIMARY</span><span>LATENCY: 18ms</span><span>AIS: REALTIME</span></div></div></footer></div></body></html>

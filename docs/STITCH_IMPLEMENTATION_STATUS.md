@@ -1,0 +1,7 @@
+# Implementation status
+
+The approved Stitch ZIP has been extracted and analyzed. The working browser interface includes all 11 requested destinations and 13 data tabs, responsive navigation, forms, charts, tables, downloads, audit notes, report generation and error states. Forecasting, optimization, Decision Twin, scenario and backtest results remain Python-generated. The original Streamlit interface remains available.
+
+The result is **functionally implemented and visually approximate, not pixel-perfect**. Matched screenshots are in `design/visual-verification/`. The source export is static and uses fabricated telemetry and outputs. The working app uses synthetic but internally consistent backend values, which causes unavoidable differences in text, charts and KPI figures. Several compositions still differ from the approved HTML, most visibly the Charter Workbench, Decision Twin and Control Tower activity/route panels. See `STITCH_VISUAL_AUDIT.md` for per-state measurements and outstanding details.
+
+Netlify can host the static bundle only when `FREIGHTIQ_API_URL` points to a deployed Python FastAPI service. Local startup requires both FastAPI and `npm run dev`; see the README. Connector configuration is reported as status rather than represented as an operative live feed. Uploaded CSVs are validated and previewed but do not replace the model dataset. Operator notes are recorded for audit and do not modify optimizer inputs.

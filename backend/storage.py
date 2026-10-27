@@ -11,7 +11,9 @@ import datetime
 import os
 from typing import Dict, Any, List, Optional, Union
 
-DB_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "freightiq_workspace.db"))
+DB_PATH = os.path.abspath(os.environ.get(
+    "FREIGHTIQ_DB_PATH", os.path.join(os.path.dirname(__file__), "..", "freightiq_workspace.db")
+))
 
 
 def init_db(db_path: str = DB_PATH):

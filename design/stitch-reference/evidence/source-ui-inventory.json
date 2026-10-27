@@ -1,0 +1,2000 @@
+{
+  "app\\__init__.py": [],
+  "app\\components\\__init__.py": [],
+  "app\\components\\cards.py": [
+    {
+      "line": 23,
+      "type": "caption",
+      "arg": "label.upper()"
+    },
+    {
+      "line": 24,
+      "type": "markdown",
+      "arg": "f\"### {value_str}\""
+    },
+    {
+      "line": 25,
+      "type": "caption",
+      "arg": "subtext_str"
+    },
+    {
+      "line": 45,
+      "type": "caption",
+      "arg": "\"DECISION STATUS\""
+    },
+    {
+      "line": 46,
+      "type": "markdown",
+      "arg": "\"**:green[✓ RECOMMENDED CHARTER ACTION]**\""
+    },
+    {
+      "line": 47,
+      "type": "markdown",
+      "arg": "f\"## {rec.get('decision', 'Charter within selected window')}\""
+    },
+    {
+      "line": 50,
+      "type": "caption",
+      "arg": "\"EXPECTED LOGISTICS COST\""
+    },
+    {
+      "line": 51,
+      "type": "markdown",
+      "arg": "f\"# {format_inr(total_inr)}\""
+    },
+    {
+      "line": 52,
+      "type": "caption",
+      "arg": "f\"{format_inr(per_tonne_inr, is_per_tonne=True)}\""
+    },
+    {
+      "line": 59,
+      "type": "caption",
+      "arg": "\"RECOMMENDED WINDOW\""
+    },
+    {
+      "line": 60,
+      "type": "markdown",
+      "arg": "f\"**{rec.get('recommended_charter_date', 'N/A')}**\""
+    },
+    {
+      "line": 63,
+      "type": "caption",
+      "arg": "\"VESSEL CLASS\""
+    },
+    {
+      "line": 64,
+      "type": "markdown",
+      "arg": "f\"**{rec.get('recommended_vessel', 'N/A')}**\""
+    },
+    {
+      "line": 67,
+      "type": "caption",
+      "arg": "\"CARGO\""
+    },
+    {
+      "line": 68,
+      "type": "markdown",
+      "arg": "f\"**{format_tonnes(rec.get('quantity_tonnes', 0))} {rec.get('cargo_type', '')}**\""
+    },
+    {
+      "line": 71,
+      "type": "caption",
+      "arg": "\"ROUTE\""
+    },
+    {
+      "line": 72,
+      "type": "markdown",
+      "arg": "f\"**{rec.get('origin', '')} → {rec.get('destination', '')}**\""
+    },
+    {
+      "line": 79,
+      "type": "caption",
+      "arg": "\"Freight Cost\""
+    },
+    {
+      "line": 83,
+      "type": "caption",
+      "arg": "\"Expected Demurrage\""
+    },
+    {
+      "line": 87,
+      "type": "caption",
+      "arg": "\"Port / Waiting Cost\""
+    },
+    {
+      "line": 91,
+      "type": "caption",
+      "arg": "\"Risk Adjustment\""
+    },
+    {
+      "line": 96,
+      "type": "caption",
+      "arg": "\"KEY DECISION DRIVERS\""
+    },
+    {
+      "line": 103,
+      "type": "markdown",
+      "arg": "\"### Scenario Comparison\""
+    },
+    {
+      "line": 125,
+      "type": "dataframe",
+      "arg": "rows"
+    },
+    {
+      "line": 147,
+      "type": "caption",
+      "arg": "\"MARITIME ROUTE SPECIFICATIONS\""
+    },
+    {
+      "line": 150,
+      "type": "markdown",
+      "arg": "f\"**{origin}**\""
+    },
+    {
+      "line": 151,
+      "type": "caption",
+      "arg": "\"ORIGIN PORT\""
+    },
+    {
+      "line": 153,
+      "type": "markdown",
+      "arg": "f\"**{origin} ───────────────→ {destination}**\""
+    },
+    {
+      "line": 154,
+      "type": "caption",
+      "arg": "f\"~{meta['nm']:,} Nautical Miles • ~{meta['days']} Transit Days\""
+    },
+    {
+      "line": 156,
+      "type": "markdown",
+      "arg": "f\"**{destination}**\""
+    },
+    {
+      "line": 157,
+      "type": "caption",
+      "arg": "\"DESTINATION PORT\""
+    },
+    {
+      "line": 159,
+      "type": "caption",
+      "arg": "f\"Port Draft Check: **{meta['draft']}**\""
+    },
+    {
+      "line": 165,
+      "type": "caption",
+      "arg": "title.upper()"
+    }
+  ],
+  "app\\components\\charts.py": [],
+  "app\\components\\error_boundary.py": [
+    {
+      "line": 23,
+      "type": "expander",
+      "arg": "\"Technical Exception Details (Debug Only)\""
+    },
+    {
+      "line": 25,
+      "type": "caption",
+      "arg": "traceback.format_exc()"
+    }
+  ],
+  "app\\components\\helpers.py": [
+    {
+      "line": 262,
+      "type": "markdown",
+      "arg": "css"
+    },
+    {
+      "line": 341,
+      "type": "markdown",
+      "arg": "get_freightiq_logo_svg(175, 36)"
+    },
+    {
+      "line": 347,
+      "type": "button",
+      "arg": "label"
+    },
+    {
+      "line": 356,
+      "type": "markdown",
+      "arg": "\"<div style='height: 12px;'></div>\""
+    },
+    {
+      "line": 365,
+      "type": "button",
+      "arg": "theme_label"
+    },
+    {
+      "line": 392,
+      "type": "markdown",
+      "arg": "html"
+    },
+    {
+      "line": 404,
+      "type": "markdown",
+      "arg": "html"
+    },
+    {
+      "line": 489,
+      "type": "selectbox",
+      "arg": "\"Cargo\""
+    },
+    {
+      "line": 494,
+      "type": "number_input",
+      "arg": "\"Quantity (t)\""
+    },
+    {
+      "line": 497,
+      "type": "selectbox",
+      "arg": "\"Origin Country\""
+    },
+    {
+      "line": 508,
+      "type": "selectbox",
+      "arg": "\"Origin Port\""
+    },
+    {
+      "line": 520,
+      "type": "selectbox",
+      "arg": "\"Destination Port\""
+    },
+    {
+      "line": 527,
+      "type": "date_input",
+      "arg": "\"Laycan Window\""
+    },
+    {
+      "line": 533,
+      "type": "markdown",
+      "arg": "\"<div style='height: 4px;'></div>\""
+    },
+    {
+      "line": 545,
+      "type": "markdown",
+      "arg": "meta_html"
+    },
+    {
+      "line": 552,
+      "type": "markdown",
+      "arg": "badge_html"
+    }
+  ],
+  "app\\Home.py": [],
+  "app\\navigation.py": [],
+  "app\\pages\\10_Data_Explorer.py": [
+    {
+      "line": 39,
+      "type": "markdown",
+      "arg": "\"<h1 style='margin-bottom: 2px;'>Data Explorer</h1>\""
+    },
+    {
+      "line": 40,
+      "type": "markdown",
+      "arg": "\"<p style='color: #6B7280; font-size: 0.95rem; margin-bottom: 20px;'>Modelling dataset inspection, feature correlation matrix, and data quality audit.</p>\""
+    },
+    {
+      "line": 46,
+      "type": "caption",
+      "arg": "\"OBSERVATIONS\""
+    },
+    {
+      "line": 47,
+      "type": "markdown",
+      "arg": "f\"### {len(df):,}\""
+    },
+    {
+      "line": 48,
+      "type": "caption",
+      "arg": "\"Daily time series records\""
+    },
+    {
+      "line": 50,
+      "type": "caption",
+      "arg": "\"FEATURES\""
+    },
+    {
+      "line": 51,
+      "type": "markdown",
+      "arg": "f\"### {len(df.columns)}\""
+    },
+    {
+      "line": 52,
+      "type": "caption",
+      "arg": "\"Engineered parameters\""
+    },
+    {
+      "line": 54,
+      "type": "caption",
+      "arg": "\"START DATE\""
+    },
+    {
+      "line": 55,
+      "type": "markdown",
+      "arg": "f\"### {df['date'].min().strftime('%d %b %Y')}\""
+    },
+    {
+      "line": 56,
+      "type": "caption",
+      "arg": "\"Earliest observation\""
+    },
+    {
+      "line": 58,
+      "type": "caption",
+      "arg": "\"END DATE\""
+    },
+    {
+      "line": 59,
+      "type": "markdown",
+      "arg": "f\"### {df['date'].max().strftime('%d %b %Y')}\""
+    },
+    {
+      "line": 60,
+      "type": "caption",
+      "arg": "\"Latest observation\""
+    },
+    {
+      "line": 64,
+      "type": "tabs",
+      "arg": "[\n    \"Route Freight Series\",\n    \"Dataset\",\n    \"Correlation Matrix\",\n    \"Quality Audit\",\n    \"Validate & Preview Dataset\"\n]"
+    },
+    {
+      "line": 76,
+      "type": "markdown",
+      "arg": "\"### Canonical Route Freight Series (Long Format)\""
+    },
+    {
+      "line": 77,
+      "type": "caption",
+      "arg": "\"Route-specific synthetic daily time series across 22+ demo-calibrated routes\""
+    },
+    {
+      "line": 81,
+      "type": "download_button",
+      "arg": ""
+    },
+    {
+      "line": 92,
+      "type": "selectbox",
+      "arg": "\"Filter Route Key\""
+    },
+    {
+      "line": 103,
+      "type": "dataframe",
+      "arg": "display_routes[view_cols]"
+    },
+    {
+      "line": 107,
+      "type": "markdown",
+      "arg": "\"### Processed Modelling Dataset\""
+    },
+    {
+      "line": 110,
+      "type": "download_button",
+      "arg": ""
+    },
+    {
+      "line": 130,
+      "type": "dataframe",
+      "arg": "display_df[existing_cols]"
+    },
+    {
+      "line": 134,
+      "type": "markdown",
+      "arg": "\"### Pearson Feature Correlation Matrix\""
+    },
+    {
+      "line": 151,
+      "type": "plotly_chart",
+      "arg": "fig_corr"
+    },
+    {
+      "line": 155,
+      "type": "markdown",
+      "arg": "\"### Missing Values & Schema Quality Audit\""
+    },
+    {
+      "line": 162,
+      "type": "dataframe",
+      "arg": "missing_df"
+    },
+    {
+      "line": 166,
+      "type": "markdown",
+      "arg": "\"### Validate & Preview Custom Dataset\""
+    },
+    {
+      "line": 167,
+      "type": "caption",
+      "arg": "\"Upload custom CSV observations to validate format and preview schema (does not alter active forecast dataset)\""
+    },
+    {
+      "line": 168,
+      "type": "file_uploader",
+      "arg": "\"Upload CSV Dataset for Validation\""
+    },
+    {
+      "line": 181,
+      "type": "dataframe",
+      "arg": "user_clean_df.head(10)"
+    }
+  ],
+  "app\\pages\\1_Control_Tower.py": [],
+  "app\\pages\\2_Decision_Twin.py": [
+    {
+      "line": 58,
+      "type": "markdown",
+      "arg": "\"<h1 style='margin-bottom: 2px;'>Decision Twin</h1>\""
+    },
+    {
+      "line": 59,
+      "type": "markdown",
+      "arg": "\"<p style='color: #6B7280; font-size: 0.95rem; margin-bottom: 20px;'>Stress-test charter recommendations across simulated market conditions.</p>\""
+    },
+    {
+      "line": 60,
+      "type": "caption",
+      "arg": "\"Source: simulated futures on synthetic demo state — not real-market scenario data\""
+    },
+    {
+      "line": 71,
+      "type": "selectbox",
+      "arg": "\"Cargo Type\""
+    },
+    {
+      "line": 72,
+      "type": "number_input",
+      "arg": "\"Quantity (t)\""
+    },
+    {
+      "line": 78,
+      "type": "selectbox",
+      "arg": "\"Origin Country\""
+    },
+    {
+      "line": 88,
+      "type": "selectbox",
+      "arg": "\"Origin Port\""
+    },
+    {
+      "line": 105,
+      "type": "selectbox",
+      "arg": "\"Destination Port\""
+    },
+    {
+      "line": 111,
+      "type": "caption",
+      "arg": "\"🟢 Route Status: DEMO-CALIBRATED\""
+    },
+    {
+      "line": 113,
+      "type": "caption",
+      "arg": "\"⚠️ Route Status: CATALOG ONLY\""
+    },
+    {
+      "line": 159,
+      "type": "caption",
+      "arg": "\"RECOMMENDED ACTION\""
+    },
+    {
+      "line": 160,
+      "type": "markdown",
+      "arg": "f\"### {hero['recommended_vessel']} / {hero['recommended_date']}\""
+    },
+    {
+      "line": 161,
+      "type": "caption",
+      "arg": "\"Recommended vessel & charter window (simulated)\""
+    },
+    {
+      "line": 163,
+      "type": "caption",
+      "arg": "\"EXPECTED LOGISTICS COST\""
+    },
+    {
+      "line": 164,
+      "type": "markdown",
+      "arg": "f\"<h3 style='color: #1667D9;'>₹{hero['expected_cost_inr_cr']:.2f} Cr</h3>\""
+    },
+    {
+      "line": 165,
+      "type": "caption",
+      "arg": "\"Mean across 1,000 futures\""
+    },
+    {
+      "line": 167,
+      "type": "caption",
+      "arg": "\"DECISION ROBUSTNESS\""
+    },
+    {
+      "line": 168,
+      "type": "markdown",
+      "arg": "f\"<h3 style='color: #10B981;'>{hero['robustness_score']} / 100</h3>\""
+    },
+    {
+      "line": 170,
+      "type": "caption",
+      "arg": "f\"Composite robustness score across {sims_cnt:,} simulated futures\""
+    },
+    {
+      "line": 173,
+      "type": "caption",
+      "arg": "\"EXPECTED REGRET\""
+    },
+    {
+      "line": 174,
+      "type": "markdown",
+      "arg": "f\"### ₹{hero['expected_regret_inr_lakh']:.1f} Lakh\""
+    },
+    {
+      "line": 175,
+      "type": "caption",
+      "arg": "\"Minimal downside regret\""
+    },
+    {
+      "line": 197,
+      "type": "download_button",
+      "arg": ""
+    },
+    {
+      "line": 205,
+      "type": "markdown",
+      "arg": "\"<div style='height: 16px;'></div>\""
+    },
+    {
+      "line": 210,
+      "type": "markdown",
+      "arg": "\"### Decision Surface\""
+    },
+    {
+      "line": 211,
+      "type": "caption",
+      "arg": "\"Expected risk-adjusted total logistics cost across candidate choices and charter dates\""
+    },
+    {
+      "line": 258,
+      "type": "plotly_chart",
+      "arg": "fig_heat"
+    },
+    {
+      "line": 260,
+      "type": "markdown",
+      "arg": "\"<div style='height: 16px;'></div>\""
+    },
+    {
+      "line": 264,
+      "type": "markdown",
+      "arg": "\"### Simulated Freight Futures\""
+    },
+    {
+      "line": 265,
+      "type": "caption",
+      "arg": "\"Stochastic freight trajectories with 10–90% simulation envelope across 1,000 futures\""
+    },
+    {
+      "line": 300,
+      "type": "plotly_chart",
+      "arg": "fig_fan"
+    },
+    {
+      "line": 302,
+      "type": "markdown",
+      "arg": "\"<div style='height: 16px;'></div>\""
+    },
+    {
+      "line": 306,
+      "type": "markdown",
+      "arg": "\"### What Would Change This Decision?\""
+    },
+    {
+      "line": 307,
+      "type": "caption",
+      "arg": "\"Quantitative counterfactual tipping points indicating when recommendation alters (Model-derived heuristic threshold)\""
+    },
+    {
+      "line": 314,
+      "type": "markdown",
+      "arg": "f\"**{cf['trigger_event']}**\""
+    },
+    {
+      "line": 315,
+      "type": "caption",
+      "arg": "f\"Current: {cf['current_val']} • Tipping Point: {cf['threshold_val']}\""
+    },
+    {
+      "line": 318,
+      "type": "caption",
+      "arg": "\"No counterfactual tipping points derived for this state.\""
+    }
+  ],
+  "app\\pages\\3_Operations_Overview.py": [
+    {
+      "line": 57,
+      "type": "markdown",
+      "arg": "\"### Operations Overview\""
+    },
+    {
+      "line": 58,
+      "type": "caption",
+      "arg": "\"Freight market outlook and current charter recommendation\""
+    },
+    {
+      "line": 59,
+      "type": "caption",
+      "arg": "\"Source: synthetic demo history — not real Baltic Exchange, AIS, or port data\""
+    },
+    {
+      "line": 119,
+      "type": "markdown",
+      "arg": "\"<br>\""
+    },
+    {
+      "line": 125,
+      "type": "markdown",
+      "arg": "\"### Freight Market Outlook\""
+    },
+    {
+      "line": 132,
+      "type": "plotly_chart",
+      "arg": "fig_fc"
+    },
+    {
+      "line": 140,
+      "type": "markdown",
+      "arg": "\"### Charter Recommendation\""
+    }
+  ],
+  "app\\pages\\4_Market_Overview.py": [
+    {
+      "line": 58,
+      "type": "date_input",
+      "arg": "\"Date Window\""
+    },
+    {
+      "line": 74,
+      "type": "markdown",
+      "arg": "\"<h1 style='margin-bottom: 2px;'>Market Intelligence</h1>\""
+    },
+    {
+      "line": 75,
+      "type": "markdown",
+      "arg": "\"<p style='color: #6B7280; font-size: 0.95rem; margin-bottom: 20px;'>Financial market indicators, commodity price signals, and port congestion metrics.</p>\""
+    },
+    {
+      "line": 79,
+      "type": "markdown",
+      "arg": "f\"### Active Route Snapshot — {shipment_ctx.get('origin', 'Hay Point')} → {shipment_ctx.get('destination', 'Paradip')}\""
+    },
+    {
+      "line": 80,
+      "type": "caption",
+      "arg": "\"Route-specific demo synthetic market state for active procurement workspace\""
+    },
+    {
+      "line": 83,
+      "type": "caption",
+      "arg": "\"ROUTE SPOT RATE\""
+    },
+    {
+      "line": 84,
+      "type": "markdown",
+      "arg": "f\"**{format_inr(usd_to_inr(latest_active['freight_rate']))} / t**\""
+    },
+    {
+      "line": 85,
+      "type": "caption",
+      "arg": "f\"USD ${latest_active['freight_rate']:.2f}/t spot\""
+    },
+    {
+      "line": 87,
+      "type": "caption",
+      "arg": "\"14-DAY ROUTE TREND\""
+    },
+    {
+      "line": 89,
+      "type": "markdown",
+      "arg": "f\"<strong style='color: {trend_color}; font-size: 1.1rem;'>{pct_change:+.1f}%</strong>\""
+    },
+    {
+      "line": 90,
+      "type": "caption",
+      "arg": "\"Route freight momentum\""
+    },
+    {
+      "line": 92,
+      "type": "caption",
+      "arg": "\"DESTINATION CONGESTION\""
+    },
+    {
+      "line": 93,
+      "type": "markdown",
+      "arg": "f\"**{latest_active.get('port_congestion_score', 45.0):.0f} / 100**\""
+    },
+    {
+      "line": 94,
+      "type": "caption",
+      "arg": "f\"Waiting: ~{latest_active.get('avg_waiting_hours', 24.0):.0f} hours\""
+    },
+    {
+      "line": 96,
+      "type": "caption",
+      "arg": "\"ROUTE VESSEL SUPPLY\""
+    },
+    {
+      "line": 97,
+      "type": "markdown",
+      "arg": "f\"**{int(latest_active.get('vessel_availability_count', 25))} Vessels**\""
+    },
+    {
+      "line": 98,
+      "type": "caption",
+      "arg": "\"Available in region\""
+    },
+    {
+      "line": 107,
+      "type": "caption",
+      "arg": "\"BDI / FREIGHT\""
+    },
+    {
+      "line": 108,
+      "type": "markdown",
+      "arg": "f\"**{latest['bdi']:,.0f} BDI**\""
+    },
+    {
+      "line": 109,
+      "type": "caption",
+      "arg": "f\"{format_inr(usd_to_inr(latest['freight_rate']))}/t\""
+    },
+    {
+      "line": 111,
+      "type": "caption",
+      "arg": "\"COKING COAL\""
+    },
+    {
+      "line": 112,
+      "type": "markdown",
+      "arg": "f\"**{format_inr(coal_inr)} / t**\""
+    },
+    {
+      "line": 113,
+      "type": "caption",
+      "arg": "\"Premium Hard Coking\""
+    },
+    {
+      "line": 115,
+      "type": "caption",
+      "arg": "\"IRON ORE\""
+    },
+    {
+      "line": 116,
+      "type": "markdown",
+      "arg": "f\"**{format_inr(ore_inr)} / t**\""
+    },
+    {
+      "line": 117,
+      "type": "caption",
+      "arg": "\"62% Fe CFR China\""
+    },
+    {
+      "line": 119,
+      "type": "caption",
+      "arg": "\"PARADIP CONGESTION\""
+    },
+    {
+      "line": 120,
+      "type": "markdown",
+      "arg": "f\"**{latest['port_congestion_score']:.0f} / 100**\""
+    },
+    {
+      "line": 121,
+      "type": "caption",
+      "arg": "f\"{latest['avg_waiting_hours']:.0f}h avg wait\""
+    },
+    {
+      "line": 123,
+      "type": "caption",
+      "arg": "\"AVAILABLE VESSELS\""
+    },
+    {
+      "line": 124,
+      "type": "markdown",
+      "arg": "f\"**{latest['vessel_availability_count']} Vessels**\""
+    },
+    {
+      "line": 125,
+      "type": "caption",
+      "arg": "\"Open East Coast AU\""
+    },
+    {
+      "line": 127,
+      "type": "markdown",
+      "arg": "\"<div style='height: 16px;'></div>\""
+    },
+    {
+      "line": 131,
+      "type": "markdown",
+      "arg": "\"### Freight Market Benchmark & Commodity Signals\""
+    },
+    {
+      "line": 133,
+      "type": "plotly_chart",
+      "arg": "fig_f"
+    },
+    {
+      "line": 135,
+      "type": "markdown",
+      "arg": "\"<div style='height: 16px;'></div>\""
+    },
+    {
+      "line": 142,
+      "type": "markdown",
+      "arg": "\"### Market Signals\""
+    },
+    {
+      "line": 143,
+      "type": "caption",
+      "arg": "\"Key driver metrics and status indicators\""
+    },
+    {
+      "line": 152,
+      "type": "dataframe",
+      "arg": "pd.DataFrame(signals_data)"
+    },
+    {
+      "line": 156,
+      "type": "markdown",
+      "arg": "\"### Market Events & Operational News\""
+    },
+    {
+      "line": 157,
+      "type": "caption",
+      "arg": "\"Recent market developments impacting East Coast freight\""
+    },
+    {
+      "line": 167,
+      "type": "markdown",
+      "arg": "f\"\"\"\n                <div style=\"border-bottom: 1px solid #F1F5F9; padding-bottom: 8px; margin-bottom: 8px;\">\n                    <div style=\"font-size: 0.75rem; color: #6B7280; font-weight: 600;\">{ev['Date']}</div>\n                    <div style=\"font-size: 0.875rem; color: #111827;\">{ev['Event']}</div>\n                </div>\n            \"\"\""
+    }
+  ],
+  "app\\pages\\5_Forecasting.py": [
+    {
+      "line": 70,
+      "type": "markdown",
+      "arg": "\"<h1 style='margin-bottom: 2px;'>Forecasts</h1>\""
+    },
+    {
+      "line": 71,
+      "type": "markdown",
+      "arg": "\"<p style='color: #6B7280; font-size: 0.95rem; margin-bottom: 20px;'>Predictive spot freight rate models and demo-series simulation metrics.</p>\""
+    },
+    {
+      "line": 72,
+      "type": "caption",
+      "arg": "\"Source: synthetic route-specific demonstration series — not real Baltic Exchange or AIS data\""
+    },
+    {
+      "line": 81,
+      "type": "selectbox",
+      "arg": "\"Route\""
+    },
+    {
+      "line": 92,
+      "type": "selectbox",
+      "arg": "\"Forecast Model\""
+    },
+    {
+      "line": 94,
+      "type": "select_slider",
+      "arg": "\"Forecast Horizon\""
+    },
+    {
+      "line": 96,
+      "type": "markdown",
+      "arg": "\"<div style='height: 28px;'></div>\""
+    },
+    {
+      "line": 97,
+      "type": "button",
+      "arg": "\"Update Forecast\""
+    },
+    {
+      "line": 99,
+      "type": "markdown",
+      "arg": "\"<div style='height: 4px;'></div>\""
+    },
+    {
+      "line": 102,
+      "type": "caption",
+      "arg": "f\"Demo route context — forecast uses route-specific synthetic history ({route_key})\""
+    },
+    {
+      "line": 104,
+      "type": "markdown",
+      "arg": "\"<div style='text-align: right;'><span style='background-color: #DEF7EC; color: #03543F; font-size: 0.75rem; font-weight: 600; padding: 3px 8px; border-radius: 4px;'>🟢 DEMO-CALIBRATED</span></div>\""
+    },
+    {
+      "line": 114,
+      "type": "markdown",
+      "arg": "\"<div style='height: 16px;'></div>\""
+    },
+    {
+      "line": 128,
+      "type": "markdown",
+      "arg": "f\"### Spot Freight Rate Forecast — {selected_route_label} ({horizon}-Day Horizon)\""
+    },
+    {
+      "line": 129,
+      "type": "caption",
+      "arg": "f\"Model: {fc_res['selected_model']} • 95% Confidence Interval Band • Data: SYNTHETIC ROUTE-SPECIFIC DEMO HISTORY\""
+    },
+    {
+      "line": 136,
+      "type": "plotly_chart",
+      "arg": "fig_fc"
+    },
+    {
+      "line": 139,
+      "type": "expander",
+      "arg": "\"📊 Compare Route Freight Trajectories (Optional)\""
+    },
+    {
+      "line": 140,
+      "type": "caption",
+      "arg": "\"Overlay up to 3 calibrated routes to inspect route-specific historical freight variations.\""
+    },
+    {
+      "line": 141,
+      "type": "multiselect",
+      "arg": "\"Select routes to compare\""
+    },
+    {
+      "line": 161,
+      "type": "plotly_chart",
+      "arg": "fig_cmp"
+    },
+    {
+      "line": 163,
+      "type": "markdown",
+      "arg": "\"<div style='height: 16px;'></div>\""
+    },
+    {
+      "line": 170,
+      "type": "markdown",
+      "arg": "\"### Demo-Series Model Metrics\""
+    },
+    {
+      "line": 171,
+      "type": "caption",
+      "arg": "\"Out-of-sample error on synthetic demo series — not a real-market accuracy claim\""
+    },
+    {
+      "line": 172,
+      "type": "caption",
+      "arg": "\"Validation source: synthetic demonstration series\""
+    },
+    {
+      "line": 181,
+      "type": "caption",
+      "arg": "\"MAE\""
+    },
+    {
+      "line": 182,
+      "type": "markdown",
+      "arg": "f\"**{format_inr(usd_to_inr(metrics['MAE']))} / t**\""
+    },
+    {
+      "line": 183,
+      "type": "caption",
+      "arg": "\"Mean Absolute Error\""
+    },
+    {
+      "line": 185,
+      "type": "caption",
+      "arg": "\"RMSE\""
+    },
+    {
+      "line": 186,
+      "type": "markdown",
+      "arg": "f\"**{format_inr(usd_to_inr(metrics['RMSE']))} / t**\""
+    },
+    {
+      "line": 187,
+      "type": "caption",
+      "arg": "\"Root Mean Squared Error\""
+    },
+    {
+      "line": 189,
+      "type": "caption",
+      "arg": "\"MAPE\""
+    },
+    {
+      "line": 190,
+      "type": "markdown",
+      "arg": "f\"**{metrics['MAPE']:.2f}%**\""
+    },
+    {
+      "line": 191,
+      "type": "caption",
+      "arg": "\"Mean Absolute Pct Error\""
+    },
+    {
+      "line": 194,
+      "type": "markdown",
+      "arg": "\"#### Model Comparison Benchmark\""
+    },
+    {
+      "line": 204,
+      "type": "dataframe",
+      "arg": "comp_rows"
+    },
+    {
+      "line": 208,
+      "type": "markdown",
+      "arg": "\"### Contextual Market Signals\""
+    },
+    {
+      "line": 209,
+      "type": "caption",
+      "arg": "\"Qualitative market indicators — not used as explicit model regressors in univariate forecast\""
+    },
+    {
+      "line": 217,
+      "type": "dataframe",
+      "arg": "pd.DataFrame(drivers)"
+    },
+    {
+      "line": 220,
+      "type": "caption",
+      "arg": "\"FORECAST INTERPRETATION\""
+    },
+    {
+      "line": 239,
+      "type": "markdown",
+      "arg": "\"<div style='height: 16px;'></div>\""
+    },
+    {
+      "line": 243,
+      "type": "markdown",
+      "arg": "\"### Real-Data Validation — Open-Meteo Observed Series\""
+    },
+    {
+      "line": 244,
+      "type": "caption",
+      "arg": "\"Source: Open-Meteo Archive API — public daily weather observations (CC BY 4.0). \"\n        \"Max daily wind speed at Paradip port. Train/test split: last 30 days held out. \"\n        \"Metrics computed on real observed values only — not on synthetic data.\""
+    },
+    {
+      "line": 272,
+      "type": "caption",
+      "arg": "\"MAE (real)\""
+    },
+    {
+      "line": 273,
+      "type": "markdown",
+      "arg": "f\"**{result.mae:.3f} m/s**\" if result.mae is not None else \"—\""
+    },
+    {
+      "line": 275,
+      "type": "caption",
+      "arg": "\"RMSE (real)\""
+    },
+    {
+      "line": 276,
+      "type": "markdown",
+      "arg": "f\"**{result.rmse:.3f} m/s**\" if result.rmse is not None else \"—\""
+    },
+    {
+      "line": 278,
+      "type": "caption",
+      "arg": "\"MAPE (real)\""
+    },
+    {
+      "line": 279,
+      "type": "markdown",
+      "arg": "f\"**{result.mape:.2f}%**\" if result.mape is not None else \"—\""
+    },
+    {
+      "line": 281,
+      "type": "caption",
+      "arg": "\"Observations\""
+    },
+    {
+      "line": 282,
+      "type": "markdown",
+      "arg": "f\"**{result.n_observations}** ({result.start_date} → {result.end_date})\""
+    },
+    {
+      "line": 377,
+      "type": "plotly_chart",
+      "arg": "fig_rv"
+    },
+    {
+      "line": 378,
+      "type": "caption",
+      "arg": "f\"Note: {result.notes} \"\n                \"Wind speed is not a freight rate signal — this chart validates that the \"\n                \"model pipeline correctly fits and evaluates real external data.\""
+    }
+  ],
+  "app\\pages\\6_Charter_Optimizer.py": [
+    {
+      "line": 57,
+      "type": "markdown",
+      "arg": "\"<h1 style='margin-bottom: 2px;'>Charter Workbench</h1>\""
+    },
+    {
+      "line": 58,
+      "type": "markdown",
+      "arg": "f\"<p style='color: #6B7280; font-size: 0.95rem; margin-bottom: 20px;'>Commercial procurement solver for active shipment <strong class='fiq-mono'>{shipment_ctx.get('shipment_id', 'FIQ-2026-0001')}</strong></p>\""
+    },
+    {
+      "line": 78,
+      "type": "markdown",
+      "arg": "\"<div style='height: 8px;'></div>\""
+    },
+    {
+      "line": 79,
+      "type": "button",
+      "arg": "\"Solve Candidates\""
+    },
+    {
+      "line": 81,
+      "type": "markdown",
+      "arg": "\"<div style='height: 16px;'></div>\""
+    },
+    {
+      "line": 128,
+      "type": "markdown",
+      "arg": "\"### Feasible Charter Candidate Matrix\""
+    },
+    {
+      "line": 129,
+      "type": "caption",
+      "arg": "\"Ranked commercial options evaluated across predicted freight, port queue demurrage, and route risk\""
+    },
+    {
+      "line": 132,
+      "type": "download_button",
+      "arg": ""
+    },
+    {
+      "line": 160,
+      "type": "dataframe",
+      "arg": "pd.DataFrame(matrix_rows)"
+    },
+    {
+      "line": 162,
+      "type": "markdown",
+      "arg": "\"<div style='height: 16px;'></div>\""
+    },
+    {
+      "line": 172,
+      "type": "markdown",
+      "arg": "\"<div style='height: 16px;'></div>\""
+    },
+    {
+      "line": 176,
+      "type": "markdown",
+      "arg": "\"### Cost Model Breakdown — Top Candidates\""
+    },
+    {
+      "line": 177,
+      "type": "caption",
+      "arg": "\"Exact cost components computed by the optimizer for each candidate. \"\n            \"Formula: Total = Freight + Demurrage + Congestion + Route Risk Penalty\""
+    },
+    {
+      "line": 193,
+      "type": "dataframe",
+      "arg": "pd.DataFrame(breakdown_rows)"
+    },
+    {
+      "line": 195,
+      "type": "markdown",
+      "arg": "\"<div style='height: 16px;'></div>\""
+    },
+    {
+      "line": 201,
+      "type": "markdown",
+      "arg": "\"### Why This Recommendation Was Selected\""
+    },
+    {
+      "line": 202,
+      "type": "caption",
+      "arg": "\"Derived from computed candidate costs — not generic boilerplate\""
+    },
+    {
+      "line": 208,
+      "type": "markdown",
+      "arg": "f\"**Selected:** {winner['candidate']}\""
+    },
+    {
+      "line": 210,
+      "type": "markdown",
+      "arg": "f\"- {reason}\""
+    },
+    {
+      "line": 220,
+      "type": "dataframe",
+      "arg": "pd.DataFrame(breakdown_items)"
+    },
+    {
+      "line": 224,
+      "type": "markdown",
+      "arg": "\"**Why alternatives were ranked lower:**\""
+    },
+    {
+      "line": 227,
+      "type": "expander",
+      "arg": "f\"{alt['candidate']} — total ${alt['total_cost_usd']:,.0f} \"\n                        f\"(+{delta_inr} vs selected)\""
+    },
+    {
+      "line": 232,
+      "type": "markdown",
+      "arg": "f\"- {r}\""
+    },
+    {
+      "line": 234,
+      "type": "markdown",
+      "arg": "\"<div style='height: 16px;'></div>\""
+    },
+    {
+      "line": 238,
+      "type": "markdown",
+      "arg": "\"### Assumption Sensitivity — Robustness Panel\""
+    },
+    {
+      "line": 239,
+      "type": "caption",
+      "arg": "\"Each key cost assumption is perturbed ±15% and ±30% (one at a time) and \"\n            \"the optimizer re-run. 'Held' = same vessel and charter date as baseline. \"\n            \"Computed on synthetic demo series — not real-market robustness.\""
+    },
+    {
+      "line": 258,
+      "type": "markdown",
+      "arg": "f\"**Overall stability:** {sens_res['stability_summary']} \"\n                f\"(demo data)\""
+    },
+    {
+      "line": 273,
+      "type": "dataframe",
+      "arg": "pd.DataFrame(sens_rows)"
+    },
+    {
+      "line": 276,
+      "type": "expander",
+      "arg": "\"Detailed perturbation results\""
+    },
+    {
+      "line": 278,
+      "type": "markdown",
+      "arg": "f\"**{pr['parameter_label']}** ({pr['unit']})\""
+    },
+    {
+      "line": 289,
+      "type": "dataframe",
+      "arg": "pd.DataFrame(detail_rows)"
+    },
+    {
+      "line": 290,
+      "type": "markdown",
+      "arg": "\"\""
+    }
+  ],
+  "app\\pages\\7_Scenario_Lab.py": [
+    {
+      "line": 40,
+      "type": "markdown",
+      "arg": "\"<h1 style='margin-bottom: 2px;'>Scenario Lab</h1>\""
+    },
+    {
+      "line": 41,
+      "type": "markdown",
+      "arg": "\"<p style='color: #6B7280; font-size: 0.95rem; margin-bottom: 20px;'>Stress-test charter recommendations across simulated freight, congestion, and weather disruptions.</p>\""
+    },
+    {
+      "line": 68,
+      "type": "markdown",
+      "arg": "\"### Presets & Actions\""
+    },
+    {
+      "line": 71,
+      "type": "button",
+      "arg": "\"East Coast Disruption\""
+    },
+    {
+      "line": 81,
+      "type": "button",
+      "arg": "\"Freight Rate Spike\""
+    },
+    {
+      "line": 91,
+      "type": "button",
+      "arg": "\"Paradip Congestion\""
+    },
+    {
+      "line": 101,
+      "type": "button",
+      "arg": "\"Vessel Shortage\""
+    },
+    {
+      "line": 111,
+      "type": "button",
+      "arg": "\"Severe Weather Risk\""
+    },
+    {
+      "line": 121,
+      "type": "button",
+      "arg": "\"Market Relief\""
+    },
+    {
+      "line": 131,
+      "type": "button",
+      "arg": "\"Reset Scenario\""
+    },
+    {
+      "line": 138,
+      "type": "markdown",
+      "arg": "\"<div style='height: 16px;'></div>\""
+    },
+    {
+      "line": 145,
+      "type": "markdown",
+      "arg": "\"### Scenario Inputs\""
+    },
+    {
+      "line": 146,
+      "type": "caption",
+      "arg": "\"Adjust disruption parameters to test decision stability\""
+    },
+    {
+      "line": 148,
+      "type": "slider",
+      "arg": "\"Freight Shock (%)\""
+    },
+    {
+      "line": 149,
+      "type": "slider",
+      "arg": "\"Port Congestion Shock (%)\""
+    },
+    {
+      "line": 150,
+      "type": "slider",
+      "arg": "\"Vessel Availability Change (%)\""
+    },
+    {
+      "line": 154,
+      "type": "selectbox",
+      "arg": "\"Weather Risk\""
+    },
+    {
+      "line": 161,
+      "type": "selectbox",
+      "arg": "\"Target Discharge Port\""
+    },
+    {
+      "line": 163,
+      "type": "markdown",
+      "arg": "\"<div style='height: 8px;'></div>\""
+    },
+    {
+      "line": 164,
+      "type": "button",
+      "arg": "\"Run Scenario Simulation\""
+    },
+    {
+      "line": 216,
+      "type": "markdown",
+      "arg": "\"### Impact Preview\""
+    },
+    {
+      "line": 217,
+      "type": "caption",
+      "arg": "\"Predicted impact on logistics cost and charter recommendation\""
+    },
+    {
+      "line": 229,
+      "type": "caption",
+      "arg": "\"EXPECTED COST\""
+    },
+    {
+      "line": 230,
+      "type": "markdown",
+      "arg": "f\"**{format_inr(s_cost_inr)}**\""
+    },
+    {
+      "line": 231,
+      "type": "caption",
+      "arg": "f\"{cost_diff_pct:+.1f}% vs baseline\""
+    },
+    {
+      "line": 234,
+      "type": "caption",
+      "arg": "\"RECOMMENDED WINDOW\""
+    },
+    {
+      "line": 235,
+      "type": "markdown",
+      "arg": "f\"**{stress_rec['charter_date']}**\""
+    },
+    {
+      "line": 236,
+      "type": "caption",
+      "arg": "f\"{stress_rec['vessel_class']} Vessel\""
+    },
+    {
+      "line": 239,
+      "type": "caption",
+      "arg": "\"DECISION STATUS\""
+    },
+    {
+      "line": 247,
+      "type": "markdown",
+      "arg": "f\"**{status_text}**\""
+    },
+    {
+      "line": 248,
+      "type": "caption",
+      "arg": "\"Recommendation State\""
+    },
+    {
+      "line": 251,
+      "type": "caption",
+      "arg": "\"DECISION EXPLANATION\""
+    },
+    {
+      "line": 254,
+      "type": "markdown",
+      "arg": "\"<div style='height: 16px;'></div>\""
+    },
+    {
+      "line": 259,
+      "type": "markdown",
+      "arg": "\"### Baseline vs Stressed Scenario Comparison\""
+    },
+    {
+      "line": 261,
+      "type": "dataframe",
+      "arg": "comp_df"
+    }
+  ],
+  "app\\pages\\8_Backtesting.py": [
+    {
+      "line": 58,
+      "type": "markdown",
+      "arg": "\"<h1 style='margin-bottom: 2px;'>Simulation Backtest</h1>\""
+    },
+    {
+      "line": 59,
+      "type": "markdown",
+      "arg": "\"<p style='color: #6B7280; font-size: 0.95rem; margin-bottom: 20px;'>Historical-style simulation on synthetic route-specific data against an immediate-charter benchmark strategy.</p>\""
+    },
+    {
+      "line": 66,
+      "type": "selectbox",
+      "arg": "\"Simulation Route\""
+    },
+    {
+      "line": 70,
+      "type": "caption",
+      "arg": "\"ROUTE DATA MODE\""
+    },
+    {
+      "line": 71,
+      "type": "markdown",
+      "arg": "\"<span style='background-color: #DEF7EC; color: #03543F; font-size: 0.85rem; font-weight: 600; padding: 4px 10px; border-radius: 4px;'>🟢 SYNTHETIC ROUTE-SPECIFIC DEMO SERIES</span>\""
+    },
+    {
+      "line": 73,
+      "type": "markdown",
+      "arg": "\"<div style='height: 8px;'></div>\""
+    },
+    {
+      "line": 81,
+      "type": "date_input",
+      "arg": "\"Simulation Start Date\""
+    },
+    {
+      "line": 83,
+      "type": "date_input",
+      "arg": "\"Simulation End Date\""
+    },
+    {
+      "line": 85,
+      "type": "select_slider",
+      "arg": "\"Forecast Horizon\""
+    },
+    {
+      "line": 87,
+      "type": "selectbox",
+      "arg": "\"Interval Days\""
+    },
+    {
+      "line": 89,
+      "type": "button",
+      "arg": "\"Run Simulation Backtest\""
+    },
+    {
+      "line": 91,
+      "type": "markdown",
+      "arg": "\"<div style='height: 16px;'></div>\""
+    },
+    {
+      "line": 121,
+      "type": "caption",
+      "arg": "f\"✓ Simulation completed in {elapsed_sec:.2f} seconds\""
+    },
+    {
+      "line": 127,
+      "type": "caption",
+      "arg": "\"DECISION WINDOWS\""
+    },
+    {
+      "line": 128,
+      "type": "markdown",
+      "arg": "f\"### {sim_res['test_periods_count']}\""
+    },
+    {
+      "line": 129,
+      "type": "caption",
+      "arg": "\"Simulated decision points on demo data\""
+    },
+    {
+      "line": 132,
+      "type": "caption",
+      "arg": "\"SIMULATED WIN RATE (DEMO DATA)\""
+    },
+    {
+      "line": 133,
+      "type": "markdown",
+      "arg": "f\"<h3 style='color: #10B981;'>{sim_res['win_rate_percentage']:.1f}%</h3>\""
+    },
+    {
+      "line": 134,
+      "type": "caption",
+      "arg": "f\"{sim_res['win_count']} of {sim_res['test_periods_count']} simulated windows (synthetic series)\""
+    },
+    {
+      "line": 137,
+      "type": "caption",
+      "arg": "\"SIMULATED COST DIFFERENCE\""
+    },
+    {
+      "line": 138,
+      "type": "markdown",
+      "arg": "f\"<h3 style='color: #10B981;'>{format_inr(sim_diff_inr)}</h3>\""
+    },
+    {
+      "line": 139,
+      "type": "caption",
+      "arg": "f\"{sim_res['simulated_savings_percentage']:+.2f}% vs immediate charter (synthetic sim)\""
+    },
+    {
+      "line": 142,
+      "type": "caption",
+      "arg": "\"FORECAST MAE (DEMO SERIES)\""
+    },
+    {
+      "line": 144,
+      "type": "markdown",
+      "arg": "f\"### {format_inr(mae_inr)} / t\""
+    },
+    {
+      "line": 148,
+      "type": "markdown",
+      "arg": "f\"Validation unavailable — insufficient historical observations (available: {_av}, required: {_rq})\""
+    },
+    {
+      "line": 149,
+      "type": "caption",
+      "arg": "\"Demo-series walk-forward error\""
+    },
+    {
+      "line": 151,
+      "type": "markdown",
+      "arg": "\"<div style='height: 16px;'></div>\""
+    },
+    {
+      "line": 158,
+      "type": "markdown",
+      "arg": "\"<div style='height: 16px;'></div>\""
+    },
+    {
+      "line": 166,
+      "type": "markdown",
+      "arg": "\"### Cost Comparison per Decision Period\""
+    },
+    {
+      "line": 168,
+      "type": "plotly_chart",
+      "arg": "fig_bar"
+    },
+    {
+      "line": 172,
+      "type": "markdown",
+      "arg": "\"### Cumulative Cost Difference\""
+    },
+    {
+      "line": 174,
+      "type": "plotly_chart",
+      "arg": "fig_cum"
+    },
+    {
+      "line": 176,
+      "type": "markdown",
+      "arg": "\"<div style='height: 16px;'></div>\""
+    },
+    {
+      "line": 180,
+      "type": "markdown",
+      "arg": "\"### Decision Outcomes Matrix\""
+    },
+    {
+      "line": 195,
+      "type": "dataframe",
+      "arg": "table_rows"
+    }
+  ],
+  "app\\pages\\9_Data_Integration.py": [
+    {
+      "line": 38,
+      "type": "markdown",
+      "arg": "\"<h1 style='margin-bottom: 2px;'>Data & Integrations</h1>\""
+    },
+    {
+      "line": 39,
+      "type": "markdown",
+      "arg": "\"<p style='color: #6B7280; font-size: 0.95rem; margin-bottom: 20px;'>Manage external API connectors, signal freshness, manual overrides, and system audit logs.</p>\""
+    },
+    {
+      "line": 45,
+      "type": "tabs",
+      "arg": "[\n    \"Connections\",\n    \"Data Quality\",\n    \"Overrides\",\n    \"Audit Trail\",\n    \"Model & Data Limitations\",\n    \"Decision Parameters\",\n    \"Model Cards\",\n    \"Model Status\",\n]"
+    },
+    {
+      "line": 58,
+      "type": "markdown",
+      "arg": "\"### Connector Status & Data Sources\""
+    },
+    {
+      "line": 59,
+      "type": "caption",
+      "arg": "\"Active data pipelines feeding FreightIQ forecasting and Decision Twin engines\""
+    },
+    {
+      "line": 71,
+      "type": "dataframe",
+      "arg": "pd.DataFrame(conn_data)"
+    },
+    {
+      "line": 75,
+      "type": "markdown",
+      "arg": "\"### Signal Data Quality Matrix\""
+    },
+    {
+      "line": 76,
+      "type": "caption",
+      "arg": "\"Freshness, completeness, and schema validation breakdown\""
+    },
+    {
+      "line": 89,
+      "type": "dataframe",
+      "arg": "pd.DataFrame(matrix_data)"
+    },
+    {
+      "line": 93,
+      "type": "markdown",
+      "arg": "\"### Manual Operator Override Notes\""
+    },
+    {
+      "line": 94,
+      "type": "caption",
+      "arg": "\"Record manual operator notes for audit trail (does not alter underlying physical model inputs)\""
+    },
+    {
+      "line": 98,
+      "type": "number_input",
+      "arg": "\"Override Port Congestion (0-100)\""
+    },
+    {
+      "line": 100,
+      "type": "number_input",
+      "arg": "\"Override Vessel Count\""
+    },
+    {
+      "line": 102,
+      "type": "number_input",
+      "arg": "\"Override Demurrage (₹/day)\""
+    },
+    {
+      "line": 104,
+      "type": "button",
+      "arg": "\"Record Manual Override Note\""
+    },
+    {
+      "line": 114,
+      "type": "markdown",
+      "arg": "\"### System Audit Trail\""
+    },
+    {
+      "line": 115,
+      "type": "caption",
+      "arg": "\"Activity log of procurement decisions, manual overrides, and model execution events\""
+    },
+    {
+      "line": 119,
+      "type": "dataframe",
+      "arg": "pd.DataFrame(logs)"
+    },
+    {
+      "line": 125,
+      "type": "markdown",
+      "arg": "\"### Model & Data Limitations\""
+    },
+    {
+      "line": 126,
+      "type": "caption",
+      "arg": "\"Read before interpreting any metric or recommendation shown in this tool\""
+    },
+    {
+      "line": 127,
+      "type": "markdown",
+      "arg": "\"\"\"\n**Data source:** All datasets are synthetic unless a live connector is explicitly enabled and verified in the Connections tab. Synthetic data is seeded from realistic statistical distributions but is not real Baltic Exchange, AIS, port, or commodity data.\n\n**Metric provenance:** MAE, RMSE, MAPE, win-rate, and robustness-score figures are comput"
+    },
+    {
+      "line": 143,
+      "type": "markdown",
+      "arg": "\"### Decision Parameters & Provenance\""
+    },
+    {
+      "line": 144,
+      "type": "caption",
+      "arg": "\"Read-only registry of every numeric constant used in the optimizer and cost model. \"\n            \"Classification shows whether each value is observed, derived, or assumed.\""
+    },
+    {
+      "line": 161,
+      "type": "dataframe",
+      "arg": "pd.DataFrame(display_rows)"
+    },
+    {
+      "line": 170,
+      "type": "expander",
+      "arg": "\"Classification legend\""
+    },
+    {
+      "line": 172,
+      "type": "markdown",
+      "arg": "f\"**{cls}** — {desc}\""
+    },
+    {
+      "line": 175,
+      "type": "markdown",
+      "arg": "\"### Model Cards\""
+    },
+    {
+      "line": 176,
+      "type": "caption",
+      "arg": "\"Purpose, algorithm, assumptions, limitations, and validation status \"\n        \"for each model powering FreightIQ.\""
+    },
+    {
+      "line": 292,
+      "type": "expander",
+      "arg": "f\"{card['name']}\""
+    },
+    {
+      "line": 295,
+      "type": "markdown",
+      "arg": "f\"**Purpose**  \\n{card['purpose']}\""
+    },
+    {
+      "line": 296,
+      "type": "markdown",
+      "arg": "f\"**Algorithm**  \\n{card['algorithm']}\""
+    },
+    {
+      "line": 297,
+      "type": "markdown",
+      "arg": "f\"**Assumptions**  \\n{card['assumptions']}\""
+    },
+    {
+      "line": 299,
+      "type": "markdown",
+      "arg": "f\"**Inputs**  \\n{card['inputs']}\""
+    },
+    {
+      "line": 300,
+      "type": "markdown",
+      "arg": "f\"**Outputs**  \\n{card['outputs']}\""
+    },
+    {
+      "line": 301,
+      "type": "markdown",
+      "arg": "f\"**Limitations**  \\n{card['limitations']}\""
+    },
+    {
+      "line": 303,
+      "type": "markdown",
+      "arg": "f\"**Validation status:** {card['validation_status']}  \\n\"\n                f\"**Data provenance:** {card['data_provenance']}\""
+    },
+    {
+      "line": 310,
+      "type": "markdown",
+      "arg": "\"### Model Status — Trust Panel\""
+    },
+    {
+      "line": 311,
+      "type": "caption",
+      "arg": "\"Explicit status of each model component. \"\n            \"Green = validated within stated scope. \"\n            \"Amber = functional but limited validation. \"\n            \"Red = not validated or known limitation.\""
+    },
+    {
+      "line": 363,
+      "type": "dataframe",
+      "arg": "df_trust"
+    },
+    {
+      "line": 365,
+      "type": "markdown",
+      "arg": "\"---\""
+    },
+    {
+      "line": 366,
+      "type": "markdown",
+      "arg": "\"**How to interpret status:**  \\n\"\n            \"- **Green** — component is validated within its stated scope (the scope itself may be narrow).  \\n\"\n            \"- **Amber** — component functions correctly on demo data but has not been validated against \"\n            \"real-market or production conditions.  \\n\"\n            \"- **Red** — component has "
+    },
+    {
+      "line": 379,
+      "type": "markdown",
+      "arg": "\"**Live Validation Data Status**\""
+    }
+  ],
+  "app\\views\\__init__.py": [],
+  "app\\views\\control_tower_view.py": [
+    {
+      "line": 58,
+      "type": "markdown",
+      "arg": "f\"<h1 style='margin-bottom: 2px;'>{active_page_name}</h1>\""
+    },
+    {
+      "line": 59,
+      "type": "markdown",
+      "arg": "\"<p style='color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 20px;'>Freight exposure and chartering decisions.</p>\""
+    },
+    {
+      "line": 120,
+      "type": "markdown",
+      "arg": "f\"\"\"\n                <div style=\"display: flex; align-items: center; gap: 12px; margin-bottom: 4px;\">\n                    <span class=\"fiq-mono\" style=\"font-weight: 600;\">{shipment_ctx.get('shipment_id', 'FIQ-2026-0001')}</span>\n                    <span style=\"font-size: 1.15rem; font-weight: 700;\">{shipment_ctx.get('quantity_tonnes', 75000):,.0f}"
+    },
+    {
+      "line": 131,
+      "type": "markdown",
+      "arg": "\"\"\"\n                <div style=\"text-align: right;\">\n                    <span class=\"badge-online\" style=\"font-size: 0.8rem; padding: 4px 10px;\">RECOMMENDED ACTION</span>\n                </div>\n            \"\"\""
+    },
+    {
+      "line": 143,
+      "type": "caption",
+      "arg": "\"EXPECTED LOGISTICS COST\""
+    },
+    {
+      "line": 151,
+      "type": "markdown",
+      "arg": "f\"<h2 style='color: #1667D9; margin: 0;'>{cost_val_inr}</h2>\""
+    },
+    {
+      "line": 152,
+      "type": "caption",
+      "arg": "\"Base rate + port demurrage + risk factor\""
+    },
+    {
+      "line": 155,
+      "type": "caption",
+      "arg": "\"RECOMMENDED CHARTER WINDOW\""
+    },
+    {
+      "line": 157,
+      "type": "markdown",
+      "arg": "f\"<h2 style='margin: 0;'>{window_str}</h2>\""
+    },
+    {
+      "line": 158,
+      "type": "caption",
+      "arg": "f\"{curr_rec.get('vessel_class', 'Panamax')} Vessel Class\""
+    },
+    {
+      "line": 161,
+      "type": "caption",
+      "arg": "\"DECISION ROBUSTNESS\""
+    },
+    {
+      "line": 166,
+      "type": "markdown",
+      "arg": "f\"<h2 style='color: #10B981; margin: 0;'>{score_val:.0f} / 100</h2>\""
+    },
+    {
+      "line": 167,
+      "type": "caption",
+      "arg": "f\"Across {sims_cnt:,} simulated futures\""
+    },
+    {
+      "line": 169,
+      "type": "markdown",
+      "arg": "\"<h2 style='color: #6B7280; margin: 0;'>Unavailable</h2>\""
+    },
+    {
+      "line": 170,
+      "type": "caption",
+      "arg": "\"Decision Twin could not evaluate candidate\""
+    },
+    {
+      "line": 173,
+      "type": "markdown",
+      "arg": "\"<div style='height: 12px;'></div>\""
+    },
+    {
+      "line": 178,
+      "type": "button",
+      "arg": "\"View Recommendation\""
+    },
+    {
+      "line": 181,
+      "type": "button",
+      "arg": "\"Run Scenario\""
+    },
+    {
+      "line": 191,
+      "type": "download_button",
+      "arg": ""
+    },
+    {
+      "line": 200,
+      "type": "markdown",
+      "arg": "\"<div style='height: 24px;'></div>\""
+    },
+    {
+      "line": 207,
+      "type": "markdown",
+      "arg": "\"### Freight Market Overview\""
+    },
+    {
+      "line": 208,
+      "type": "caption",
+      "arg": "\"Historical Panamax / Capesize spot freight rate trajectory (₹/tonne)\""
+    },
+    {
+      "line": 210,
+      "type": "plotly_chart",
+      "arg": "fig_trend"
+    },
+    {
+      "line": 214,
+      "type": "markdown",
+      "arg": "\"### Shipment Activity\""
+    },
+    {
+      "line": 215,
+      "type": "caption",
+      "arg": "\"Current vessel queue & route conditions\""
+    },
+    {
+      "line": 217,
+      "type": "markdown",
+      "arg": "\"\"\"\n                <div style=\"display: flex; flex-direction: column; gap: 14px; font-size: 0.875rem;\">\n                    <div style=\"border-bottom: 1px solid var(--border); padding-bottom: 10px;\">\n                        <div style=\"font-weight: 600;\">Paradip Port Queue</div>\n                        <div style=\"font-size: 0.8rem;\">Congestion In"
+    },
+    {
+      "line": 238,
+      "type": "markdown",
+      "arg": "\"<div style='height: 24px;'></div>\""
+    },
+    {
+      "line": 242,
+      "type": "markdown",
+      "arg": "\"### Freight Forecast\""
+    },
+    {
+      "line": 243,
+      "type": "caption",
+      "arg": "\"30-Day predictive freight rate outlook with 95% confidence bounds (₹/tonne)\""
+    },
+    {
+      "line": 245,
+      "type": "plotly_chart",
+      "arg": "fig_fc"
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+keyboard_double_arrow_left
+
+Home
+
+Control Tower
+
+Decision Twin
+
+Operations Overview
+
+Market Overview
+
+Forecasting
+
+Charter Optimizer
+
+Scenario Lab
+
+Backtesting
+
+Data Integration
+
+Data Explorer
+
+🌙 Switch to Dark Mode
+
+SYSTEM STATUS
+Active Theme
+Light Mode
+Data Mode
+DEMO
+Forecast Engine
+Auto Model Selection
+Optimizer
+Active
+Deploy
+FreightIQ
+
+Overview
+
+Decision Twin
+
+Operations
+
+Markets
+
+Forecasts
+
+Chartering
+
+Scenarios
+
+Backtesting
+
+Data
+
+Explorer
+
+Data & Integrations
+
+Manage external API connectors, signal freshness, manual overrides, and system audit logs.
+
+Connections
+
+Data Quality
+
+Overrides
+
+Audit Trail
+
+Model & Data Limitations
+
+Decision Parameters
+
+Model Cards
+
+Model Status
+
+Model Cards
+
+Purpose, algorithm, assumptions, limitations, and validation status for each model powering FreightIQ.
+
+keyboard_arrow_down
+
+Forecasting Engine
+
+Purpose
+Predict spot freight rates over a 7–30 day horizon to guide charter timing.
+
+Algorithm
+Three candidates: Naive Baseline (last-value + damped trend), SARIMA(1,1,1)(1,0,0)[7] via statsmodels SARIMAX, and Prophet (if installed). Auto mode selects the candidate with lowest MAE.
+
+Assumptions
+Stationarity after differencing. Weekly seasonality is dominant. Synthetic series is drawn from a stationary distribution — real freight markets exhibit structural breaks not present here.
+
+Inputs
+Synthetic daily freight rate series (365+ days). Route selector and horizon.
+
+Outputs
+Point forecast + 95% CI band. MAE / RMSE / MAPE on held-out test fold.
+
+Limitations
+All metrics are computed on the same synthetic series used for model fitting. They do not establish real-market forecast accuracy. No exogenous regressors (bunker price, fleet news, geopolitics) are incorporated.
+
+Validation status: Synthetic series backtest only. Real-market validation: not conducted.
+Data provenance: Source: synthetic demonstration series — not real Baltic Exchange data.
+
+keyboard_arrow_right
+
+Charter Optimizer
+
+keyboard_arrow_right
+
+Decision Twin (Monte Carlo)
+
+keyboard_arrow_right
+
+Scenario Engine
+
+Prototype Disclaimer: International freight benchmarks may originate in USD, while FreightIQ presents decision-support costs in INR for Indian procurement users. Prototype demonstration using synthetic data. Not live maritime market data.

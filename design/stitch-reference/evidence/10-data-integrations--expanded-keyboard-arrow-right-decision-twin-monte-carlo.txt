@@ -1,0 +1,120 @@
+keyboard_double_arrow_left
+
+Home
+
+Control Tower
+
+Decision Twin
+
+Operations Overview
+
+Market Overview
+
+Forecasting
+
+Charter Optimizer
+
+Scenario Lab
+
+Backtesting
+
+Data Integration
+
+Data Explorer
+
+🌙 Switch to Dark Mode
+
+SYSTEM STATUS
+Active Theme
+Light Mode
+Data Mode
+DEMO
+Forecast Engine
+Auto Model Selection
+Optimizer
+Active
+Deploy
+FreightIQ
+
+Overview
+
+Decision Twin
+
+Operations
+
+Markets
+
+Forecasts
+
+Chartering
+
+Scenarios
+
+Backtesting
+
+Data
+
+Explorer
+
+Data & Integrations
+
+Manage external API connectors, signal freshness, manual overrides, and system audit logs.
+
+Connections
+
+Data Quality
+
+Overrides
+
+Audit Trail
+
+Model & Data Limitations
+
+Decision Parameters
+
+Model Cards
+
+Model Status
+
+Model Cards
+
+Purpose, algorithm, assumptions, limitations, and validation status for each model powering FreightIQ.
+
+keyboard_arrow_right
+
+Forecasting Engine
+
+keyboard_arrow_right
+
+Charter Optimizer
+
+keyboard_arrow_down
+
+Decision Twin (Monte Carlo)
+
+Purpose
+Stress-test charter decisions across 1,000 stochastic futures to compute robustness score and expected regret.
+
+Algorithm
+1,000 Monte Carlo paths: each path draws freight rate, congestion, and waiting-hours perturbations from parameterised distributions. For each path: optimizer runs and cost is compared to the baseline recommendation. Robustness = fraction of paths where baseline is within 5% of path-optimal.
+
+Assumptions
+Perturbations are i.i.d. lognormal — no serial correlation in shock paths. Same DEMO_ONLY_ASSUMPTION cost weights as the optimizer. 1,000 paths is sufficient for stable robustness estimates at ±5% tolerance.
+
+Inputs
+Active shipment context, freight forecast, optimizer recommendation, risk tolerance.
+
+Outputs
+Robustness score (0–100), expected regret (INR Lakh), simulated cost distribution, regret surface.
+
+Limitations
+Simulated futures are generated from synthetic signals. Real market scenarios exhibit tail events, geopolitical shocks, and regime changes not represented in the demo distribution. Robustness scores are not comparable across different demo-data runs.
+
+Validation status: Decision Twin output validated against optimizer unit tests. No real-decision backtesting.
+Data provenance: Source: simulated futures on synthetic demo state — not real-market scenario data.
+
+keyboard_arrow_right
+
+Scenario Engine
+
+Prototype Disclaimer: International freight benchmarks may originate in USD, while FreightIQ presents decision-support costs in INR for Indian procurement users. Prototype demonstration using synthetic data. Not live maritime market data.

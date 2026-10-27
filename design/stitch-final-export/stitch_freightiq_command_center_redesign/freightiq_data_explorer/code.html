@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"tertiary-container":"#4adba0","on-tertiary-fixed":"#002113","surface":"#061424","on-secondary-fixed":"#002019","on-error":"#690005","surface-container-low":"#0f1c2d","inverse-primary":"#006973","primary-container":"#35d6e8","primary-fixed":"#90f1ff","on-surface-variant":"#bbc9cb","on-primary-fixed-variant":"#004f57","background":"#061424","error-container":"#93000a","on-primary-fixed":"#001f23","on-primary":"#00363c","inverse-surface":"#d6e3fa","surface-dim":"#061424","on-secondary-fixed-variant":"#005141","tertiary":"#6bf8ba","on-tertiary":"#003824","primary":"#7ff0ff","primary-fixed-dim":"#3bd9eb","on-surface":"#d6e3fa","on-error-container":"#ffdad6","outline":"#859395","tertiary-fixed":"#6ffbbe","on-background":"#d6e3fa","secondary-fixed":"#65fbd5","surface-container-high":"#1e2b3c","secondary-container":"#00c19e","on-secondary":"#00382c","on-primary-container":"#005962","on-secondary-container":"#00493a","surface-container-lowest":"#020f1f","secondary-fixed-dim":"#41deb9","surface-container":"#132031","on-tertiary-container":"#005c3e","outline-variant":"#3c494b","surface-variant":"#293647","surface-bright":"#2d3a4c","on-tertiary-fixed-variant":"#005236","error":"#ffb4ab","surface-container-highest":"#293647","secondary":"#41deb9","surface-tint":"#3bd9eb","tertiary-fixed-dim":"#4edea3","inverse-on-surface":"#243142"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"space-md":"0.75rem","space-xs":"0.25rem","space-lg":"1rem","space-xl":"1.5rem","space-sm":"0.5rem","gutter-desktop":"1rem","gutter":"0.75rem","margin":"1rem","margin-desktop":"1.5rem"},fontFamily:{"body-sm":["Geist"],"display-lg":["Geist"],"label-xs":["JetBrains Mono"],"display-md":["Geist"],"headline-sm":["Geist"],"code-sm":["JetBrains Mono"],"code-data":["JetBrains Mono"],"title-md":["Geist"],"body-md":["Geist"]},fontSize:{"body-sm":["12px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"400"}],"display-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-xs":["10px",{"lineHeight":"12px","letterSpacing":"0.08em","fontWeight":"600"}],"display-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"headline-sm":["18px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"code-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.03em","fontWeight":"400"}],"code-data":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"500"}],"title-md":["15px",{"lineHeight":"20px","letterSpacing":"-0.005em","fontWeight":"500"}],"body-md":["13px",{"lineHeight":"18px","letterSpacing":"0em","fontWeight":"400"}]}}}};</script></head><body class="bg-background text-on-surface font-body-md text-body-md selection:bg-primary-container selection:text-on-primary-container min-h-screen"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-low border-r border-outline-variant z-50 flex flex-col justify-between overflow-hidden"><div class="flex flex-col flex-1 min-h-0"><div class="h-16 px-space-lg flex items-center gap-space-md border-b border-outline-variant bg-surface-container-lowest"><div class="w-9 h-9 rounded bg-surface-container-high border border-outline-variant flex items-center justify-center relative"><span class="material-symbols-outlined text-primary text-[22px]">radar</span><span class="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span></div><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm font-bold tracking-tight text-on-surface">Freight<span class="text-primary">IQ</span></span><span class="font-label-xs text-label-xs px-1 rounded bg-surface-container text-secondary border border-outline-variant">v4.2</span></div><span class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-widest">Maritime Intelligence</span></div></div><div class="flex-1 overflow-y-auto px-space-sm py-space-md space-y-space-lg"><nav class="space-y-space-sm" data-active-classes="bg-surface-container-highest text-primary font-title-md border-l-2 border-primary"><div class="px-space-sm pb-space-xs"><span class="font-label-xs text-label-xs uppercase text-outline tracking-wider">OPERATIONS &amp; CONTROL</span></div><a class="flex items-center justify-between px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="overview" href="#"><span class="font-body-sm text-body-sm truncate">Overview</span></a><a class="flex items-center justify-between px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="control-tower" href="#"><span class="font-body-sm text-body-sm truncate">Control Tower</span><span class="w-2 h-2 rounded-full bg-primary"></span></a><a class="flex items-center justify-between px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="operations-overview" href="#"><span class="font-body-sm text-body-sm truncate">Operations Overview</span></a><div class="px-space-sm pt-space-sm pb-space-xs"><span class="font-label-xs text-label-xs uppercase text-outline tracking-wider">ANALYTICS &amp; FORECASTING</span></div><a class="flex items-center justify-between px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="market-intelligence" href="#"><span class="font-body-sm text-body-sm truncate">Market Intelligence</span></a><a class="flex items-center justify-between px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="forecasts" href="#"><span class="font-body-sm text-body-sm truncate">Forecasts</span></a><a class="flex items-center justify-between px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="decision-twin" href="#"><span class="font-body-sm text-body-sm truncate">Decision Twin</span></a><div class="px-space-sm pt-space-sm pb-space-xs"><span class="font-label-xs text-label-xs uppercase text-outline tracking-wider">CHARTER EXECUTION &amp; STRESS TESTING</span></div><a class="flex items-center justify-between px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="charter-workbench" href="#"><span class="font-body-sm text-body-sm truncate">Charter Workbench</span></a><a class="flex items-center justify-between px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="scenario-lab" href="#"><span class="font-body-sm text-body-sm truncate">Scenario Lab</span></a><a class="flex items-center justify-between px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="simulation-backtest" href="#"><span class="font-body-sm text-body-sm truncate">Simulation Backtest</span></a><div class="px-space-sm pt-space-sm pb-space-xs"><span class="font-label-xs text-label-xs uppercase text-outline tracking-wider">PLATFORM &amp; DATA REPOSITORIES</span></div><a class="flex items-center justify-between px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="data-integrations" href="#"><span class="font-body-sm text-body-sm truncate">Data &amp; Integrations</span></a><a class="flex items-center justify-between px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="data-explorer" href="#"><span class="font-body-sm text-body-sm truncate">Data Explorer</span></a></nav></div></div><div class="p-space-sm border-t border-outline-variant bg-surface-container-lowest space-y-space-sm"><div class="bg-surface-container p-space-sm rounded border border-outline-variant flex flex-col gap-space-xs"><div class="flex items-center justify-between"><span class="font-label-xs text-label-xs text-outline">TELEMETRY STATUS</span><span class="font-label-xs text-label-xs px-1.5 py-0.5 rounded bg-tertiary-container/20 text-tertiary border border-tertiary-container/40 font-bold uppercase">DEMO-CALIBRATED</span></div><div class="flex items-center justify-between pt-space-xs border-t border-outline-variant/60"><span class="font-code-sm text-code-sm text-on-surface-variant">Forecast Engine</span><span class="font-code-sm text-code-sm text-primary flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span>Auto Select</span></div></div><div class="flex items-center justify-between px-space-xs"><div class="flex items-center gap-space-xs text-outline"><span class="material-symbols-outlined text-[16px]">terminal</span><span class="font-code-sm text-code-sm">SYS_ONLINE</span></div><div class="flex items-center bg-surface-container rounded p-0.5 border border-outline-variant"><button class="px-1.5 py-0.5 rounded text-primary hover:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined text-[14px]">dark_mode</span></button><button class="px-1.5 py-0.5 rounded text-outline hover:text-on-surface hover:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined text-[14px]">light_mode</span></button></div></div></div></aside><div class="pl-64 flex flex-col min-h-screen"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-low/95 backdrop-blur-md border-b border-outline-variant z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm font-code-sm text-code-sm text-outline"><span class="material-symbols-outlined text-[16px] text-primary">explore</span><span>FIQ-CORE</span><span class="text-outline-variant">/</span><span class="text-on-surface uppercase">COMMAND DECK</span></div></div><div class="hidden xl:flex items-center bg-surface-container px-space-md py-1.5 rounded border border-outline-variant gap-space-md"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[16px]">sailing</span><span class="font-code-data text-code-data text-on-surface font-semibold">FIQ-2026-0001</span></div><span class="text-outline-variant">•</span><span class="font-body-sm text-body-sm text-on-surface-variant">75,000 t Coking Coal</span><span class="text-outline-variant">•</span><div class="flex items-center gap-space-xs text-secondary font-code-sm text-code-sm"><span>Hay Point (AU)</span><span class="material-symbols-outlined text-[14px]">arrow_forward</span><span>Paradip (IN)</span></div><span class="font-label-xs text-label-xs px-1.5 py-0.5 rounded bg-tertiary-container/20 text-tertiary border border-tertiary-container/30 uppercase">[DEMO-CALIBRATED]</span></div><div class="flex items-center gap-space-md"><div class="hidden md:flex flex-col text-right font-code-sm text-code-sm"><span class="text-outline font-label-xs text-label-xs uppercase">Data Coverage</span><span class="text-on-surface">Jan 2024 - Aug 2026</span></div><div class="h-8 w-[1px] bg-outline-variant hidden md:block"></div><button class="hidden sm:flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container border border-outline-variant hover:border-primary transition-colors" type="button"><span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span><span class="font-code-sm text-code-sm text-on-surface">5/5 Connectors</span><span class="font-label-xs text-label-xs text-outline">(Cached)</span></button><button class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors relative" type="button"><span class="material-symbols-outlined text-[18px]">notifications</span><span class="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-primary"></span></button><div class="flex items-center gap-space-sm pl-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-4rem)]"><div class="flex flex-col w-full">
+<!-- Top Command Context Bar -->
+<div class="px-space-lg py-space-md bg-surface-container-lowest flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-space-xs font-label-xs text-label-xs text-outline uppercase tracking-wider">
+<span>PLATFORM &amp; DATA REPOSITORIES</span>
+<span class="text-outline-variant">::</span>
+<span class="text-primary font-semibold">QUANTITATIVE DATASET INSPECTION &amp; MODEL AUDIT</span>
+</div>
+<div class="flex items-baseline gap-space-sm">
+<h1 class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight">Data Explorer</h1>
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded bg-surface-container-high text-primary font-code-sm uppercase tracking-widest">[CANONICAL MODELING REPOSITORY]</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-4xl">
+        Modelling dataset inspection, feature correlation matrix, and data quality audit across route-specific synthetic series for algorithmic charter optimization.
+      </p>
+</div>
+<div class="flex items-center gap-space-sm self-start md:self-center">
+<div class="flex items-center gap-2 px-space-md py-1.5 rounded bg-surface-container font-code-sm text-code-sm text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>PARTITION: <span class="text-primary font-bold">PROD_STAGE_2026</span></span>
+</div>
+</div>
+</div>
+<!-- Main Content Space -->
+<div class="p-space-lg space-y-space-lg">
+<!-- Top Dataset Metrics Ribbon (4 Cards) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Card 1 -->
+<div class="bg-surface-container p-space-md rounded flex flex-col justify-between shadow-sm relative overflow-hidden group hover:bg-surface-container-high transition-colors">
+<div class="flex items-center justify-between font-label-xs text-label-xs text-outline uppercase">
+<span>OBSERVATIONS</span>
+<span class="font-code-sm text-code-sm text-secondary bg-surface-container-lowest px-1.5 py-0.5 rounded">[DAILY_TS]</span>
+</div>
+<div class="my-space-xs flex items-baseline gap-space-xs">
+<span class="font-display-md text-display-md text-on-surface font-bold tracking-tight">974</span>
+<span class="font-code-sm text-code-sm text-outline">rows</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>Daily time series records</span>
+<span class="font-code-sm text-code-sm text-primary flex items-center">
+<span class="material-symbols-outlined text-[14px] text-primary">verified</span> 100%
+          </span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container p-space-md rounded flex flex-col justify-between shadow-sm relative overflow-hidden group hover:bg-surface-container-high transition-colors">
+<div class="flex items-center justify-between font-label-xs text-label-xs text-outline uppercase">
+<span>FEATURES</span>
+<span class="font-code-sm text-code-sm text-primary bg-surface-container-lowest px-1.5 py-0.5 rounded">[ENG_VARS]</span>
+</div>
+<div class="my-space-xs flex items-baseline gap-space-xs">
+<span class="font-display-md text-display-md text-on-surface font-bold tracking-tight">35</span>
+<span class="font-code-sm text-code-sm text-outline">params</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>Lagged &amp; derived covariates</span>
+<span class="font-code-sm text-code-sm text-secondary">+6 macro lags</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container p-space-md rounded flex flex-col justify-between shadow-sm relative overflow-hidden group hover:bg-surface-container-high transition-colors">
+<div class="flex items-center justify-between font-label-xs text-label-xs text-outline uppercase">
+<span>TEMPORAL BOUNDS</span>
+<span class="font-code-sm text-code-sm text-outline bg-surface-container-lowest px-1.5 py-0.5 rounded">[SPAN]</span>
+</div>
+<div class="my-space-xs flex items-baseline gap-space-xs">
+<span class="font-title-md text-title-md text-on-surface font-semibold">01 Jan 2024</span>
+<span class="font-code-sm text-code-sm text-primary">→</span>
+<span class="font-title-md text-title-md text-on-surface font-semibold">31 Aug 2026</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>Earliest to latest synthetic observation</span>
+<span class="font-code-sm text-code-sm text-outline">973d span</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container p-space-md rounded flex flex-col justify-between shadow-sm relative overflow-hidden group hover:bg-surface-container-high transition-colors">
+<div class="flex items-center justify-between font-label-xs text-label-xs text-outline uppercase">
+<span>CORRIDOR COVERAGE</span>
+<span class="font-code-sm text-code-sm text-tertiary bg-surface-container-lowest px-1.5 py-0.5 rounded">[NODES]</span>
+</div>
+<div class="my-space-xs flex items-baseline gap-space-xs">
+<span class="font-display-md text-display-md text-on-surface font-bold tracking-tight">22+</span>
+<span class="font-code-sm text-code-sm text-secondary">Active Routes</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant truncate">
+<span class="truncate">AU_HPT, IN_PDP, IN_VIZ, ID_TAB</span>
+<span class="font-code-sm text-code-sm text-primary underline cursor-pointer">View</span>
+</div>
+</div>
+</div>
+<!-- Navigation / Functional Tabs Bar -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-space-sm bg-surface-container-low p-1.5 rounded">
+<div class="flex flex-wrap items-center gap-1 font-title-md text-title-md">
+<button class="px-space-md py-1.5 rounded bg-surface-container-highest text-primary font-semibold flex items-center gap-2 transition-all shadow-sm" id="tab-btn-1" onclick="switchDataTab(1)">
+<span class="material-symbols-outlined text-[16px]">dataset</span>
+<span>Route Freight Series</span>
+</button>
+<button class="px-space-md py-1.5 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high flex items-center gap-2 transition-all" id="tab-btn-2" onclick="switchDataTab(2)">
+<span class="material-symbols-outlined text-[16px]">table_rows</span>
+<span>Dataset</span>
+</button>
+<button class="px-space-md py-1.5 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high flex items-center gap-2 transition-all" id="tab-btn-3" onclick="switchDataTab(3)">
+<span class="material-symbols-outlined text-[16px]">grid_goldenratio</span>
+<span>Correlation Matrix</span>
+</button>
+<button class="px-space-md py-1.5 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high flex items-center gap-2 transition-all" id="tab-btn-4" onclick="switchDataTab(4)">
+<span class="material-symbols-outlined text-[16px]">verified_user</span>
+<span>Quality Audit</span>
+</button>
+<button class="px-space-md py-1.5 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high flex items-center gap-2 transition-all" id="tab-btn-5" onclick="switchDataTab(5)">
+<span class="material-symbols-outlined text-[16px]">preview</span>
+<span>Validate &amp; Preview Dataset</span>
+</button>
+</div>
+<div class="flex items-center gap-2 px-space-sm">
+<span class="font-label-xs text-label-xs text-outline uppercase hidden xl:inline">SYNC ENGINE:</span>
+<span class="font-code-sm text-code-sm text-secondary bg-surface-container px-2 py-0.5 rounded flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> SYNTHETIC_SIM_V4
+        </span>
+</div>
+</div>
+<!-- Active Route Corridor Controls & Filters -->
+<div class="bg-surface-container p-space-md rounded flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex flex-wrap items-center gap-space-md min-w-0">
+<div class="flex flex-col gap-0.5">
+<label class="font-label-xs text-label-xs text-outline uppercase tracking-wider">Filter Route Key</label>
+<div class="relative inline-flex items-center">
+<select class="appearance-none bg-surface-container-high text-on-surface font-code-sm text-code-sm px-space-md py-1.5 pr-8 rounded focus:outline-none cursor-pointer">
+<option>AU_HPT -&gt; IN_PDP (Hay Point to Paradip) [DEMO-CORE]</option>
+<option>AU_DBT -&gt; IN_HAL (Dalrymple Bay to Haldia)</option>
+<option>ID_TAB -&gt; IN_VIZ (Taboneo to Visakhapatnam)</option>
+<option>US_BAL -&gt; IN_MUM (Baltimore to Mumbai)</option>
+<option>ZA_RBAY -&gt; IN_PDP (Richards Bay to Paradip)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 text-on-surface-variant pointer-events-none text-[18px]">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-0.5">
+<label class="font-label-xs text-label-xs text-outline uppercase tracking-wider">Frequency</label>
+<div class="flex items-center bg-surface-container-high rounded p-0.5">
+<button class="px-2.5 py-1 rounded bg-primary text-on-primary font-code-sm text-code-sm font-semibold">1D</button>
+<button class="px-2.5 py-1 rounded text-on-surface-variant hover:text-on-surface font-code-sm text-code-sm">1W</button>
+<button class="px-2.5 py-1 rounded text-on-surface-variant hover:text-on-surface font-code-sm text-code-sm">1M</button>
+</div>
+</div>
+<div class="flex flex-col gap-0.5">
+<label class="font-label-xs text-label-xs text-outline uppercase tracking-wider">Quick Filter</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-2 text-outline text-[16px]">search</span>
+<input class="bg-surface-container-high text-on-surface placeholder:text-outline font-body-sm text-body-sm pl-7 pr-3 py-1.5 rounded focus:outline-none w-56" placeholder="Filter records or metrics..." type="text"/>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="px-space-md py-1.5 rounded bg-surface-container-high hover:bg-surface-bright text-on-surface font-code-sm text-code-sm flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-primary text-[18px]">cloud_download</span>
+<span>Download Route Rates CSV</span>
+</button>
+<button class="px-space-md py-1.5 rounded bg-surface-container-high hover:bg-surface-bright text-on-surface font-code-sm text-code-sm flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-secondary text-[18px]">table_chart</span>
+<span>Download Processed CSV</span>
+</button>
+</div>
+</div>
+<!-- TAB VIEW 1 & 2 CONTENT: Canonical Route Freight Series (Long Format) -->
+<div class="space-y-space-lg" id="tab-panel-1">
+<div class="bg-surface-container-low rounded overflow-hidden">
+<!-- Section Header -->
+<div class="p-space-md bg-surface-container flex items-center justify-between">
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-title-md text-title-md font-semibold text-on-surface">Canonical Route Freight Series (Long Format)</span>
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded bg-primary-container/20 text-primary font-code-sm">974 DAILY POINTS</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Route-specific synthetic daily time series across 22+ demo-calibrated dry-bulk routes.</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label-xs text-label-xs text-outline">SHOWING 10 OF 974 RECORDS</span>
+<div class="flex items-center gap-1">
+<button class="w-6 h-6 rounded bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[14px]">chevron_left</span></button>
+<button class="w-6 h-6 rounded bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[14px]">chevron_right</span></button>
+</div>
+</div>
+</div>
+<!-- High-Density Data Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-lowest font-label-xs text-label-xs uppercase text-outline">
+<th class="py-2.5 px-space-md tracking-wider">Date</th>
+<th class="py-2.5 px-space-md tracking-wider">route_key</th>
+<th class="py-2.5 px-space-md tracking-wider">origin_port_id</th>
+<th class="py-2.5 px-space-md tracking-wider">destination_port_id</th>
+<th class="py-2.5 px-space-md tracking-wider text-right">Spot Rate ($/t)</th>
+<th class="py-2.5 px-space-md tracking-wider text-right">Spot Rate (₹/t)</th>
+<th class="py-2.5 px-space-md tracking-wider text-right">port_congestion</th>
+<th class="py-2.5 px-space-md tracking-wider text-right">vessels_avail</th>
+<th class="py-2.5 px-space-md tracking-wider text-center">data_mode</th>
+</tr>
+</thead>
+<tbody class="font-code-sm text-code-sm divide-y-0 text-on-surface">
+<!-- Row 1 -->
+<tr class="bg-surface-container-low hover:bg-surface-container-high transition-colors">
+<td class="py-2 px-space-md font-semibold text-primary">01-Jan-2024</td>
+<td class="py-2 px-space-md font-code-data text-on-surface">AU_HPT -&gt; IN_PDP</td>
+<td class="py-2 px-space-md text-on-surface-variant">AU_HPT</td>
+<td class="py-2 px-space-md text-on-surface-variant">IN_PDP</td>
+<td class="py-2 px-space-md text-right text-on-surface">$15.33</td>
+<td class="py-2 px-space-md text-right font-code-data text-secondary font-bold">₹1,288</td>
+<td class="py-2 px-space-md text-right">
+<div class="flex items-center justify-end gap-2">
+<span>51.2</span>
+<div class="w-12 h-1.5 rounded-full bg-surface-container-high overflow-hidden">
+<div class="h-full bg-secondary" style="width: 51.2%"></div>
+</div>
+</div>
+</td>
+<td class="py-2 px-space-md text-right">31</td>
+<td class="py-2 px-space-md text-center">
+<span class="font-label-xs text-label-xs px-1.5 py-0.5 rounded bg-primary-container/20 text-primary uppercase">SYNTHETIC</span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="bg-surface-container hover:bg-surface-container-high transition-colors">
+<td class="py-2 px-space-md font-semibold text-primary">02-Jan-2024</td>
+<td class="py-2 px-space-md font-code-data text-on-surface">AU_HPT -&gt; IN_PDP</td>
+<td class="py-2 px-space-md text-on-surface-variant">AU_HPT</td>
+<td class="py-2 px-space-md text-on-surface-variant">IN_PDP</td>
+<td class="py-2 px-space-md text-right text-on-surface">$15.02</td>
+<td class="py-2 px-space-md text-right font-code-data text-secondary font-bold">₹1,262</td>
+<td class="py-2 px-space-md text-right">
+<div class="flex items-center justify-end gap-2">
+<span>52.4</span>
+<div class="w-12 h-1.5 rounded-full bg-surface-container-high overflow-hidden">
+<div class="h-full bg-secondary" style="width: 52.4%"></div>
+</div>
+</div>
+</td>
+<td class="py-2 px-space-md text-right">33</td>
+<td class="py-2 px-space-md text-center">
+<span class="font-label-xs text-label-xs px-1.5 py-0.5 rounded bg-primary-container/20 text-primary uppercase">SYNTHETIC</span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="bg-surface-container-low hover:bg-surface-container-high transition-colors">
+<td class="py-2 px-space-md font-semibold text-primary">03-Jan-2024</td>
+<td class="py-2 px-space-md font-code-data text-on-surface">AU_HPT -&gt; IN_PDP</td>
+<td class="py-2 px-space-md text-on-surface-variant">AU_HPT</td>
+<td class="py-2 px-space-md text-on-surface-variant">IN_PDP</td>
+<td class="py-2 px-space-md text-right text-on-surface">$15.16</td>
+<td class="py-2 px-space-md text-right font-code-data text-secondary font-bold">₹1,273</td>
+<td class="py-2 px-space-md text-right">
+<div class="flex items-center justify-end gap-2">
+<span>45.3</span>
+<div class="w-12 h-1.5 rounded-full bg-surface-container-high overflow-hidden">
+<div class="h-full bg-secondary" style="width: 45.3%"></div>
+</div>
+</div>
+</td>
+<td class="py-2 px-space-md text-right">33</td>
+<td class="py-2 px-space-md text-center">
+<span class="font-label-xs text-label-xs px-1.5 py-0.5 rounded bg-primary-container/20 text-primary uppercase">SYNTHETIC</span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="bg-surface-container hover:bg-surface-container-high transition-colors">
+<td class="py-2 px-space-md font-semibold text-primary">04-Jan-2024</td>
+<td class="py-2 px-space-md font-code-data text-on-surface">AU_HPT -&gt; IN_PDP</td>
+<td class="py-2 px-space-md text-on-surface-variant">AU_HPT</td>
+<td class="py-2 px-space-md text-on-surface-variant">IN_PDP</td>
+<td class="py-2 px-space-md text-right text-on-surface">$14.98</td>
+<td class="py-2 px-space-md text-right font-code-data text-secondary font-bold">₹1,258</td>
+<td class="py-2 px-space-md text-right">
+<div class="flex items-center justify-end gap-2">
+<span>47.2</span>
+<div class="w-12 h-1.5 rounded-full bg-surface-container-high overflow-hidden">
+<div class="h-full bg-secondary" style="width: 47.2%"></div>
+</div>
+</div>
+</td>
+<td class="py-2 px-space-md text-right">32</td>
+<td class="py-2 px-space-md text-center">
+<span class="font-label-xs text-label-xs px-1.5 py-0.5 rounded bg-primary-container/20 text-primary uppercase">SYNTHETIC</span>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="bg-surface-container-low hover:bg-surface-container-high transition-colors">
+<td class="py-2 px-space-md font-semibold text-primary">05-Jan-2024</td>
+<td class="py-2 px-space-md font-code-data text-on-surface">AU_HPT -&gt; IN_PDP</td>
+<td class="py-2 px-space-md text-on-surface-variant">AU_HPT</td>
+<td class="py-2 px-space-md text-on-surface-variant">IN_PDP</td>
+<td class="py-2 px-space-md text-right text-on-surface">$14.94</td>
+<td class="py-2 px-space-md text-right font-code-data text-secondary font-bold">₹1,255</td>
+<td class="py-2 px-space-md text-right">
+<div class="flex items-center justify-end gap-2">
+<span>48.4</span>
+<div class="w-12 h-1.5 rounded-full bg-surface-container-high overflow-hidden">
+<div class="h-full bg-secondary" style="width: 48.4%"></div>
+</div>
+</div>
+</td>
+<td class="py-2 px-space-md text-right">36</td>
+<td class="py-2 px-space-md text-center">
+<span class="font-label-xs text-label-xs px-1.5 py-0.5 rounded bg-primary-container/20 text-primary uppercase">SYNTHETIC</span>
+</td>
+</tr>
+<!-- Row 6 -->
+<tr class="bg-surface-container hover:bg-surface-container-high transition-colors">
+<td class="py-2 px-space-md font-semibold text-primary">06-Jan-2024</td>
+<td class="py-2 px-space-md font-code-data text-on-surface">AU_HPT -&gt; IN_PDP</td>
+<td class="py-2 px-space-md text-on-surface-variant">AU_HPT</td>
+<td class="py-2 px-space-md text-on-surface-variant">IN_PDP</td>
+<td class="py-2 px-space-md text-right text-on-surface">$16.00</td>
+<td class="py-2 px-space-md text-right font-code-data text-secondary font-bold">₹1,344</td>
+<td class="py-2 px-space-md text-right">
+<div class="flex items-center justify-end gap-2">
+<span>55.9</span>
+<div class="w-12 h-1.5 rounded-full bg-surface-container-high overflow-hidden">
+<div class="h-full bg-primary" style="width: 55.9%"></div>
+</div>
+</div>
+</td>
+<td class="py-2 px-space-md text-right">36</td>
+<td class="py-2 px-space-md text-center">
+<span class="font-label-xs text-label-xs px-1.5 py-0.5 rounded bg-primary-container/20 text-primary uppercase">SYNTHETIC</span>
+</td>
+</tr>
+<!-- Row 7 -->
+<tr class="bg-surface-container-low hover:bg-surface-container-high transition-colors">
+<td class="py-2 px-space-md font-semibold text-primary">07-Jan-2024</td>
+<td class="py-2 px-space-md font-code-data text-on-surface">AU_HPT -&gt; IN_PDP</td>
+<td class="py-2 px-space-md text-on-surface-variant">AU_HPT</td>
+<td class="py-2 px-space-md text-on-surface-variant">IN_PDP</td>
+<td class="py-2 px-space-md text-right text-on-surface">$16.73</td>
+<td class="py-2 px-space-md text-right font-code-data text-secondary font-bold">₹1,405</td>
+<td class="py-2 px-space-md text-right">
+<div class="flex items-center justify-end gap-2">
+<span>49.0</span>
+<div class="w-12 h-1.5 rounded-full bg-surface-container-high overflow-hidden">
+<div class="h-full bg-secondary" style="width: 49.0%"></div>
+</div>
+</div>
+</td>
+<td class="py-2 px-space-md text-right">35</td>
+<td class="py-2 px-space-md text-center">
+<span class="font-label-xs text-label-xs px-1.5 py-0.5 rounded bg-primary-container/20 text-primary uppercase">SYNTHETIC</span>
+</td>
+</tr>
+<!-- Row 8 -->
+<tr class="bg-surface-container hover:bg-surface-container-high transition-colors">
+<td class="py-2 px-space-md font-semibold text-primary">08-Jan-2024</td>
+<td class="py-2 px-space-md font-code-data text-on-surface">AU_HPT -&gt; IN_PDP</td>
+<td class="py-2 px-space-md text-on-surface-variant">AU_HPT</td>
+<td class="py-2 px-space-md text-on-surface-variant">IN_PDP</td>
+<td class="py-2 px-space-md text-right text-on-surface">$17.65</td>
+<td class="py-2 px-space-md text-right font-code-data text-secondary font-bold">₹1,483</td>
+<td class="py-2 px-space-md text-right">
+<div class="flex items-center justify-end gap-2">
+<span>52.1</span>
+<div class="w-12 h-1.5 rounded-full bg-surface-container-high overflow-hidden">
+<div class="h-full bg-secondary" style="width: 52.1%"></div>
+</div>
+</div>
+</td>
+<td class="py-2 px-space-md text-right">30</td>
+<td class="py-2 px-space-md text-center">
+<span class="font-label-xs text-label-xs px-1.5 py-0.5 rounded bg-primary-container/20 text-primary uppercase">SYNTHETIC</span>
+</td>
+</tr>
+<!-- Row 9 -->
+<tr class="bg-surface-container-low hover:bg-surface-container-high transition-colors">
+<td class="py-2 px-space-md font-semibold text-primary">09-Jan-2024</td>
+<td class="py-2 px-space-md font-code-data text-on-surface">AU_HPT -&gt; IN_PDP</td>
+<td class="py-2 px-space-md text-on-surface-variant">AU_HPT</td>
+<td class="py-2 px-space-md text-on-surface-variant">IN_PDP</td>
+<td class="py-2 px-space-md text-right text-on-surface">$16.53</td>
+<td class="py-2 px-space-md text-right font-code-data text-secondary font-bold">₹1,389</td>
+<td class="py-2 px-space-md text-right">
+<div class="flex items-center justify-end gap-2">
+<span>43.4</span>
+<div class="w-12 h-1.5 rounded-full bg-surface-container-high overflow-hidden">
+<div class="h-full bg-secondary" style="width: 43.4%"></div>
+</div>
+</div>
+</td>
+<td class="py-2 px-space-md text-right">38</td>
+<td class="py-2 px-space-md text-center">
+<span class="font-label-xs text-label-xs px-1.5 py-0.5 rounded bg-primary-container/20 text-primary uppercase">SYNTHETIC</span>
+</td>
+</tr>
+<!-- Row 10 -->
+<tr class="bg-surface-container hover:bg-surface-container-high transition-colors">
+<td class="py-2 px-space-md font-semibold text-primary">10-Jan-2024</td>
+<td class="py-2 px-space-md font-code-data text-on-surface">AU_HPT -&gt; IN_PDP</td>
+<td class="py-2 px-space-md text-on-surface-variant">AU_HPT</td>
+<td class="py-2 px-space-md text-on-surface-variant">IN_PDP</td>
+<td class="py-2 px-space-md text-right text-on-surface">$16.30</td>
+<td class="py-2 px-space-md text-right font-code-data text-secondary font-bold">₹1,369</td>
+<td class="py-2 px-space-md text-right">
+<div class="flex items-center justify-end gap-2">
+<span>53.2</span>
+<div class="w-12 h-1.5 rounded-full bg-surface-container-high overflow-hidden">
+<div class="h-full bg-secondary" style="width: 53.2%"></div>
+</div>
+</div>
+</td>
+<td class="py-2 px-space-md text-right">26</td>
+<td class="py-2 px-space-md text-center">
+<span class="font-label-xs text-label-xs px-1.5 py-0.5 rounded bg-primary-container/20 text-primary uppercase">SYNTHETIC</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Split Layout: Processed Modeling Dataset (Left 60%) + Correlation & Integrity (Right 40%) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Left Panel: Processed Modeling Dataset (60% / 7 cols) -->
+<div class="lg:col-span-7 bg-surface-container-low rounded flex flex-col justify-between overflow-hidden shadow-sm">
+<div>
+<div class="p-space-md bg-surface-container flex items-center justify-between">
+<div>
+<h3 class="font-title-md text-title-md font-semibold text-on-surface">Processed Modeling Dataset (Feature Matrix Preview)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">35 normalized regressors aligned across Baltic, Commodity, and Port telemetry.</p>
+</div>
+<span class="font-label-xs text-label-xs text-secondary bg-surface-container-high px-2 py-1 rounded">MATRIX READY</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-lowest font-label-xs text-label-xs uppercase text-outline">
+<th class="py-2 px-3 tracking-wider">Date</th>
+<th class="py-2 px-3 tracking-wider text-right">Rate(₹/t)</th>
+<th class="py-2 px-3 tracking-wider text-right">bdi</th>
+<th class="py-2 px-3 tracking-wider text-right">capesize</th>
+<th class="py-2 px-3 tracking-wider text-right">panamax</th>
+<th class="py-2 px-3 tracking-wider text-right">Coal(₹/t)</th>
+<th class="py-2 px-3 tracking-wider text-right">wait_hr</th>
+<th class="py-2 px-3 tracking-wider text-right">wx_risk</th>
+</tr>
+</thead>
+<tbody class="font-code-sm text-code-sm text-on-surface">
+<tr class="bg-surface-container-low hover:bg-surface-container-high transition-colors">
+<td class="py-1.5 px-3 text-primary">01-Jan-24</td>
+<td class="py-1.5 px-3 text-right font-bold text-secondary">1983</td>
+<td class="py-1.5 px-3 text-right">1172.4</td>
+<td class="py-1.5 px-3 text-right">2312.3</td>
+<td class="py-1.5 px-3 text-right">1165.4</td>
+<td class="py-1.5 px-3 text-right">20391</td>
+<td class="py-1.5 px-3 text-right">32.8</td>
+<td class="py-1.5 px-3 text-right text-tertiary">4.3</td>
+</tr>
+<tr class="bg-surface-container hover:bg-surface-container-high transition-colors">
+<td class="py-1.5 px-3 text-primary">02-Jan-24</td>
+<td class="py-1.5 px-3 text-right font-bold text-secondary">2008</td>
+<td class="py-1.5 px-3 text-right">1135.8</td>
+<td class="py-1.5 px-3 text-right">2222.6</td>
+<td class="py-1.5 px-3 text-right">1145.2</td>
+<td class="py-1.5 px-3 text-right">20205</td>
+<td class="py-1.5 px-3 text-right">31.9</td>
+<td class="py-1.5 px-3 text-right text-tertiary">5.4</td>
+</tr>
+<tr class="bg-surface-container-low hover:bg-surface-container-high transition-colors">
+<td class="py-1.5 px-3 text-primary">03-Jan-24</td>
+<td class="py-1.5 px-3 text-right font-bold text-secondary">1961</td>
+<td class="py-1.5 px-3 text-right">1098.9</td>
+<td class="py-1.5 px-3 text-right">2176.4</td>
+<td class="py-1.5 px-3 text-right">1188.9</td>
+<td class="py-1.5 px-3 text-right">19771</td>
+<td class="py-1.5 px-3 text-right">32.9</td>
+<td class="py-1.5 px-3 text-right text-tertiary">4.2</td>
+</tr>
+<tr class="bg-surface-container hover:bg-surface-container-high transition-colors">
+<td class="py-1.5 px-3 text-primary">04-Jan-24</td>
+<td class="py-1.5 px-3 text-right font-bold text-secondary">2036</td>
+<td class="py-1.5 px-3 text-right">1198.0</td>
+<td class="py-1.5 px-3 text-right">2466.3</td>
+<td class="py-1.5 px-3 text-right">1225.3</td>
+<td class="py-1.5 px-3 text-right">19869</td>
+<td class="py-1.5 px-3 text-right">35.6</td>
+<td class="py-1.5 px-3 text-right text-tertiary">5.3</td>
+</tr>
+<tr class="bg-surface-container-low hover:bg-surface-container-high transition-colors">
+<td class="py-1.5 px-3 text-primary">05-Jan-24</td>
+<td class="py-1.5 px-3 text-right font-bold text-secondary">2028</td>
+<td class="py-1.5 px-3 text-right">1146.0</td>
+<td class="py-1.5 px-3 text-right">2220.4</td>
+<td class="py-1.5 px-3 text-right">1099.2</td>
+<td class="py-1.5 px-3 text-right">20215</td>
+<td class="py-1.5 px-3 text-right">27.8</td>
+<td class="py-1.5 px-3 text-right text-tertiary">4.0</td>
+</tr>
+<tr class="bg-surface-container hover:bg-surface-container-high transition-colors">
+<td class="py-1.5 px-3 text-primary">06-Jan-24</td>
+<td class="py-1.5 px-3 text-right font-bold text-secondary">2036</td>
+<td class="py-1.5 px-3 text-right">1062.6</td>
+<td class="py-1.5 px-3 text-right">2343.7</td>
+<td class="py-1.5 px-3 text-right">1137.1</td>
+<td class="py-1.5 px-3 text-right">20293</td>
+<td class="py-1.5 px-3 text-right">30.4</td>
+<td class="py-1.5 px-3 text-right text-tertiary">2.9</td>
+</tr>
+<tr class="bg-surface-container-low hover:bg-surface-container-high transition-colors">
+<td class="py-1.5 px-3 text-primary">07-Jan-24</td>
+<td class="py-1.5 px-3 text-right font-bold text-secondary">2007</td>
+<td class="py-1.5 px-3 text-right">1077.5</td>
+<td class="py-1.5 px-3 text-right">2237.7</td>
+<td class="py-1.5 px-3 text-right">1220.5</td>
+<td class="py-1.5 px-3 text-right">20240</td>
+<td class="py-1.5 px-3 text-right">32.0</td>
+<td class="py-1.5 px-3 text-right text-tertiary">3.8</td>
+</tr>
+<tr class="bg-surface-container hover:bg-surface-container-high transition-colors">
+<td class="py-1.5 px-3 text-primary">08-Jan-24</td>
+<td class="py-1.5 px-3 text-right font-bold text-secondary">2186</td>
+<td class="py-1.5 px-3 text-right">1202.0</td>
+<td class="py-1.5 px-3 text-right">2386.3</td>
+<td class="py-1.5 px-3 text-right">1184.0</td>
+<td class="py-1.5 px-3 text-right">20121</td>
+<td class="py-1.5 px-3 text-right text-error font-semibold">42.5</td>
+<td class="py-1.5 px-3 text-right text-tertiary">4.2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="p-space-sm bg-surface-container-lowest flex items-center justify-between text-outline font-label-xs text-label-xs">
+<span>SHOWING ACTIVE SLICE: 8 / 974 RECORDS</span>
+<span class="text-secondary font-code-sm">NORMALIZED (Z-SCORE: μ=0, σ=1)</span>
+</div>
+</div>
+<!-- Right Panel: Feature Correlation Matrix & Quality Audit Teaser (40% / 5 cols) -->
+<div class="lg:col-span-5 space-y-space-md">
+<!-- Correlation Matrix Card -->
+<div class="bg-surface-container p-space-md rounded shadow-sm space-y-space-sm">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-xs text-label-xs uppercase text-outline">STATISTICAL COUPLING</span>
+<h4 class="font-title-md text-title-md font-semibold text-on-surface">Feature Correlation Matrix (Pearson r)</h4>
+</div>
+<span class="font-code-sm text-code-sm text-primary bg-surface-container-high px-2 py-0.5 rounded">22x22 ENGINE</span>
+</div>
+<!-- Heatmap Grid -->
+<div class="bg-surface-container-lowest p-space-sm rounded overflow-x-auto">
+<div class="grid grid-cols-6 gap-1 text-center font-code-sm text-code-sm min-w-[280px]">
+<!-- Header Column Labels -->
+<div class="text-outline font-label-xs text-label-xs"></div>
+<div class="text-outline font-label-xs text-label-xs">Rate</div>
+<div class="text-outline font-label-xs text-label-xs">BDI</div>
+<div class="text-outline font-label-xs text-label-xs">PMAX</div>
+<div class="text-outline font-label-xs text-label-xs">Coal</div>
+<div class="text-outline font-label-xs text-label-xs">Wait</div>
+<!-- Row 1: Freight Rate -->
+<div class="text-outline font-label-xs text-label-xs text-left self-center">Rate</div>
+<div class="p-1 rounded bg-primary text-on-primary font-bold">1.00</div>
+<div class="p-1 rounded bg-primary/80 text-on-primary font-semibold">+0.84</div>
+<div class="p-1 rounded bg-primary/90 text-on-primary font-semibold">+0.92</div>
+<div class="p-1 rounded bg-surface-container-high text-on-surface">+0.48</div>
+<div class="p-1 rounded bg-secondary-container/70 text-on-secondary-container font-semibold">+0.67</div>
+<!-- Row 2: BDI -->
+<div class="text-outline font-label-xs text-label-xs text-left self-center">BDI</div>
+<div class="p-1 rounded bg-primary/80 text-on-primary font-semibold">+0.84</div>
+<div class="p-1 rounded bg-primary text-on-primary font-bold">1.00</div>
+<div class="p-1 rounded bg-primary/85 text-on-primary font-semibold">+0.89</div>
+<div class="p-1 rounded bg-surface-container-high text-on-surface">+0.39</div>
+<div class="p-1 rounded bg-surface-container-high text-on-surface">+0.51</div>
+<!-- Row 3: Panamax -->
+<div class="text-outline font-label-xs text-label-xs text-left self-center">PMAX</div>
+<div class="p-1 rounded bg-primary/90 text-on-primary font-semibold">+0.92</div>
+<div class="p-1 rounded bg-primary/85 text-on-primary font-semibold">+0.89</div>
+<div class="p-1 rounded bg-primary text-on-primary font-bold">1.00</div>
+<div class="p-1 rounded bg-surface-container-high text-on-surface">+0.42</div>
+<div class="p-1 rounded bg-secondary-container/60 text-on-secondary-container font-semibold">+0.58</div>
+<!-- Row 4: Coking Coal -->
+<div class="text-outline font-label-xs text-label-xs text-left self-center">Coal</div>
+<div class="p-1 rounded bg-surface-container-high text-on-surface">+0.48</div>
+<div class="p-1 rounded bg-surface-container-high text-on-surface">+0.39</div>
+<div class="p-1 rounded bg-surface-container-high text-on-surface">+0.42</div>
+<div class="p-1 rounded bg-primary text-on-primary font-bold">1.00</div>
+<div class="p-1 rounded bg-surface-container-high text-outline">-0.12</div>
+<!-- Row 5: Waiting Hours -->
+<div class="text-outline font-label-xs text-label-xs text-left self-center">Wait</div>
+<div class="p-1 rounded bg-secondary-container/70 text-on-secondary-container font-semibold">+0.67</div>
+<div class="p-1 rounded bg-surface-container-high text-on-surface">+0.51</div>
+<div class="p-1 rounded bg-secondary-container/60 text-on-secondary-container font-semibold">+0.58</div>
+<div class="p-1 rounded bg-surface-container-high text-outline">-0.12</div>
+<div class="p-1 rounded bg-primary text-on-primary font-bold">1.00</div>
+</div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-xs text-label-xs pt-1">
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded bg-primary"></span> Strong Positive (&gt; 0.70)</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded bg-secondary-container"></span> Moderate Positive</span>
+<span class="text-primary cursor-pointer hover:underline">Full Correlation View →</span>
+</div>
+</div>
+<!-- Data Quality & Integrity Summary Card -->
+<div class="bg-surface-container p-space-md rounded shadow-sm space-y-space-sm">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-xs text-label-xs uppercase text-outline">DATA QUALITY &amp; AUDIT</span>
+<h4 class="font-title-md text-title-md font-semibold text-on-surface">Dataset Integrity Diagnostics</h4>
+</div>
+<span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<div class="p-space-sm bg-surface-container-lowest rounded">
+<span class="font-label-xs text-label-xs text-outline uppercase">MISSINGNESS</span>
+<p class="font-title-md text-title-md font-bold text-secondary mt-1">0.00%</p>
+<span class="font-code-sm text-code-sm text-outline-variant">974/974 complete</span>
+</div>
+<div class="p-space-sm bg-surface-container-lowest rounded">
+<span class="font-label-xs text-label-xs text-outline uppercase">Z-SCORE &gt; 3σ</span>
+<p class="font-title-md text-title-md font-bold text-primary mt-1">12 Flags</p>
+<span class="font-code-sm text-code-sm text-outline-variant">Demurrage spikes</span>
+</div>
+<div class="p-space-sm bg-surface-container-lowest rounded">
+<span class="font-label-xs text-label-xs text-outline uppercase">SCHEMA AUDIT</span>
+<p class="font-title-md text-title-md font-bold text-secondary mt-1">35 / 35</p>
+<span class="font-code-sm text-code-sm text-outline-variant">Types validated</span>
+</div>
+</div>
+<!-- Health Bar Progression -->
+<div class="space-y-1">
+<div class="flex justify-between font-label-xs text-label-xs text-on-surface-variant">
+<span>COMPOSITE MODEL FITNESS SCORE</span>
+<span class="text-primary font-bold">99.4% VERIFIED</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-lowest overflow-hidden">
+<div class="h-full bg-gradient-to-r from-secondary to-primary rounded-full" style="width: 99.4%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Prototype Legal & Unit Conversion Disclaimer Bar -->
+<div class="p-space-md bg-surface-container-lowest rounded flex flex-col md:flex-row md:items-center justify-between gap-space-sm text-on-surface-variant font-body-sm text-body-sm">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-outline text-[18px] shrink-0 mt-0.5">info</span>
+<span>
+<strong class="text-on-surface">Prototype Disclaimer:</strong> International freight benchmarks may originate in USD, while FreightIQ presents decision-support costs in INR for Indian procurement users. Prototype demonstration using synthetic data. Not live maritime market data.
+        </span>
+</div>
+<div class="flex items-center gap-2 shrink-0 font-code-sm text-code-sm text-outline">
+<span>FX: 1 USD = 84.02 INR</span>
+<span>•</span>
+<span class="text-secondary">CORRIDOR_VER_4.2</span>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function switchDataTab(tabIndex) {
+    const btnIds = ['tab-btn-1', 'tab-btn-2', 'tab-btn-3', 'tab-btn-4', 'tab-btn-5'];
+    btnIds.forEach((id, idx) => {
+      const btn = document.getElementById(id);
+      if (!btn) return;
+      if (idx + 1 === tabIndex) {
+        btn.className = 'px-space-md py-1.5 rounded bg-surface-container-highest text-primary font-semibold flex items-center gap-2 transition-all shadow-sm';
+      } else {
+        btn.className = 'px-space-md py-1.5 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high flex items-center gap-2 transition-all';
+      }
+    });
+  }
+</script></main><footer class="w-full bg-surface-container-lowest border-t border-outline-variant py-space-sm px-space-lg"><div class="flex flex-col sm:flex-row items-center justify-between gap-space-xs text-on-surface-variant font-code-sm text-code-sm"><div><span>FREIGHTIQ TACTICAL TELEMETRY © 2026</span><span class="mx-2 text-outline-variant">|</span><span>HIGH FREQUENCY MARITIME ORCHESTRATION</span></div><div class="flex items-center gap-space-md font-label-xs text-label-xs text-outline"><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>NODE: SYD-PRIMARY</span><span>LATENCY: 18ms</span><span>AIS: REALTIME</span></div></div></footer></div></body></html>

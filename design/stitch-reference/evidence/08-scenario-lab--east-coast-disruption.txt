@@ -1,0 +1,142 @@
+Home
+
+Control Tower
+
+Decision Twin
+
+Operations Overview
+
+Market Overview
+
+Forecasting
+
+Charter Optimizer
+
+Scenario Lab
+
+Backtesting
+
+Data Integration
+
+Data Explorer
+
+🌙 Switch to Dark Mode
+
+SYSTEM STATUS
+Active Theme
+Light Mode
+Data Mode
+DEMO
+Forecast Engine
+Auto Model Selection
+Optimizer
+Active
+Deploy
+FreightIQ
+
+Overview
+
+Decision Twin
+
+Operations
+
+Markets
+
+Forecasts
+
+Chartering
+
+Scenarios
+
+Backtesting
+
+Data
+
+Explorer
+
+Scenario Lab
+
+Stress-test charter recommendations across simulated freight, congestion, and weather disruptions.
+
+Presets & Actions
+
+East Coast Disruption
+
+Freight Rate Spike
+
+Paradip Congestion
+
+Vessel Shortage
+
+Severe Weather Risk
+
+Market Relief
+
+Reset Scenario
+
+Scenario Inputs
+
+Adjust disruption parameters to test decision stability
+
+Freight Shock (%)
+
+12.00
+
+-20.00
+
+30.00
+
+Port Congestion Shock (%)
+
+55.00
+
+-50.00
+
+100.00
+
+Vessel Availability Change (%)
+
+-30.00
+
+-60.00
+
+50.00
+
+Weather Risk
+
+High
+
+Target Discharge Port
+
+Paradip
+
+Run Scenario Simulation
+
+Impact Preview
+
+Predicted impact on logistics cost and charter recommendation
+
+EXPECTED COST
+
+₹24.90 Cr
+
++12.5% vs baseline
+
+RECOMMENDED WINDOW
+
+2026-09-04
+
+Panamax Vessel
+
+DECISION STATUS
+
+ℹ SAME RECOMMENDATION (+12.5% COST)
+
+Recommendation State
+
+DECISION EXPLANATION
+
+Paradip congestion increased by 55%, raising expected waiting and demurrage exposure by ₹1.25 Lakh. Dry bulk freight market rate shifted by +12.0%, altering the baseline freight component by ₹2.62 Cr. Vessel availability changed by -30%, tightening suitable ship supply. Weather risk elevated to High, increasing risk adjustment by ₹4.54 Lakh. FreightIQ adapted the decision: baseline charter on 2026-09-04 (Panamax) changed to 2026-09-04 (Panamax) to optimize risk-adjusted total cost.
+
+Baseline vs Stressed Scenario Comparison
+Prototype Disclaimer: International freight benchmarks may originate in USD, while FreightIQ presents decision-support costs in INR for Indian procurement users. Prototype demonstration using synthetic data. Not live maritime market data.

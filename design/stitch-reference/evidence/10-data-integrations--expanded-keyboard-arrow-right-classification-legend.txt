@@ -1,0 +1,97 @@
+keyboard_double_arrow_left
+
+Home
+
+Control Tower
+
+Decision Twin
+
+Operations Overview
+
+Market Overview
+
+Forecasting
+
+Charter Optimizer
+
+Scenario Lab
+
+Backtesting
+
+Data Integration
+
+Data Explorer
+
+🌙 Switch to Dark Mode
+
+SYSTEM STATUS
+Active Theme
+Light Mode
+Data Mode
+DEMO
+Forecast Engine
+Auto Model Selection
+Optimizer
+Active
+Deploy
+FreightIQ
+
+Overview
+
+Decision Twin
+
+Operations
+
+Markets
+
+Forecasts
+
+Chartering
+
+Scenarios
+
+Backtesting
+
+Data
+
+Explorer
+
+Data & Integrations
+
+Manage external API connectors, signal freshness, manual overrides, and system audit logs.
+
+Connections
+
+Data Quality
+
+Overrides
+
+Audit Trail
+
+Model & Data Limitations
+
+Decision Parameters
+
+Model Cards
+
+Model Status
+
+Decision Parameters & Provenance
+
+Read-only registry of every numeric constant used in the optimizer and cost model. Classification shows whether each value is observed, derived, or assumed.
+
+keyboard_arrow_down
+
+Classification legend
+
+OBSERVED — Directly measured from a live or historical data source
+
+DERIVED — Calculated from observed values with a documented formula
+
+LITERATURE_INFORMED — Consistent with a published industry range
+
+CONFIGURED_ASSUMPTION — Reasonable default — tune per contract or trade lane
+
+DEMO_ONLY_ASSUMPTION — Prototype placeholder — must be replaced before production use
+
+Prototype Disclaimer: International freight benchmarks may originate in USD, while FreightIQ presents decision-support costs in INR for Indian procurement users. Prototype demonstration using synthetic data. Not live maritime market data.

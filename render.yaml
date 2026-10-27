@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: freightiq-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile.api
+    healthCheckPath: /health
+    envVars:
+      - key: DATA_MODE
+        value: DEMO
+      - key: SIH_DEMO_MODE
+        value: "true"

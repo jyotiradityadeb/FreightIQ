@@ -1,0 +1,188 @@
+keyboard_double_arrow_left
+
+Home
+
+Control Tower
+
+Decision Twin
+
+Operations Overview
+
+Market Overview
+
+Forecasting
+
+Charter Optimizer
+
+Scenario Lab
+
+Backtesting
+
+Data Integration
+
+Data Explorer
+
+☀ Switch to Light Mode
+
+SYSTEM STATUS
+Active Theme
+Dark Mode
+Data Mode
+DEMO
+Forecast Engine
+Auto Model Selection
+Optimizer
+Active
+Deploy
+FreightIQ
+
+Overview
+
+Decision Twin
+
+Operations
+
+Markets
+
+Forecasts
+
+Chartering
+
+Scenarios
+
+Backtesting
+
+Data
+
+Explorer
+
+Forecasts
+
+Predictive spot freight rate models and demo-series simulation metrics.
+
+Source: synthetic route-specific demonstration series — not real Baltic Exchange or AIS data
+
+Route
+
+Hay Point → Paradip
+
+Forecast Model
+
+Auto
+
+Forecast Horizon
+
+14
+
+7
+
+30
+
+Update Forecast
+
+Demo route context — forecast uses route-specific synthetic history (AU_HPT → IN_PDP)
+
+🟢 DEMO-CALIBRATED
+Spot Freight Rate Forecast — Hay Point → Paradip (14-Day Horizon)
+
+Model: SARIMA • 95% Confidence Interval Band • Data: SYNTHETIC ROUTE-SPECIFIC DEMO HISTORY
+
+Jun 142026
+Jun 28
+Jul 12
+Jul 26
+Aug 9
+Aug 23
+Sep 6
+1000
+1100
+1200
+1300
+1400
+Forecast
+95% Confidence Interval
+Historical Observations
+undefined
+keyboard_arrow_right
+
+📊 Compare Route Freight Trajectories (Optional)
+
+Demo-Series Model Metrics
+
+Out-of-sample error on synthetic demo series — not a real-market accuracy claim
+
+Validation source: synthetic demonstration series
+
+MAE
+
+₹70 / t
+
+Mean Absolute Error
+
+RMSE
+
+₹78 / t
+
+Root Mean Squared Error
+
+MAPE
+
+6.15%
+
+Mean Absolute Pct Error
+
+Model Comparison Benchmark
+Contextual Market Signals
+
+Qualitative market indicators — not used as explicit model regressors in univariate forecast
+
+FORECAST INTERPRETATION
+
+Freight rates are projected to remain relatively stable over the next 14 days based on SARIMA model analysis. The model achieves an out-of-sample MAPE of 6.15% on the synthetic demo series.
+
+Real-Data Validation — Open-Meteo Observed Series
+
+Source: Open-Meteo Archive API — public daily weather observations (CC BY 4.0). Max daily wind speed at Paradip port. Train/test split: last 30 days held out. Metrics computed on real observed values only — not on synthetic data.
+
+MAE (real)
+
+1.164 m/s
+
+RMSE (real)
+
+1.351 m/s
+
+MAPE (real)
+
+24.99%
+
+Observations
+
+731 (2024-09-12 → 2026-09-12)
+
+May 172026
+May 31
+Jun 14
+Jun 28
+Jul 12
+Jul 26
+Aug 9
+Aug 23
+Sep 6
+4
+6
+8
+10
+Observed (train)
+±1σ interval
+SARIMA forecast
+Observed (test, held-out)
+Validation on Real Observed Data (Open-Meteo) — Paradip Max Daily Wind Speed
+Date
+Wind Speed (m/s)
+Train / Test split
+MAE=1.164  RMSE=1.351  MAPE=24.99%
+
+Note: Train: 701 obs | Test (held-out): 30 obs. Series: Max Daily Wind Speed (m/s) — Paradip Port (SARIMA). Wind speed is not a freight rate signal — this chart validates that the model pipeline correctly fits and evaluates real external data.
+
+Prototype Disclaimer: International freight benchmarks may originate in USD, while FreightIQ presents decision-support costs in INR for Indian procurement users. Prototype demonstration using synthetic data. Not live maritime market data.

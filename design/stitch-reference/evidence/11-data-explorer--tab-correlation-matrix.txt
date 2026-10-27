@@ -1,0 +1,244 @@
+Home
+
+Control Tower
+
+Decision Twin
+
+Operations Overview
+
+Market Overview
+
+Forecasting
+
+Charter Optimizer
+
+Scenario Lab
+
+Backtesting
+
+Data Integration
+
+Data Explorer
+
+🌙 Switch to Dark Mode
+
+SYSTEM STATUS
+Active Theme
+Light Mode
+Data Mode
+DEMO
+Forecast Engine
+Auto Model Selection
+Optimizer
+Active
+Deploy
+FreightIQ
+
+Overview
+
+Decision Twin
+
+Operations
+
+Markets
+
+Forecasts
+
+Chartering
+
+Scenarios
+
+Backtesting
+
+Data
+
+Explorer
+
+Data Explorer
+
+Modelling dataset inspection, feature correlation matrix, and data quality audit.
+
+OBSERVATIONS
+
+974
+
+Daily time series records
+
+FEATURES
+
+35
+
+Engineered parameters
+
+START DATE
+
+01 Jan 2024
+
+Earliest observation
+
+END DATE
+
+31 Aug 2026
+
+Latest observation
+
+Route Freight Series
+
+Dataset
+
+Correlation Matrix
+
+Quality Audit
+
+Validate & Preview Dataset
+
+Pearson Feature Correlation Matrix
+1.00
+0.82
+0.81
+0.81
+0.11
+0.18
+0.30
+0.28
+-0.51
+0.04
+0.02
+0.82
+1.00
+0.92
+0.92
+0.32
+0.50
+-0.15
+-0.15
+-0.32
+-0.31
+-0.01
+0.81
+0.92
+1.00
+0.93
+0.30
+0.51
+-0.16
+-0.17
+-0.33
+-0.32
+0.01
+0.81
+0.92
+0.93
+1.00
+0.32
+0.52
+-0.17
+-0.18
+-0.32
+-0.32
+0.00
+0.11
+0.32
+0.30
+0.32
+1.00
+0.81
+-0.34
+-0.33
+0.18
+-0.15
+-0.03
+0.18
+0.50
+0.51
+0.52
+0.81
+1.00
+-0.58
+-0.57
+0.16
+-0.50
+-0.02
+0.30
+-0.15
+-0.16
+-0.17
+-0.34
+-0.58
+1.00
+0.98
+-0.44
+0.63
+-0.01
+0.28
+-0.15
+-0.17
+-0.18
+-0.33
+-0.57
+0.98
+1.00
+-0.42
+0.61
+-0.01
+-0.51
+-0.32
+-0.33
+-0.32
+0.18
+0.16
+-0.44
+-0.42
+1.00
+-0.15
+-0.01
+0.04
+-0.31
+-0.32
+-0.32
+-0.15
+-0.50
+0.63
+0.61
+-0.15
+1.00
+0.02
+0.02
+-0.01
+0.01
+0.00
+-0.03
+-0.02
+-0.01
+-0.01
+-0.01
+0.02
+1.00
+freight_rate
+bdi
+capesize_index
+panamax_index
+iron_ore_price
+coking_coal_price
+port_congestion_score
+avg_waiting_hours
+vessel_availability_count
+weather_risk_score
+event_risk_score
+event_risk_score
+weather_risk_score
+vessel_availability_count
+avg_waiting_hours
+port_congestion_score
+coking_coal_price
+iron_ore_price
+panamax_index
+capesize_index
+bdi
+freight_rate
+−0.5
+0
+0.5
+1
+undefined
+Prototype Disclaimer: International freight benchmarks may originate in USD, while FreightIQ presents decision-support costs in INR for Indian procurement users. Prototype demonstration using synthetic data. Not live maritime market data.

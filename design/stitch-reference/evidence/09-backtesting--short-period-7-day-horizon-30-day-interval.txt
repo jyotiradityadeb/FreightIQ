@@ -1,0 +1,154 @@
+Home
+
+Control Tower
+
+Decision Twin
+
+Operations Overview
+
+Market Overview
+
+Forecasting
+
+Charter Optimizer
+
+Scenario Lab
+
+Backtesting
+
+Data Integration
+
+Data Explorer
+
+🌙 Switch to Dark Mode
+
+SYSTEM STATUS
+Active Theme
+Light Mode
+Data Mode
+DEMO
+Forecast Engine
+Auto Model Selection
+Optimizer
+Active
+Deploy
+FreightIQ
+
+Overview
+
+Decision Twin
+
+Operations
+
+Markets
+
+Forecasts
+
+Chartering
+
+Scenarios
+
+Backtesting
+
+Data
+
+Explorer
+
+Simulation Backtest
+
+Historical-style simulation on synthetic route-specific data against an immediate-charter benchmark strategy.
+
+Simulation Route
+
+Hay Point → Paradip
+
+ROUTE DATA MODE
+
+🟢 SYNTHETIC ROUTE-SPECIFIC DEMO SERIES
+
+Simulation Start Date
+
+Press the down arrow key to interact with the calendar and select a date. Press the escape button to close the calendar.
+
+Selected date is 2024/06/01. Select the second date.
+
+Simulation End Date
+
+Press the down arrow key to interact with the calendar and select a date. Press the escape button to close the calendar.
+
+Selected date is 2024/09/01. Select the second date.
+
+Forecast Horizon
+
+14
+
+7
+
+30
+
+Interval Days
+
+30
+
+Run Simulation Backtest
+
+✓ Simulation completed in 1.31 seconds
+
+DECISION WINDOWS
+
+4
+
+Simulated decision points on demo data
+
+SIMULATED WIN RATE (DEMO DATA)
+
+75.0%
+
+3 of 4 simulated windows (synthetic series)
+
+SIMULATED COST DIFFERENCE
+
+₹2.08 Cr
+
++5.68% vs immediate charter (synthetic sim)
+
+FORECAST MAE (DEMO SERIES)
+
+₹84 / t
+
+Demo-series walk-forward error
+
+SIMULATION BACKTEST INTERPRETATION
+
+On synthetic demo data, FreightIQ recommendations matched or outperformed the immediate-charter benchmark in 3 of 4 simulated decision windows (75.0% simulated win rate), resulting in a simulated cost difference of ₹2.08 Cr. These results are on synthetic data and do not reflect real-market performance.
+
+Cost Comparison per Decision Period
+Jun 12024
+Jul 1
+Jul 31
+Aug 30
+0
+20M
+40M
+60M
+80M
+100M
+Benchmark Strategy
+FreightIQ Strategy
+undefined
+Cumulative Cost Difference
+Jun 22024
+Jun 16
+Jun 30
+Jul 14
+Jul 28
+Aug 11
+Aug 25
+0
+5M
+10M
+15M
+20M
+Difference Curve (₹)
+Decision Outcomes Matrix
+Prototype Disclaimer: International freight benchmarks may originate in USD, while FreightIQ presents decision-support costs in INR for Indian procurement users. Prototype demonstration using synthetic data. Not live maritime market data.

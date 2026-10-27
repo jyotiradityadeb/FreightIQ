@@ -13,3 +13,7 @@ venv/
 .coverage
 htmlcov/
 .streamlit/secrets.toml
+node_modules/
+dist/
+.netlify/
+.claude/

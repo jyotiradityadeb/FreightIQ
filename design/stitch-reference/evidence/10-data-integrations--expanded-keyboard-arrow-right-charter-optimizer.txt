@@ -1,0 +1,120 @@
+keyboard_double_arrow_left
+
+Home
+
+Control Tower
+
+Decision Twin
+
+Operations Overview
+
+Market Overview
+
+Forecasting
+
+Charter Optimizer
+
+Scenario Lab
+
+Backtesting
+
+Data Integration
+
+Data Explorer
+
+🌙 Switch to Dark Mode
+
+SYSTEM STATUS
+Active Theme
+Light Mode
+Data Mode
+DEMO
+Forecast Engine
+Auto Model Selection
+Optimizer
+Active
+Deploy
+FreightIQ
+
+Overview
+
+Decision Twin
+
+Operations
+
+Markets
+
+Forecasts
+
+Chartering
+
+Scenarios
+
+Backtesting
+
+Data
+
+Explorer
+
+Data & Integrations
+
+Manage external API connectors, signal freshness, manual overrides, and system audit logs.
+
+Connections
+
+Data Quality
+
+Overrides
+
+Audit Trail
+
+Model & Data Limitations
+
+Decision Parameters
+
+Model Cards
+
+Model Status
+
+Model Cards
+
+Purpose, algorithm, assumptions, limitations, and validation status for each model powering FreightIQ.
+
+keyboard_arrow_right
+
+Forecasting Engine
+
+keyboard_arrow_down
+
+Charter Optimizer
+
+Purpose
+Identify the lowest expected logistics cost charter date and vessel class for a given cargo.
+
+Algorithm
+Exhaustive enumeration over (vessel_class x charter_date) combinations within the laycan window. Each candidate evaluated with evaluate_charter_candidate() using: freight cost = forecast_rate x quantity x distance_factor, demurrage = DEMURRAGE_EXPOSURE_FACTOR x demurrage_rate x waiting_hours, congestion = CONGESTION_COST_MULTIPLIER x congestion_score x quantity, risk penalty = weather_risk x WEATHER_RISK_PENALTY + event_risk x EVENT_RISK_PENALTY.
+
+Assumptions
+Freight rate forecasts are unbiased. Port congestion and waiting hours are from synthetic signals. Vessel capacity/draft constraints from VESSEL_MASTER and PORT_MASTER. Cost constants (DEMURRAGE_EXPOSURE_FACTOR=0.15, CONGESTION_COST_MULTIPLIER=0.5) are illustrative defaults — see Decision Parameters tab for full provenance.
+
+Inputs
+Forecast DataFrame, cargo type, quantity (tonnes), origin/destination, laycan window, vessel class preference, demurrage rate, risk tolerance.
+
+Outputs
+Ranked candidate matrix with freight, demurrage, congestion, and risk components. Best option, explainability block, and sensitivity-ready cost function.
+
+Limitations
+No LP/MIP solver — enumeration only. Does not optimise multi-leg or multi-cargo. Cost weights use DEMO_ONLY_ASSUMPTION defaults calibrated to synthetic signals. Real procurement requires calibration against contract terms and actual demurrage records.
+
+Validation status: Sensitivity wiring validated via unit tests (test_optimizer_integrity.py). No real-shipment backtesting.
+Data provenance: Source: synthetic freight forecast + synthetic port signals.
+
+keyboard_arrow_right
+
+Decision Twin (Monte Carlo)
+
+keyboard_arrow_right
+
+Scenario Engine
+
+Prototype Disclaimer: International freight benchmarks may originate in USD, while FreightIQ presents decision-support costs in INR for Indian procurement users. Prototype demonstration using synthetic data. Not live maritime market data.

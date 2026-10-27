@@ -1,0 +1,3955 @@
+{
+  "captures": [
+    {
+      "file": "screenshots/desktop-1920/01-overview--default--viewport.png",
+      "page": "01-overview",
+      "state": "default",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/"
+    },
+    {
+      "file": "screenshots/desktop-1920/01-overview--default--full.png",
+      "page": "01-overview",
+      "state": "default",
+      "kind": "full-page",
+      "size": [
+        1920,
+        2028
+      ],
+      "url": "http://127.0.0.1:8518/"
+    },
+    {
+      "file": "screenshots/desktop-1440/01-overview--default--viewport.png",
+      "page": "01-overview",
+      "state": "default",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/"
+    },
+    {
+      "file": "screenshots/desktop-1440/01-overview--default--full.png",
+      "page": "01-overview",
+      "state": "default",
+      "kind": "full-page",
+      "size": [
+        1440,
+        2124
+      ],
+      "url": "http://127.0.0.1:8518/"
+    },
+    {
+      "file": "screenshots/components/01-overview--default--chart-01.png",
+      "page": "01-overview",
+      "state": "default",
+      "kind": "component",
+      "size": [
+        934,
+        380
+      ],
+      "url": "http://127.0.0.1:8518/"
+    },
+    {
+      "file": "screenshots/components/01-overview--default--chart-02.png",
+      "page": "01-overview",
+      "state": "default",
+      "kind": "component",
+      "size": [
+        1428,
+        381
+      ],
+      "url": "http://127.0.0.1:8518/"
+    },
+    {
+      "file": "screenshots/desktop-1920/02-control-tower--default--viewport.png",
+      "page": "02-control-tower",
+      "state": "default",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Control_Tower"
+    },
+    {
+      "file": "screenshots/desktop-1920/02-control-tower--default--full.png",
+      "page": "02-control-tower",
+      "state": "default",
+      "kind": "full-page",
+      "size": [
+        1920,
+        2028
+      ],
+      "url": "http://127.0.0.1:8518/Control_Tower"
+    },
+    {
+      "file": "screenshots/desktop-1440/02-control-tower--default--viewport.png",
+      "page": "02-control-tower",
+      "state": "default",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Control_Tower"
+    },
+    {
+      "file": "screenshots/desktop-1440/02-control-tower--default--full.png",
+      "page": "02-control-tower",
+      "state": "default",
+      "kind": "full-page",
+      "size": [
+        1440,
+        2124
+      ],
+      "url": "http://127.0.0.1:8518/Control_Tower"
+    },
+    {
+      "file": "screenshots/components/02-control-tower--default--chart-01.png",
+      "page": "02-control-tower",
+      "state": "default",
+      "kind": "component",
+      "size": [
+        934,
+        380
+      ],
+      "url": "http://127.0.0.1:8518/Control_Tower"
+    },
+    {
+      "file": "screenshots/components/02-control-tower--default--chart-02.png",
+      "page": "02-control-tower",
+      "state": "default",
+      "kind": "component",
+      "size": [
+        1428,
+        381
+      ],
+      "url": "http://127.0.0.1:8518/Control_Tower"
+    },
+    {
+      "file": "screenshots/desktop-1920/03-decision-twin--default--viewport.png",
+      "page": "03-decision-twin",
+      "state": "default",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Decision_Twin"
+    },
+    {
+      "file": "screenshots/desktop-1920/03-decision-twin--default--full.png",
+      "page": "03-decision-twin",
+      "state": "default",
+      "kind": "full-page",
+      "size": [
+        1920,
+        2138
+      ],
+      "url": "http://127.0.0.1:8518/Decision_Twin"
+    },
+    {
+      "file": "screenshots/desktop-1440/03-decision-twin--default--viewport.png",
+      "page": "03-decision-twin",
+      "state": "default",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Decision_Twin"
+    },
+    {
+      "file": "screenshots/desktop-1440/03-decision-twin--default--full.png",
+      "page": "03-decision-twin",
+      "state": "default",
+      "kind": "full-page",
+      "size": [
+        1440,
+        2257
+      ],
+      "url": "http://127.0.0.1:8518/Decision_Twin"
+    },
+    {
+      "file": "screenshots/components/03-decision-twin--default--chart-01.png",
+      "page": "03-decision-twin",
+      "state": "default",
+      "kind": "component",
+      "size": [
+        1428,
+        321
+      ],
+      "url": "http://127.0.0.1:8518/Decision_Twin"
+    },
+    {
+      "file": "screenshots/components/03-decision-twin--default--chart-02.png",
+      "page": "03-decision-twin",
+      "state": "default",
+      "kind": "component",
+      "size": [
+        1428,
+        321
+      ],
+      "url": "http://127.0.0.1:8518/Decision_Twin"
+    },
+    {
+      "file": "screenshots/desktop-1920/04-operations--default--viewport.png",
+      "page": "04-operations",
+      "state": "default",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Operations_Overview"
+    },
+    {
+      "file": "screenshots/desktop-1920/04-operations--default--full.png",
+      "page": "04-operations",
+      "state": "default",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1717
+      ],
+      "url": "http://127.0.0.1:8518/Operations_Overview"
+    },
+    {
+      "file": "screenshots/desktop-1440/04-operations--default--viewport.png",
+      "page": "04-operations",
+      "state": "default",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Operations_Overview"
+    },
+    {
+      "file": "screenshots/desktop-1440/04-operations--default--full.png",
+      "page": "04-operations",
+      "state": "default",
+      "kind": "full-page",
+      "size": [
+        1440,
+        2005
+      ],
+      "url": "http://127.0.0.1:8518/Operations_Overview"
+    },
+    {
+      "file": "screenshots/components/04-operations--default--chart-01.png",
+      "page": "04-operations",
+      "state": "default",
+      "kind": "component",
+      "size": [
+        941,
+        381
+      ],
+      "url": "http://127.0.0.1:8518/Operations_Overview"
+    },
+    {
+      "file": "screenshots/desktop-1920/05-market-intelligence--default--viewport.png",
+      "page": "05-market-intelligence",
+      "state": "default",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Market_Overview"
+    },
+    {
+      "file": "screenshots/desktop-1920/05-market-intelligence--default--full.png",
+      "page": "05-market-intelligence",
+      "state": "default",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1835
+      ],
+      "url": "http://127.0.0.1:8518/Market_Overview"
+    },
+    {
+      "file": "screenshots/desktop-1440/05-market-intelligence--default--viewport.png",
+      "page": "05-market-intelligence",
+      "state": "default",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Market_Overview"
+    },
+    {
+      "file": "screenshots/desktop-1440/05-market-intelligence--default--full.png",
+      "page": "05-market-intelligence",
+      "state": "default",
+      "kind": "full-page",
+      "size": [
+        1440,
+        1971
+      ],
+      "url": "http://127.0.0.1:8518/Market_Overview"
+    },
+    {
+      "file": "screenshots/components/05-market-intelligence--default--chart-01.png",
+      "page": "05-market-intelligence",
+      "state": "default",
+      "kind": "component",
+      "size": [
+        1428,
+        381
+      ],
+      "url": "http://127.0.0.1:8518/Market_Overview"
+    },
+    {
+      "file": "screenshots/components/05-market-intelligence--default--table-01.png",
+      "page": "05-market-intelligence",
+      "state": "default",
+      "kind": "component",
+      "size": [
+        690,
+        221
+      ],
+      "url": "http://127.0.0.1:8518/Market_Overview"
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--default--viewport.png",
+      "page": "06-forecasting",
+      "state": "default",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--default--full.png",
+      "page": "06-forecasting",
+      "state": "default",
+      "kind": "full-page",
+      "size": [
+        1920,
+        2569
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/desktop-1440/06-forecasting--default--viewport.png",
+      "page": "06-forecasting",
+      "state": "default",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/desktop-1440/06-forecasting--default--full.png",
+      "page": "06-forecasting",
+      "state": "default",
+      "kind": "full-page",
+      "size": [
+        1440,
+        2729
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--default--chart-01.png",
+      "page": "06-forecasting",
+      "state": "default",
+      "kind": "component",
+      "size": [
+        1428,
+        381
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--default--chart-03.png",
+      "page": "06-forecasting",
+      "state": "default",
+      "kind": "component",
+      "size": [
+        1428,
+        381
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--default--table-01.png",
+      "page": "06-forecasting",
+      "state": "default",
+      "kind": "component",
+      "size": [
+        690,
+        115
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--default--table-02.png",
+      "page": "06-forecasting",
+      "state": "default",
+      "kind": "component",
+      "size": [
+        690,
+        186
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--expanded-keyboard-arrow-right-compare-route-freight-trajectories-optional--viewport.png",
+      "page": "06-forecasting",
+      "state": "expanded-keyboard_arrow_right\n\n📊 Compare Route Freight Trajectories (Optional)",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--expanded-keyboard-arrow-right-compare-route-freight-trajectories-optional--full.png",
+      "page": "06-forecasting",
+      "state": "expanded-keyboard_arrow_right\n\n📊 Compare Route Freight Trajectories (Optional)",
+      "kind": "full-page",
+      "size": [
+        1920,
+        3044
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--expanded-keyboard-arrow-right-compare-route-freight-trajectories-optional--chart-01.png",
+      "page": "06-forecasting",
+      "state": "expanded-keyboard_arrow_right\n\n📊 Compare Route Freight Trajectories (Optional)",
+      "kind": "component",
+      "size": [
+        1428,
+        381
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--expanded-keyboard-arrow-right-compare-route-freight-trajectories-optional--chart-02.png",
+      "page": "06-forecasting",
+      "state": "expanded-keyboard_arrow_right\n\n📊 Compare Route Freight Trajectories (Optional)",
+      "kind": "component",
+      "size": [
+        1394,
+        321
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--expanded-keyboard-arrow-right-compare-route-freight-trajectories-optional--chart-03.png",
+      "page": "06-forecasting",
+      "state": "expanded-keyboard_arrow_right\n\n📊 Compare Route Freight Trajectories (Optional)",
+      "kind": "component",
+      "size": [
+        1428,
+        381
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--expanded-keyboard-arrow-right-compare-route-freight-trajectories-optional--table-01.png",
+      "page": "06-forecasting",
+      "state": "expanded-keyboard_arrow_right\n\n📊 Compare Route Freight Trajectories (Optional)",
+      "kind": "component",
+      "size": [
+        690,
+        116
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--expanded-keyboard-arrow-right-compare-route-freight-trajectories-optional--table-02.png",
+      "page": "06-forecasting",
+      "state": "expanded-keyboard_arrow_right\n\n📊 Compare Route Freight Trajectories (Optional)",
+      "kind": "component",
+      "size": [
+        690,
+        185
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--default--viewport.png",
+      "page": "07-charter-optimizer",
+      "state": "default",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--default--full.png",
+      "page": "07-charter-optimizer",
+      "state": "default",
+      "kind": "full-page",
+      "size": [
+        1920,
+        3503
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/desktop-1440/07-charter-optimizer--default--viewport.png",
+      "page": "07-charter-optimizer",
+      "state": "default",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/desktop-1440/07-charter-optimizer--default--full.png",
+      "page": "07-charter-optimizer",
+      "state": "default",
+      "kind": "full-page",
+      "size": [
+        1440,
+        3797
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--default--table-01.png",
+      "page": "07-charter-optimizer",
+      "state": "default",
+      "kind": "component",
+      "size": [
+        1428,
+        318
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--default--table-02.png",
+      "page": "07-charter-optimizer",
+      "state": "default",
+      "kind": "component",
+      "size": [
+        656,
+        151
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--default--table-03.png",
+      "page": "07-charter-optimizer",
+      "state": "default",
+      "kind": "component",
+      "size": [
+        1428,
+        248
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--default--table-04.png",
+      "page": "07-charter-optimizer",
+      "state": "default",
+      "kind": "component",
+      "size": [
+        706,
+        185
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--default--table-05.png",
+      "page": "07-charter-optimizer",
+      "state": "default",
+      "kind": "component",
+      "size": [
+        1428,
+        178
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--default--viewport.png",
+      "page": "08-scenario-lab",
+      "state": "default",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--default--full.png",
+      "page": "08-scenario-lab",
+      "state": "default",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1740
+      ],
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "file": "screenshots/desktop-1440/08-scenario-lab--default--viewport.png",
+      "page": "08-scenario-lab",
+      "state": "default",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "file": "screenshots/desktop-1440/08-scenario-lab--default--full.png",
+      "page": "08-scenario-lab",
+      "state": "default",
+      "kind": "full-page",
+      "size": [
+        1440,
+        1866
+      ],
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "file": "screenshots/components/08-scenario-lab--default--table-01.png",
+      "page": "08-scenario-lab",
+      "state": "default",
+      "kind": "component",
+      "size": [
+        1428,
+        388
+      ],
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "file": "screenshots/desktop-1920/09-backtesting--default--viewport.png",
+      "page": "09-backtesting",
+      "state": "default",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Backtesting"
+    },
+    {
+      "file": "screenshots/desktop-1920/09-backtesting--default--full.png",
+      "page": "09-backtesting",
+      "state": "default",
+      "kind": "full-page",
+      "size": [
+        1920,
+        2236
+      ],
+      "url": "http://127.0.0.1:8518/Backtesting"
+    },
+    {
+      "file": "screenshots/desktop-1440/09-backtesting--default--viewport.png",
+      "page": "09-backtesting",
+      "state": "default",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Backtesting"
+    },
+    {
+      "file": "screenshots/desktop-1440/09-backtesting--default--full.png",
+      "page": "09-backtesting",
+      "state": "default",
+      "kind": "full-page",
+      "size": [
+        1440,
+        2355
+      ],
+      "url": "http://127.0.0.1:8518/Backtesting"
+    },
+    {
+      "file": "screenshots/components/09-backtesting--default--chart-01.png",
+      "page": "09-backtesting",
+      "state": "default",
+      "kind": "component",
+      "size": [
+        690,
+        381
+      ],
+      "url": "http://127.0.0.1:8518/Backtesting"
+    },
+    {
+      "file": "screenshots/components/09-backtesting--default--chart-02.png",
+      "page": "09-backtesting",
+      "state": "default",
+      "kind": "component",
+      "size": [
+        690,
+        381
+      ],
+      "url": "http://127.0.0.1:8518/Backtesting"
+    },
+    {
+      "file": "screenshots/components/09-backtesting--default--table-01.png",
+      "page": "09-backtesting",
+      "state": "default",
+      "kind": "component",
+      "size": [
+        1428,
+        401
+      ],
+      "url": "http://127.0.0.1:8518/Backtesting"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--default--viewport.png",
+      "page": "10-data-integrations",
+      "state": "default",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--default--full.png",
+      "page": "10-data-integrations",
+      "state": "default",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-connections--viewport.png",
+      "page": "10-data-integrations",
+      "state": "tab-Connections",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-connections--full.png",
+      "page": "10-data-integrations",
+      "state": "tab-Connections",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-data-quality--viewport.png",
+      "page": "10-data-integrations",
+      "state": "tab-Data Quality",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-data-quality--full.png",
+      "page": "10-data-integrations",
+      "state": "tab-Data Quality",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-overrides--viewport.png",
+      "page": "10-data-integrations",
+      "state": "tab-Overrides",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-overrides--full.png",
+      "page": "10-data-integrations",
+      "state": "tab-Overrides",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-audit-trail--viewport.png",
+      "page": "10-data-integrations",
+      "state": "tab-Audit Trail",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-audit-trail--full.png",
+      "page": "10-data-integrations",
+      "state": "tab-Audit Trail",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-model-data-limitations--viewport.png",
+      "page": "10-data-integrations",
+      "state": "tab-Model & Data Limitations",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-model-data-limitations--full.png",
+      "page": "10-data-integrations",
+      "state": "tab-Model & Data Limitations",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1105
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-decision-parameters--viewport.png",
+      "page": "10-data-integrations",
+      "state": "tab-Decision Parameters",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-decision-parameters--full.png",
+      "page": "10-data-integrations",
+      "state": "tab-Decision Parameters",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1207
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-model-cards--viewport.png",
+      "page": "10-data-integrations",
+      "state": "tab-Model Cards",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-model-cards--full.png",
+      "page": "10-data-integrations",
+      "state": "tab-Model Cards",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-model-status--viewport.png",
+      "page": "10-data-integrations",
+      "state": "tab-Model Status",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--tab-model-status--full.png",
+      "page": "10-data-integrations",
+      "state": "tab-Model Status",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1415
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--default--viewport.png",
+      "page": "10-data-integrations",
+      "state": "default",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--default--full.png",
+      "page": "10-data-integrations",
+      "state": "default",
+      "kind": "full-page",
+      "size": [
+        1440,
+        1034
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-connections--viewport.png",
+      "page": "10-data-integrations",
+      "state": "tab-Connections",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-connections--full.png",
+      "page": "10-data-integrations",
+      "state": "tab-Connections",
+      "kind": "full-page",
+      "size": [
+        1440,
+        1034
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-data-quality--viewport.png",
+      "page": "10-data-integrations",
+      "state": "tab-Data Quality",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-data-quality--full.png",
+      "page": "10-data-integrations",
+      "state": "tab-Data Quality",
+      "kind": "full-page",
+      "size": [
+        1440,
+        1034
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-overrides--viewport.png",
+      "page": "10-data-integrations",
+      "state": "tab-Overrides",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-overrides--full.png",
+      "page": "10-data-integrations",
+      "state": "tab-Overrides",
+      "kind": "full-page",
+      "size": [
+        1440,
+        940
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-audit-trail--viewport.png",
+      "page": "10-data-integrations",
+      "state": "tab-Audit Trail",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-audit-trail--full.png",
+      "page": "10-data-integrations",
+      "state": "tab-Audit Trail",
+      "kind": "full-page",
+      "size": [
+        1440,
+        999
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-model-data-limitations--viewport.png",
+      "page": "10-data-integrations",
+      "state": "tab-Model & Data Limitations",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-model-data-limitations--full.png",
+      "page": "10-data-integrations",
+      "state": "tab-Model & Data Limitations",
+      "kind": "full-page",
+      "size": [
+        1440,
+        1227
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-decision-parameters--viewport.png",
+      "page": "10-data-integrations",
+      "state": "tab-Decision Parameters",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-decision-parameters--full.png",
+      "page": "10-data-integrations",
+      "state": "tab-Decision Parameters",
+      "kind": "full-page",
+      "size": [
+        1440,
+        1278
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-model-cards--viewport.png",
+      "page": "10-data-integrations",
+      "state": "tab-Model Cards",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-model-cards--full.png",
+      "page": "10-data-integrations",
+      "state": "tab-Model Cards",
+      "kind": "full-page",
+      "size": [
+        1440,
+        990
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-model-status--viewport.png",
+      "page": "10-data-integrations",
+      "state": "tab-Model Status",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1440/10-data-integrations--tab-model-status--full.png",
+      "page": "10-data-integrations",
+      "state": "tab-Model Status",
+      "kind": "full-page",
+      "size": [
+        1440,
+        1485
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/components/10-data-integrations--tab-connections--table-01.png",
+      "page": "10-data-integrations",
+      "state": "tab-Connections",
+      "kind": "component",
+      "size": [
+        1428,
+        213
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/components/10-data-integrations--tab-data-quality--table-02.png",
+      "page": "10-data-integrations",
+      "state": "tab-Data Quality",
+      "kind": "component",
+      "size": [
+        1428,
+        213
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/components/10-data-integrations--tab-audit-trail--table-03.png",
+      "page": "10-data-integrations",
+      "state": "tab-Audit Trail",
+      "kind": "component",
+      "size": [
+        1428,
+        178
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/components/10-data-integrations--tab-decision-parameters--table-04.png",
+      "page": "10-data-integrations",
+      "state": "tab-Decision Parameters",
+      "kind": "component",
+      "size": [
+        1428,
+        401
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--expanded-keyboard-arrow-right-classification-legend--viewport.png",
+      "page": "10-data-integrations",
+      "state": "expanded-keyboard_arrow_right\n\nClassification legend",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--expanded-keyboard-arrow-right-classification-legend--full.png",
+      "page": "10-data-integrations",
+      "state": "expanded-keyboard_arrow_right\n\nClassification legend",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1432
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--expanded-keyboard-arrow-right-forecasting-engine--viewport.png",
+      "page": "10-data-integrations",
+      "state": "expanded-keyboard_arrow_right\n\nForecasting Engine",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--expanded-keyboard-arrow-right-forecasting-engine--full.png",
+      "page": "10-data-integrations",
+      "state": "expanded-keyboard_arrow_right\n\nForecasting Engine",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1322
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--expanded-keyboard-arrow-right-charter-optimizer--viewport.png",
+      "page": "10-data-integrations",
+      "state": "expanded-keyboard_arrow_right\n\nCharter Optimizer",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--expanded-keyboard-arrow-right-charter-optimizer--full.png",
+      "page": "10-data-integrations",
+      "state": "expanded-keyboard_arrow_right\n\nCharter Optimizer",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1450
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--expanded-keyboard-arrow-right-decision-twin-monte-carlo--viewport.png",
+      "page": "10-data-integrations",
+      "state": "expanded-keyboard_arrow_right\n\nDecision Twin (Monte Carlo)",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--expanded-keyboard-arrow-right-decision-twin-monte-carlo--full.png",
+      "page": "10-data-integrations",
+      "state": "expanded-keyboard_arrow_right\n\nDecision Twin (Monte Carlo)",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1373
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--expanded-keyboard-arrow-right-scenario-engine--viewport.png",
+      "page": "10-data-integrations",
+      "state": "expanded-keyboard_arrow_right\n\nScenario Engine",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--expanded-keyboard-arrow-right-scenario-engine--full.png",
+      "page": "10-data-integrations",
+      "state": "expanded-keyboard_arrow_right\n\nScenario Engine",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1322
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/components/10-data-integrations--tab-model-status--table-05.png",
+      "page": "10-data-integrations",
+      "state": "tab-Model Status",
+      "kind": "component",
+      "size": [
+        1428,
+        213
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--default--viewport.png",
+      "page": "11-data-explorer",
+      "state": "default",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--default--full.png",
+      "page": "11-data-explorer",
+      "state": "default",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1928
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--tab-route-freight-series--viewport.png",
+      "page": "11-data-explorer",
+      "state": "tab-Route Freight Series",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--tab-route-freight-series--full.png",
+      "page": "11-data-explorer",
+      "state": "tab-Route Freight Series",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1928
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--tab-dataset--viewport.png",
+      "page": "11-data-explorer",
+      "state": "tab-Dataset",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--tab-dataset--full.png",
+      "page": "11-data-explorer",
+      "state": "tab-Dataset",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--tab-correlation-matrix--viewport.png",
+      "page": "11-data-explorer",
+      "state": "tab-Correlation Matrix",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--tab-correlation-matrix--full.png",
+      "page": "11-data-explorer",
+      "state": "tab-Correlation Matrix",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1328
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--tab-quality-audit--viewport.png",
+      "page": "11-data-explorer",
+      "state": "tab-Quality Audit",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--tab-quality-audit--full.png",
+      "page": "11-data-explorer",
+      "state": "tab-Quality Audit",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1286
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--tab-validate-preview-dataset--viewport.png",
+      "page": "11-data-explorer",
+      "state": "tab-Validate & Preview Dataset",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--tab-validate-preview-dataset--full.png",
+      "page": "11-data-explorer",
+      "state": "tab-Validate & Preview Dataset",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1440/11-data-explorer--default--viewport.png",
+      "page": "11-data-explorer",
+      "state": "default",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1440/11-data-explorer--default--full.png",
+      "page": "11-data-explorer",
+      "state": "default",
+      "kind": "full-page",
+      "size": [
+        1440,
+        1998
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1440/11-data-explorer--tab-route-freight-series--viewport.png",
+      "page": "11-data-explorer",
+      "state": "tab-Route Freight Series",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1440/11-data-explorer--tab-route-freight-series--full.png",
+      "page": "11-data-explorer",
+      "state": "tab-Route Freight Series",
+      "kind": "full-page",
+      "size": [
+        1440,
+        1998
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1440/11-data-explorer--tab-dataset--viewport.png",
+      "page": "11-data-explorer",
+      "state": "tab-Dataset",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1440/11-data-explorer--tab-dataset--full.png",
+      "page": "11-data-explorer",
+      "state": "tab-Dataset",
+      "kind": "full-page",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1440/11-data-explorer--tab-correlation-matrix--viewport.png",
+      "page": "11-data-explorer",
+      "state": "tab-Correlation Matrix",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1440/11-data-explorer--tab-correlation-matrix--full.png",
+      "page": "11-data-explorer",
+      "state": "tab-Correlation Matrix",
+      "kind": "full-page",
+      "size": [
+        1440,
+        1399
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1440/11-data-explorer--tab-quality-audit--viewport.png",
+      "page": "11-data-explorer",
+      "state": "tab-Quality Audit",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1440/11-data-explorer--tab-quality-audit--full.png",
+      "page": "11-data-explorer",
+      "state": "tab-Quality Audit",
+      "kind": "full-page",
+      "size": [
+        1440,
+        1356
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1440/11-data-explorer--tab-validate-preview-dataset--viewport.png",
+      "page": "11-data-explorer",
+      "state": "tab-Validate & Preview Dataset",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1440/11-data-explorer--tab-validate-preview-dataset--full.png",
+      "page": "11-data-explorer",
+      "state": "tab-Validate & Preview Dataset",
+      "kind": "full-page",
+      "size": [
+        1440,
+        1083
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/components/11-data-explorer--tab-route-freight-series--table-01.png",
+      "page": "11-data-explorer",
+      "state": "tab-Route Freight Series",
+      "kind": "component",
+      "size": [
+        1428,
+        401
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/components/11-data-explorer--tab-route-freight-series--table-02.png",
+      "page": "11-data-explorer",
+      "state": "tab-Route Freight Series",
+      "kind": "component",
+      "size": [
+        1428,
+        401
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/components/11-data-explorer--tab-correlation-matrix--chart-01.png",
+      "page": "11-data-explorer",
+      "state": "tab-Correlation Matrix",
+      "kind": "component",
+      "size": [
+        1428,
+        451
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/components/11-data-explorer--tab-quality-audit--table-03.png",
+      "page": "11-data-explorer",
+      "state": "tab-Quality Audit",
+      "kind": "component",
+      "size": [
+        1428,
+        401
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--demo-laycan-2026-09-01-to-15--viewport.png",
+      "page": "07-charter-optimizer",
+      "state": "demo-laycan-2026-09-01-to-15",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--demo-laycan-2026-09-01-to-15--full.png",
+      "page": "07-charter-optimizer",
+      "state": "demo-laycan-2026-09-01-to-15",
+      "kind": "full-page",
+      "size": [
+        1920,
+        3503
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/desktop-1440/07-charter-optimizer--demo-laycan-2026-09-01-to-15--viewport.png",
+      "page": "07-charter-optimizer",
+      "state": "demo-laycan-2026-09-01-to-15",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/desktop-1440/07-charter-optimizer--demo-laycan-2026-09-01-to-15--full.png",
+      "page": "07-charter-optimizer",
+      "state": "demo-laycan-2026-09-01-to-15",
+      "kind": "full-page",
+      "size": [
+        1440,
+        3797
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--demo-laycan-2026-09-01-to-15--table-01.png",
+      "page": "07-charter-optimizer",
+      "state": "demo-laycan-2026-09-01-to-15",
+      "kind": "component",
+      "size": [
+        1428,
+        318
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--demo-laycan-2026-09-01-to-15--table-02.png",
+      "page": "07-charter-optimizer",
+      "state": "demo-laycan-2026-09-01-to-15",
+      "kind": "component",
+      "size": [
+        656,
+        151
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--demo-laycan-2026-09-01-to-15--table-03.png",
+      "page": "07-charter-optimizer",
+      "state": "demo-laycan-2026-09-01-to-15",
+      "kind": "component",
+      "size": [
+        1428,
+        248
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--demo-laycan-2026-09-01-to-15--table-04.png",
+      "page": "07-charter-optimizer",
+      "state": "demo-laycan-2026-09-01-to-15",
+      "kind": "component",
+      "size": [
+        706,
+        185
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--demo-laycan-2026-09-01-to-15--table-05.png",
+      "page": "07-charter-optimizer",
+      "state": "demo-laycan-2026-09-01-to-15",
+      "kind": "component",
+      "size": [
+        1428,
+        178
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-07-total-2-637-225-0-vs-selected--viewport.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nPanamax on 2026-09-07 — total $2,637,225 (+₹0 vs selected)",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-07-total-2-637-225-0-vs-selected--full.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nPanamax on 2026-09-07 — total $2,637,225 (+₹0 vs selected)",
+      "kind": "full-page",
+      "size": [
+        1920,
+        3564
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-07-total-2-637-225-0-vs-selected--table-01.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nPanamax on 2026-09-07 — total $2,637,225 (+₹0 vs selected)",
+      "kind": "component",
+      "size": [
+        1428,
+        318
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-07-total-2-637-225-0-vs-selected--table-02.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nPanamax on 2026-09-07 — total $2,637,225 (+₹0 vs selected)",
+      "kind": "component",
+      "size": [
+        656,
+        151
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-07-total-2-637-225-0-vs-selected--table-03.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nPanamax on 2026-09-07 — total $2,637,225 (+₹0 vs selected)",
+      "kind": "component",
+      "size": [
+        1428,
+        248
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-07-total-2-637-225-0-vs-selected--table-04.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nPanamax on 2026-09-07 — total $2,637,225 (+₹0 vs selected)",
+      "kind": "component",
+      "size": [
+        706,
+        185
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-07-total-2-637-225-0-vs-selected--table-05.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nPanamax on 2026-09-07 — total $2,637,225 (+₹0 vs selected)",
+      "kind": "component",
+      "size": [
+        1428,
+        178
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-06-total-2-637-975-63-000-vs-selected--viewport.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nPanamax on 2026-09-06 — total $2,637,975 (+₹63,000 vs selected)",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-06-total-2-637-975-63-000-vs-selected--full.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nPanamax on 2026-09-06 — total $2,637,975 (+₹63,000 vs selected)",
+      "kind": "full-page",
+      "size": [
+        1920,
+        3564
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-06-total-2-637-975-63-000-vs-selected--table-01.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nPanamax on 2026-09-06 — total $2,637,975 (+₹63,000 vs selected)",
+      "kind": "component",
+      "size": [
+        1428,
+        318
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-06-total-2-637-975-63-000-vs-selected--table-02.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nPanamax on 2026-09-06 — total $2,637,975 (+₹63,000 vs selected)",
+      "kind": "component",
+      "size": [
+        656,
+        151
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-06-total-2-637-975-63-000-vs-selected--table-03.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nPanamax on 2026-09-06 — total $2,637,975 (+₹63,000 vs selected)",
+      "kind": "component",
+      "size": [
+        1428,
+        248
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-06-total-2-637-975-63-000-vs-selected--table-04.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nPanamax on 2026-09-06 — total $2,637,975 (+₹63,000 vs selected)",
+      "kind": "component",
+      "size": [
+        706,
+        185
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-06-total-2-637-975-63-000-vs-selected--table-05.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nPanamax on 2026-09-06 — total $2,637,975 (+₹63,000 vs selected)",
+      "kind": "component",
+      "size": [
+        1428,
+        178
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-08-total-2-637-975-63-000-vs-selected--viewport.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nPanamax on 2026-09-08 — total $2,637,975 (+₹63,000 vs selected)",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-08-total-2-637-975-63-000-vs-selected--full.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nPanamax on 2026-09-08 — total $2,637,975 (+₹63,000 vs selected)",
+      "kind": "full-page",
+      "size": [
+        1920,
+        3564
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-08-total-2-637-975-63-000-vs-selected--table-01.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nPanamax on 2026-09-08 — total $2,637,975 (+₹63,000 vs selected)",
+      "kind": "component",
+      "size": [
+        1428,
+        318
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-08-total-2-637-975-63-000-vs-selected--table-02.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nPanamax on 2026-09-08 — total $2,637,975 (+₹63,000 vs selected)",
+      "kind": "component",
+      "size": [
+        656,
+        151
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-08-total-2-637-975-63-000-vs-selected--table-03.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nPanamax on 2026-09-08 — total $2,637,975 (+₹63,000 vs selected)",
+      "kind": "component",
+      "size": [
+        1428,
+        248
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-08-total-2-637-975-63-000-vs-selected--table-04.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nPanamax on 2026-09-08 — total $2,637,975 (+₹63,000 vs selected)",
+      "kind": "component",
+      "size": [
+        706,
+        185
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-panamax-on-2026-09-08-total-2-637-975-63-000-vs-selected--table-05.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nPanamax on 2026-09-08 — total $2,637,975 (+₹63,000 vs selected)",
+      "kind": "component",
+      "size": [
+        1428,
+        178
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--expanded-keyboard-arrow-right-detailed-perturbation-results--viewport.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nDetailed perturbation results",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--expanded-keyboard-arrow-right-detailed-perturbation-results--full.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nDetailed perturbation results",
+      "kind": "full-page",
+      "size": [
+        1920,
+        4692
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-detailed-perturbation-results--table-01.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nDetailed perturbation results",
+      "kind": "component",
+      "size": [
+        1428,
+        318
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-detailed-perturbation-results--table-02.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nDetailed perturbation results",
+      "kind": "component",
+      "size": [
+        656,
+        151
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-detailed-perturbation-results--table-03.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nDetailed perturbation results",
+      "kind": "component",
+      "size": [
+        1428,
+        248
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-detailed-perturbation-results--table-04.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nDetailed perturbation results",
+      "kind": "component",
+      "size": [
+        706,
+        185
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-detailed-perturbation-results--table-05.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nDetailed perturbation results",
+      "kind": "component",
+      "size": [
+        1428,
+        178
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-detailed-perturbation-results--table-06.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nDetailed perturbation results",
+      "kind": "component",
+      "size": [
+        1394,
+        213
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-detailed-perturbation-results--table-07.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nDetailed perturbation results",
+      "kind": "component",
+      "size": [
+        1394,
+        213
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-detailed-perturbation-results--table-08.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nDetailed perturbation results",
+      "kind": "component",
+      "size": [
+        1394,
+        213
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--expanded-keyboard-arrow-right-detailed-perturbation-results--table-09.png",
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nDetailed perturbation results",
+      "kind": "component",
+      "size": [
+        1394,
+        213
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--laycan-calendar.png",
+      "page": "07-charter-optimizer",
+      "state": "Laycan calendar open",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--cargo-menu.png",
+      "page": "07-charter-optimizer",
+      "state": "Cargo choices",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--infeasible-250000-tonnes--viewport.png",
+      "page": "07-charter-optimizer",
+      "state": "infeasible-250000-tonnes",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--infeasible-250000-tonnes--full.png",
+      "page": "07-charter-optimizer",
+      "state": "infeasible-250000-tonnes",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--east-coast-disruption--viewport.png",
+      "page": "08-scenario-lab",
+      "state": "East Coast Disruption",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--east-coast-disruption--full.png",
+      "page": "08-scenario-lab",
+      "state": "East Coast Disruption",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1747
+      ],
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "file": "screenshots/desktop-1440/08-scenario-lab--east-coast-disruption--viewport.png",
+      "page": "08-scenario-lab",
+      "state": "East Coast Disruption",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "file": "screenshots/desktop-1440/08-scenario-lab--east-coast-disruption--full.png",
+      "page": "08-scenario-lab",
+      "state": "East Coast Disruption",
+      "kind": "full-page",
+      "size": [
+        1440,
+        1968
+      ],
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--freight-rate-spike--viewport.png",
+      "page": "08-scenario-lab",
+      "state": "Freight Rate Spike",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--freight-rate-spike--full.png",
+      "page": "08-scenario-lab",
+      "state": "Freight Rate Spike",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1740
+      ],
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--paradip-congestion--viewport.png",
+      "page": "08-scenario-lab",
+      "state": "Paradip Congestion",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--paradip-congestion--full.png",
+      "page": "08-scenario-lab",
+      "state": "Paradip Congestion",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1740
+      ],
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--vessel-shortage--viewport.png",
+      "page": "08-scenario-lab",
+      "state": "Vessel Shortage",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--vessel-shortage--full.png",
+      "page": "08-scenario-lab",
+      "state": "Vessel Shortage",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1740
+      ],
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--severe-weather-risk--viewport.png",
+      "page": "08-scenario-lab",
+      "state": "Severe Weather Risk",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--severe-weather-risk--full.png",
+      "page": "08-scenario-lab",
+      "state": "Severe Weather Risk",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1740
+      ],
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--market-relief--viewport.png",
+      "page": "08-scenario-lab",
+      "state": "Market Relief",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--market-relief--full.png",
+      "page": "08-scenario-lab",
+      "state": "Market Relief",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1740
+      ],
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--reset-scenario--viewport.png",
+      "page": "08-scenario-lab",
+      "state": "Reset Scenario",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "file": "screenshots/desktop-1920/08-scenario-lab--reset-scenario--full.png",
+      "page": "08-scenario-lab",
+      "state": "Reset Scenario",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1740
+      ],
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "file": "screenshots/desktop-1920/03-decision-twin--active-east-coast-scenario--viewport.png",
+      "page": "03-decision-twin",
+      "state": "active-east-coast-scenario",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Decision_Twin"
+    },
+    {
+      "file": "screenshots/desktop-1920/03-decision-twin--active-east-coast-scenario--full.png",
+      "page": "03-decision-twin",
+      "state": "active-east-coast-scenario",
+      "kind": "full-page",
+      "size": [
+        1920,
+        2210
+      ],
+      "url": "http://127.0.0.1:8518/Decision_Twin"
+    },
+    {
+      "file": "screenshots/components/03-decision-twin--active-east-coast-scenario--chart-01.png",
+      "page": "03-decision-twin",
+      "state": "active-east-coast-scenario",
+      "kind": "component",
+      "size": [
+        1428,
+        321
+      ],
+      "url": "http://127.0.0.1:8518/Decision_Twin"
+    },
+    {
+      "file": "screenshots/components/03-decision-twin--active-east-coast-scenario--chart-02.png",
+      "page": "03-decision-twin",
+      "state": "active-east-coast-scenario",
+      "kind": "component",
+      "size": [
+        1428,
+        321
+      ],
+      "url": "http://127.0.0.1:8518/Decision_Twin"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--override-note-recorded--viewport.png",
+      "page": "10-data-integrations",
+      "state": "override-note-recorded",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--override-note-recorded--full.png",
+      "page": "10-data-integrations",
+      "state": "override-note-recorded",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--audit-after-demo-note--viewport.png",
+      "page": "10-data-integrations",
+      "state": "audit-after-demo-note",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/10-data-integrations--audit-after-demo-note--full.png",
+      "page": "10-data-integrations",
+      "state": "audit-after-demo-note",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1138
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/components/10-data-integrations--audit-after-demo-note--table-03.png",
+      "page": "10-data-integrations",
+      "state": "audit-after-demo-note",
+      "kind": "component",
+      "size": [
+        1428,
+        388
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/01-overview--dark-mode--viewport.png",
+      "page": "01-overview",
+      "state": "dark-mode",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/"
+    },
+    {
+      "file": "screenshots/desktop-1920/01-overview--dark-mode--full.png",
+      "page": "01-overview",
+      "state": "dark-mode",
+      "kind": "full-page",
+      "size": [
+        1920,
+        2028
+      ],
+      "url": "http://127.0.0.1:8518/"
+    },
+    {
+      "file": "screenshots/desktop-1440/01-overview--dark-mode--viewport.png",
+      "page": "01-overview",
+      "state": "dark-mode",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/"
+    },
+    {
+      "file": "screenshots/desktop-1440/01-overview--dark-mode--full.png",
+      "page": "01-overview",
+      "state": "dark-mode",
+      "kind": "full-page",
+      "size": [
+        1440,
+        2124
+      ],
+      "url": "http://127.0.0.1:8518/"
+    },
+    {
+      "file": "screenshots/components/01-overview--dark-mode--chart-01.png",
+      "page": "01-overview",
+      "state": "dark-mode",
+      "kind": "component",
+      "size": [
+        934,
+        380
+      ],
+      "url": "http://127.0.0.1:8518/"
+    },
+    {
+      "file": "screenshots/components/01-overview--dark-mode--chart-02.png",
+      "page": "01-overview",
+      "state": "dark-mode",
+      "kind": "component",
+      "size": [
+        1428,
+        381
+      ],
+      "url": "http://127.0.0.1:8518/"
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--dark-mode--viewport.png",
+      "page": "06-forecasting",
+      "state": "dark-mode",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--dark-mode--full.png",
+      "page": "06-forecasting",
+      "state": "dark-mode",
+      "kind": "full-page",
+      "size": [
+        1920,
+        2569
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--dark-mode--chart-01.png",
+      "page": "06-forecasting",
+      "state": "dark-mode",
+      "kind": "component",
+      "size": [
+        1428,
+        381
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--dark-mode--chart-03.png",
+      "page": "06-forecasting",
+      "state": "dark-mode",
+      "kind": "component",
+      "size": [
+        1428,
+        381
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--dark-mode--table-01.png",
+      "page": "06-forecasting",
+      "state": "dark-mode",
+      "kind": "component",
+      "size": [
+        690,
+        115
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--dark-mode--table-02.png",
+      "page": "06-forecasting",
+      "state": "dark-mode",
+      "kind": "component",
+      "size": [
+        690,
+        186
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--dark-mode--viewport.png",
+      "page": "11-data-explorer",
+      "state": "dark-mode",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--dark-mode--full.png",
+      "page": "11-data-explorer",
+      "state": "dark-mode",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1928
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/components/11-data-explorer--dark-mode--table-01.png",
+      "page": "11-data-explorer",
+      "state": "dark-mode",
+      "kind": "component",
+      "size": [
+        1428,
+        401
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/components/11-data-explorer--dark-mode--table-02.png",
+      "page": "11-data-explorer",
+      "state": "dark-mode",
+      "kind": "component",
+      "size": [
+        1428,
+        401
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/responsive/01-overview--responsive-768--viewport.png",
+      "page": "01-overview",
+      "state": "responsive-768",
+      "kind": "viewport",
+      "size": [
+        768,
+        1024
+      ],
+      "url": "http://127.0.0.1:8518/"
+    },
+    {
+      "file": "screenshots/responsive/01-overview--responsive-768--full.png",
+      "page": "01-overview",
+      "state": "responsive-768",
+      "kind": "full-page",
+      "size": [
+        768,
+        2756
+      ],
+      "url": "http://127.0.0.1:8518/"
+    },
+    {
+      "file": "screenshots/responsive/06-forecasting--responsive-768--viewport.png",
+      "page": "06-forecasting",
+      "state": "responsive-768",
+      "kind": "viewport",
+      "size": [
+        768,
+        1024
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/responsive/06-forecasting--responsive-768--full.png",
+      "page": "06-forecasting",
+      "state": "responsive-768",
+      "kind": "full-page",
+      "size": [
+        768,
+        2959
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/responsive/07-charter-optimizer--responsive-768--viewport.png",
+      "page": "07-charter-optimizer",
+      "state": "responsive-768",
+      "kind": "viewport",
+      "size": [
+        768,
+        1024
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/responsive/07-charter-optimizer--responsive-768--full.png",
+      "page": "07-charter-optimizer",
+      "state": "responsive-768",
+      "kind": "full-page",
+      "size": [
+        768,
+        4137
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/responsive/10-data-integrations--responsive-768--viewport.png",
+      "page": "10-data-integrations",
+      "state": "responsive-768",
+      "kind": "viewport",
+      "size": [
+        768,
+        1024
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/responsive/10-data-integrations--responsive-768--full.png",
+      "page": "10-data-integrations",
+      "state": "responsive-768",
+      "kind": "full-page",
+      "size": [
+        768,
+        1162
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--sarima-30-day--viewport.png",
+      "page": "06-forecasting",
+      "state": "sarima-30-day",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--sarima-30-day--full.png",
+      "page": "06-forecasting",
+      "state": "sarima-30-day",
+      "kind": "full-page",
+      "size": [
+        1920,
+        2569
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/desktop-1440/06-forecasting--sarima-30-day--viewport.png",
+      "page": "06-forecasting",
+      "state": "sarima-30-day",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/desktop-1440/06-forecasting--sarima-30-day--full.png",
+      "page": "06-forecasting",
+      "state": "sarima-30-day",
+      "kind": "full-page",
+      "size": [
+        1440,
+        2729
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--sarima-30-day--chart-01.png",
+      "page": "06-forecasting",
+      "state": "sarima-30-day",
+      "kind": "component",
+      "size": [
+        1428,
+        381
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--sarima-30-day--chart-03.png",
+      "page": "06-forecasting",
+      "state": "sarima-30-day",
+      "kind": "component",
+      "size": [
+        1428,
+        381
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--sarima-30-day--table-01.png",
+      "page": "06-forecasting",
+      "state": "sarima-30-day",
+      "kind": "component",
+      "size": [
+        690,
+        115
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--sarima-30-day--table-02.png",
+      "page": "06-forecasting",
+      "state": "sarima-30-day",
+      "kind": "component",
+      "size": [
+        690,
+        186
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--naive-baseline-30-day--viewport.png",
+      "page": "06-forecasting",
+      "state": "naive-baseline-30-day",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--naive-baseline-30-day--full.png",
+      "page": "06-forecasting",
+      "state": "naive-baseline-30-day",
+      "kind": "full-page",
+      "size": [
+        1920,
+        2569
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--filtered-brazil-paradip--viewport.png",
+      "page": "11-data-explorer",
+      "state": "filtered-brazil-paradip",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--filtered-brazil-paradip--full.png",
+      "page": "11-data-explorer",
+      "state": "filtered-brazil-paradip",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1928
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/components/11-data-explorer--filtered-brazil-paradip--table-01.png",
+      "page": "11-data-explorer",
+      "state": "filtered-brazil-paradip",
+      "kind": "component",
+      "size": [
+        1428,
+        401
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/components/11-data-explorer--filtered-brazil-paradip--table-02.png",
+      "page": "11-data-explorer",
+      "state": "filtered-brazil-paradip",
+      "kind": "component",
+      "size": [
+        1428,
+        401
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--upload-valid-demo-preview--viewport.png",
+      "page": "11-data-explorer",
+      "state": "upload-valid-demo-preview",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--upload-valid-demo-preview--full.png",
+      "page": "11-data-explorer",
+      "state": "upload-valid-demo-preview",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1495
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/components/11-data-explorer--upload-valid-demo-preview--table-04.png",
+      "page": "11-data-explorer",
+      "state": "upload-valid-demo-preview",
+      "kind": "component",
+      "size": [
+        1428,
+        388
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--upload-missing-columns-warning--viewport.png",
+      "page": "11-data-explorer",
+      "state": "upload-missing-columns-warning",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1920/11-data-explorer--upload-missing-columns-warning--full.png",
+      "page": "11-data-explorer",
+      "state": "upload-missing-columns-warning",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1239
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/components/11-data-explorer--upload-missing-columns-warning--table-04.png",
+      "page": "11-data-explorer",
+      "state": "upload-missing-columns-warning",
+      "kind": "component",
+      "size": [
+        1428,
+        108
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--three-route-comparison--viewport.png",
+      "page": "06-forecasting",
+      "state": "three-route-comparison",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--three-route-comparison--full.png",
+      "page": "06-forecasting",
+      "state": "three-route-comparison",
+      "kind": "full-page",
+      "size": [
+        1920,
+        3044
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/desktop-1440/06-forecasting--three-route-comparison--viewport.png",
+      "page": "06-forecasting",
+      "state": "three-route-comparison",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/desktop-1440/06-forecasting--three-route-comparison--full.png",
+      "page": "06-forecasting",
+      "state": "three-route-comparison",
+      "kind": "full-page",
+      "size": [
+        1440,
+        3204
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--three-route-comparison--chart-01.png",
+      "page": "06-forecasting",
+      "state": "three-route-comparison",
+      "kind": "component",
+      "size": [
+        1428,
+        381
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--three-route-comparison--chart-02.png",
+      "page": "06-forecasting",
+      "state": "three-route-comparison",
+      "kind": "component",
+      "size": [
+        1394,
+        321
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--three-route-comparison--chart-03.png",
+      "page": "06-forecasting",
+      "state": "three-route-comparison",
+      "kind": "component",
+      "size": [
+        1428,
+        381
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--three-route-comparison--table-01.png",
+      "page": "06-forecasting",
+      "state": "three-route-comparison",
+      "kind": "component",
+      "size": [
+        690,
+        116
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--three-route-comparison--table-02.png",
+      "page": "06-forecasting",
+      "state": "three-route-comparison",
+      "kind": "component",
+      "size": [
+        690,
+        185
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--alternate-route-brazil-paradip--viewport.png",
+      "page": "06-forecasting",
+      "state": "alternate-route-brazil-paradip",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/desktop-1920/06-forecasting--alternate-route-brazil-paradip--full.png",
+      "page": "06-forecasting",
+      "state": "alternate-route-brazil-paradip",
+      "kind": "full-page",
+      "size": [
+        1920,
+        3044
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/desktop-1440/06-forecasting--alternate-route-brazil-paradip--viewport.png",
+      "page": "06-forecasting",
+      "state": "alternate-route-brazil-paradip",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/desktop-1440/06-forecasting--alternate-route-brazil-paradip--full.png",
+      "page": "06-forecasting",
+      "state": "alternate-route-brazil-paradip",
+      "kind": "full-page",
+      "size": [
+        1440,
+        3204
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--alternate-route-brazil-paradip--chart-01.png",
+      "page": "06-forecasting",
+      "state": "alternate-route-brazil-paradip",
+      "kind": "component",
+      "size": [
+        1428,
+        381
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--alternate-route-brazil-paradip--chart-02.png",
+      "page": "06-forecasting",
+      "state": "alternate-route-brazil-paradip",
+      "kind": "component",
+      "size": [
+        1394,
+        321
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--alternate-route-brazil-paradip--chart-03.png",
+      "page": "06-forecasting",
+      "state": "alternate-route-brazil-paradip",
+      "kind": "component",
+      "size": [
+        1428,
+        381
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--alternate-route-brazil-paradip--table-01.png",
+      "page": "06-forecasting",
+      "state": "alternate-route-brazil-paradip",
+      "kind": "component",
+      "size": [
+        690,
+        116
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/components/06-forecasting--alternate-route-brazil-paradip--table-02.png",
+      "page": "06-forecasting",
+      "state": "alternate-route-brazil-paradip",
+      "kind": "component",
+      "size": [
+        690,
+        185
+      ],
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "file": "screenshots/desktop-1920/03-decision-twin--dark-mode--viewport.png",
+      "page": "03-decision-twin",
+      "state": "dark-mode",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Decision_Twin"
+    },
+    {
+      "file": "screenshots/desktop-1920/03-decision-twin--dark-mode--full.png",
+      "page": "03-decision-twin",
+      "state": "dark-mode",
+      "kind": "full-page",
+      "size": [
+        1920,
+        2138
+      ],
+      "url": "http://127.0.0.1:8518/Decision_Twin"
+    },
+    {
+      "file": "screenshots/desktop-1440/03-decision-twin--dark-mode--viewport.png",
+      "page": "03-decision-twin",
+      "state": "dark-mode",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Decision_Twin"
+    },
+    {
+      "file": "screenshots/desktop-1440/03-decision-twin--dark-mode--full.png",
+      "page": "03-decision-twin",
+      "state": "dark-mode",
+      "kind": "full-page",
+      "size": [
+        1440,
+        2257
+      ],
+      "url": "http://127.0.0.1:8518/Decision_Twin"
+    },
+    {
+      "file": "screenshots/components/03-decision-twin--dark-mode--chart-01.png",
+      "page": "03-decision-twin",
+      "state": "dark-mode",
+      "kind": "component",
+      "size": [
+        1428,
+        321
+      ],
+      "url": "http://127.0.0.1:8518/Decision_Twin"
+    },
+    {
+      "file": "screenshots/components/03-decision-twin--dark-mode--chart-02.png",
+      "page": "03-decision-twin",
+      "state": "dark-mode",
+      "kind": "component",
+      "size": [
+        1428,
+        321
+      ],
+      "url": "http://127.0.0.1:8518/Decision_Twin"
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--brazil-gangavaram-150000t--viewport.png",
+      "page": "07-charter-optimizer",
+      "state": "brazil-gangavaram-150000t",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--brazil-gangavaram-150000t--full.png",
+      "page": "07-charter-optimizer",
+      "state": "brazil-gangavaram-150000t",
+      "kind": "full-page",
+      "size": [
+        1920,
+        3528
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--brazil-gangavaram-150000t--table-01.png",
+      "page": "07-charter-optimizer",
+      "state": "brazil-gangavaram-150000t",
+      "kind": "component",
+      "size": [
+        1428,
+        318
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--brazil-gangavaram-150000t--table-02.png",
+      "page": "07-charter-optimizer",
+      "state": "brazil-gangavaram-150000t",
+      "kind": "component",
+      "size": [
+        656,
+        151
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--brazil-gangavaram-150000t--table-03.png",
+      "page": "07-charter-optimizer",
+      "state": "brazil-gangavaram-150000t",
+      "kind": "component",
+      "size": [
+        1428,
+        248
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--brazil-gangavaram-150000t--table-04.png",
+      "page": "07-charter-optimizer",
+      "state": "brazil-gangavaram-150000t",
+      "kind": "component",
+      "size": [
+        706,
+        186
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/07-charter-optimizer--brazil-gangavaram-150000t--table-05.png",
+      "page": "07-charter-optimizer",
+      "state": "brazil-gangavaram-150000t",
+      "kind": "component",
+      "size": [
+        1428,
+        178
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--catalog-only-unsupported-route--viewport.png",
+      "page": "07-charter-optimizer",
+      "state": "catalog-only-unsupported-route",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/desktop-1920/07-charter-optimizer--catalog-only-unsupported-route--full.png",
+      "page": "07-charter-optimizer",
+      "state": "catalog-only-unsupported-route",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/desktop-1440/07-charter-optimizer--catalog-only-unsupported-route--viewport.png",
+      "page": "07-charter-optimizer",
+      "state": "catalog-only-unsupported-route",
+      "kind": "viewport",
+      "size": [
+        1440,
+        900
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/desktop-1440/07-charter-optimizer--catalog-only-unsupported-route--full.png",
+      "page": "07-charter-optimizer",
+      "state": "catalog-only-unsupported-route",
+      "kind": "full-page",
+      "size": [
+        1440,
+        1023
+      ],
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "file": "screenshots/components/10-data-integrations--decision-parameters-table-1-rightmost-columns-last-rows.png",
+      "page": "10-data-integrations",
+      "state": "Decision Parameters table 1 rightmost-columns-last-rows",
+      "kind": "component",
+      "size": [
+        1428,
+        401
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/components/10-data-integrations--model-status-table-1-rightmost-columns-last-rows.png",
+      "page": "10-data-integrations",
+      "state": "Model Status table 1 rightmost-columns-last-rows",
+      "kind": "component",
+      "size": [
+        1428,
+        213
+      ],
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "file": "screenshots/components/11-data-explorer--route-freight-series-table-1-rightmost-columns-last-rows.png",
+      "page": "11-data-explorer",
+      "state": "Route Freight Series table 1 rightmost-columns-last-rows",
+      "kind": "component",
+      "size": [
+        1428,
+        401
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/components/11-data-explorer--route-freight-series-table-2-rightmost-columns-last-rows.png",
+      "page": "11-data-explorer",
+      "state": "Route Freight Series table 2 rightmost-columns-last-rows",
+      "kind": "component",
+      "size": [
+        1428,
+        401
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/components/11-data-explorer--quality-audit-table-1-rightmost-columns-last-rows.png",
+      "page": "11-data-explorer",
+      "state": "Quality Audit table 1 rightmost-columns-last-rows",
+      "kind": "component",
+      "size": [
+        1428,
+        401
+      ],
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "file": "screenshots/desktop-1920/09-backtesting--short-period-7-day-horizon-30-day-interval--viewport.png",
+      "page": "09-backtesting",
+      "state": "short-period-7-day-horizon-30-day-interval",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Backtesting"
+    },
+    {
+      "file": "screenshots/desktop-1920/09-backtesting--short-period-7-day-horizon-30-day-interval--full.png",
+      "page": "09-backtesting",
+      "state": "short-period-7-day-horizon-30-day-interval",
+      "kind": "full-page",
+      "size": [
+        1920,
+        2013
+      ],
+      "url": "http://127.0.0.1:8518/Backtesting"
+    },
+    {
+      "file": "screenshots/components/09-backtesting--short-period-7-day-horizon-30-day-interval--chart-01.png",
+      "page": "09-backtesting",
+      "state": "short-period-7-day-horizon-30-day-interval",
+      "kind": "component",
+      "size": [
+        690,
+        381
+      ],
+      "url": "http://127.0.0.1:8518/Backtesting"
+    },
+    {
+      "file": "screenshots/components/09-backtesting--short-period-7-day-horizon-30-day-interval--chart-02.png",
+      "page": "09-backtesting",
+      "state": "short-period-7-day-horizon-30-day-interval",
+      "kind": "component",
+      "size": [
+        690,
+        381
+      ],
+      "url": "http://127.0.0.1:8518/Backtesting"
+    },
+    {
+      "file": "screenshots/components/09-backtesting--short-period-7-day-horizon-30-day-interval--table-01.png",
+      "page": "09-backtesting",
+      "state": "short-period-7-day-horizon-30-day-interval",
+      "kind": "component",
+      "size": [
+        1428,
+        178
+      ],
+      "url": "http://127.0.0.1:8518/Backtesting"
+    },
+    {
+      "file": "screenshots/desktop-1920/05-market-intelligence--date-range-calendar.png",
+      "page": "05-market-intelligence",
+      "state": "Date Window calendar open",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Market_Overview"
+    },
+    {
+      "file": "screenshots/desktop-1920/05-market-intelligence--date-window-june-to-august-2026--viewport.png",
+      "page": "05-market-intelligence",
+      "state": "date-window-june-to-august-2026",
+      "kind": "viewport",
+      "size": [
+        1920,
+        1080
+      ],
+      "url": "http://127.0.0.1:8518/Market_Overview"
+    },
+    {
+      "file": "screenshots/desktop-1920/05-market-intelligence--date-window-june-to-august-2026--full.png",
+      "page": "05-market-intelligence",
+      "state": "date-window-june-to-august-2026",
+      "kind": "full-page",
+      "size": [
+        1920,
+        1835
+      ],
+      "url": "http://127.0.0.1:8518/Market_Overview"
+    }
+  ],
+  "pages": [
+    {
+      "id": "01-overview",
+      "route": "",
+      "status": "RENDERED",
+      "seconds": 6.22,
+      "tabs": [],
+      "headings": [
+        "Overview",
+        "₹8.91 Cr",
+        "2026-09-04",
+        "38 / 100",
+        "Freight Market Overview",
+        "Shipment Activity",
+        "Freight Forecast"
+      ],
+      "expanders": []
+    },
+    {
+      "id": "02-control-tower",
+      "route": "Control_Tower",
+      "status": "RENDERED",
+      "seconds": 7.08,
+      "tabs": [],
+      "headings": [
+        "Control Tower",
+        "₹8.91 Cr",
+        "2026-09-04",
+        "38 / 100",
+        "Freight Market Overview",
+        "Shipment Activity",
+        "Freight Forecast"
+      ],
+      "expanders": []
+    },
+    {
+      "id": "03-decision-twin",
+      "route": "Decision_Twin",
+      "status": "RENDERED",
+      "seconds": 6.47,
+      "tabs": [],
+      "headings": [
+        "Decision Twin",
+        "Panamax / 2026-09-05",
+        "₹22.10 Cr",
+        "50 / 100",
+        "₹125.0 Lakh",
+        "Decision Surface",
+        "Simulated Freight Futures",
+        "What Would Change This Decision?"
+      ],
+      "expanders": []
+    },
+    {
+      "id": "04-operations",
+      "route": "Operations_Overview",
+      "status": "RENDERED",
+      "seconds": 7.14,
+      "tabs": [],
+      "headings": [
+        "Operations Overview",
+        "₹2,901 / tonne",
+        "+0.6%",
+        "28 vessels",
+        "52 h",
+        "Freight Market Outlook",
+        "Charter Recommendation",
+        "Charter on optimal date (2026-09-04) — 3 days after window opens",
+        "₹22.14 Cr"
+      ],
+      "expanders": []
+    },
+    {
+      "id": "05-market-intelligence",
+      "route": "Market_Overview",
+      "status": "RENDERED",
+      "seconds": 7.03,
+      "tabs": [],
+      "headings": [
+        "Filter Date Range",
+        "Market Intelligence",
+        "Active Route Snapshot — Hay Point → Paradip",
+        "Freight Market Benchmark & Commodity Signals",
+        "Market Signals",
+        "Market Events & Operational News"
+      ],
+      "expanders": []
+    },
+    {
+      "id": "06-forecasting",
+      "route": "Forecasting",
+      "status": "RENDERED",
+      "seconds": 8.38,
+      "tabs": [],
+      "headings": [
+        "Forecasts",
+        "Spot Freight Rate Forecast — Hay Point → Paradip (14-Day Horizon)",
+        "Demo-Series Model Metrics",
+        "Model Comparison Benchmark",
+        "Contextual Market Signals",
+        "Real-Data Validation — Open-Meteo Observed Series"
+      ],
+      "expanders": [
+        "keyboard_arrow_right📊 Compare Route Freight Trajectories (Optional)"
+      ]
+    },
+    {
+      "id": "07-charter-optimizer",
+      "route": "Charter_Optimizer",
+      "status": "RENDERED",
+      "seconds": 6.41,
+      "tabs": [],
+      "headings": [
+        "Charter Workbench",
+        "Feasible Charter Candidate Matrix",
+        "Charter on optimal date (2026-09-04) — 3 days after window opens",
+        "₹22.15 Cr",
+        "Scenario Comparison",
+        "Cost Model Breakdown — Top Candidates",
+        "Why This Recommendation Was Selected",
+        "Assumption Sensitivity — Robustness Panel"
+      ],
+      "expanders": [
+        "keyboard_arrow_rightPanamax on 2026-09-07 — total $2,637,225 (+₹0 vs selected)",
+        "keyboard_arrow_rightPanamax on 2026-09-06 — total $2,637,975 (+₹63,000 vs selected)",
+        "keyboard_arrow_rightPanamax on 2026-09-08 — total $2,637,975 (+₹63,000 vs selected)",
+        "keyboard_arrow_rightDetailed perturbation results"
+      ]
+    },
+    {
+      "id": "08-scenario-lab",
+      "route": "Scenario_Lab",
+      "status": "RENDERED",
+      "seconds": 6.08,
+      "tabs": [],
+      "headings": [
+        "Scenario Lab",
+        "Presets & Actions",
+        "Scenario Inputs",
+        "Impact Preview",
+        "Baseline vs Stressed Scenario Comparison"
+      ],
+      "expanders": []
+    },
+    {
+      "id": "09-backtesting",
+      "route": "Backtesting",
+      "status": "RENDERED",
+      "seconds": 22.56,
+      "tabs": [],
+      "headings": [
+        "Simulation Backtest",
+        "57",
+        "38.6%",
+        "-₹6.46 Cr",
+        "₹58 / t",
+        "Cost Comparison per Decision Period",
+        "Cumulative Cost Difference",
+        "Decision Outcomes Matrix"
+      ],
+      "expanders": []
+    },
+    {
+      "id": "10-data-integrations",
+      "route": "Data_Integration",
+      "status": "RENDERED",
+      "seconds": 6.89,
+      "tabs": [
+        "Connections",
+        "Data Quality",
+        "Overrides",
+        "Audit Trail",
+        "Model & Data Limitations",
+        "Decision Parameters",
+        "Model Cards",
+        "Model Status"
+      ],
+      "headings": [
+        "Data & Integrations",
+        "Connector Status & Data Sources",
+        "Signal Data Quality Matrix",
+        "Manual Operator Override Notes",
+        "System Audit Trail",
+        "Model & Data Limitations",
+        "Decision Parameters & Provenance",
+        "Model Cards",
+        "Model Status — Trust Panel"
+      ],
+      "expanders": [
+        "keyboard_arrow_rightClassification legend",
+        "keyboard_arrow_rightForecasting Engine",
+        "keyboard_arrow_rightCharter Optimizer",
+        "keyboard_arrow_rightDecision Twin (Monte Carlo)",
+        "keyboard_arrow_rightScenario Engine"
+      ]
+    },
+    {
+      "id": "11-data-explorer",
+      "route": "Data_Explorer",
+      "status": "RENDERED",
+      "seconds": 6.53,
+      "tabs": [
+        "Route Freight Series",
+        "Dataset",
+        "Correlation Matrix",
+        "Quality Audit",
+        "Validate & Preview Dataset"
+      ],
+      "headings": [
+        "Data Explorer",
+        "974",
+        "35",
+        "01 Jan 2024",
+        "31 Aug 2026",
+        "Canonical Route Freight Series (Long Format)",
+        "Processed Modelling Dataset",
+        "Pearson Feature Correlation Matrix",
+        "Missing Values & Schema Quality Audit",
+        "Validate & Preview Custom Dataset"
+      ],
+      "expanders": []
+    }
+  ],
+  "issues": [
+    {
+      "page": "06-forecasting",
+      "issue": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for get_by_role(\"option\", name=\"Dalrymple Bay → Paradip\", exact=True)\n",
+      "resolved": true,
+      "resolution": "Selected explicit routes through searchable virtualized menu; three-route and alternate-route screenshots captured."
+    },
+    {
+      "page": "11-data-explorer",
+      "issue": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for get_by_role(\"option\", name=\"BR_PDM -> IN_PDP\", exact=True)\n",
+      "resolved": true,
+      "resolution": "Route dropdown searched explicitly; route filtering, both CSV downloads and both upload previews completed."
+    },
+    {
+      "page": "06-forecasting",
+      "issue": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for get_by_role(\"option\").filter(has_text=\"Select all\").first\n",
+      "resolved": true,
+      "resolution": "Selected explicit routes through searchable virtualized menu; three-route and alternate-route screenshots captured."
+    }
+  ],
+  "interactions": [
+    {
+      "page": "07-charter-optimizer",
+      "state": "demo-laycan-2026-09-01-to-15",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nPanamax on 2026-09-07 — total $2,637,225 (+₹0 vs selected)",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nPanamax on 2026-09-06 — total $2,637,975 (+₹63,000 vs selected)",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nPanamax on 2026-09-08 — total $2,637,975 (+₹63,000 vs selected)",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "page": "07-charter-optimizer",
+      "state": "expanded-keyboard_arrow_right\n\nDetailed perturbation results",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "page": "07-charter-optimizer",
+      "action": "download Download Procurement Report (PDF)",
+      "file": "evidence\\downloads\\FreightIQ_Charter_Decision_2026-10-24.pdf",
+      "bytes": 24771,
+      "status": "downloaded"
+    },
+    {
+      "page": "07-charter-optimizer",
+      "control": "Origin Country options",
+      "values": [
+        "Australia",
+        "Brazil",
+        "Canada",
+        "India",
+        "Indonesia",
+        "Mozambique",
+        "South Africa",
+        "USA"
+      ]
+    },
+    {
+      "page": "07-charter-optimizer",
+      "state": "infeasible-250000-tonnes",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/Charter_Optimizer"
+    },
+    {
+      "page": "06-forecasting",
+      "state": "sarima-30-day",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "page": "06-forecasting",
+      "state": "naive-baseline-30-day",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "page": "08-scenario-lab",
+      "state": "East Coast Disruption",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "page": "08-scenario-lab",
+      "state": "Freight Rate Spike",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "page": "08-scenario-lab",
+      "state": "Paradip Congestion",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "page": "08-scenario-lab",
+      "state": "Vessel Shortage",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "page": "08-scenario-lab",
+      "state": "Severe Weather Risk",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "page": "08-scenario-lab",
+      "state": "Market Relief",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "page": "08-scenario-lab",
+      "state": "Reset Scenario",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/Scenario_Lab"
+    },
+    {
+      "page": "03-decision-twin",
+      "state": "active-east-coast-scenario",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/Decision_Twin"
+    },
+    {
+      "page": "10-data-integrations",
+      "state": "override-note-recorded",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "page": "10-data-integrations",
+      "state": "audit-after-demo-note",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/Data_Integration"
+    },
+    {
+      "page": "01-overview",
+      "action": "download Download PDF Report",
+      "file": "evidence\\downloads\\FreightIQ_Decision_Report_2026-10-24.pdf",
+      "bytes": 25722,
+      "status": "downloaded"
+    },
+    {
+      "action": "Overview > View Recommendation",
+      "url": "http://127.0.0.1:8518/Charter_Optimizer",
+      "status": "navigated"
+    },
+    {
+      "action": "Overview > Run Scenario",
+      "url": "http://127.0.0.1:8518/Scenario_Lab",
+      "status": "navigated"
+    },
+    {
+      "page": "03-decision-twin",
+      "action": "download Download Decision Twin Report (PDF)",
+      "file": "evidence\\downloads\\FreightIQ_Decision_Twin_Report_2026-10-24.pdf",
+      "bytes": 25722,
+      "status": "downloaded"
+    },
+    {
+      "page": "01-overview",
+      "state": "dark-mode",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/"
+    },
+    {
+      "page": "03-decision-twin",
+      "state": "dark-mode",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/Decision_Twin"
+    },
+    {
+      "page": "06-forecasting",
+      "state": "dark-mode",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "page": "11-data-explorer",
+      "state": "dark-mode",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "page": "06-forecasting",
+      "state": "sarima-30-day",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "page": "06-forecasting",
+      "state": "naive-baseline-30-day",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/Forecasting"
+    },
+    {
+      "page": "11-data-explorer",
+      "state": "filtered-brazil-paradip",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "page": "11-data-explorer",
+      "action": "download Download Route Rates CSV",
+      "file": "evidence\\downloads\\FreightIQ_route_freight_rates.csv",
+      "bytes": 2084117,
+      "status": "downloaded"
+    },
+    {
+      "page": "11-data-explorer",
+      "action": "download Download Processed CSV",
+      "file": "evidence\\downloads\\FreightIQ_modelling_dataset.csv",
+      "bytes": 344134,
+      "status": "downloaded"
+    },
+    {
+      "page": "11-data-explorer",
+      "state": "upload-valid-demo-preview",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "page": "11-data-explorer",
+      "state": "upload-missing-columns-warning",
+      "status": "captured",
+      "url": "http://127.0.0.1:8518/Data_Explorer"
+    },
+    {
+      "page": "06-forecasting",
+      "state": "three-route-comparison",
+      "status": "captured"
+    },
+    {
+      "page": "06-forecasting",
+      "state": "alternate-route-brazil-paradip",
+      "status": "captured"
+    },
+    {
+      "page": "03-decision-twin",
+      "state": "dark-mode",
+      "status": "captured"
+    },
+    {
+      "page": "07-charter-optimizer",
+      "state": "brazil-gangavaram-150000t",
+      "status": "captured"
+    },
+    {
+      "page": "07-charter-optimizer",
+      "state": "catalog-only-unsupported-route",
+      "status": "captured"
+    },
+    {
+      "page": "10-data-integrations",
+      "state": "Decision Parameters table 1 rightmost-columns-last-rows",
+      "scrolls": [
+        {
+          "tag": "DIV",
+          "w": 1426,
+          "sw": 1947,
+          "h": 398,
+          "sh": 420
+        },
+        {
+          "tag": "DIV",
+          "w": 1426,
+          "sw": 1947,
+          "h": 420,
+          "sh": 420
+        }
+      ],
+      "status": "captured"
+    },
+    {
+      "page": "10-data-integrations",
+      "state": "Model Status table 1 rightmost-columns-last-rows",
+      "scrolls": [
+        {
+          "tag": "DIV",
+          "w": 1426,
+          "sw": 1825,
+          "h": 210,
+          "sh": 210
+        },
+        {
+          "tag": "DIV",
+          "w": 1426,
+          "sw": 1825,
+          "h": 210,
+          "sh": 210
+        }
+      ],
+      "status": "captured"
+    },
+    {
+      "page": "11-data-explorer",
+      "state": "Route Freight Series table 1 rightmost-columns-last-rows",
+      "scrolls": [
+        {
+          "tag": "DIV",
+          "w": 1426,
+          "sw": 1426,
+          "h": 398,
+          "sh": 784105
+        }
+      ],
+      "status": "captured"
+    },
+    {
+      "page": "11-data-explorer",
+      "state": "Route Freight Series table 2 rightmost-columns-last-rows",
+      "scrolls": [
+        {
+          "tag": "DIV",
+          "w": 1426,
+          "sw": 1426,
+          "h": 398,
+          "sh": 34125
+        }
+      ],
+      "status": "captured"
+    },
+    {
+      "page": "11-data-explorer",
+      "state": "Quality Audit table 1 rightmost-columns-last-rows",
+      "scrolls": [
+        {
+          "tag": "DIV",
+          "w": 1426,
+          "sw": 1426,
+          "h": 398,
+          "sh": 1260
+        }
+      ],
+      "status": "captured"
+    },
+    {
+      "page": "09-backtesting",
+      "state": "short-period-7-day-horizon-30-day-interval",
+      "status": "captured"
+    },
+    {
+      "page": "05-market-intelligence",
+      "state": "date-window-june-to-august-2026",
+      "status": "captured"
+    }
+  ]
+}

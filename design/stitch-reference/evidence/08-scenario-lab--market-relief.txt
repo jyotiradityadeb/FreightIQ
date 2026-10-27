@@ -1,0 +1,142 @@
+Home
+
+Control Tower
+
+Decision Twin
+
+Operations Overview
+
+Market Overview
+
+Forecasting
+
+Charter Optimizer
+
+Scenario Lab
+
+Backtesting
+
+Data Integration
+
+Data Explorer
+
+🌙 Switch to Dark Mode
+
+SYSTEM STATUS
+Active Theme
+Light Mode
+Data Mode
+DEMO
+Forecast Engine
+Auto Model Selection
+Optimizer
+Active
+Deploy
+FreightIQ
+
+Overview
+
+Decision Twin
+
+Operations
+
+Markets
+
+Forecasts
+
+Chartering
+
+Scenarios
+
+Backtesting
+
+Data
+
+Explorer
+
+Scenario Lab
+
+Stress-test charter recommendations across simulated freight, congestion, and weather disruptions.
+
+Presets & Actions
+
+East Coast Disruption
+
+Freight Rate Spike
+
+Paradip Congestion
+
+Vessel Shortage
+
+Severe Weather Risk
+
+Market Relief
+
+Reset Scenario
+
+Scenario Inputs
+
+Adjust disruption parameters to test decision stability
+
+Freight Shock (%)
+
+-10.00
+
+-20.00
+
+30.00
+
+Port Congestion Shock (%)
+
+-20.00
+
+-50.00
+
+100.00
+
+Vessel Availability Change (%)
+
+20.00
+
+-60.00
+
+50.00
+
+Weather Risk
+
+Low
+
+Target Discharge Port
+
+Paradip
+
+Run Scenario Simulation
+
+Impact Preview
+
+Predicted impact on logistics cost and charter recommendation
+
+EXPECTED COST
+
+₹19.92 Cr
+
+-10.0% vs baseline
+
+RECOMMENDED WINDOW
+
+2026-09-04
+
+Panamax Vessel
+
+DECISION STATUS
+
+ℹ SAME RECOMMENDATION (-10.0% COST)
+
+Recommendation State
+
+DECISION EXPLANATION
+
+Paradip congestion decreased by 20%, reducing expected port delays. Dry bulk freight market rate shifted by -10.0%, altering the baseline freight component by ₹-2.19 Cr. Vessel availability changed by +20%, tightening suitable ship supply. FreightIQ adapted the decision: baseline charter on 2026-09-04 (Panamax) changed to 2026-09-04 (Panamax) to optimize risk-adjusted total cost.
+
+Baseline vs Stressed Scenario Comparison
+Prototype Disclaimer: International freight benchmarks may originate in USD, while FreightIQ presents decision-support costs in INR for Indian procurement users. Prototype demonstration using synthetic data. Not live maritime market data.

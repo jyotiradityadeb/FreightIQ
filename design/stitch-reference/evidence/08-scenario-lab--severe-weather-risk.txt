@@ -1,0 +1,142 @@
+Home
+
+Control Tower
+
+Decision Twin
+
+Operations Overview
+
+Market Overview
+
+Forecasting
+
+Charter Optimizer
+
+Scenario Lab
+
+Backtesting
+
+Data Integration
+
+Data Explorer
+
+🌙 Switch to Dark Mode
+
+SYSTEM STATUS
+Active Theme
+Light Mode
+Data Mode
+DEMO
+Forecast Engine
+Auto Model Selection
+Optimizer
+Active
+Deploy
+FreightIQ
+
+Overview
+
+Decision Twin
+
+Operations
+
+Markets
+
+Forecasts
+
+Chartering
+
+Scenarios
+
+Backtesting
+
+Data
+
+Explorer
+
+Scenario Lab
+
+Stress-test charter recommendations across simulated freight, congestion, and weather disruptions.
+
+Presets & Actions
+
+East Coast Disruption
+
+Freight Rate Spike
+
+Paradip Congestion
+
+Vessel Shortage
+
+Severe Weather Risk
+
+Market Relief
+
+Reset Scenario
+
+Scenario Inputs
+
+Adjust disruption parameters to test decision stability
+
+Freight Shock (%)
+
+0.00
+
+-20.00
+
+30.00
+
+Port Congestion Shock (%)
+
+0.00
+
+-50.00
+
+100.00
+
+Vessel Availability Change (%)
+
+0.00
+
+-60.00
+
+50.00
+
+Weather Risk
+
+Severe
+
+Target Discharge Port
+
+Paradip
+
+Run Scenario Simulation
+
+Impact Preview
+
+Predicted impact on logistics cost and charter recommendation
+
+EXPECTED COST
+
+₹22.20 Cr
+
++0.3% vs baseline
+
+RECOMMENDED WINDOW
+
+2026-09-04
+
+Panamax Vessel
+
+DECISION STATUS
+
+✓ RECOMMENDATION UNCHANGED
+
+Recommendation State
+
+DECISION EXPLANATION
+
+Weather risk elevated to Severe, increasing risk adjustment by ₹6.55 Lakh. FreightIQ adapted the decision: baseline charter on 2026-09-04 (Panamax) changed to 2026-09-04 (Panamax) to optimize risk-adjusted total cost.
+
+Baseline vs Stressed Scenario Comparison
+Prototype Disclaimer: International freight benchmarks may originate in USD, while FreightIQ presents decision-support costs in INR for Indian procurement users. Prototype demonstration using synthetic data. Not live maritime market data.

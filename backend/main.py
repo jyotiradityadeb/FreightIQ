@@ -41,6 +41,11 @@ app = FastAPI(
     version="1.0.0"
 )
 
+from backend.web_api import router as web_router
+app.include_router(web_router)
+from backend.stitch_api import router as stitch_router
+app.include_router(stitch_router)
+
 # Enable CORS for Streamlit / Frontend interaction
 app.add_middleware(
     CORSMiddleware,

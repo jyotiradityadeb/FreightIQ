@@ -1,0 +1,12 @@
+{
+  "name": "freightiq-web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node scripts/build-web.mjs",
+    "dev": "node scripts/serve-web.mjs",
+    "test": "node --test tests/web-proxy.test.mjs"
+  }
+}

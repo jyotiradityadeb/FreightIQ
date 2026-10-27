@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"tertiary-container":"#4adba0","on-tertiary-fixed":"#002113","surface":"#061424","on-secondary-fixed":"#002019","on-error":"#690005","surface-container-low":"#0f1c2d","inverse-primary":"#006973","primary-container":"#35d6e8","primary-fixed":"#90f1ff","on-surface-variant":"#bbc9cb","on-primary-fixed-variant":"#004f57","background":"#061424","error-container":"#93000a","on-primary-fixed":"#001f23","on-primary":"#00363c","inverse-surface":"#d6e3fa","surface-dim":"#061424","on-secondary-fixed-variant":"#005141","tertiary":"#6bf8ba","on-tertiary":"#003824","primary":"#7ff0ff","primary-fixed-dim":"#3bd9eb","on-surface":"#d6e3fa","on-error-container":"#ffdad6","outline":"#859395","tertiary-fixed":"#6ffbbe","on-background":"#d6e3fa","secondary-fixed":"#65fbd5","surface-container-high":"#1e2b3c","secondary-container":"#00c19e","on-secondary":"#00382c","on-primary-container":"#005962","on-secondary-container":"#00493a","surface-container-lowest":"#020f1f","secondary-fixed-dim":"#41deb9","surface-container":"#132031","on-tertiary-container":"#005c3e","outline-variant":"#3c494b","surface-variant":"#293647","surface-bright":"#2d3a4c","on-tertiary-fixed-variant":"#005236","error":"#ffb4ab","surface-container-highest":"#293647","secondary":"#41deb9","surface-tint":"#3bd9eb","tertiary-fixed-dim":"#4edea3","inverse-on-surface":"#243142"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"space-md":"0.75rem","space-xs":"0.25rem","space-lg":"1rem","space-xl":"1.5rem","space-sm":"0.5rem","gutter-desktop":"1rem","gutter":"0.75rem","margin":"1rem","margin-desktop":"1.5rem"},fontFamily:{"body-sm":["Geist"],"display-lg":["Geist"],"label-xs":["JetBrains Mono"],"display-md":["Geist"],"headline-sm":["Geist"],"code-sm":["JetBrains Mono"],"code-data":["JetBrains Mono"],"title-md":["Geist"],"body-md":["Geist"]},fontSize:{"body-sm":["12px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"400"}],"display-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-xs":["10px",{"lineHeight":"12px","letterSpacing":"0.08em","fontWeight":"600"}],"display-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"headline-sm":["18px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"code-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.03em","fontWeight":"400"}],"code-data":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"500"}],"title-md":["15px",{"lineHeight":"20px","letterSpacing":"-0.005em","fontWeight":"500"}],"body-md":["13px",{"lineHeight":"18px","letterSpacing":"0em","fontWeight":"400"}]}}}};</script></head><body class="bg-background text-on-surface font-body-md text-body-md selection:bg-primary-container selection:text-on-primary-container min-h-screen"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-low border-r border-outline-variant z-50 flex flex-col justify-between overflow-hidden"><div class="flex flex-col flex-1 min-h-0"><div class="h-16 px-space-lg flex items-center gap-space-md border-b border-outline-variant bg-surface-container-lowest"><div class="w-9 h-9 rounded bg-surface-container-high border border-outline-variant flex items-center justify-center relative"><span class="material-symbols-outlined text-primary text-[22px]">radar</span><span class="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span></div><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm font-bold tracking-tight text-on-surface">Freight<span class="text-primary">IQ</span></span><span class="font-label-xs text-label-xs px-1 rounded bg-surface-container text-secondary border border-outline-variant">v4.2</span></div><span class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-widest">Maritime Intelligence</span></div></div><div class="flex-1 overflow-y-auto px-space-sm py-space-md space-y-space-lg"><nav class="space-y-space-sm" data-active-classes="bg-surface-container-highest text-primary font-title-md border-l-2 border-primary"><div class="px-space-sm pb-space-xs"><span class="font-label-xs text-label-xs uppercase text-outline tracking-wider">OPERATIONS &amp; CONTROL</span></div><a class="flex items-center justify-between px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="overview" href="#"><span class="font-body-sm text-body-sm truncate">Overview</span></a><a class="flex items-center justify-between px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="control-tower" href="#"><span class="font-body-sm text-body-sm truncate">Control Tower</span><span class="w-2 h-2 rounded-full bg-primary"></span></a><a class="flex items-center justify-between px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="operations-overview" href="#"><span class="font-body-sm text-body-sm truncate">Operations Overview</span></a><div class="px-space-sm pt-space-sm pb-space-xs"><span class="font-label-xs text-label-xs uppercase text-outline tracking-wider">ANALYTICS &amp; FORECASTING</span></div><a class="flex items-center justify-between px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="market-intelligence" href="#"><span class="font-body-sm text-body-sm truncate">Market Intelligence</span></a><a class="flex items-center justify-between px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="forecasts" href="#"><span class="font-body-sm text-body-sm truncate">Forecasts</span></a><a class="flex items-center justify-between px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="decision-twin" href="#"><span class="font-body-sm text-body-sm truncate">Decision Twin</span></a><div class="px-space-sm pt-space-sm pb-space-xs"><span class="font-label-xs text-label-xs uppercase text-outline tracking-wider">CHARTER EXECUTION &amp; STRESS TESTING</span></div><a class="flex items-center justify-between px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="charter-workbench" href="#"><span class="font-body-sm text-body-sm truncate">Charter Workbench</span></a><a class="flex items-center justify-between px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="scenario-lab" href="#"><span class="font-body-sm text-body-sm truncate">Scenario Lab</span></a><a class="flex items-center justify-between px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="simulation-backtest" href="#"><span class="font-body-sm text-body-sm truncate">Simulation Backtest</span></a><div class="px-space-sm pt-space-sm pb-space-xs"><span class="font-label-xs text-label-xs uppercase text-outline tracking-wider">PLATFORM &amp; DATA REPOSITORIES</span></div><a class="flex items-center justify-between px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="data-integrations" href="#"><span class="font-body-sm text-body-sm truncate">Data &amp; Integrations</span></a><a class="flex items-center justify-between px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="data-explorer" href="#"><span class="font-body-sm text-body-sm truncate">Data Explorer</span></a></nav></div></div><div class="p-space-sm border-t border-outline-variant bg-surface-container-lowest space-y-space-sm"><div class="bg-surface-container p-space-sm rounded border border-outline-variant flex flex-col gap-space-xs"><div class="flex items-center justify-between"><span class="font-label-xs text-label-xs text-outline">TELEMETRY STATUS</span><span class="font-label-xs text-label-xs px-1.5 py-0.5 rounded bg-tertiary-container/20 text-tertiary border border-tertiary-container/40 font-bold uppercase">DEMO-CALIBRATED</span></div><div class="flex items-center justify-between pt-space-xs border-t border-outline-variant/60"><span class="font-code-sm text-code-sm text-on-surface-variant">Forecast Engine</span><span class="font-code-sm text-code-sm text-primary flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span>Auto Select</span></div></div><div class="flex items-center justify-between px-space-xs"><div class="flex items-center gap-space-xs text-outline"><span class="material-symbols-outlined text-[16px]">terminal</span><span class="font-code-sm text-code-sm">SYS_ONLINE</span></div><div class="flex items-center bg-surface-container rounded p-0.5 border border-outline-variant"><button class="px-1.5 py-0.5 rounded text-primary hover:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined text-[14px]">dark_mode</span></button><button class="px-1.5 py-0.5 rounded text-outline hover:text-on-surface hover:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined text-[14px]">light_mode</span></button></div></div></div></aside><div class="pl-64 flex flex-col min-h-screen"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-low/95 backdrop-blur-md border-b border-outline-variant z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm font-code-sm text-code-sm text-outline"><span class="material-symbols-outlined text-[16px] text-primary">explore</span><span>FIQ-CORE</span><span class="text-outline-variant">/</span><span class="text-on-surface uppercase">COMMAND DECK</span></div></div><div class="hidden xl:flex items-center bg-surface-container px-space-md py-1.5 rounded border border-outline-variant gap-space-md"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[16px]">sailing</span><span class="font-code-data text-code-data text-on-surface font-semibold">FIQ-2026-0001</span></div><span class="text-outline-variant">•</span><span class="font-body-sm text-body-sm text-on-surface-variant">75,000 t Coking Coal</span><span class="text-outline-variant">•</span><div class="flex items-center gap-space-xs text-secondary font-code-sm text-code-sm"><span>Hay Point (AU)</span><span class="material-symbols-outlined text-[14px]">arrow_forward</span><span>Paradip (IN)</span></div><span class="font-label-xs text-label-xs px-1.5 py-0.5 rounded bg-tertiary-container/20 text-tertiary border border-tertiary-container/30 uppercase">[DEMO-CALIBRATED]</span></div><div class="flex items-center gap-space-md"><div class="hidden md:flex flex-col text-right font-code-sm text-code-sm"><span class="text-outline font-label-xs text-label-xs uppercase">Data Coverage</span><span class="text-on-surface">Jan 2024 - Aug 2026</span></div><div class="h-8 w-[1px] bg-outline-variant hidden md:block"></div><button class="hidden sm:flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container border border-outline-variant hover:border-primary transition-colors" type="button"><span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span><span class="font-code-sm text-code-sm text-on-surface">5/5 Connectors</span><span class="font-label-xs text-label-xs text-outline">(Cached)</span></button><button class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors relative" type="button"><span class="material-symbols-outlined text-[18px]">notifications</span><span class="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-primary"></span></button><div class="flex items-center gap-space-sm pl-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-4rem)]"><div class="flex flex-col w-full">
+<!-- Sub-Header / Page Header Bar with Telemetry Meta -->
+<div class="w-full bg-surface-container-low px-space-lg py-space-md flex flex-col gap-space-xs shadow-sm">
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs font-label-xs text-label-xs text-primary uppercase tracking-widest">
+<span class="material-symbols-outlined text-[14px] text-primary">policy</span>
+<span>PLATFORM &amp; DATA REPOSITORIES :: SYSTEM GOVERNANCE &amp; TELEMETRY AUDIT</span>
+</div>
+<div class="flex items-center gap-space-md font-code-sm text-code-sm">
+<span class="flex items-center gap-1.5 px-space-sm py-0.5 rounded bg-surface-container-highest text-secondary font-label-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+          LEDGER: SYNCED
+        </span>
+<span class="text-outline font-label-xs uppercase">SESSION RUNTIME:</span>
+<span class="text-on-surface font-code-data">04h 18m 22s</span>
+</div>
+</div>
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md pt-space-xs">
+<div>
+<h1 class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight flex items-center gap-space-sm">
+<span>Data &amp; Integrations</span>
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-medium">SUB-LEDGER 03</span>
+</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-4xl mt-0.5">
+          Manage external API connectors, signal freshness, quality matrices, manual operator notes, and system trust audit logs.
+        </p>
+</div>
+<!-- Quick Metrics Ribbon -->
+<div class="flex items-center gap-space-md font-code-sm text-code-sm bg-surface-container-lowest px-space-md py-1.5 rounded">
+<div class="flex flex-col">
+<span class="font-label-xs text-label-xs text-outline uppercase">Active Connectors</span>
+<span class="font-code-data text-code-data text-secondary">5 / 5 OPERATIONAL</span>
+</div>
+<div class="w-[1px] h-6 bg-outline-variant"></div>
+<div class="flex flex-col">
+<span class="font-label-xs text-label-xs text-outline uppercase">Logged Overrides</span>
+<span class="font-code-data text-code-data text-primary">03 RECORDED</span>
+</div>
+<div class="w-[1px] h-6 bg-outline-variant"></div>
+<div class="flex flex-col">
+<span class="font-label-xs text-label-xs text-outline uppercase">SHA-256 State</span>
+<span class="font-code-data text-code-data text-tertiary">VERIFIED</span>
+</div>
+</div>
+</div>
+<!-- Horizontal Navigation Tabs (8 Modules) -->
+<div class="flex items-center gap-1 overflow-x-auto pt-space-md mt-space-xs -mb-space-md">
+<button class="px-space-md py-2.5 font-title-md text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high whitespace-nowrap transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px] text-outline">hub</span>
+<span>Connections</span>
+</button>
+<button class="px-space-md py-2.5 font-title-md text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high whitespace-nowrap transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px] text-outline">verified</span>
+<span>Data Quality</span>
+</button>
+<!-- ACTIVE TAB: Overrides -->
+<button class="px-space-md py-2.5 font-title-md text-body-sm text-primary bg-surface-container-highest whitespace-nowrap flex items-center gap-1.5 relative shadow-inner" type="button">
+<span class="material-symbols-outlined text-[16px] text-primary">edit_note</span>
+<span class="font-semibold">Overrides</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary ml-1"></span>
+<span class="absolute bottom-0 left-0 right-0 h-0.5 bg-primary-container"></span>
+</button>
+<button class="px-space-md py-2.5 font-title-md text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high whitespace-nowrap transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px] text-outline">history</span>
+<span>Audit Trail</span>
+</button>
+<button class="px-space-md py-2.5 font-title-md text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high whitespace-nowrap transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px] text-outline">warning_amber</span>
+<span>Model &amp; Data Limitations</span>
+</button>
+<button class="px-space-md py-2.5 font-title-md text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high whitespace-nowrap transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px] text-outline">tune</span>
+<span>Decision Parameters</span>
+</button>
+<button class="px-space-md py-2.5 font-title-md text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high whitespace-nowrap transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px] text-outline">badge</span>
+<span>Model Cards</span>
+</button>
+<button class="px-space-md py-2.5 font-title-md text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high whitespace-nowrap transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px] text-outline">monitor_heart</span>
+<span>Model Status</span>
+</button>
+</div>
+</div>
+<!-- Main Viewport Canvas -->
+<div class="p-space-lg flex flex-col gap-space-lg">
+<!-- 1. Operator Disclosure & System Governance Warning Notice -->
+<div class="w-full bg-surface-container-low rounded p-space-md shadow-md relative overflow-hidden">
+<!-- Amber/Cyan Accent Glow Bar -->
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-primary-container via-secondary to-amber-500"></div>
+<div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-md pl-space-xs">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded bg-surface-container-high flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-primary text-[24px]">gavel</span>
+</div>
+<div class="space-y-1">
+<div class="flex flex-wrap items-center gap-space-sm">
+<span class="px-2 py-0.5 rounded bg-primary/10 text-primary font-label-xs text-label-xs font-bold uppercase tracking-wider">
+                OPERATOR OVERRIDE NOTE RECORDING INTERFACE
+              </span>
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded bg-surface-container text-outline">
+                HUMAN-IN-THE-LOOP AUDIT PROTOCOL v2.8
+              </span>
+<span class="font-label-xs text-label-xs text-secondary font-mono flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                READ-WRITE CONTEXT LOG
+              </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+<strong class="text-on-surface uppercase font-code-sm font-semibold text-primary">CRITICAL SYSTEM NOTICE:</strong>
+              Recording an operator override note logs a timestamped contextual audit entry into the local database for compliance and human-in-the-loop governance.
+              It <span class="text-error font-medium underline underline-offset-2">DOES NOT</span> automatically alter econometric model baselines, retrain forecasting engines, or mutate algorithmic solver parameters. Algorithmic solver parameters remain strictly governed by the <a class="text-primary underline hover:text-primary-fixed" href="#">Scenario Lab</a> and <a class="text-primary underline hover:text-primary-fixed" href="#">Decision Twin</a> workspaces.
+            </p>
+</div>
+</div>
+<div class="shrink-0 flex lg:flex-col items-center lg:items-end justify-between w-full lg:w-auto gap-space-sm bg-surface-container-lowest px-space-md py-space-sm rounded">
+<span class="font-label-xs text-label-xs text-outline uppercase tracking-wider">IMMUTABLE LOG STATUS</span>
+<div class="flex items-center gap-space-xs font-code-sm text-code-sm text-tertiary">
+<span class="material-symbols-outlined text-[16px] text-tertiary">lock</span>
+<span>APPEND_ONLY [ENCRYPTED]</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 2. Two-Column Analytical Terminal Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Left Column: Form Container (5 Cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<div class="bg-surface-container rounded p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs bg-surface-container-low -mx-space-md -mt-space-md p-space-md rounded-t">
+<div class="flex items-center gap-space-sm">
+<div class="w-2.5 h-2.5 rounded-full bg-primary-container"></div>
+<h2 class="font-title-md text-title-md text-on-surface font-semibold">Log Contextual Operator Note</h2>
+</div>
+<span class="font-label-xs text-label-xs text-outline uppercase font-mono">FORM: MANUAL_OVERRIDE_01</span>
+</div>
+<!-- Active Shipment Quick Pill -->
+<div class="bg-surface-container-lowest p-space-sm rounded flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[16px]">navigation</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant uppercase">TARGET CARGO:</span>
+<span class="font-code-data text-code-data text-on-surface font-bold">FIQ-2026-0001</span>
+</div>
+<span class="font-label-xs text-label-xs text-primary bg-primary/10 px-1.5 py-0.5 rounded">75,000 t Coking Coal</span>
+</div>
+<form class="space-y-space-md" id="override-form">
+<!-- 1. Target Domain / Signal Dropdown -->
+<div class="space-y-1">
+<label class="block font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider" for="domain-select">
+                Target Domain / Telemetry Signal
+              </label>
+<div class="relative">
+<select class="w-full bg-surface-container-high text-on-surface font-code-sm text-code-sm rounded px-space-md py-2 appearance-none focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer pr-10" id="domain-select">
+<option selected="" value="port_congestion">Port Congestion &amp; Queue (Berth Logistics)</option>
+<option value="vessel_supply">Vessel Supply Availability (Prompt Tonnage)</option>
+<option value="demurrage_exposure">Demurrage &amp; Laycan Exposure</option>
+<option value="weather_advisory">Weather Advisory (Monsoon &amp; Cyclone Alert)</option>
+<option value="bunker_spread">Bunker Spread (VLSFO / MGO Singapore Arbitrage)</option>
+</select>
+<div class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant flex items-center">
+<span class="material-symbols-outlined text-[18px]">arrow_drop_down</span>
+</div>
+</div>
+</div>
+<!-- 2. Correlated Route / Terminal (Read Only) -->
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<label class="block font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider" for="route-fixed">
+                  Correlated Route / Terminal Node
+                </label>
+<span class="font-label-xs text-label-xs text-outline font-mono">SYS-LOCKED</span>
+</div>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest text-secondary font-code-data text-code-data rounded px-space-md py-2 cursor-not-allowed select-none pl-9 font-medium" id="route-fixed" readonly="" type="text" value="Hay Point (AU_HPT) → Paradip (IN_PDP)"/>
+<span class="material-symbols-outlined text-outline text-[16px] absolute left-2.5 top-1/2 -translate-y-1/2">route</span>
+</div>
+</div>
+<!-- 3. Observed Real-World Condition (Manual Textarea) -->
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<label class="block font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider" for="operator-observation">
+                  Observed Real-World Condition (Manual Observation)
+                </label>
+<span class="font-label-xs text-label-xs text-primary font-mono" id="char-counter">0 / 250 chars</span>
+</div>
+<textarea class="w-full bg-surface-container-high text-on-surface font-body-sm text-body-sm rounded p-space-sm placeholder:text-outline/70 focus:outline-none focus:ring-1 focus:ring-primary resize-none leading-relaxed" id="operator-observation" placeholder="e.g. Paradip Berth 3 conveyor belt under 48h emergency maintenance, actual queue expected 46h vs modeled 39h..." rows="3"></textarea>
+</div>
+<!-- 4. Recommended Operational Stance (Radio Pills) -->
+<div class="space-y-1.5">
+<label class="block font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider">
+                Recommended Operational Stance
+              </label>
+<div class="grid grid-cols-2 gap-space-xs" id="stance-radios">
+<label class="flex items-center gap-2 p-2 rounded bg-surface-container-high hover:bg-surface-container-highest cursor-pointer text-body-sm transition-colors relative has-[:checked]:bg-primary/10 has-[:checked]:text-primary">
+<input checked="" class="accent-primary" name="stance" type="radio" value="info"/>
+<span class="font-label-xs text-label-xs font-medium">Informational Note Only</span>
+</label>
+<label class="flex items-center gap-2 p-2 rounded bg-surface-container-high hover:bg-surface-container-highest cursor-pointer text-body-sm transition-colors relative has-[:checked]:bg-primary/10 has-[:checked]:text-primary">
+<input class="accent-primary" name="stance" type="radio" value="laycan"/>
+<span class="font-label-xs text-label-xs font-medium">Advise Laycan Delay</span>
+</label>
+<label class="flex items-center gap-2 p-2 rounded bg-surface-container-high hover:bg-surface-container-highest cursor-pointer text-body-sm transition-colors relative has-[:checked]:bg-primary/10 has-[:checked]:text-primary">
+<input class="accent-primary" name="stance" type="radio" value="alternate"/>
+<span class="font-label-xs text-label-xs font-medium">Recommend Alternate Port</span>
+</label>
+<label class="flex items-center gap-2 p-2 rounded bg-surface-container-high hover:bg-surface-container-highest cursor-pointer text-body-sm transition-colors relative has-[:checked]:bg-primary/10 has-[:checked]:text-primary">
+<input class="accent-primary" name="stance" type="radio" value="cost"/>
+<span class="font-label-xs text-label-xs font-medium">Cost Sensitivity Alert</span>
+</label>
+</div>
+</div>
+<!-- 5. Operator ID & Station -->
+<div class="space-y-1">
+<label class="block font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider" for="operator-id">
+                Operator ID &amp; Tactical Dispatch Desk
+              </label>
+<div class="relative">
+<input class="w-full bg-surface-container-high text-on-surface font-code-sm text-code-sm rounded px-space-md py-2 focus:outline-none focus:ring-1 focus:ring-primary pl-9 font-medium" id="operator-id" type="text" value="OPERATOR-ID: DISPATCH-LEAD-884 (Maritime Logistics Desk)"/>
+<span class="material-symbols-outlined text-outline text-[16px] absolute left-2.5 top-1/2 -translate-y-1/2">badge</span>
+</div>
+</div>
+<!-- Action Area -->
+<div class="pt-space-xs space-y-space-sm">
+<button class="w-full py-2.5 px-space-md rounded bg-primary text-on-primary font-title-md text-title-md font-semibold hover:bg-primary-fixed transition-colors flex items-center justify-center gap-2 shadow-sm" id="submit-override-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">save</span>
+<span>Record Manual Override Note</span>
+</button>
+<div class="text-center font-code-sm text-code-sm text-outline">
+                (Appends to immutable local SQLite audit ledger: <span class="text-on-surface font-mono">local_overrides.db</span>)
+              </div>
+</div>
+</form>
+<!-- Feedback State Indicator -->
+<div class="mt-space-xs bg-surface-container-lowest p-space-sm rounded flex items-center justify-between">
+<div class="flex items-center gap-space-xs text-secondary font-code-sm text-code-sm">
+<span class="material-symbols-outlined text-secondary text-[16px]">check_circle</span>
+<span class="font-medium">Audit persistence active</span>
+</div>
+<span class="font-label-xs text-label-xs text-outline">Last recorded note: 14m ago</span>
+</div>
+</div>
+<!-- Telemetry Model Safeguards Widget -->
+<div class="bg-surface-container-low rounded p-space-md space-y-space-xs shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-xs text-label-xs text-outline uppercase tracking-wider">SOLVER PARAMETER ISOLATION</span>
+<span class="font-code-sm text-code-sm text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">shield</span> SECURED
+            </span>
+</div>
+<div class="grid grid-cols-3 gap-space-xs pt-space-xs text-center">
+<div class="bg-surface-container p-space-xs rounded">
+<span class="block font-label-xs text-label-xs text-outline">Stochastic Weights</span>
+<span class="font-code-data text-code-data text-on-surface">Untouched</span>
+</div>
+<div class="bg-surface-container p-space-xs rounded">
+<span class="block font-label-xs text-label-xs text-outline">Demurrage Reg</span>
+<span class="font-code-data text-code-data text-on-surface">Protected</span>
+</div>
+<div class="bg-surface-container p-space-xs rounded">
+<span class="block font-label-xs text-label-xs text-outline">Ensemble State</span>
+<span class="font-code-data text-code-data text-secondary">Locked</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Logged Operator Context Notes (7 Cols) -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<!-- Feed Card Container -->
+<div class="bg-surface-container rounded p-space-md shadow-sm flex flex-col gap-space-md flex-1">
+<!-- Registry Header -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-space-xs bg-surface-container-low -mx-space-md -mt-space-md p-space-md rounded-t">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">inventory_2</span>
+<h2 class="font-title-md text-title-md text-on-surface font-semibold">
+                Logged Operator Context Notes
+              </h2>
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded bg-primary/10 text-primary font-bold">
+                FIQ-2026-0001
+              </span>
+</div>
+<!-- Signal Filter Chips -->
+<div class="flex items-center gap-space-xs">
+<span class="font-label-xs text-label-xs text-outline uppercase hidden sm:inline">Filter:</span>
+<div class="flex items-center gap-1 bg-surface-container-highest p-0.5 rounded">
+<button class="px-2 py-0.5 rounded font-label-xs text-label-xs bg-primary text-on-primary font-bold" type="button">ALL (3)</button>
+<button class="px-2 py-0.5 rounded font-label-xs text-label-xs text-outline hover:text-on-surface transition-colors" type="button">PORT</button>
+<button class="px-2 py-0.5 rounded font-label-xs text-label-xs text-outline hover:text-on-surface transition-colors" type="button">VESSEL</button>
+<button class="px-2 py-0.5 rounded font-label-xs text-label-xs text-outline hover:text-on-surface transition-colors" type="button">BUNKER</button>
+</div>
+</div>
+</div>
+<!-- Summary Meta Strip -->
+<div class="flex items-center justify-between px-space-sm py-1.5 rounded bg-surface-container-lowest font-code-sm text-code-sm">
+<span class="text-on-surface-variant flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+              3 Recorded Notes in Current Active Session
+            </span>
+<span class="text-outline font-label-xs uppercase">Ledger Partition: <span class="text-on-surface font-mono">FIQ-HPT-PDP</span></span>
+</div>
+<!-- Entries Feed -->
+<div class="flex flex-col gap-space-md flex-1 overflow-y-auto max-h-[620px] pr-space-xs" id="notes-container">
+<!-- NOTE ENTRY 1 -->
+<div class="bg-surface-container-low p-space-md rounded flex flex-col gap-space-sm relative transition-all hover:bg-surface-container-high/60 shadow-sm">
+<!-- Top Metadata Header -->
+<div class="flex flex-wrap items-center justify-between gap-space-xs pb-space-xs bg-surface-container-lowest -mx-space-md -mt-space-md px-space-md py-space-xs rounded-t">
+<div class="flex items-center gap-space-xs">
+<span class="px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-400 font-label-xs text-label-xs font-bold uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">anchor</span>
+                    PARADIP PORT QUEUE
+                  </span>
+<span class="text-outline-variant">•</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">2026-09-01 08:15 UTC</span>
+</div>
+<div class="flex items-center gap-space-xs font-code-sm text-code-sm">
+<span class="text-outline">By:</span>
+<span class="text-primary font-mono font-medium">DISPATCH-LEAD-884</span>
+</div>
+</div>
+<!-- Main Content Body -->
+<p class="font-body-sm text-body-sm text-on-surface leading-relaxed pt-space-xs">
+                "Ground agent confirms Paradip berth 3 undergoing crane turnaround. Modeled 39h wait is conservative; queue likely 44-48h. Recommending charter laycan maintain +3d buffer."
+              </p>
+<!-- Semantic Badges Footer -->
+<div class="flex flex-wrap items-center justify-between gap-space-xs pt-space-xs mt-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded bg-surface-container-highest text-secondary uppercase font-semibold">
+                    INFORMATIONAL CONTEXT
+                  </span>
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded bg-surface-container-lowest text-outline uppercase font-mono">
+                    SIGNAL: AIS_PORT_PDP
+                  </span>
+</div>
+<div class="flex items-center gap-1.5 font-label-xs text-label-xs text-outline font-mono">
+<span>MODEL IMPACT:</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container-highest text-on-surface-variant font-bold">[NONE — GOVERNANCE LOG]</span>
+</div>
+</div>
+</div>
+<!-- NOTE ENTRY 2 -->
+<div class="bg-surface-container-low p-space-md rounded flex flex-col gap-space-sm relative transition-all hover:bg-surface-container-high/60 shadow-sm">
+<!-- Top Metadata Header -->
+<div class="flex flex-wrap items-center justify-between gap-space-xs pb-space-xs bg-surface-container-lowest -mx-space-md -mt-space-md px-space-md py-space-xs rounded-t">
+<div class="flex items-center gap-space-xs">
+<span class="px-1.5 py-0.5 rounded bg-primary/10 text-primary font-label-xs text-label-xs font-bold uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">directions_boat</span>
+                    VESSEL AVAILABILITY
+                  </span>
+<span class="text-outline-variant">•</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">2026-08-31 16:40 UTC</span>
+</div>
+<div class="flex items-center gap-space-xs font-code-sm text-code-sm">
+<span class="text-outline">By:</span>
+<span class="text-secondary font-mono font-medium">CHARTERING-DESK-02</span>
+</div>
+</div>
+<!-- Main Content Body -->
+<p class="font-body-sm text-body-sm text-on-surface leading-relaxed pt-space-xs">
+                "Two prompt Panamax vessels fixed to Visakhapatnam yesterday. East Coast AU open tonnage tightened to 16 from 18."
+              </p>
+<!-- Semantic Badges Footer -->
+<div class="flex flex-wrap items-center justify-between gap-space-xs pt-space-xs mt-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 uppercase font-semibold">
+                    OPERATOR ALERT
+                  </span>
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded bg-surface-container-lowest text-outline uppercase font-mono">
+                    SIGNAL: BALTIC_AU_EC
+                  </span>
+</div>
+<div class="flex items-center gap-1.5 font-label-xs text-label-xs text-outline font-mono">
+<span>MODEL IMPACT:</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container-highest text-on-surface-variant font-bold">[NONE — GOVERNANCE LOG]</span>
+</div>
+</div>
+</div>
+<!-- NOTE ENTRY 3 -->
+<div class="bg-surface-container-low p-space-md rounded flex flex-col gap-space-sm relative transition-all hover:bg-surface-container-high/60 shadow-sm">
+<!-- Top Metadata Header -->
+<div class="flex flex-wrap items-center justify-between gap-space-xs pb-space-xs bg-surface-container-lowest -mx-space-md -mt-space-md px-space-md py-space-xs rounded-t">
+<div class="flex items-center gap-space-xs">
+<span class="px-1.5 py-0.5 rounded bg-tertiary-container/20 text-tertiary font-label-xs text-label-xs font-bold uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">local_gas_station</span>
+                    BUNKER FUEL SPREAD
+                  </span>
+<span class="text-outline-variant">•</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">2026-08-30 11:20 UTC</span>
+</div>
+<div class="flex items-center gap-space-xs font-code-sm text-code-sm">
+<span class="text-outline">By:</span>
+<span class="text-on-surface font-mono font-medium">FUEL-DESK-MUMBAI</span>
+</div>
+</div>
+<!-- Main Content Body -->
+<p class="font-body-sm text-body-sm text-on-surface leading-relaxed pt-space-xs">
+                "Singapore VLSFO softening slightly (-$12/t). Forward bunker arbitrage holds favorable."
+              </p>
+<!-- Semantic Badges Footer -->
+<div class="flex flex-wrap items-center justify-between gap-space-xs pt-space-xs mt-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded bg-surface-container-highest text-secondary uppercase font-semibold">
+                    INFORMATIONAL CONTEXT
+                  </span>
+<span class="font-label-xs text-label-xs px-2 py-0.5 rounded bg-surface-container-lowest text-outline uppercase font-mono">
+                    SIGNAL: BUNKER_SIN_VLSFO
+                  </span>
+</div>
+<div class="flex items-center gap-1.5 font-label-xs text-label-xs text-outline font-mono">
+<span>MODEL IMPACT:</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container-highest text-on-surface-variant font-bold">[NONE — GOVERNANCE LOG]</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Registry Mini-Toolbar -->
+<div class="pt-space-xs flex items-center justify-between font-code-sm text-code-sm bg-surface-container-low px-space-md py-2 rounded -mx-space-md -mb-space-md">
+<span class="text-outline font-label-xs">QUERY LATENCY: 2.1ms (LOCAL SQLITE READ)</span>
+<button class="text-primary hover:text-primary-fixed flex items-center gap-1 text-code-sm font-medium transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+<span>Export Audit Ledger (.JSONL)</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- 3. Bottom System Ledger & Database Integrity Status Ribbon -->
+<div class="w-full bg-surface-container-low rounded p-space-md shadow-sm flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="flex flex-wrap items-center gap-space-lg text-on-surface-variant font-code-sm text-code-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">database</span>
+<span class="text-outline font-label-xs uppercase">Local Database:</span>
+<span class="text-on-surface font-mono font-medium">local_overrides.db</span>
+<span class="px-1.5 py-0.2 bg-surface-container text-secondary rounded font-label-xs font-bold">PRAGMA WAL2</span>
+</div>
+<div class="h-4 w-[1px] bg-outline-variant hidden sm:block"></div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary text-[18px]">verified_user</span>
+<span class="text-outline font-label-xs uppercase">SHA-256 Ledger Block:</span>
+<span class="text-on-surface font-mono text-code-sm">e8f49a...712c9b</span>
+</div>
+<div class="h-4 w-[1px] bg-outline-variant hidden sm:block"></div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">schedule</span>
+<span class="text-outline font-label-xs uppercase">Last Commited Sync:</span>
+<span class="text-on-surface">2026-09-01 08:29:14 UTC</span>
+</div>
+</div>
+<a class="text-primary hover:text-primary-fixed flex items-center gap-1 font-title-md text-body-sm font-semibold transition-colors shrink-0 group" href="#">
+<span>View Full Chronological History in Audit Trail Tab</span>
+<span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Interactive Logic for Character Count and Dynamic Appends in Session -->
+<script>
+    (function initOverridesWorkbench() {
+      const textarea = document.getElementById('operator-observation');
+      const counter = document.getElementById('char-counter');
+      const submitBtn = document.getElementById('submit-override-btn');
+      const notesContainer = document.getElementById('notes-container');
+
+      if (textarea && counter) {
+        textarea.addEventListener('input', function() {
+          const len = textarea.value.length;
+          counter.textContent = `${len} / 250 chars`;
+          if (len > 250) {
+            counter.classList.add('text-error');
+            counter.classList.remove('text-primary');
+          } else {
+            counter.classList.remove('text-error');
+            counter.classList.add('text-primary');
+          }
+        });
+      }
+
+      if (submitBtn && notesContainer) {
+        submitBtn.addEventListener('click', function() {
+          const text = textarea ? textarea.value.trim() : '';
+          if (!text) {
+            alert('Please specify an observed real-world condition before appending to the audit ledger.');
+            return;
+          }
+
+          const domainSelect = document.getElementById('domain-select');
+          const domainLabel = domainSelect ? domainSelect.options[domainSelect.selectedIndex].text.split('(')[0].trim().toUpperCase() : 'OPERATOR NOTE';
+          const operatorInput = document.getElementById('operator-id');
+          const operatorVal = operatorInput ? operatorInput.value.replace('OPERATOR-ID:', '').split('(')[0].trim() : 'DISPATCH-LEAD-884';
+
+          const now = new Date();
+          const timestamp = now.toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
+
+          // Create new record card
+          const newCard = document.createElement('div');
+          newCard.className = 'bg-surface-container-low p-space-md rounded flex flex-col gap-space-sm relative transition-all hover:bg-surface-container-high/60 shadow-sm animate-pulse';
+          newCard.innerHTML = `
+            <div class="flex flex-wrap items-center justify-between gap-space-xs pb-space-xs bg-surface-container-lowest -mx-space-md -mt-space-md px-space-md py-space-xs rounded-t">
+              <div class="flex items-center gap-space-xs">
+                <span class="px-1.5 py-0.5 rounded bg-primary/20 text-primary font-label-xs text-label-xs font-bold uppercase tracking-wider flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[12px]">fiber_new</span>
+                  ${domainLabel}
+                </span>
+                <span class="text-outline-variant">•</span>
+                <span class="font-code-sm text-code-sm text-on-surface-variant">${timestamp}</span>
+              </div>
+              <div class="flex items-center gap-space-xs font-code-sm text-code-sm">
+                <span class="text-outline">By:</span>
+                <span class="text-secondary font-mono font-medium">${operatorVal}</span>
+              </div>
+            </div>
+            <p class="font-body-sm text-body-sm text-on-surface leading-relaxed pt-space-xs">
+              "${text.replace(/"/g, '&quot;')}"
+            </p>
+            <div class="flex flex-wrap items-center justify-between gap-space-xs pt-space-xs mt-space-xs">
+              <div class="flex items-center gap-space-xs">
+                <span class="font-label-xs text-label-xs px-2 py-0.5 rounded bg-surface-container-highest text-secondary uppercase font-semibold">
+                  RECORDED NOTE
+                </span>
+                <span class="font-label-xs text-label-xs px-2 py-0.5 rounded bg-surface-container-lowest text-outline uppercase font-mono">
+                  SHA: LIVE_COMMIT
+                </span>
+              </div>
+              <div class="flex items-center gap-1.5 font-label-xs text-label-xs text-outline font-mono">
+                <span>MODEL IMPACT:</span>
+                <span class="px-1.5 py-0.2 rounded bg-surface-container-highest text-on-surface-variant font-bold">[NONE — GOVERNANCE LOG]</span>
+              </div>
+            </div>
+          `;
+
+          notesContainer.prepend(newCard);
+          textarea.value = '';
+          if (counter) counter.textContent = '0 / 250 chars';
+
+          setTimeout(() => {
+            newCard.classList.remove('animate-pulse');
+          }, 1000);
+        });
+      }
+    })();
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest border-t border-outline-variant py-space-sm px-space-lg"><div class="flex flex-col sm:flex-row items-center justify-between gap-space-xs text-on-surface-variant font-code-sm text-code-sm"><div><span>FREIGHTIQ TACTICAL TELEMETRY © 2026</span><span class="mx-2 text-outline-variant">|</span><span>HIGH FREQUENCY MARITIME ORCHESTRATION</span></div><div class="flex items-center gap-space-md font-label-xs text-label-xs text-outline"><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>NODE: SYD-PRIMARY</span><span>LATENCY: 18ms</span><span>AIS: REALTIME</span></div></div></footer></div></body></html>

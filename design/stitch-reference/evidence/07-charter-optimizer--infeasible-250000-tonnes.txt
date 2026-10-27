@@ -1,0 +1,100 @@
+Home
+
+Control Tower
+
+Decision Twin
+
+Operations Overview
+
+Market Overview
+
+Forecasting
+
+Charter Optimizer
+
+Scenario Lab
+
+Backtesting
+
+Data Integration
+
+Data Explorer
+
+🌙 Switch to Dark Mode
+
+SYSTEM STATUS
+Active Theme
+Light Mode
+Data Mode
+DEMO
+Forecast Engine
+Auto Model Selection
+Optimizer
+Active
+Deploy
+FreightIQ
+
+Overview
+
+Decision Twin
+
+Operations
+
+Markets
+
+Forecasts
+
+Chartering
+
+Scenarios
+
+Backtesting
+
+Data
+
+Explorer
+
+Charter Workbench
+
+Commercial procurement solver for active shipment FIQ-2026-0001
+
+Cargo
+
+Coking Coal
+
+Quantity (t)
+
+Origin Country
+
+Australia
+
+Origin Port
+
+Hay Point (AU_HPT)
+
+Destination Port
+
+Paradip (IN_PDP)
+
+Laycan Window
+
+Press the down arrow key to interact with the calendar and select a date. Press the escape button to close the calendar.
+
+Selected date range is from 2026/09/01 to 2026/09/15.
+
+Origin: Hay Point (Queensland, Australia | Draft: 20.0m)  →  Destination: Paradip (East Coast, India | Max Draft: 17.5m)
+🟢 DEMO-CALIBRATED ROUTE
+
+Solve Candidates
+
+⚠
+
+Optimization Infeasible: No feasible charter option found for the selected constraints.
+
+• Cargo quantity (250,000.0t) exceeds max capacity of Capesize (200,000t).
+
+• Cargo quantity (250,000.0t) exceeds max capacity of Panamax (90,000t).
+
+• Cargo quantity (250,000.0t) exceeds max capacity of Supramax (65,000t).
+
+Prototype Disclaimer: International freight benchmarks may originate in USD, while FreightIQ presents decision-support costs in INR for Indian procurement users. Prototype demonstration using synthetic data. Not live maritime market data.

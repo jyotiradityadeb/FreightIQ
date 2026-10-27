@@ -1,0 +1,206 @@
+Home
+
+Control Tower
+
+Decision Twin
+
+Operations Overview
+
+Market Overview
+
+Forecasting
+
+Charter Optimizer
+
+Scenario Lab
+
+Backtesting
+
+Data Integration
+
+Data Explorer
+
+🌙 Switch to Dark Mode
+
+SYSTEM STATUS
+Active Theme
+Light Mode
+Data Mode
+DEMO
+Forecast Engine
+Auto Model Selection
+Optimizer
+Active
+Deploy
+FreightIQ
+
+Overview
+
+Decision Twin
+
+Operations
+
+Markets
+
+Forecasts
+
+Chartering
+
+Scenarios
+
+Backtesting
+
+Data
+
+Explorer
+
+Charter Workbench
+
+Commercial procurement solver for active shipment FIQ-2026-0001
+
+Cargo
+
+Coking Coal
+
+Quantity (t)
+
+Origin Country
+
+Brazil
+
+Origin Port
+
+Ponta da Madeira (BR_PDM)
+
+Destination Port
+
+Gangavaram (IN_GAV)
+
+Laycan Window
+
+Press the down arrow key to interact with the calendar and select a date. Press the escape button to close the calendar.
+
+Selected date range is from 2026/09/01 to 2026/09/15.
+
+Origin: Ponta da Madeira (Maranhão, Brazil | Draft: 23.0m)  →  Destination: Gangavaram (East Coast, India | Max Draft: 19.5m)
+🟢 DEMO-CALIBRATED ROUTE
+
+Solve Candidates
+
+Feasible Charter Candidate Matrix
+
+Ranked commercial options evaluated across predicted freight, port queue demurrage, and route risk
+
+Download Procurement Report (PDF)
+
+DECISION STATUS
+
+✓ RECOMMENDED CHARTER ACTION
+
+Charter on optimal date (2026-09-04) — 3 days after window opens
+
+EXPECTED LOGISTICS COST
+
+₹112.32 Cr
+
+₹7,488 / tonne
+
+RECOMMENDED WINDOW
+
+2026-09-04
+
+VESSEL CLASS
+
+Capesize
+
+CARGO
+
+150,000 t Coking Coal
+
+ROUTE
+
+Ponta da Madeira → Gangavaram
+
+Freight Cost
+
+₹112.05 Cr
+
+Expected Demurrage
+
+₹8.3 lakh
+
+Port / Waiting Cost
+
+₹13.2 lakh
+
+Risk Adjustment
+
+₹6.0 lakh
+
+KEY DECISION DRIVERS
+
+• freight rates remain flat across the evaluation window.
+
+• selected Capesize vessel provides the best-fit capacity for 150,000.0 tonnes of Coking Coal.
+
+• port congestion and demurrage exposure at Gangavaram are minimized on 2026-09-04.
+
+• total estimated logistics cost ($13,371,903.00) is lower than alternative charter dates.
+
+MARITIME ROUTE SPECIFICATIONS
+
+Ponta da Madeira
+
+ORIGIN PORT
+
+Ponta da Madeira ───────────────→ Gangavaram
+
+~3,500 Nautical Miles • ~12 Transit Days
+
+Gangavaram
+
+DESTINATION PORT
+
+Port Draft Check: 15.0m
+
+Scenario Comparison
+Cost Model Breakdown — Top Candidates
+
+Exact cost components computed by the optimizer for each candidate. Formula: Total = Freight + Demurrage + Congestion + Route Risk Penalty
+
+Why This Recommendation Was Selected
+
+Derived from computed candidate costs — not generic boilerplate
+
+Selected: Capesize on 2026-09-04
+
+Lowest risk-adjusted total logistics cost among all feasible candidates (13,371,903 total; 89.15/t).
+Capacity feasible: Capesize handles 150,000 t within vessel max capacity.
+Dominant cost driver is freight cost ($13,339,053, 99.8% of total).
+Port waiting exposure: 24.0 h at charter date (congestion score 45/100).
+
+Why alternatives were ranked lower:
+
+keyboard_arrow_right
+
+Capesize on 2026-09-07 — total $13,371,903 (+₹0 vs selected)
+
+keyboard_arrow_right
+
+Capesize on 2026-09-06 — total $13,375,746 (+₹3.2 lakh vs selected)
+
+keyboard_arrow_right
+
+Capesize on 2026-09-08 — total $13,375,746 (+₹3.2 lakh vs selected)
+
+Assumption Sensitivity — Robustness Panel
+
+Each key cost assumption is perturbed ±15% and ±30% (one at a time) and the optimizer re-run. 'Held' = same vessel and charter date as baseline. Computed on synthetic demo series — not real-market robustness.
+
+Overall stability: Capesize on 2026-09-04 held in 16 of 16 perturbed settings (100%) (demo data)
+
+keyboard_arrow_right
+
+Detailed perturbation results
+
+Prototype Disclaimer: International freight benchmarks may originate in USD, while FreightIQ presents decision-support costs in INR for Indian procurement users. Prototype demonstration using synthetic data. Not live maritime market data.

@@ -1,0 +1,142 @@
+keyboard_double_arrow_left
+
+Home
+
+Control Tower
+
+Decision Twin
+
+Operations Overview
+
+Market Overview
+
+Forecasting
+
+Charter Optimizer
+
+Scenario Lab
+
+Backtesting
+
+Data Integration
+
+Data Explorer
+
+☀ Switch to Light Mode
+
+SYSTEM STATUS
+Active Theme
+Dark Mode
+Data Mode
+DEMO
+Forecast Engine
+Auto Model Selection
+Optimizer
+Active
+Deploy
+FreightIQ
+
+Overview
+
+Decision Twin
+
+Operations
+
+Markets
+
+Forecasts
+
+Chartering
+
+Scenarios
+
+Backtesting
+
+Data
+
+Explorer
+
+Overview
+
+Freight exposure and chartering decisions.
+
+FIQ-2026-0001
+75,000 t Coking Coal
+Route: Hay Point → Paradip
+RECOMMENDED ACTION
+
+EXPECTED LOGISTICS COST
+
+₹8.91 Cr
+
+Base rate + port demurrage + risk factor
+
+RECOMMENDED CHARTER WINDOW
+
+2026-09-04
+
+Panamax Vessel Class
+
+DECISION ROBUSTNESS
+
+38 / 100
+
+Across 1,000 simulated futures
+
+View Recommendation
+
+Run Scenario
+
+Download PDF Report
+
+Freight Market Overview
+
+Historical Panamax / Capesize spot freight rate trajectory (₹/tonne)
+
+Jan 2024
+Jul 2024
+Jan 2025
+Jul 2025
+Jan 2026
+Jul 2026
+800
+1000
+1200
+1400
+1600
+Freight Rate (₹/t)
+14-Day Moving Average
+undefined
+Shipment Activity
+
+Current vessel queue & route conditions
+
+Paradip Port Queue
+Congestion Index: 64/100 • Avg Wait 39h
+Vessel Availability
+East Coast Australia: 18 Panamax vessels open
+Bunker Fuel Benchmark
+VLSFO Singapore: ₹54,200 / t (Stable)
+Weather Warning
+Bay of Bengal: Normal passage conditions
+Freight Forecast
+
+30-Day predictive freight rate outlook with 95% confidence bounds (₹/tonne)
+
+Jul 262026
+Aug 9
+Aug 23
+Sep 6
+Sep 20
+Oct 4
+900
+1000
+1100
+1200
+1300
+1400
+Forecast
+95% Confidence Interval
+Historical Observations
+undefined
+Prototype Disclaimer: International freight benchmarks may originate in USD, while FreightIQ presents decision-support costs in INR for Indian procurement users. Prototype demonstration using synthetic data. Not live maritime market data.

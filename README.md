@@ -2,6 +2,22 @@
 
 **FreightIQ** is a maritime freight decision-support prototype built for Indian bulk cargo procurement teams (coking coal and iron ore imports into India's East Coast ports: Paradip, Visakhapatnam, Kolkata/Haldia).
 
+## Stitch command-center interface
+
+From the repository root, install Python dependencies once with `python -m pip install -r requirements.txt`. Use Node.js 22 or later. Start these commands in **two terminals**:
+
+```powershell
+python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000
+```
+
+```powershell
+npm run dev
+```
+
+Open **http://localhost:3000**. The Node server serves the Stitch-style browser interface and proxies `/api/*` to FastAPI. The original Streamlit interface remains available with `streamlit run app/Home.py` at http://localhost:8501. Run `python -m pytest -q`, `npm test`, and `npm run build` to verify the backend, proxy and static bundle. See `docs/STITCH_ARCHITECTURE.md` for the deployment boundary and `docs/STITCH_IMPLEMENTATION_STATUS.md` for current fidelity limits.
+
+The graphs use the self-hosted Plotly library, as in the earlier interface. Hover to inspect exact values; use the visible chart toolbar to zoom, pan, reset or download a PNG. The Market chart has a date filter, and the Forecasts page can overlay up to three routes on the same axes.
+
 ---
 
 ## 🚀 Quick Start & Local Development
