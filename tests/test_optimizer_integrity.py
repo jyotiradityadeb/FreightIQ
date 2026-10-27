@@ -102,6 +102,19 @@ def test_explanation_identifies_port_costs_when_they_vary_by_date():
     assert "minimized" not in explanation
 
 
+def test_optimizer_explanations_display_inr_only(std_res):
+    explanation = " ".join(std_res["recommendation"]["why"])
+    winner = " ".join(std_res["explainability"]["winner"]["why_won"])
+    alternatives = " ".join(
+        reason for item in std_res["explainability"]["alternatives"]
+        for reason in item["loss_reasons"]
+    )
+    for text in (explanation, winner, alternatives):
+        assert "₹" in text
+        assert "$" not in text
+        assert "USD" not in text
+
+
 # ── Infeasible vessel can never be selected ───────────────────────────────────
 
 def test_infeasible_capacity_never_selected(forecast_df):

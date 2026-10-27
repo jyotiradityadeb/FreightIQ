@@ -90,6 +90,8 @@ def test_arena_pdf_exports_same_decision_evidence():
     assert "Decision Arena" in content
     assert "CVaR90" in content
     assert "SYNTHETIC / MODELLED" in content
+    assert "USD" not in content
+    assert "$" not in content
 
 
 def test_reported_freight_break_even_actually_changes_charter_date():

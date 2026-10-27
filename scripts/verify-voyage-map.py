@@ -35,6 +35,12 @@ def main():
         page.locator("#voyage-map-card").screenshot(path=str(OUT / "voyage-map-desktop-1440.png"))
         assert page.evaluate("document.documentElement.scrollWidth <= innerWidth"), "Desktop horizontal overflow"
 
+        page.get_by_role("button", name="View Recommendation").click()
+        page.get_by_role("heading", name="Charter Workbench").wait_for(timeout=90000)
+        wait_for_map(page)
+        assert "4,899 NM" in page.locator("[data-voyage-distance]").inner_text()
+        assert not page.locator(".route-map").count(), "Workbench reverted to the old schematic"
+
         page.goto(f"{BASE}/#/charter-workbench", wait_until="domcontentloaded")
         page.locator("#charter-origin").select_option("AU_GLT")
         page.get_by_role("button", name="Solve Candidates").click()
@@ -45,6 +51,23 @@ def main():
         assert "5,063 NM" in page.locator("[data-voyage-distance]").inner_text()
         page.get_by_role("button", name="Gladstone, Australia. Open port details").click()
         assert page.get_by_text("Gladstone Ports Corporation").is_visible()
+        page.get_by_role("button", name="View Recommendation").click()
+        page.get_by_role("heading", name="Charter Workbench").wait_for(timeout=90000)
+        wait_for_map(page)
+        assert page.get_by_text("Gladstone → Paradip", exact=False).count() >= 1
+        assert "5,063 NM" in page.locator("[data-voyage-distance]").inner_text()
+        assert not page.locator(".route-map").count()
+
+        page.locator("#charter-country").select_option("MZ")
+        page.locator("#charter-origin").select_option("MZ_MNC")
+        page.locator("#charter-dest").select_option("IN_PDP")
+        page.get_by_role("button", name="Solve Candidates").click()
+        page.get_by_text("Route Nacala → Paradip", exact=False).wait_for(timeout=90000)
+        wait_for_map(page)
+        assert "3,879 NM" in page.locator("[data-voyage-distance]").inner_text()
+        assert not page.locator(".route-map").count()
+        page.wait_for_timeout(750)
+        page.locator("#voyage-map-card").screenshot(path=str(OUT / "voyage-map-nacala-workbench.png"))
 
         page.set_viewport_size({"width": 390, "height": 844})
         page.reload(wait_until="domcontentloaded")

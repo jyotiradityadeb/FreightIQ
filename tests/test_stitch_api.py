@@ -1,6 +1,9 @@
 """Integration boundaries for the Stitch-derived local interface."""
 
 from fastapi.testclient import TestClient
+from io import StringIO
+
+import pandas as pd
 
 from backend.main import app
 import backend.stitch_api as stitch_api
@@ -24,6 +27,17 @@ def test_explorer_summary_uses_processed_dataset():
     assert data["observations"] > 0
     assert data["features"] == len(data["quality"])
     assert data["is_demo_data"] is True
+
+
+def test_explorer_csv_exports_monetary_columns_in_inr():
+    for kind in ("route", "dataset"):
+        response = client.get(f"/stitch/export/{kind}")
+        assert response.status_code == 200
+        frame = pd.read_csv(StringIO(response.text), nrows=1)
+        assert "freight_rate_inr_per_tonne" in frame
+        assert "freight_rate" not in frame
+        assert frame["freight_rate_inr_per_tonne"].iloc[0] > 100
+        assert not any("usd" in name.lower() for name in frame.columns)
 
 
 def test_solve_records_the_python_recommendation(monkeypatch):

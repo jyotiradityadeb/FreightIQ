@@ -48,6 +48,8 @@ def test_pdf_truthfulness_when_results_none():
 
     # Must contain "Not evaluated for this report."
     assert "Not evaluated for this report." in full_text
+    assert "USD" not in full_text
+    assert "$" not in full_text
 
     # Must NOT contain hardcoded fallbacks
     assert "82/100" not in full_text

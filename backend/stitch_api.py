@@ -11,6 +11,7 @@ from fastapi import APIRouter, File, HTTPException, Query, UploadFile
 from fastapi.responses import Response
 from pydantic import BaseModel, Field
 
+from backend.config import DEMO_USD_INR_RATE
 from backend.config_model import get_decision_params_registry
 from backend.data_loader import validate_user_csv
 from backend.data_quality import get_system_data_quality
@@ -58,7 +59,12 @@ def explorer_summary():
 
 @router.get("/export/{kind}")
 def export(kind: Literal["route", "dataset"]):
-    df = get_all_route_market_histories() if kind == "route" else _processed()
+    df = (get_all_route_market_histories() if kind == "route" else _processed()).copy()
+    monetary = {"freight_rate", "bunker_context", "iron_ore_price", "coking_coal_price"}
+    monetary.update(c for c in df.columns if c.startswith(("freight_rate_lag_", "freight_ma_", "freight_volatility_", "freight_momentum_")))
+    for column in monetary.intersection(df.columns):
+        df[column] = df[column] * DEMO_USD_INR_RATE
+    df = df.rename(columns={column: f"{column}_inr_per_tonne" for column in monetary.intersection(df.columns)})
     name = "FreightIQ_route_freight_rates.csv" if kind == "route" else "FreightIQ_modelling_dataset.csv"
     return Response(df.to_csv(index=False), media_type="text/csv",
                     headers={"Content-Disposition": f'attachment; filename="{name}"'})

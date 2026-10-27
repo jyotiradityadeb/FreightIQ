@@ -17,6 +17,7 @@ from datetime import datetime, timedelta
 from typing import Dict, Any, List, Optional, Tuple
 
 from backend.config import (
+    DEMO_USD_INR_RATE,
     VESSEL_CLASSES,
     ROUTES,
     CARGO_TYPES,
@@ -33,6 +34,16 @@ from backend.config_model import (
     EVENT_RISK_PENALTY_PER_POINT,
     FREIGHT_TREND_THRESHOLD,
 )
+
+
+def _inr_text(model_amount: float) -> str:
+    """Format an internal model cost for user-facing explanations."""
+    amount = float(model_amount) * DEMO_USD_INR_RATE
+    if abs(amount) >= 10_000_000:
+        return f"₹{amount / 10_000_000:,.2f} Cr"
+    if abs(amount) >= 100_000:
+        return f"₹{amount / 100_000:,.2f} lakh"
+    return f"₹{amount:,.0f}"
 
 
 def evaluate_charter_candidate(
@@ -336,11 +347,11 @@ def optimize_charter_timing(
     }
     varying = [label for label, field in components.items()
                if max(c[field] for c in same_vessel) - min(c[field] for c in same_vessel) > 0.01]
-    constant = [f"{label} (${best_option[field]:,.2f})" for label, field in components.items()
+    constant = [f"{label} ({_inr_text(best_option[field])})" for label, field in components.items()
                 if label not in varying]
     why_reasons = [
         f"Selected {best_option['vessel_class']} on {best_option['charter_date']} for the lowest modeled total "
-        f"(${best_option['total_logistics_cost_usd']:,.2f}) among feasible vessel/date candidates; "
+        f"({_inr_text(best_option['total_logistics_cost_usd'])}) among feasible vessel/date candidates; "
         f"capacity supports {quantity_tonnes:,.0f} t of {cargo_type}.",
         (f"For this vessel, date-varying modeled costs are {', '.join(varying)}; these can change "
          "the ranking of charter dates." if varying else
@@ -420,11 +431,11 @@ def generate_candidate_explainability(
 
     winner_reasons = [
         f"Lowest risk-adjusted total logistics cost among all feasible candidates "
-        f"(${best_total:,.0f} total; ${best_option['effective_cost_per_tonne']:.2f}/t).",
+        f"({_inr_text(best_total)} total; {_inr_text(best_option['effective_cost_per_tonne'])}/t).",
         f"Capacity feasible: {best_option['vessel_class']} handles {best_option['quantity_tonnes']:,.0f} t "
         f"within vessel max capacity.",
         f"Largest component of total cost is {component_labels[dominant_component]} "
-        f"(${best_option[dominant_field]:,.0f}, "
+        f"({_inr_text(best_option[dominant_field])}, "
         f"{cost_fractions[dominant_component]*100:.1f}% of total).",
         f"Modeled port waiting exposure: {best_option['waiting_hours']:.1f} h for selected candidate "
         f"(congestion score {best_option['congestion_score']:.0f}/100).",
@@ -438,23 +449,23 @@ def generate_candidate_explainability(
         reasons = []
         if alt["freight_cost_usd"] > best_option["freight_cost_usd"] + 1:
             reasons.append(
-                f"freight cost ${alt['freight_cost_usd']:,.0f} vs ${best_option['freight_cost_usd']:,.0f} "
-                f"(+${alt['freight_cost_usd'] - best_option['freight_cost_usd']:,.0f})"
+                f"freight cost {_inr_text(alt['freight_cost_usd'])} vs {_inr_text(best_option['freight_cost_usd'])} "
+                f"(+{_inr_text(alt['freight_cost_usd'] - best_option['freight_cost_usd'])})"
             )
         if alt["demurrage_cost_usd"] > best_option["demurrage_cost_usd"] + 1:
             reasons.append(
-                f"demurrage ${alt['demurrage_cost_usd']:,.0f} vs ${best_option['demurrage_cost_usd']:,.0f} "
-                f"(+${alt['demurrage_cost_usd'] - best_option['demurrage_cost_usd']:,.0f})"
+                f"demurrage {_inr_text(alt['demurrage_cost_usd'])} vs {_inr_text(best_option['demurrage_cost_usd'])} "
+                f"(+{_inr_text(alt['demurrage_cost_usd'] - best_option['demurrage_cost_usd'])})"
             )
         if alt["congestion_cost_usd"] > best_option["congestion_cost_usd"] + 1:
             reasons.append(
-                f"congestion ${alt['congestion_cost_usd']:,.0f} vs ${best_option['congestion_cost_usd']:,.0f} "
-                f"(+${alt['congestion_cost_usd'] - best_option['congestion_cost_usd']:,.0f})"
+                f"congestion {_inr_text(alt['congestion_cost_usd'])} vs {_inr_text(best_option['congestion_cost_usd'])} "
+                f"(+{_inr_text(alt['congestion_cost_usd'] - best_option['congestion_cost_usd'])})"
             )
         if alt["route_risk_penalty_usd"] > best_option["route_risk_penalty_usd"] + 1:
             reasons.append(
-                f"risk adjustment ${alt['route_risk_penalty_usd']:,.0f} vs "
-                f"${best_option['route_risk_penalty_usd']:,.0f}"
+                f"risk adjustment {_inr_text(alt['route_risk_penalty_usd'])} vs "
+                f"{_inr_text(best_option['route_risk_penalty_usd'])}"
             )
         if not reasons:
             reasons.append("marginally higher total cost due to combined factor accumulation")
