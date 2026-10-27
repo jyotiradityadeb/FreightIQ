@@ -79,22 +79,24 @@ def test_backtest_uses_fixed_panamax_scope():
     assert response.json()["test_periods_count"] > 0
 
 
-@pytest.mark.parametrize("route_key,route_label", [
-    ("AU_HPT -> IN_PDP", "AU_HPT"),
-    ("MZ_MNC -> IN_PDP", "MZ_MNC"),
+@pytest.mark.parametrize("route_key,route_label,origin_name", [
+    ("AU_HPT -> IN_PDP", "AU_HPT", "Hay Point"),
+    ("MZ_MNC -> IN_PDP", "MZ_MNC", "Nacala"),
 ])
-def test_downloaded_decision_report_includes_actual_analyses(route_key, route_label):
+def test_downloaded_decision_report_includes_actual_analyses(route_key, route_label, origin_name):
     response = client.post("/web/report", json={"route_key": route_key})
     assert response.status_code == 200
     assert response.headers["content-type"] == "application/pdf"
     text = "\n".join(page.extract_text() for page in PdfReader(BytesIO(response.content)).pages)
 
     assert route_label in text
+    assert origin_name in text
     assert "Not evaluated for this report" not in text
     assert "DECISION TWIN & ROBUSTNESS ANALYSIS" in text
     assert "SCENARIO ANALYSIS & STRESS TESTING" in text
     assert "Synthetic walk-forward simulation" in text
     assert "Synthetic demo-series validation" in text
+    assert "not an independent final test" in text
     assert "External validation" in text
     assert "DEMO / SYNTHETIC" in text
     assert "USD" not in text

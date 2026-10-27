@@ -28,6 +28,7 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_RIGHT, TA_JUSTIFY
 
 from backend.scenario_engine import usd_to_inr
+from backend.domain.ports import get_port_by_id
 
 
 def pd_isna(val):
@@ -317,6 +318,12 @@ def generate_charter_decision_pdf(
     cong_inr = usd_to_inr(cong_usd) if cong_usd is not None else None
     risk_inr = usd_to_inr(risk_usd) if risk_usd is not None else None
     per_t_inr = (tot_cost_inr / max(1.0, qty)) if tot_cost_inr is not None and tot_cost_inr > 0 else None
+    origin_id = str(recommendation.get("origin", "Australia"))
+    destination_id = str(recommendation.get("destination", "Paradip"))
+    origin_port = get_port_by_id(origin_id)
+    destination_port = get_port_by_id(destination_id)
+    origin_display = f"{origin_port.port_name} ({origin_id})" if origin_port and origin_port.port_id == origin_id else origin_id
+    destination_display = f"{destination_port.port_name} ({destination_id})" if destination_port and destination_port.port_id == destination_id else destination_id
 
     summary_data = [
         [
@@ -339,13 +346,13 @@ def generate_charter_decision_pdf(
         ],
         [
             Paragraph("<strong>Origin Port:</strong>", style_cell),
-            Paragraph(str(recommendation.get("origin", "Australia")), style_cell),
+            Paragraph(origin_display, style_cell),
             Paragraph("<strong>Risk Adjustment:</strong>", style_cell),
             Paragraph(format_pdf_inr_val(risk_inr, mode="lakh"), style_cell)
         ],
         [
             Paragraph("<strong>Destination Port:</strong>", style_cell),
-            Paragraph(str(recommendation.get("destination", "Paradip")), style_cell),
+            Paragraph(destination_display, style_cell),
             Paragraph("<strong>Total Expected Cost:</strong>", style_cell_bold),
             Paragraph(f"<strong>{format_pdf_inr_val(tot_cost_inr)}</strong>", style_cell_bold)
         ],
@@ -372,7 +379,7 @@ def generate_charter_decision_pdf(
     outlook = market_outlook or {}
     mkt_text = (
         f"Forecast source: synthetic route-specific demonstration series "
-        f"({recommendation.get('origin', 'Australia')} to {recommendation.get('destination', 'Paradip')}). "
+        f"({origin_display} to {destination_display}). "
         f"Selected model: {outlook.get('model', 'not supplied')}; "
         f"forecast horizon: {outlook.get('horizon', 'not supplied')} days. "
         "Operational signals are modeled assumptions, not live port or vessel observations."
@@ -555,8 +562,8 @@ def generate_charter_decision_pdf(
                 f"MAE = {format_pdf_inr_val(usd_to_inr(sv_mae))} / t, "
                 f"RMSE = {format_pdf_inr_val(usd_to_inr(sv_rmse))} / t, "
                 f"MAPE = {sv_mape:.2f}%. "
-                "These metrics are computed on a held-out part of the synthetic route series — "
-                "they do not establish real-market forecast accuracy.",
+                "These held-out synthetic errors also guide Auto model selection; "
+                "they are not an independent final test or evidence of real-market accuracy.",
                 style_body
             ))
         else:
@@ -594,7 +601,8 @@ def generate_charter_decision_pdf(
             story.append(Paragraph(
                 f"External validation ({rv_source}, PUBLIC_REAL data): "
                 f"MAE = {rv_mae:.3f} m/s, RMSE = {rv_rmse:.3f} m/s, MAPE = {rv_mape:.2f}%. "
-                f"Observations: {rv_n}. {rv_notes}",
+                f"Observations: {rv_n}. {rv_notes} "
+                "This checks a separate weather-forecast method, not freight-rate accuracy.",
                 style_body
             ))
     else:
