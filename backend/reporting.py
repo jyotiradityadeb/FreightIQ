@@ -369,10 +369,13 @@ def generate_charter_decision_pdf(
 
     # SECTION 2: MARKET OUTLOOK & FREIGHT SIGNALS
     story.append(Paragraph("2. MARKET OUTLOOK & FREIGHT SIGNALS", style_heading))
+    outlook = market_outlook or {}
     mkt_text = (
-        f"Forecast source: Synthetic route-specific demonstration series ({recommendation.get('origin', 'Australia')} → {recommendation.get('destination', 'Paradip')}). "
-        "Panamax & Capesize spot freight rate forward trajectories indicate route-calibrated behavior across East Coast India discharge routes. "
-        "Bunker VLSFO in Singapore trades near INR 54,200/t. Port queue indices remain within normal seasonal bounds."
+        f"Forecast source: synthetic route-specific demonstration series "
+        f"({recommendation.get('origin', 'Australia')} to {recommendation.get('destination', 'Paradip')}). "
+        f"Selected model: {outlook.get('model', 'not supplied')}; "
+        f"forecast horizon: {outlook.get('horizon', 'not supplied')} days. "
+        "Operational signals are modeled assumptions, not live port or vessel observations."
     )
     story.append(Paragraph(mkt_text, style_body))
     story.append(Spacer(1, 8))
@@ -469,7 +472,6 @@ def generate_charter_decision_pdf(
     story.append(Spacer(1, 8))
 
     # SECTION 5: SCENARIO ANALYSIS
-    story.append(Paragraph("5. SCENARIO ANALYSIS & STRESS TESTING", style_heading))
     if scenario_result and scenario_result.get("success"):
         s_base = scenario_result.get("baseline_recommendation", {})
         s_stress = scenario_result.get("stressed_recommendation", {})
@@ -509,20 +511,28 @@ def generate_charter_decision_pdf(
             ('GRID', (0,0), (-1,-1), 0.5, colors.HexColor("#CBD5E1")),
             ('PADDING', (0,0), (-1,-1), 4),
         ]))
-        story.append(t_scen)
+        scenario_block = [Paragraph("5. SCENARIO ANALYSIS & STRESS TESTING", style_heading), t_scen]
+        if scenario_result.get("explanation"):
+            scenario_block.append(Paragraph(str(scenario_result["explanation"]).replace('₹', 'INR '), style_body))
+        story.append(KeepTogether(scenario_block))
     else:
+        story.append(Paragraph("5. SCENARIO ANALYSIS & STRESS TESTING", style_heading))
         story.append(Paragraph("Not evaluated for this report.", style_body))
 
     story.append(Spacer(1, 8))
 
     # SECTION 6: HISTORICAL-STYLE SIMULATION ON SYNTHETIC DEMO DATA
     story.append(Paragraph("6. HISTORICAL-STYLE SIMULATION ON SYNTHETIC DEMO DATA", style_heading))
-    if backtest_metrics and backtest_metrics.get("status") not in (None, "UNAVAILABLE"):
-        win_rate = backtest_metrics.get("win_rate_pct", 0.0)
-        avg_savings = backtest_metrics.get("avg_cost_savings_inr", 0.0)
+    if backtest_metrics and backtest_metrics.get("success"):
+        win_rate = backtest_metrics["win_rate_percentage"]
+        periods = backtest_metrics["test_periods_count"]
+        cost_difference = usd_to_inr(backtest_metrics["simulated_cost_difference_total"])
         story.append(Paragraph(
-            f"Historical backtest simulation result: Win Rate = {win_rate:.1f}%, "
-            f"Average Savings = {format_pdf_inr_val(avg_savings)}.",
+            f"Synthetic walk-forward simulation: {periods} decision windows; "
+            f"non-higher-cost windows = {win_rate:.1f}%; "
+            f"signed total cost difference versus immediate charter = {format_pdf_inr_val(cost_difference)}. "
+            "Positive means lower modeled cost; negative means higher modeled cost. "
+            "These are simulated outcomes, not realized savings.",
             style_body
         ))
     else:
@@ -545,7 +555,7 @@ def generate_charter_decision_pdf(
                 f"MAE = {format_pdf_inr_val(usd_to_inr(sv_mae))} / t, "
                 f"RMSE = {format_pdf_inr_val(usd_to_inr(sv_rmse))} / t, "
                 f"MAPE = {sv_mape:.2f}%. "
-                "These metrics are computed on the same synthetic series used for model fitting — "
+                "These metrics are computed on a held-out part of the synthetic route series — "
                 "they do not establish real-market forecast accuracy.",
                 style_body
             ))

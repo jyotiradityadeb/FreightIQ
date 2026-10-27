@@ -1,9 +1,12 @@
 """Integration boundaries for the Stitch-derived local interface."""
 
 from fastapi.testclient import TestClient
+from io import BytesIO
 from io import StringIO
 
 import pandas as pd
+import pytest
+from pypdf import PdfReader
 
 from backend.main import app
 import backend.stitch_api as stitch_api
@@ -74,3 +77,25 @@ def test_backtest_uses_fixed_panamax_scope():
     })
     assert response.status_code == 200
     assert response.json()["test_periods_count"] > 0
+
+
+@pytest.mark.parametrize("route_key,route_label", [
+    ("AU_HPT -> IN_PDP", "AU_HPT"),
+    ("MZ_MNC -> IN_PDP", "MZ_MNC"),
+])
+def test_downloaded_decision_report_includes_actual_analyses(route_key, route_label):
+    response = client.post("/web/report", json={"route_key": route_key})
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "application/pdf"
+    text = "\n".join(page.extract_text() for page in PdfReader(BytesIO(response.content)).pages)
+
+    assert route_label in text
+    assert "Not evaluated for this report" not in text
+    assert "DECISION TWIN & ROBUSTNESS ANALYSIS" in text
+    assert "SCENARIO ANALYSIS & STRESS TESTING" in text
+    assert "Synthetic walk-forward simulation" in text
+    assert "Synthetic demo-series validation" in text
+    assert "External validation" in text
+    assert "DEMO / SYNTHETIC" in text
+    assert "USD" not in text
+    assert "$" not in text

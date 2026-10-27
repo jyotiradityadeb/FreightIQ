@@ -136,8 +136,46 @@ def calculate(action: str, req: WebRequest):
             else:
                 result = optimize_charter_timing(**args)
                 if action == "report" and result.get("success"):
+                    from backend.backtesting import run_historical_simulation
+                    from backend.decision_twin import DecisionTwinEngine
                     from backend.reporting import generate_charter_decision_pdf
-                    return Response(generate_charter_decision_pdf(result["recommendation"]),
+                    from backend.scenario_engine import run_scenario_simulation
+                    from backend.validation import run_real_validation
+
+                    twin = DecisionTwinEngine(
+                        frame, **common, simulations_count=req.simulations_count,
+                        seed=req.seed, active_shock=req.shock.model_dump(),
+                    ).run()
+                    scenario = run_scenario_simulation(
+                        frame, ScenarioRequest(**common, shock=req.shock,
+                                               earliest_date=req.earliest_date,
+                                               latest_date=req.latest_date),
+                    )
+                    # A short, explicit walk-forward period keeps the downloadable
+                    # report responsive while using actual held-out demo history.
+                    backtest_end = df.date.max() - pd.Timedelta(days=req.horizon)
+                    backtest_start = max(df.date.min() + pd.Timedelta(days=60),
+                                         backtest_end - pd.Timedelta(days=60))
+                    backtest = run_historical_simulation(
+                        df, start_date=str(backtest_start.date()),
+                        end_date=str(backtest_end.date()), horizon=req.horizon,
+                        step_days=30, cargo_type=req.cargo_type,
+                        quantity_tonnes=req.quantity_tonnes, origin=origin,
+                        destination=destination,
+                        vessel_class=result["best_option"]["vessel_class"],
+                    )
+                    if not all(part.get("success") for part in (twin, scenario, backtest)):
+                        raise HTTPException(422, "Report analyses could not be completed for this shipment.")
+                    recommendation = {**result["recommendation"],
+                                      "all_evaluated_candidates": result["all_evaluated_candidates"][:4]}
+                    pdf = generate_charter_decision_pdf(
+                        recommendation,
+                        market_outlook={"model": fc["selected_model"], "horizon": req.horizon},
+                        decision_twin_result=twin, scenario_result=scenario,
+                        backtest_metrics=backtest, synthetic_validation=fc["metrics"],
+                        real_validation=run_real_validation(), data_mode="DEMO / SYNTHETIC",
+                    )
+                    return Response(pdf,
                                     media_type="application/pdf",
                                     headers={"Content-Disposition": 'attachment; filename="FreightIQ-decision.pdf"'})
         elif action == "scenario":
