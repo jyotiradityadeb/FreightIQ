@@ -52,6 +52,56 @@ def test_winner_has_minimum_total_cost(std_res):
         )
 
 
+def test_explanation_separates_date_drivers_from_constant_port_costs():
+    frame = pd.DataFrame({
+        "date": pd.to_datetime(["2026-11-01", "2026-11-02"]),
+        "predicted_freight_rate": [31.0, 29.0],
+        "port_congestion_score": [45.0, 45.0],
+        "avg_waiting_hours": [24.0, 24.0],
+        "weather_risk_score": [3.0, 3.0],
+        "event_risk_score": [2.0, 2.0],
+        "vessel_availability_count": [25, 25],
+    })
+    result = optimize_charter_timing(
+        forecast_df=frame, origin="Australia", destination="Paradip",
+        vessel_class="Panamax", quantity_tonnes=75000,
+    )
+    assert result["success"]
+    assert result["recommendation"]["recommended_charter_date"] == "2026-11-02"
+    explanation = " ".join(result["recommendation"]["why"])
+    assert "date-varying modeled costs are forecast freight" in explanation
+    assert "waiting-based demurrage" in explanation
+    assert "port congestion" in explanation
+    assert "remain constant across feasible dates" in explanation
+    assert "do not change the date ranking" in explanation
+    assert "Model assumptions: synthetic freight forecast" in explanation
+    assert "minimized" not in explanation
+
+
+def test_explanation_identifies_port_costs_when_they_vary_by_date():
+    frame = pd.DataFrame({
+        "date": pd.to_datetime(["2026-11-01", "2026-11-02"]),
+        "predicted_freight_rate": [30.0, 30.0],
+        "port_congestion_score": [45.0, 65.0],
+        "avg_waiting_hours": [24.0, 36.0],
+        "weather_risk_score": [3.0, 3.0],
+        "event_risk_score": [2.0, 2.0],
+        "vessel_availability_count": [25, 25],
+    })
+    result = optimize_charter_timing(
+        forecast_df=frame, origin="Australia", destination="Paradip",
+        vessel_class="Panamax", quantity_tonnes=75000,
+    )
+    assert result["success"]
+    explanation = " ".join(result["recommendation"]["why"])
+    drivers = result["recommendation"]["why"][1]
+    assert "waiting-based demurrage" in drivers
+    assert "port congestion" in drivers
+    assert "forecast freight" in result["recommendation"]["why"][2]
+    assert "weather/event risk penalty" in result["recommendation"]["why"][2]
+    assert "minimized" not in explanation
+
+
 # ── Infeasible vessel can never be selected ───────────────────────────────────
 
 def test_infeasible_capacity_never_selected(forecast_df):

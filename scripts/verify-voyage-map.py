@@ -49,6 +49,7 @@ def main():
         page.set_viewport_size({"width": 390, "height": 844})
         page.reload(wait_until="domcontentloaded")
         wait_for_map(page)
+        page.wait_for_timeout(750)  # allow the WebGL map's first painted frame after reload
         assert page.evaluate("document.documentElement.scrollWidth <= innerWidth"), "Mobile horizontal overflow"
         page.locator("#voyage-map-card").screenshot(path=str(OUT / "voyage-map-mobile-390.png"))
 

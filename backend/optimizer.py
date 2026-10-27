@@ -322,19 +322,36 @@ def optimize_charter_timing(
     last_rate = df_eval["predicted_freight_rate"].iloc[-1] if "predicted_freight_rate" in df_eval.columns else 25.0
     if last_rate > first_rate + FREIGHT_TREND_THRESHOLD:
         freight_trend = "Upward trend expected (rising rates)"
-        trend_reason = "freight rates are forecast to rise after the recommended window"
     elif last_rate < first_rate - FREIGHT_TREND_THRESHOLD:
         freight_trend = "Downward trend expected (softening rates)"
-        trend_reason = "freight rates are expected to soften towards the end of window"
     else:
         freight_trend = "Stable rates"
-        trend_reason = "freight rates remain flat across the evaluation window"
 
+    same_vessel = [c for c in candidates if c["vessel_class"] == best_option["vessel_class"]]
+    components = {
+        "forecast freight": "freight_cost_usd",
+        "waiting-based demurrage": "demurrage_cost_usd",
+        "port congestion": "congestion_cost_usd",
+        "weather/event risk penalty": "route_risk_penalty_usd",
+    }
+    varying = [label for label, field in components.items()
+               if max(c[field] for c in same_vessel) - min(c[field] for c in same_vessel) > 0.01]
+    constant = [f"{label} (${best_option[field]:,.2f})" for label, field in components.items()
+                if label not in varying]
     why_reasons = [
-        f"{trend_reason}.",
-        f"selected {best_option['vessel_class']} vessel provides the best-fit capacity for {quantity_tonnes:,} tonnes of {cargo_type}.",
-        f"port congestion and demurrage exposure at {best_option['destination']} are minimized on {best_option['charter_date']}.",
-        f"total estimated logistics cost (${best_option['total_logistics_cost_usd']:,.2f}) is lower than alternative charter dates."
+        f"Selected {best_option['vessel_class']} on {best_option['charter_date']} for the lowest modeled total "
+        f"(${best_option['total_logistics_cost_usd']:,.2f}) among feasible vessel/date candidates; "
+        f"capacity supports {quantity_tonnes:,.0f} t of {cargo_type}.",
+        (f"For this vessel, date-varying modeled costs are {', '.join(varying)}; these can change "
+         "the ranking of charter dates." if varying else
+         "For this vessel, modeled cost components do not vary across feasible dates; "
+         "the earliest date wins if multiple dates tie."),
+        (f"For this vessel, {', '.join(constant)} remain constant across feasible dates. "
+         "They contribute to total cost but do not change the date ranking." if constant else
+         "All modeled cost components vary across feasible dates."),
+        "Model assumptions: synthetic freight forecast, selected route and cargo quantity, "
+        "configured vessel capacity and rates, supplied port wait/congestion and weather/event scores, "
+        "and the stated cost factors and risk tolerance."
     ]
 
     recommendation_card = {
@@ -406,10 +423,10 @@ def generate_candidate_explainability(
         f"(${best_total:,.0f} total; ${best_option['effective_cost_per_tonne']:.2f}/t).",
         f"Capacity feasible: {best_option['vessel_class']} handles {best_option['quantity_tonnes']:,.0f} t "
         f"within vessel max capacity.",
-        f"Dominant cost driver is {component_labels[dominant_component]} "
+        f"Largest component of total cost is {component_labels[dominant_component]} "
         f"(${best_option[dominant_field]:,.0f}, "
         f"{cost_fractions[dominant_component]*100:.1f}% of total).",
-        f"Port waiting exposure: {best_option['waiting_hours']:.1f} h at charter date "
+        f"Modeled port waiting exposure: {best_option['waiting_hours']:.1f} h for selected candidate "
         f"(congestion score {best_option['congestion_score']:.0f}/100).",
     ]
 
