@@ -9,6 +9,14 @@ import backend.stitch_api as stitch_api
 client = TestClient(app)
 
 
+def test_catalog_supplies_vessel_speed_for_transit_estimate():
+    response = client.get("/web/catalog")
+    assert response.status_code == 200
+    data = response.json()
+    assert data["vessel_speeds_knots"]["Panamax"] > 0
+    assert any(route["route_key"] == "AU_GLT -> IN_PDP" for route in data["routes"])
+
+
 def test_explorer_summary_uses_processed_dataset():
     response = client.get("/stitch/explorer-summary")
     assert response.status_code == 200

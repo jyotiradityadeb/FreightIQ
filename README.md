@@ -16,6 +16,8 @@ npm run dev
 
 Open **http://localhost:3000**. The Node server serves the Stitch-style browser interface and proxies `/api/*` to FastAPI. The original Streamlit interface remains available with `streamlit run app/Home.py` at http://localhost:8501. Run `python -m pytest -q`, `npm test`, and `npm run build` to verify the backend, proxy and static bundle. See `docs/STITCH_ARCHITECTURE.md` for the deployment boundary and `docs/STITCH_IMPLEMENTATION_STATUS.md` for current fidelity limits.
 
+The Overview and Control Tower include an interactive [Voyage Intelligence map](docs/VOYAGE_INTELLIGENCE.md) with illustrative sea corridors and synthetic operational indicators. Run `python scripts/verify-voyage-map.py` against the local services to check its desktop, mobile, and fallback states.
+
 The graphs use the self-hosted Plotly library, as in the earlier interface. Hover to inspect exact values; use the visible chart toolbar to zoom, pan, reset or download a PNG. The Market chart has a date filter, and the Forecasts page can overlay up to three routes on the same axes.
 
 The [Project Phoenix decision slice](docs/PROJECT_PHOENIX.md) adds a Decision Arena with shared synthetic futures, a cost/downside frontier, counterfactual freight threshold, INR impact comparison, future replay slider, route-aware Scenario Lab, and evidence PDF. Its modeled results are for demonstration and require commercial validation.

@@ -4,7 +4,13 @@ import handler from '../netlify/functions/api.mjs';
 process.env.FREIGHTIQ_API_URL ||= 'http://127.0.0.1:8000';
 const port = Number(process.env.WEB_PORT || 3000);
 const files = { '/app.js': ['web/app.js', 'text/javascript'], '/styles.css': ['web/styles.css', 'text/css'],
-  '/plotly.min.js': ['web/vendor/plotly.min.js', 'text/javascript'] };
+  '/plotly.min.js': ['web/vendor/plotly.min.js', 'text/javascript'],
+  '/voyage-map.js': ['web/voyage-map.js', 'text/javascript'],
+  '/maplibre-gl.mjs': ['web/vendor/maplibre-gl.mjs', 'text/javascript'],
+  '/maplibre-gl-worker.mjs': ['web/vendor/maplibre-gl-worker.mjs', 'text/javascript'],
+  '/maplibre-gl.css': ['web/vendor/maplibre-gl.css', 'text/css'],
+  '/geo/land.geojson': ['web/geo/land.geojson', 'application/geo+json'],
+  '/geo/voyages.json': ['web/geo/voyages.json', 'application/json'] };
 createServer(async (req, res) => {
   try {
     if (req.url.startsWith('/api/')) {

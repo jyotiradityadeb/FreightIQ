@@ -12,6 +12,7 @@ from pydantic import Field
 
 from backend.schemas import OptimizeRequest, ScenarioShock, ScenarioRequest
 from backend.domain.routes import get_calibrated_routes
+from backend.domain.vessels import get_all_vessel_classes
 from backend.route_market import get_route_market_history
 from backend.forecasting import generate_freight_forecast, HAS_PROPHET
 from backend.optimizer import optimize_charter_timing
@@ -68,6 +69,7 @@ class WebRequest(OptimizeRequest):
 def catalog():
     return clean({"routes": get_calibrated_routes(), "parameters": get_decision_params_registry(),
                   "data_mode": "DEMO / SYNTHETIC", "usd_inr": 84,
+                  "vessel_speeds_knots": {name: vessel.speed_knots for name, vessel in get_all_vessel_classes().items()},
                   "prophet_available": HAS_PROPHET})
 
 
