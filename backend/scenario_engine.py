@@ -21,6 +21,7 @@ from backend.config import (
     PORT_CONFIG,
 )
 from backend.optimizer import optimize_charter_timing
+from backend.config_model import DEMURRAGE_EXPOSURE_FACTOR
 from backend.schemas import ScenarioRequest, ScenarioShock
 
 
@@ -74,7 +75,14 @@ def build_shocked_forecast_df(forecast_df: pd.DataFrame, shock: ScenarioShock, d
 
     # 2. Port Congestion Shock
     target = shock.target_port
-    is_targeted_port = (target == "All East Coast Ports") or (target.lower() in destination.lower()) or (destination.lower() in target.lower())
+    from backend.domain.ports import get_port_by_id
+    resolved_port = get_port_by_id(destination)
+    destination_names = {destination.lower()}
+    if resolved_port:
+        destination_names.add(resolved_port.port_name.lower())
+    is_targeted_port = target == "All East Coast Ports" or any(
+        target.lower() in name or name in target.lower() for name in destination_names
+    )
 
     if is_targeted_port and shock.port_congestion_shock_pct != 0.0:
         cong_multiplier = (1.0 + shock.port_congestion_shock_pct / 100.0)
@@ -88,13 +96,13 @@ def build_shocked_forecast_df(forecast_df: pd.DataFrame, shock: ScenarioShock, d
 
     # 4. Weather Risk Level
     weather_map = {"Low": 3.0, "Moderate": 5.0, "High": 7.5, "Severe": 9.5}
-    w_val = weather_map.get(shock.weather_risk_level, 3.0)
-    df_shocked["weather_risk_score"] = w_val
+    if shock.weather_risk_level != "Low":
+        df_shocked["weather_risk_score"] = weather_map.get(shock.weather_risk_level, 3.0)
 
     # 5. Geopolitical / Route Risk Level
     geo_map = {"Normal": 2.0, "Elevated": 5.0, "Major Disruption": 8.5}
-    g_val = geo_map.get(shock.geopolitical_risk_level, 2.0)
-    df_shocked["event_risk_score"] = g_val
+    if shock.geopolitical_risk_level != "Normal":
+        df_shocked["event_risk_score"] = geo_map.get(shock.geopolitical_risk_level, 2.0)
 
     return df_shocked
 
@@ -470,12 +478,13 @@ def run_scenario_simulation(
     # 2. Shocked Scenario Forecast DF
     shocked_df = build_shocked_forecast_df(forecast_df, shock, request.destination)
 
-    # Demurrage override
-    demurrage_override = None
+    # Scale each candidate's own vessel-class demurrage rate consistently.
+    demurrage_factors = None
     if shock.demurrage_rate_shock_pct != 0.0:
-        v_cls = base_res["best_option"]["vessel_class"]
-        base_dem = VESSEL_CLASSES.get(v_cls, VESSEL_CLASSES["Panamax"])["daily_demurrage_rate"]
-        demurrage_override = base_dem * (1.0 + shock.demurrage_rate_shock_pct / 100.0)
+        demurrage_factors = {
+            "demurrage_factor": DEMURRAGE_EXPOSURE_FACTOR *
+            (1.0 + shock.demurrage_rate_shock_pct / 100.0)
+        }
 
     # 3. Stressed Scenario Optimization
     stress_res = optimize_charter_timing(
@@ -487,7 +496,7 @@ def run_scenario_simulation(
         earliest_date=request.earliest_date,
         latest_date=request.latest_date,
         vessel_class=request.vessel_class,
-        demurrage_rate=demurrage_override,
+        cost_factor_overrides=demurrage_factors,
         risk_tolerance=request.risk_tolerance
     )
 
@@ -502,6 +511,9 @@ def run_scenario_simulation(
 
     # 4. Decision Confidence
     conf_score, conf_breakdown = calculate_decision_confidence(forecast_df, shock, stress_res)
+    baseline_confidence, _ = calculate_decision_confidence(
+        forecast_df, ScenarioShock(), base_res
+    )
 
     # 5. Side-by-Side Comparison Table Construction
     base_cost_inr = usd_to_inr(base_opt["total_logistics_cost_usd"])
@@ -580,9 +592,9 @@ def run_scenario_simulation(
         },
         {
             "metric": "Decision Confidence",
-            "baseline": "85.0 / 100",
+            "baseline": f"{baseline_confidence:.1f} / 100",
             "stress_scenario": f"{conf_score:.1f} / 100",
-            "changed": abs(conf_score - 85.0) > 2.0
+            "changed": abs(conf_score - baseline_confidence) > 2.0
         }
     ]
 
@@ -604,9 +616,10 @@ def run_scenario_simulation(
     # Generate dynamic explanation
     explanation_parts = []
     if shock.port_congestion_shock_pct > 0:
-        diff_dem_lakh = (stress_dem_inr - base_dem_inr) / 100_000
         explanation_parts.append(
-            f"{shock.target_port} congestion increased by {shock.port_congestion_shock_pct:.0f}%, raising expected waiting and demurrage exposure by {format_inr_val(stress_dem_inr - base_dem_inr, mode='lakh')}."
+            f"Configured {shock.target_port} congestion change: +{shock.port_congestion_shock_pct:.0f}%. "
+            f"Modeled port/waiting cost change: {format_inr_val(stress_cong_inr - base_cong_inr, mode='lakh')}; "
+            f"demurrage change: {format_inr_val(stress_dem_inr - base_dem_inr, mode='lakh')}."
         )
     elif shock.port_congestion_shock_pct < 0:
         explanation_parts.append(
@@ -620,7 +633,7 @@ def run_scenario_simulation(
 
     if shock.vessel_availability_shock_pct != 0:
         explanation_parts.append(
-            f"Vessel availability changed by {shock.vessel_availability_shock_pct:+.0f}%, tightening suitable ship supply."
+            f"Configured vessel availability changed by {shock.vessel_availability_shock_pct:+.0f}%."
         )
 
     if shock.weather_risk_level in ["High", "Severe"]:
@@ -633,16 +646,27 @@ def run_scenario_simulation(
             f"Route security risk set to {shock.geopolitical_risk_level}, applying operational buffer."
         )
 
-    if not explanation_parts:
+    no_shock = not explanation_parts and shock.demurrage_rate_shock_pct == 0
+    if no_shock:
         explanation_parts.append("No market or operational shocks applied. Stressed scenario matches baseline recommendation.")
 
-    if decision_status != "Recommendation Unchanged":
+    if shock.demurrage_rate_shock_pct != 0:
         explanation_parts.append(
-            f"FreightIQ adapted the decision: baseline charter on {base_opt['charter_date']} ({base_opt['vessel_class']}) changed to {stress_opt['charter_date']} ({stress_opt['vessel_class']}) to optimize risk-adjusted total cost."
+            f"Configured demurrage rate change: {shock.demurrage_rate_shock_pct:+.0f}%; "
+            f"modeled exposure change: {format_inr_val(stress_dem_inr - base_dem_inr, mode='lakh')}."
         )
-    else:
+
+    if (base_opt["charter_date"], base_opt["vessel_class"], base_opt["destination"]) != (
+        stress_opt["charter_date"], stress_opt["vessel_class"], stress_opt["destination"]
+    ):
         explanation_parts.append(
-            f"Despite shock conditions, the baseline recommendation on {base_opt['charter_date']} using {base_opt['vessel_class']} remains the lowest simulated-cost candidate."
+            f"The lowest modeled-cost action changed from {base_opt['charter_date']} ({base_opt['vessel_class']}) "
+            f"to {stress_opt['charter_date']} ({stress_opt['vessel_class']})."
+        )
+    elif not no_shock:
+        explanation_parts.append(
+            f"The charter action remains {base_opt['charter_date']} using {base_opt['vessel_class']}; "
+            f"modeled total cost changed by {format_inr_val(cost_diff_inr)}."
         )
 
     explanation_text = " ".join(explanation_parts)

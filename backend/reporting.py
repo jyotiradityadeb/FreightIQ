@@ -68,6 +68,69 @@ def _register_vera_font():
 _register_vera_font()
 
 
+def generate_strategy_arena_pdf(result: Dict[str, Any]) -> bytes:
+    """Export the same modeled comparison shown in the Decision Arena."""
+    from xml.sax.saxutils import escape
+
+    output = io.BytesIO()
+    document = SimpleDocTemplate(output, pagesize=A4, leftMargin=48, rightMargin=48,
+                                 topMargin=48, bottomMargin=45)
+    styles = getSampleStyleSheet()
+    styles.add(ParagraphStyle(name="ArenaTitle", parent=styles["Heading1"], fontName="VeraSans",
+                              fontSize=17, leading=22, textColor=colors.HexColor("#0B3C50")))
+    styles.add(ParagraphStyle(name="ArenaBody", parent=styles["BodyText"], fontName="VeraSans",
+                              fontSize=8.5, leading=13, spaceAfter=8))
+    money = lambda usd: format_pdf_inr_val(float(usd) * result["currency_rate_inr_per_usd"], "cr")
+    selected = result["selected_action"]
+    counter = result["counterfactual"]
+    story = [Paragraph("FreightIQ | Decision Arena", styles["ArenaTitle"]),
+             Paragraph("SYNTHETIC / MODELLED - decision-support experiment, not a charter instruction", styles["ArenaBody"]),
+             Paragraph(f"<b>Route:</b> {escape(result['route_key'])} &nbsp;&nbsp; "
+                       f"<b>Model:</b> {escape(result['model_name'])} &nbsp;&nbsp; "
+                       f"<b>Selected:</b> {escape(selected['charter_date'])} / {escape(selected['vessel_class'])}",
+                       styles["ArenaBody"]),
+             Paragraph(f"Baseline selected cost {money(selected['cost_usd'])}; modeled saving versus earliest "
+                       f"{money(result['modelled_savings_vs_earliest_usd'])}; modeled cost of waiting "
+                       f"{money(result['modelled_cost_of_waiting_usd'])}.", styles["ArenaBody"])]
+    rows = [["Policy", "Action", "Mean cost", "CVaR90", "Feasible"]]
+    for strategy in result["strategies"]:
+        rows.append([strategy["label"],
+                     f"{strategy['charter_date']}\n{strategy['vessel_class']}",
+                     money(strategy["mean_cost_usd"]), money(strategy["cvar90_cost_usd"]),
+                     f"{strategy['feasible_futures_pct']:.1f}%"])
+    grid = Table(rows, colWidths=[105, 112, 95, 95, 60], repeatRows=1, hAlign="LEFT")
+    grid.setStyle(TableStyle([("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#0B3C50")),
+                              ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
+                              ("FONTNAME", (0, 0), (-1, -1), "VeraSans"),
+                              ("FONTSIZE", (0, 0), (-1, -1), 7),
+                              ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+                              ("ROWBACKGROUNDS", (0, 1), (-1, -1),
+                               [colors.white, colors.HexColor("#E9F4F5")]),
+                              ("BOTTOMPADDING", (0, 0), (-1, -1), 8),
+                              ("TOPPADDING", (0, 0), (-1, -1), 8)]))
+    story += [grid, Spacer(1, 14), Paragraph("Cost drivers: selected minus earliest", styles["Heading3"])]
+    for item in result["cost_evidence"]:
+        story.append(Paragraph(f"{escape(item['driver'])}: {money(item['delta_vs_earliest_usd'])}",
+                               styles["ArenaBody"]))
+    if counter["status"] == "threshold_found":
+        message = (f"A {counter['freight_increase_pct']:.2f}% increase in the selected-date freight rate "
+                   f"changes the optimizer choice to {counter['new_date']} / {counter['new_vessel']}.")
+    else:
+        message = counter.get("reason", "No counterfactual threshold available.")
+    story += [Paragraph("What changes the choice?", styles["Heading3"]),
+              Paragraph(escape(message), styles["ArenaBody"]),
+              Paragraph(f"Route history: {result['history_start']} to {result['history_end']}; forecast: "
+                        f"{result['forecast_start']} to {result['forecast_end']}; seed {result['seed']}; "
+                        f"{result['common_feasible_samples']} shared feasible futures of {result['sample_count']}; "
+                        f"uncertainty scale {result['uncertainty_scale']}; presentation exchange rate "
+                        f"INR {result['currency_rate_inr_per_usd']}/USD.", styles["ArenaBody"]),
+              Paragraph(escape(result["uncertainty_method"]), styles["ArenaBody"]),
+              Paragraph("Simulated win shares are not real-market probabilities. Cost assumptions and "
+                        "recommendations require contract and operational verification.", styles["ArenaBody"])]
+    document.build(story)
+    return output.getvalue()
+
+
 class NumberedCanvas(canvas.Canvas):
     """Two-pass canvas to dynamically add header & footer page numbers."""
     def __init__(self, *args, **kwargs):

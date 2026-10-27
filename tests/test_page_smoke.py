@@ -21,8 +21,11 @@ from streamlit.testing.v1 import AppTest
     "app/pages/10_Data_Explorer.py",
 ])
 def test_page_renders_without_exceptions(page_file):
-    at = AppTest.from_file(page_file, default_timeout=30)
-    at.run(timeout=30)
+    # The Streamlit backtest runs a full synthetic walk-forward simulation on
+    # first render; it can exceed the general page timeout on Windows.
+    timeout = 90 if page_file.endswith("8_Backtesting.py") else 30
+    at = AppTest.from_file(page_file, default_timeout=timeout)
+    at.run(timeout=timeout)
     assert len(at.exception) == 0, f"Exception rendered on {page_file}: {[e.value for e in at.exception]}"
 
 

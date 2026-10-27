@@ -1,5 +1,5 @@
 const paths = new Set(['health', 'market/latest', 'web/catalog', 'web/data', 'web/forecast', 'web/optimize',
-  'web/scenario', 'web/decision-twin', 'web/control-tower', 'web/backtest',
+  'web/scenario', 'web/decision-twin', 'web/strategy-arena', 'web/arena-report', 'web/control-tower', 'web/backtest',
   'web/sensitivity', 'web/report', 'web/validation', 'data/upload',
   'stitch/explorer', 'stitch/explorer-summary', 'stitch/integrations', 'stitch/audit',
   'stitch/decisions', 'stitch/weather-chart', 'stitch/export/route', 'stitch/export/dataset',

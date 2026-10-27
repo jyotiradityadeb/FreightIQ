@@ -12,6 +12,8 @@ test('enforces read and write methods for new Stitch endpoints', async () => {
   const write = await handler(new Request('http://localhost/api/stitch/solve'));
   assert.equal(read.status, 405);
   assert.equal(write.status, 405);
+  assert.equal((await handler(new Request('http://localhost/api/web/strategy-arena'))).status, 405);
+  assert.equal((await handler(new Request('http://localhost/api/web/arena-report'))).status, 405);
 });
 
 test('reports an unconfigured Python service clearly', async () => {

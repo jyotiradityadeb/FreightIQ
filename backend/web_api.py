@@ -54,7 +54,9 @@ class WebRequest(OptimizeRequest):
     risk_tolerance: Literal["Low", "Medium", "High"] = "Medium"
     cargo_type: Literal["Coking Coal", "Iron Ore"] = "Coking Coal"
     simulations_count: int = Field(1000, ge=50, le=5000)
+    arena_simulations_count: int = Field(250, ge=50, le=500)
     seed: int = 42
+    uncertainty_scale: float = Field(1.0, ge=0.25, le=2.0)
     shock: ScenarioShock = Field(default_factory=ScenarioShock)
     start_date: date = date(2026, 1, 1)
     end_date: date = date(2026, 6, 30)
@@ -81,7 +83,7 @@ def dataset(route_key: str = "AU_HPT -> IN_PDP"):
 
 @router.post("/{action}")
 def calculate(action: str, req: WebRequest):
-    if action not in {"forecast", "optimize", "scenario", "decision-twin", "control-tower",
+    if action not in {"forecast", "optimize", "scenario", "decision-twin", "strategy-arena", "arena-report", "control-tower",
                       "backtest", "sensitivity", "report"}:
         raise HTTPException(404, "Unknown calculation")
     df = history(req.route_key)
@@ -106,6 +108,15 @@ def calculate(action: str, req: WebRequest):
         frame = fc["forecast_df"].copy(deep=True)
         if action == "forecast":
             return clean({**fc, "route_key": req.route_key, "is_demo_data": True})
+        # The univariate freight forecast has no operational regressors. Carry the
+        # latest route-specific synthetic observation forward as an explicit
+        # assumption instead of silently using generic optimizer fallbacks.
+        context_fields = ("port_congestion_score", "avg_waiting_hours", "vessel_availability_count",
+                          "weather_risk_score", "event_risk_score")
+        latest_context = df.iloc[-1]
+        for field in context_fields:
+            if field not in frame and field in df:
+                frame[field] = latest_context[field]
         try:
             earliest = pd.Timestamp(req.earliest_date) if req.earliest_date else frame.date.min()
             latest = pd.Timestamp(req.latest_date) if req.latest_date else frame.date.max()
@@ -131,6 +142,29 @@ def calculate(action: str, req: WebRequest):
             from backend.scenario_engine import run_scenario_simulation
             result = run_scenario_simulation(frame, ScenarioRequest(**common, shock=req.shock,
                          earliest_date=req.earliest_date, latest_date=req.latest_date))
+        elif action in {"strategy-arena", "arena-report"}:
+            from backend.scenario_engine import build_shocked_forecast_df
+            from backend.strategy_arena import compare_strategies
+            shock = req.shock
+            active = (shock.freight_rate_shock_pct != 0 or shock.port_congestion_shock_pct != 0
+                      or shock.vessel_availability_shock_pct != 0 or shock.demurrage_rate_shock_pct != 0
+                      or shock.weather_risk_level != "Low" or shock.geopolitical_risk_level != "Normal")
+            arena_frame = build_shocked_forecast_df(frame, shock, destination) if active else frame
+            try:
+                result = compare_strategies(
+                    arena_frame, df, **common, earliest_date=req.earliest_date,
+                    latest_date=req.latest_date, demurrage_rate=req.demurrage_rate,
+                    simulations_count=req.arena_simulations_count, seed=req.seed,
+                    uncertainty_scale=req.uncertainty_scale, model_name=fc["selected_model"],
+                    route_key=req.route_key, demurrage_shock_pct=shock.demurrage_rate_shock_pct,
+                )
+            except ValueError as error:
+                raise HTTPException(422, str(error)) from error
+            result["active_shock"] = shock.model_dump() if active else None
+            if action == "arena-report":
+                from backend.reporting import generate_strategy_arena_pdf
+                return Response(generate_strategy_arena_pdf(result), media_type="application/pdf",
+                                headers={"Content-Disposition": 'attachment; filename="FreightIQ-strategy-arena.pdf"'})
         elif action == "decision-twin":
             from backend.decision_twin import DecisionTwinEngine
             result = DecisionTwinEngine(frame, **common, simulations_count=req.simulations_count,
@@ -140,7 +174,13 @@ def calculate(action: str, req: WebRequest):
             result = evaluate_control_tower_state(frame, **common, shock_override=req.shock)
     if result.get("success") is False:
         raise HTTPException(422, result.get("error", "No feasible result for these inputs."))
-    return clean({**result, "route_key": req.route_key, "is_demo_data": True})
+    payload = {**result, "route_key": req.route_key, "is_demo_data": True}
+    if action != "backtest":
+        payload["operational_context"] = {
+            "method": "last synthetic route observation carried forward",
+            "observation_date": str(df.date.max().date()),
+        }
+    return clean(payload)
 
 
 @router.get("/validation")

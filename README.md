@@ -18,6 +18,8 @@ Open **http://localhost:3000**. The Node server serves the Stitch-style browser 
 
 The graphs use the self-hosted Plotly library, as in the earlier interface. Hover to inspect exact values; use the visible chart toolbar to zoom, pan, reset or download a PNG. The Market chart has a date filter, and the Forecasts page can overlay up to three routes on the same axes.
 
+The [Project Phoenix decision slice](docs/PROJECT_PHOENIX.md) adds a Decision Arena with shared synthetic futures, a cost/downside frontier, counterfactual freight threshold, INR impact comparison, future replay slider, route-aware Scenario Lab, and evidence PDF. Its modeled results are for demonstration and require commercial validation.
+
 ---
 
 ## 🚀 Quick Start & Local Development
